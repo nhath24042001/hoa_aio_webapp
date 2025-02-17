@@ -1,0 +1,13 @@
+{
+  "cSpell.words": [
+      "apexcharts",
+      "cheatsheet"
+  ],
+  "eslint.format.enable": true,
+  "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+      "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  }
+}
