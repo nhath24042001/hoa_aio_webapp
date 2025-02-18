@@ -9,22 +9,39 @@ export const authRoutes: Routes = [
     children: [
       {
         path: 'login',
-        loadComponent: () => import('./pages/authentication/login/login.component').then(m => m.LoginComponent)
+        loadComponent: () =>
+          import('./pages/authentication/login/login.component').then((m) => m.LoginComponent)
       },
       {
         path: 'register',
-        loadComponent: () => import('./pages/authentication/register/register.component').then(m => m.RegisterComponent)
+        loadComponent: () =>
+          import('./pages/authentication/register/register.component').then(
+            (m) => m.RegisterComponent
+          )
       },
       {
         path: 'forgot-password',
-        loadComponent: () => import('./pages/authentication/forgot-password/forgot-password.component').then(m => m.ForgotPasswordComponent)
+        loadComponent: () =>
+          import('./pages/authentication/forgot-password/forgot-password.component').then(
+            (m) => m.ForgotPasswordComponent
+          )
       },
       {
         path: 'reset-password',
-        loadComponent: () => import('./pages/authentication/reset-password/reset-password.component').then(m => m.ResetPasswordComponent)
+        loadComponent: () =>
+          import('./pages/authentication/reset-password/reset-password.component').then(
+            (m) => m.ResetPasswordComponent
+          )
       },
+      {
+        path: 'set-new-password',
+        loadComponent: () =>
+          import('./pages/authentication/set-new-password/set-new-password.component').then(
+            (m) => m.SetNewPasswordComponent
+          )
+      }
     ]
-  },
+  }
 ];
 
 export const mainRoutes: Routes = [

@@ -61,10 +61,20 @@ p {
 .--text-subtitle {
   font-size: 15px;
   color: #666D80;
+
+  strong {
+    color: #000 !important;
+  }
 }
 
 .--text {
   font-size: 12px;
   line-height: 18px;
   color: #666D80;
+
+  span {
+    color: #6938DA !important;
+    font-weight: 700;
+    cursor: pointer;
+  }
 }
