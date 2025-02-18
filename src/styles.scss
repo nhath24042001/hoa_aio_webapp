@@ -1,4 +1,5 @@
 @import "primeicons/primeicons.css";
+
 /* RESET CSS */
 * {
   margin: 0;
@@ -50,4 +51,20 @@ p {
   src: url('assets/fonts/Manrope-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
+}
+
+.--text-tittle {
+  font-size: 28px;
+  color: #0D0D12;
+}
+
+.--text-subtitle {
+  font-size: 15px;
+  color: #666D80;
+}
+
+.--text {
+  font-size: 12px;
+  line-height: 18px;
+  color: #666D80;
 }
