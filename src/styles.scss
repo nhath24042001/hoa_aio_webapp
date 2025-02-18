@@ -1,3 +1,4 @@
+@import "primeicons/primeicons.css";
 /* RESET CSS */
 * {
   margin: 0;
@@ -39,14 +40,14 @@ p {
 /* FONT BASES */
 @font-face {
   font-family: 'Manrope';
-  src: url('/src/assets/fonts/Manrope-Regular.ttf') format('truetype');
+  src: url('assets/fonts/Manrope-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Manrope';
-  src: url('/src/assets/fonts/Manrope-Bold.ttf') format('truetype');
+  src: url('assets/fonts/Manrope-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }

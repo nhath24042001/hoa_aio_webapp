@@ -1,11 +1,20 @@
 <div class="--auth-layout">
-  <!-- <router-outlet></router-outlet> -->
-
   <div class="container-fluid">
     <div class="row">
-      <div class="col-4">
-        <div class="--logo-container">
-          <div class="--banner-content">
+      <div class="col-12">
+        <div class="row --form-wrapper">
+          <div class="col-5"></div>
+          <div class="col-7">
+            <div class="--form-container">
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="--banner-wrapper">
+          <div class="--banner-content d-flex align-items-center gap-3 mb-4">
             <img src="assets/images/small-logo.svg" alt="hoa_logo" />
             <p>
               All in one solution for home owner association’s management, communication and
@@ -14,7 +23,6 @@
           </div>
         </div>
       </div>
-      <div class="col-8"></div>
     </div>
   </div>
 </div>
