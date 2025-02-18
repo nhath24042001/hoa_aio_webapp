@@ -16,11 +16,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class CustomInputComponent {
   @Input() type: 'text' | 'password' = 'text';
-  @Input() icon: string = '';
-  @Input() placeholder: string = '';
+  @Input() icon = '';
+  @Input() placeholder = '';
 
-  value: string = '';
-  isPasswordVisible: boolean = false;
+  value = '';
+  isPasswordVisible = false;
 
   onChange: any = () => {};
   onTouched: any = () => {};

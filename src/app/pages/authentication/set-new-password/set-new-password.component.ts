@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { Component, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -27,7 +28,7 @@ export class SetNewPasswordComponent {
 
   rememberMe = signal<boolean>(false);
 
-  constructor(private fb: FormBuilder) {
+  constructor(public fb: FormBuilder) {
     this.newPasswordForm = this.fb.group({
       newPassword: ['', [Validators.required, Validators.email]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]]

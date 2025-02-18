@@ -14,7 +14,7 @@ export class ResetPasswordComponent {
   isSubmitting = false;
   loading = false;
   email = signal('fajar@gmail.com');
-  value: string = '1111';
+  value = '1111';
   otpOptions: NgxOtpInputComponentOptions = {
     otpLength: 6,
     autoBlur: false,

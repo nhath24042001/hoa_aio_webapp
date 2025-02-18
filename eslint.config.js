@@ -1,44 +1,72 @@
-// eslint.config.js (hoặc eslint.config.mjs nếu sử dụng ES Modules)
-import js from '@eslint/js';
-import tseslint from '@typescript-eslint/eslint-plugin';
-import angular from '@angular-eslint/eslint-plugin';
+import js from "@eslint/js";
+import tseslint from "@typescript-eslint/eslint-plugin";
+import tsParser from "@typescript-eslint/parser";
+import angularEslint from "@angular-eslint/eslint-plugin";
+import angularParser from "@angular-eslint/template-parser";
+import prettier from "eslint-config-prettier";
 
-export default {
-  files: ['**/*.ts'],
-  extends: [
-    js.configs.recommended,
-    tseslint.configs.recommended,
-    tseslint.configs.stylistic,
-    // angular.configs.tsRecommended,
-  ],
-  processor: angular.processInlineTemplates,
-  rules: {
-    '@angular-eslint/directive-selector': [
-      'error',
-      {
-        type: 'attribute',
-        prefix: 'app',
-        style: 'camelCase',
+export default [
+  js.configs.recommended,
+  {
+    files: ["src/**/*.ts"],
+    languageOptions: {
+      parser: tsParser,
+      sourceType: "module",
+      parserOptions: {
+        project: "./tsconfig.json",
+        tsconfigRootDir: import.meta.dirname,
       },
-    ],
-    '@angular-eslint/component-selector': [
-      'error',
-      {
-        type: 'element',
-        prefix: 'app',
-        style: 'kebab-case',
+      globals: {
+        console: "readonly",
       },
-    ],
+    },
+    plugins: {
+      "@typescript-eslint": tseslint,
+      "@angular-eslint": angularEslint,
+    },
+    rules: {
+      "no-console": "warn",
+      "no-debugger": "warn",
+      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+    },
   },
-  // overrides: [
-  //   {
-  //     files: ['**/*.html'],
-  //     extends: [
-  //       ...angular.configs.templateRecommended,
-  //       ...angular.configs.templateAccessibility,
-  //     ],
-  //   },
-  // ],
-};
-
-// TODO: Re-config ESLint for Angular
+  {
+    // This section handles the test files
+    files: ["src/**/*.spec.ts", "src/**/*.test.ts"], // Update the pattern if necessary
+    languageOptions: {
+      parser: tsParser,
+      sourceType: "module",
+    },
+    globals: {
+      describe: "readonly",  // Add Jasmine globals
+      it: "readonly",
+      beforeEach: "readonly",
+      afterEach: "readonly",
+      expect: "readonly",
+    },
+    plugins: {
+      "@typescript-eslint": tseslint,
+      "@angular-eslint": angularEslint,
+    },
+    rules: {
+      "no-console": "warn",
+      "no-debugger": "warn",
+    },
+  },
+  {
+    files: ["src/**/*.html"],
+    languageOptions: {
+      parser: angularParser,
+    },
+    plugins: {
+      "@angular-eslint": angularEslint,
+    },
+    rules: {
+      ...angularEslint.configs.recommended.rules,
+    },
+  },
+  {
+    ignores: ["dist", "node_modules"],
+  },
+  prettier,
+];
