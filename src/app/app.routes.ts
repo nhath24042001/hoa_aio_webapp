@@ -51,8 +51,28 @@ export const authRoutes: Routes = [
 ];
 
 export const mainRoutes: Routes = [
-  { path: 'dashboard', component: MainLayoutComponent, canActivate: [authGuard] },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+  {
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      {
+        path: 'overview',
+        loadComponent: () =>
+          import('./pages/main/pages/overview/overview.component').then((m) => m.OverviewComponent)
+      },
+      {
+        path: 'announcements',
+        loadComponent: () =>
+          import('./pages/main/pages/announcements/announcements.component').then(
+            (m) => m.AnnouncementsComponent
+          )
+      }
+    ]
+  },
+  {
+    path: '**',
+    redirectTo: 'overview'
+  }
 ];
 
 export const routes: Routes = [
