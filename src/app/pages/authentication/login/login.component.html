@@ -1,1 +1,44 @@
-<p>login works!</p>
+<div class="--form-login-wrapper">
+  <div class="d-flex justify-content-center my-5 mb-3">
+    <img src="assets/images/logo-auth.svg" alt="hoa_logo" />
+  </div>
+
+  <h4 class="--text-title text-center fw-bold mb-3">Welcome to Palm Springs HOA</h4>
+
+  <h6 class="--text-subtitle text-center">Please login to your account</h6>
+
+  <form class="--form-container" [formGroup]="loginForm">
+    <div class="mb-3">
+      <label for="email">Email</label>
+
+      <app-custom-input
+        formControlName="email"
+        type="text"
+        icon="assets/images/at-sign.svg"
+        placeholder="Your email"
+      ></app-custom-input>
+    </div>
+
+    <div class="mb-4">
+      <label for="password">Password</label>
+
+      <app-custom-input
+        formControlName="password"
+        type="password"
+        icon="assets/images/password-icon.svg"
+        placeholder="Your password"
+      ></app-custom-input>
+    </div>
+
+    <p-button type="submit" [loading]="loading" class="d-block" label="Login"  (click)="onSubmit()"/>
+  </form>
+
+  <div class="--bottom-container d-flex justify-content-between align-items-center mt-3">
+    <div class="d-flex algin-items-center">
+      <p-checkbox inputId="ingredient2" name="pizza" value="Mushroom" />
+      <label for="ingredient2" class="mx-2"> Remember me </label>
+    </div>
+
+    <p (click)="onRouteForgotPassword()">Forgot Password ?</p>
+  </div>
+</div>

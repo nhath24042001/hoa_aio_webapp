@@ -1,1 +1,80 @@
-/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+
+/* RESET CSS */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-family: 'Manrope', sans-serif;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+p {
+  margin: 0 !important;
+}
+
+/* FONT BASES */
+@font-face {
+  font-family: 'Manrope';
+  src: url('assets/fonts/Manrope-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('assets/fonts/Manrope-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+.--text-tittle {
+  font-size: 28px;
+  color: #0D0D12;
+}
+
+.--text-subtitle {
+  font-size: 15px;
+  color: #666D80;
+
+  strong {
+    color: #000 !important;
+  }
+}
+
+.--text {
+  font-size: 12px;
+  line-height: 18px;
+  color: #666D80;
+
+  span {
+    color: #6938DA !important;
+    font-weight: 700;
+    cursor: pointer;
+  }
+}

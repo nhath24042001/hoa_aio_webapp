@@ -1,0 +1,22 @@
+.--custom-input {
+  border: 1px solid #BEA2FF;
+  padding: 10px;
+  border-radius: 15px;
+  display: flex;
+  background: #F8FAFB;
+
+  .--input-icon {
+    margin-right: 10px;
+  }
+
+  input {
+    outline: none;
+    flex: 1;
+    background: #F8FAFB;
+  }
+
+  img {
+    width: 24px;
+    height: 25px;
+  }
+}
