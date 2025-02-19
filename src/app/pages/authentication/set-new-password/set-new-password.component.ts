@@ -7,6 +7,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { CustomInputComponent } from '../../../components/shared/custom-input/custom-input.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-set-new-password',
@@ -28,11 +29,18 @@ export class SetNewPasswordComponent {
 
   rememberMe = signal<boolean>(false);
 
-  constructor(public fb: FormBuilder) {
+  constructor(
+    public fb: FormBuilder,
+    private router: Router
+  ) {
     this.newPasswordForm = this.fb.group({
       newPassword: ['', [Validators.required, Validators.email]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
     });
+  }
+
+  onBackPreviousStep() {
+    this.router.navigate(['/auth/reset-password']);
   }
 
   onSubmit() {

@@ -6,6 +6,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { CustomInputComponent } from '../../../components/shared/custom-input/custom-input.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,10 @@ export class LoginComponent {
 
   rememberMe = signal<boolean>(false);
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -39,6 +43,11 @@ export class LoginComponent {
 
     setTimeout(() => {
       this.loading = false;
+      this.router.navigate(['main/dashboard']);
     }, 2000);
   }
+
+  onRouteForgotPassword = () => {
+    this.router.navigate(['auth/forgot-password']);
+  };
 }
