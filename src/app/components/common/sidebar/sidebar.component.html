@@ -1,6 +1,10 @@
 <nav class="--sidebar-wrapper" [class.closed]="!isOpen">
   <div class="w-100 d-flex justify-content-between align-items-center">
-    <img src="assets/images/black-hoa-logo.svg" class="--logo-img" alt="hoa_logo" />
+    @if(isOpen) {
+      <img src="assets/images/black-hoa-logo.svg" class="--logo-img" alt="hoa_logo" />
+    } @else {
+      <img src="assets/images/hoa-icon.svg" class="--logo-img" alt="hoa_logo" />
+    }
 
     <div
       class="--toggle-container d-flex justify-content-center align-items-center"
@@ -15,10 +19,13 @@
       <div
         class="--sidebar-item"
         [class.active]="isActiveRoute(sidebar.routerLink)"
+        [class.isOpen]="!isOpen"
         (click)="navigateTo(sidebar.routerLink)"
       >
         <img [src]="'assets/images/' + sidebar.icon + '-icon.svg'" alt="icon" />
-        <p>{{ sidebar.name }}</p>
+        @if (isOpen) {
+          <p>{{ sidebar.name }}</p>
+        }
       </div>
     }
   </div>
@@ -26,7 +33,9 @@
   <hr />
 
   <div class="--admin-tool-header d-flex justify-content-between align-items-center">
-    <p>Admin Tools</p>
+    @if(isOpen) {
+      <p>Admin Tools</p>
+    }
     <img
       src="assets/images/purple-down.svg"
       [class.rotated]="showAdminTool()"
@@ -41,28 +50,33 @@
         <div
           class="--sidebar-item"
           [class.active]="isActiveRoute(tool.routerLink)"
+          [class.isOpen]="!isOpen"
           (click)="navigateTo(tool.routerLink)"
         >
           <img [src]="'assets/images/' + tool.icon + '-icon.svg'" alt="icon" />
-          <p>{{ tool.name }}</p>
+          @if (isOpen) {
+            <p>{{ tool.name }}</p>
+          }
         </div>
       }
     </div>
   }
 
-  <div class="--switch-mode-wrapper mt-3">
-    <div class="--light" (click)="toggleTheme()">
-      <img src="assets/images/light-icon.svg" alt="light_icon" />
-      <p>Light</p>
+  @if (isOpen) {
+    <div class="--switch-mode-wrapper mt-3">
+      <div class="--light" (click)="toggleTheme()">
+        <img src="assets/images/light-icon.svg" alt="light_icon" />
+        <p>Light</p>
+      </div>
+      <div class="--dark" (click)="toggleTheme()">
+        <img src="assets/images/dark-icon.svg" alt="dark_icon" />
+        <p>Dark</p>
+      </div>
+      <div
+        class="--active-indicator"
+        [class.light]="currentMode === THEME.LIGHT"
+        [class.dark]="currentMode === THEME.DARK"
+      ></div>
     </div>
-    <div class="--dark" (click)="toggleTheme()">
-      <img src="assets/images/dark-icon.svg" alt="dark_icon" />
-      <p>Dark</p>
-    </div>
-    <div
-      class="--active-indicator"
-      [class.light]="currentMode === THEME.LIGHT"
-      [class.dark]="currentMode === THEME.DARK"
-    ></div>
-  </div>
+  }
 </nav>

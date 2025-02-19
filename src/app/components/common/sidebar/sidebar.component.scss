@@ -2,16 +2,21 @@
   width: 300px;
   height: 100vh;
   padding: 20px;
-  overflow: hidden;
   color: #36394A;
   transition: width 0.3s ease;
+  border-right: 1px solid #DFE1E7;
+  position: relative;
 
   &.closed {
-    width: 60px;
+    width: 89px;
   }
 
-  &.closed .toggle-btn {
-    right: -10px;
+  &.closed .--toggle-container {
+    position: absolute;
+    right: -12px;
+    top: 35px;
+    background-color: #FFF;
+    transform: rotate(180deg);
   }
 
   .--logo-img {
@@ -39,6 +44,10 @@
       border-radius: 8px;
       color: #471EA7;
       font-weight: bold;
+    }
+
+    &.isOpen {
+      justify-content: center;
     }
   }
 
