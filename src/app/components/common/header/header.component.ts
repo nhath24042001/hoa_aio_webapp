@@ -13,6 +13,7 @@ import { ThemeService } from '../../../services/theme.service';
 })
 export class HeaderComponent {
   @ViewChild('op') op!: Popover;
+  @ViewChild('op_notify') op_notify!: Popover;
 
   menu_dropdowns = MENU_DROPDOWN;
   THEME = THEME;
@@ -24,8 +25,12 @@ export class HeaderComponent {
     });
   }
 
-  toggle(event: any) {
+  onOpenMenu(event: any) {
     this.op.toggle(event);
+  }
+
+  onOpenNotify(event: any) {
+    this.op_notify.toggle(event);
   }
 
   toggleTheme() {

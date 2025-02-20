@@ -6,14 +6,14 @@
   </div>
 
   <div class="--header-right d-flex align-items-center">
-    <div class="--notification d-flex justify-content-center align-items-center">
+    <div class="--notification d-flex justify-content-center align-items-center" (click)="onOpenNotify($event)">
       <img [src]="'assets/images/' + currentMode + '/notification.svg'" alt="notification_icon" />
       <div class="--notification-badge d-flex justify-content-center align-items-center">
         <span>7</span>
       </div>
     </div>
 
-    <div class="--menu-button d-flex align-items-center gap-3" (click)="toggle($event)">
+    <div class="--menu-button d-flex align-items-center gap-3" (click)="onOpenMenu($event)">
       <img src="assets/images/common/sample-avatar.svg" alt="avatar_image" />
 
       <div class="">
@@ -24,7 +24,7 @@
       <img class="--down-icon" src="assets/images/common/purple-down.svg" alt="down-icon" />
     </div>
 
-    <p-popover #op>
+    <p-popover #op styleClass="--menu-popover">
       <div class="--menu-dropdown-container">
         @for (menu of menu_dropdowns; track $index) {
           <div class="--menu-dropdown-item d-flex align-items-center gap-3">
