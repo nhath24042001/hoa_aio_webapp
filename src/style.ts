@@ -6,19 +6,14 @@ export const MyPreset = definePreset(Aura, {
     colorScheme: {
       light: {
         primary: {
-          50: '#FFFFFF', // background
-          100: '#36394A', // color
-          150: '#FFF6E6', // theme color
+          50: '#6938DA', // background
+          100: '#6938DA', // color
           200: '#6938DA', // primary color
-          250: '#FFDD9E', // active theme color
-          300: '#F3EEFF', // active primary color
-          350: '#FFFFFF',
-          400: '#6F6F6F', // normal text
-          450: '#000000',
+          300: '#6938DA', // active primary color
+          400: '#6938DA',
           500: '#6938DA', // white / black
-          550: '#FFB9BF', // border notification
-          600: '#FF515F',
-          700: '#BEA2FF', // border menu
+          600: '#6938DA',
+          700: '#6938DA', // border menu
           800: '#6938DA',
           900: '#6938DA',
           950: '#6938DA'
@@ -35,19 +30,14 @@ export const MyPreset = definePreset(Aura, {
       },
       dark: {
         primary: {
-          50: '#0D0D12', // background
-          100: '#DFE1E7', // color
-          150: '#674300', // theme color
-          200: '#6938DA', // primary color
-          250: '#AB7000', // active theme color
-          300: '#6938DA', // active primary color
-          350: '#0D0D12',
-          400: '#979797', // normal text
-          450: '#FFFFFF',
-          500: '#6938DA', // white / black
-          550: '#CC2936', // border notification
-          600: '#FF515F',
-          700: '#471EA7', // border menu
+          50: '#6938DA',
+          100: '#6938DA',
+          200: '#6938DA',
+          300: '#6938DA',
+          400: '#6938DA',
+          500: '#6938DA',
+          600: '#6938DA',
+          700: '#6938DA',
           800: '#6938DA',
           900: '#6938DA',
           950: '#6938DA'
@@ -85,27 +75,27 @@ export const MyPreset = definePreset(Aura, {
       colorScheme: {
         light: {
           root: {
-            background: '#FF515F',
+            background: '{primary.200}',
             borderRadius: '20px',
             color: '#ffffff',
             hover: {
-              background: '#FF515F'
+              background: '{primary.200}'
             },
             focus: {
-              background: '#FF515F'
+              background: '{primary.200}'
             }
           }
         },
         dark: {
           root: {
-            background: '#FF515F',
+            background: '{primary.200}',
             borderRadius: '20px',
             color: '#ffffff',
             hover: {
-              background: '#FF515F'
+              background: '{primary.200}'
             },
             focus: {
-              background: '#FF515F'
+              background: '{primary.200}'
             }
           }
         }

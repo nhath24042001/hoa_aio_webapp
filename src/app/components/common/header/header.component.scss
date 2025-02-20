@@ -7,7 +7,7 @@
     .--app-text {
       font-weight: 600;
       font-size: 20px;
-      color: var(--p-primary-400);
+      color: var(--normal-text);
     }
 
     h4,
@@ -18,12 +18,12 @@
     .--section-name {
       font-weight: 600;
       font-size: 20px;
-      color: var(--p-primary-450);
+      color: var(--const-color);
     }
 
     .--slash-icon {
       font-weight: 600;
-      color: var(--p-primary-450);
+      color: var(--const-color);
     }
   }
 
@@ -31,7 +31,7 @@
     .--notification {
       width: 44px;
       height: 44px;
-      border: 1px solid var(--p-primary-550);
+      border: 1px solid var(--border-notification);
       border-radius: 50%;
       position: relative;
       margin-right: 24px;
@@ -55,7 +55,7 @@
     }
 
     .--menu-button {
-      border: 1px solid var(--p-primary-700);
+      border: 1px solid #BEA2FF;
       border-radius: 40px;
       padding: 5px;
       cursor: pointer;
@@ -64,13 +64,13 @@
         margin-bottom: 0 !important;
         font-weight: 600;
         font-size: 12px;
-        color: var(--p-primary-450);
+        color: var(--const-color);
       }
 
       p {
         font-weight: 500;
         font-size: 10px;
-        color: var(--p-primary-400)
+        color: var(--normal-text)
       }
 
       .--down-icon {
@@ -93,7 +93,7 @@
 }
 
 ::ng-deep .p-popover-content {
-  background: var(--p-primary-50);
+  background: var(--background);
   width: 283px;
 
   .--menu-dropdown-container {
@@ -104,11 +104,12 @@
 
     .--menu-dropdown-item {
       padding: 10px;
+      cursor: pointer;
 
       p {
         font-weight: 500;
         font-size: 16px;
-        color: var(--p-primary-100);
+        color: var(--color);
       }
 
       .--logout-text {
@@ -122,14 +123,14 @@
       h6 {
         font-weight: 600;
         font-size: 15px;
-        color: var(--p-primary-100);
+        color: var(--color);
         margin-bottom: 0 !important;
       }
 
       .--switch-mode-wrapper {
         display: flex;
-        background: var(--p-primary-150);
-        color: var(--p-primary-400);
+        background: var(--toggle-theme);
+        color: var(--const-color);
         padding: 4px;
         border-radius: 10px;
         width: 100px;
@@ -158,7 +159,7 @@
           top: 4px;
           bottom: 4px;
           width: 40px;
-          background: var(--p-primary-250);
+          background: var(--toggle-theme-active);
           border-radius: 10px;
           transition: transform 0.3s ease-in;
           z-index: 10;

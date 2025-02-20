@@ -1,0 +1,38 @@
+@import './variables';
+
+
+:root {
+  --background: #{$background-light};
+  --color: #{$color-light};
+  --theme-color: #{$theme-color-light};
+  --primary-color: #{$primary-color-light};
+  --active-primary: #{$active-primary-light};
+  --theme-style: #{$theme-style-light};
+  --border-color: #{$border-color-light};
+  --title-text: #{$title-text};
+  --title-subtext: #{$title-subtext};
+  --input-bg: #{$input-bg-light};
+  --const-color: #{$constant-color-light};
+  --normal-text: #{$normal-text-light};
+  --toggle-theme: #{$toggle-theme-light};
+  --toggle-theme-active: #{$toggle-theme-active-light};
+  --border-notification: #{$border-notification-light};
+}
+
+.my-app-dark {
+  --background: #{$background-dark};
+  --color: #{$color-dark};
+  --theme-color: #{$theme-color-dark};
+  --primary-color: #{$primary-color-dark};
+  --active-primary: #{$active-primary-dark};
+  --theme-style: #{$theme-style-dark};
+  --border-color: #{$border-color-dark};
+  --title-text: #{$title-text-dark};
+  --title-subtext: #{$title-subtext-dark};
+  --input-bg: #{$input-bg-dark};
+  --const-color: #{$constant-color-dark};
+  --normal-text: #{$primary-color-dark};
+  --toggle-theme: #{$toggle-theme-dark};
+  --toggle-theme-active: #{$toggle-theme-active-dark};
+  --border-notification: #{$border-notification-dark};
+}

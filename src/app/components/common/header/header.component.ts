@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MENU_DROPDOWN } from '../../../constants/header';
 import { THEME } from '../../../constants';
 import { ThemeService } from '../../../services/theme.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +20,10 @@ export class HeaderComponent {
   THEME = THEME;
   currentMode: string = '';
 
-  constructor(private themeService: ThemeService) {
+  constructor(
+    private themeService: ThemeService,
+    private router: Router
+  ) {
     this.themeService.theme$.subscribe((theme) => {
       this.currentMode = theme;
     });
@@ -35,5 +39,10 @@ export class HeaderComponent {
 
   toggleTheme() {
     this.themeService.toggleTheme();
+  }
+
+  onLogout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/auth/login']);
   }
 }

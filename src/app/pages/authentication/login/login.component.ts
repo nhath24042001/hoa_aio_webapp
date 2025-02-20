@@ -7,6 +7,8 @@ import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { CustomInputComponent } from '../../../components/shared/custom-input/custom-input.component';
 import { Router } from '@angular/router';
+import { ThemeService } from '../../../services/theme.service';
+import { BaseComponent } from '../../../components/common/base/base.component';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +23,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent extends BaseComponent {
   loginForm: FormGroup;
   isSubmitting = false;
   loading = false;
@@ -30,8 +32,10 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    themeService: ThemeService
   ) {
+    super(themeService);
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]

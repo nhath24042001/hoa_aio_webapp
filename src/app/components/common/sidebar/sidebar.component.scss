@@ -5,7 +5,7 @@
   transition: width 0.3s ease;
   border-right: 1px solid #DFE1E7;
   position: relative;
-  background: var(--p-primary-50);
+  background: var(--background);
 
   &.closed {
     width: 89px;
@@ -15,7 +15,7 @@
     position: absolute;
     right: -12px;
     top: 35px;
-    background-color: var(--p-primary-50);
+    background-color: var(--background);
     transform: rotate(180deg);
   }
 
@@ -37,10 +37,10 @@
     gap: 20px;
     cursor: pointer;
     transition: all .3s ease;
-    color: var(--p-primary-100);
+    color: var(--color);
 
     &.active {
-      background-color: var(--p-primary-300);
+      background-color: var(--active-primary);
       border-radius: 8px;
       color: #471EA7;
       font-weight: bold;
@@ -53,8 +53,9 @@
 
   .--admin-tool-header {
     p {
-        color: var(--p-primary-400);
-      }
+      color: var(--normal-text);
+    }
+
     img {
       cursor: pointer;
       transition: transform 0.3s ease;
@@ -79,8 +80,8 @@
 
   .--switch-mode-wrapper {
     display: flex;
-    background: var(--p-primary-150);
-      color: var(--p-primary-400);
+    background: var(--toggle-theme);
+    color: var(--const-color);
     padding: 4px;
     border-radius: 10px;
     width: 260px;
@@ -109,7 +110,7 @@
       top: 4px;
       bottom: 4px;
       width: 120px;
-      background: var(--p-primary-250);
+      background: var(--toggle-theme-active);
       border-radius: 10px;
       transition: transform 0.3s ease-in;
       z-index: 10;
