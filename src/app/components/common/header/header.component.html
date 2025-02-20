@@ -7,28 +7,28 @@
 
   <div class="--header-right d-flex align-items-center">
     <div class="--notification d-flex justify-content-center align-items-center">
-      <img src="assets/images/notification.svg" alt="notification_icon" />
+      <img [src]="'assets/images/' + currentMode + '/notification.svg'" alt="notification_icon" />
       <div class="--notification-badge d-flex justify-content-center align-items-center">
         <span>7</span>
       </div>
     </div>
 
     <div class="--menu-button d-flex align-items-center gap-3" (click)="toggle($event)">
-      <img src="assets/images/sample-avatar.svg" alt="avatar_image" />
+      <img src="assets/images/common/sample-avatar.svg" alt="avatar_image" />
 
       <div class="">
         <h6>Robert Graph</h6>
         <p>rgraph123&#64;gmail.com</p>
       </div>
 
-      <img class="--down-icon" src="assets/images/purple-down.svg" alt="down-icon" />
+      <img class="--down-icon" src="assets/images/common/purple-down.svg" alt="down-icon" />
     </div>
 
     <p-popover #op>
       <div class="--menu-dropdown-container">
         @for (menu of menu_dropdowns; track $index) {
           <div class="--menu-dropdown-item d-flex align-items-center gap-3">
-            <img [src]="'assets/images/header/' + menu.icon + '.svg'" alt="menu_icon" />
+            <img [src]="'assets/images/' + currentMode + '/' + menu.icon + '.svg'" [alt]="menu.icon + '_icon'" />
             <p>{{ menu.name }}</p>
           </div>
         }
@@ -38,10 +38,10 @@
 
           <div class="--switch-mode-wrapper">
             <div class="--light" (click)="toggleTheme()">
-              <img src="assets/images/light-icon.svg" alt="light_icon" />
+              <img [src]="'assets/images/' + currentMode + '/light-icon.svg'" alt="light_icon">
             </div>
             <div class="--dark" (click)="toggleTheme()">
-              <img src="assets/images/dark-icon.svg" alt="dark_icon" />
+              <img [src]="'assets/images/' + currentMode + '/dark-icon.svg'" alt="dark_icon">
             </div>
             <div
               class="--active-indicator"
@@ -54,7 +54,7 @@
         <hr />
 
         <div class="--menu-dropdown-item d-flex align-items-center gap-3">
-          <img src="assets/images/header/log-out.svg" alt="logout_icon" />
+          <img src="assets/images/common/log-out.svg" alt="logout_icon" />
 
           <p class="--logout-text">Log out</p>
         </div>

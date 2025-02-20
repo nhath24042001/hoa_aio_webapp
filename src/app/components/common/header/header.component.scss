@@ -7,7 +7,7 @@
     .--app-text {
       font-weight: 600;
       font-size: 20px;
-      color: #6F6F6F;
+      color: var(--p-primary-400);
     }
 
     h4,
@@ -18,11 +18,12 @@
     .--section-name {
       font-weight: 600;
       font-size: 20px;
-      color: #000000;
+      color: var(--p-primary-450);
     }
 
     .--slash-icon {
       font-weight: 600;
+      color: var(--p-primary-450);
     }
   }
 
@@ -30,10 +31,11 @@
     .--notification {
       width: 44px;
       height: 44px;
-      border: 1px solid #FFB9BF;
+      border: 1px solid var(--p-primary-550);
       border-radius: 50%;
       position: relative;
       margin-right: 24px;
+      cursor: pointer;
 
       .--notification-badge {
         position: absolute;
@@ -53,7 +55,7 @@
     }
 
     .--menu-button {
-      border: 1px solid #BEA2FF;
+      border: 1px solid var(--p-primary-700);
       border-radius: 40px;
       padding: 5px;
       cursor: pointer;
@@ -62,13 +64,13 @@
         margin-bottom: 0 !important;
         font-weight: 600;
         font-size: 12px;
-        color: #000000;
+        color: var(--p-primary-450);
       }
 
       p {
         font-weight: 500;
         font-size: 10px;
-        color: #6F6F6F
+        color: var(--p-primary-400)
       }
 
       .--down-icon {
@@ -79,6 +81,7 @@
 }
 
 ::ng-deep .p-popover-content {
+  background: var(--p-primary-50);
   width: 283px;
 
   .--menu-dropdown-container {
@@ -93,7 +96,7 @@
       p {
         font-weight: 500;
         font-size: 16px;
-        color: #36394A;
+        color: var(--p-primary-100);
       }
 
       .--logout-text {
@@ -107,13 +110,14 @@
       h6 {
         font-weight: 600;
         font-size: 15px;
-        color: #36394A;
+        color: var(--p-primary-100);
         margin-bottom: 0 !important;
       }
 
       .--switch-mode-wrapper {
         display: flex;
-        background: #FFF6E6;
+        background: var(--p-primary-150);
+          color: var(--p-primary-400);
         padding: 4px;
         border-radius: 10px;
         width: 100px;
@@ -142,7 +146,7 @@
           top: 4px;
           bottom: 4px;
           width: 40px;
-          background: #FFDD9E;
+          background: var(--p-primary-250);
           border-radius: 10px;
           transition: transform 0.3s ease-in;
           z-index: 10;
@@ -160,14 +164,14 @@
   }
 }
 
-::ng-deep .p-popover {
-  left: 1145px !important;
+// ::ng-deep .p-popover {
+//   left: 1145px !important;
 
-  &::after {
-    left: 145px !important;
-  }
+//   &::after {
+//     left: 145px !important;
+//   }
 
-  &::before {
-    left: 145px !important;
-  }
-}
+//   &::before {
+//     left: 145px !important;
+//   }
+// }

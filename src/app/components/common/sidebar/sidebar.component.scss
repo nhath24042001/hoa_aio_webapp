@@ -2,10 +2,10 @@
   width: 300px;
   height: 100vh;
   padding: 20px;
-  color: #36394A;
   transition: width 0.3s ease;
   border-right: 1px solid #DFE1E7;
   position: relative;
+  background: var(--p-primary-50);
 
   &.closed {
     width: 89px;
@@ -15,7 +15,7 @@
     position: absolute;
     right: -12px;
     top: 35px;
-    background-color: #FFF;
+    background-color: var(--p-primary-50);
     transform: rotate(180deg);
   }
 
@@ -37,10 +37,10 @@
     gap: 20px;
     cursor: pointer;
     transition: all .3s ease;
-    color: #36394A;
+    color: var(--p-primary-100);
 
     &.active {
-      background-color: #F3EEFF;
+      background-color: var(--p-primary-300);
       border-radius: 8px;
       color: #471EA7;
       font-weight: bold;
@@ -52,6 +52,9 @@
   }
 
   .--admin-tool-header {
+    p {
+        color: var(--p-primary-400);
+      }
     img {
       cursor: pointer;
       transition: transform 0.3s ease;
@@ -76,7 +79,8 @@
 
   .--switch-mode-wrapper {
     display: flex;
-    background: #FFF6E6;
+    background: var(--p-primary-150);
+      color: var(--p-primary-400);
     padding: 4px;
     border-radius: 10px;
     width: 260px;
@@ -105,7 +109,7 @@
       top: 4px;
       bottom: 4px;
       width: 120px;
-      background: #FFDD9E;
+      background: var(--p-primary-250);
       border-radius: 10px;
       transition: transform 0.3s ease-in;
       z-index: 10;

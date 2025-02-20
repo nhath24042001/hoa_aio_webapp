@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { LIST_SIDEBAR } from '../../../constants/sidebar';
 import { Router } from '@angular/router';
 import { THEME } from '../../../constants';
+import { ThemeService } from '../../../services/theme.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,12 +15,18 @@ export class SidebarComponent {
   @Output() toggle = new EventEmitter<boolean>();
 
   THEME = THEME;
-  currentMode = THEME.LIGHT;
+  listSidebar = LIST_SIDEBAR;
+  currentMode: string = '';
   showAdminTool = signal(true);
 
-  constructor(private router: Router) {}
-
-  listSidebar = LIST_SIDEBAR;
+  constructor(
+    private router: Router,
+    private themeService: ThemeService
+  ) {
+    this.themeService.theme$.subscribe((theme) => {
+      this.currentMode = theme;
+    });
+  }
 
   toggleSidebar() {
     this.isOpen = !this.isOpen;
@@ -39,10 +46,6 @@ export class SidebarComponent {
   }
 
   toggleTheme() {
-    const element = document.querySelector('html');
-    if (element != null) {
-      element.classList.toggle('my-app-dark');
-    }
-    this.currentMode = this.currentMode === THEME.LIGHT ? THEME.DARK : THEME.LIGHT;
+    this.themeService.toggleTheme();
   }
 }
