@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { LIST_SIDEBAR } from '../../../constants/sidebar';
 import { Router } from '@angular/router';
 import { THEME } from '../../../constants';
@@ -6,7 +7,7 @@ import { ThemeService } from '../../../services/theme.service';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })
