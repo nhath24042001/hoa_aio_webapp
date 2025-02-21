@@ -66,6 +66,57 @@ export const mainRoutes: Routes = [
           import('./pages/main/pages/announcements/announcements.component').then(
             (m) => m.AnnouncementsComponent
           )
+      },
+      {
+        path: 'calendar',
+        loadComponent: () =>
+          import('./pages/main/pages/calendar/calendar.component').then((m) => m.CalendarComponent)
+      },
+      {
+        path: 'task-management',
+        loadComponent: () =>
+          import('./pages/main/pages/project/project.component').then((m) => m.ProjectComponent)
+      },
+      {
+        path: 'projects',
+        loadComponent: () =>
+          import('./pages/main/pages/project/project.component').then((m) => m.ProjectComponent)
+      },
+      {
+        path: 'vendors',
+        loadComponent: () =>
+          import('./pages/main/pages/vendor/vendor.component').then((m) => m.VendorComponent)
+      },
+      {
+        path: 'violation-reports',
+        loadComponent: () =>
+          import('./pages/main/pages/violation/violation.component').then(
+            (m) => m.ViolationComponent
+          )
+      },
+      {
+        path: 'accounting',
+        loadComponent: () =>
+          import('./pages/main/pages/accounting/accounting.component').then(
+            (m) => m.AccountingComponent
+          )
+      },
+      {
+        path: 'home-owners',
+        loadComponent: () =>
+          import('./pages/main/pages/home-owner/home-owner.component').then(
+            (m) => m.HomeOwnerComponent
+          )
+      },
+      {
+        path: 'documents',
+        loadComponent: () =>
+          import('./pages/main/pages/document/document.component').then((m) => m.DocumentComponent)
+      },
+      {
+        path: 'reports',
+        loadComponent: () =>
+          import('./pages/main/pages/report/report.component').then((m) => m.ReportComponent)
       }
     ]
   },

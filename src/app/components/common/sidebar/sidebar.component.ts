@@ -42,7 +42,7 @@ export class SidebarComponent {
   }
 
   navigateTo(routerLink: string) {
-    this.router.navigate([routerLink]);
+    this.router.navigate([`main/${routerLink}`]);
   }
 
   toggleTheme() {
