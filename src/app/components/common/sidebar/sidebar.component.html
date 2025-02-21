@@ -1,0 +1,82 @@
+<nav class="--sidebar-wrapper" [class.closed]="!isOpen">
+  <div class="w-100 d-flex justify-content-between align-items-center">
+    @if(isOpen) {
+      <img [src]="'assets/images/' + currentMode + '/hoa-logo.svg'" alt="hoa_logo">
+    } @else {
+      <img src="assets/images/common/hoa-icon.svg" class="--logo-img" alt="hoa_logo" />
+    }
+
+    <div
+      class="--toggle-container d-flex justify-content-center align-items-center"
+      (click)="toggleSidebar()"
+    >
+      <img src="assets/images/common/back-gray.svg" alt="back_logo" />
+    </div>
+  </div>
+
+  <div class="--list-sidebar-wrapper mt-3">
+    @for (sidebar of listSidebar.listView; track $index) {
+      <div
+        class="--sidebar-item"
+        [class.active]="isActiveRoute(sidebar.routerLink)"
+        [class.isOpen]="!isOpen"
+        (click)="navigateTo(sidebar.routerLink)"
+      >
+        <img [src]="'assets/images/common/' + sidebar.icon + '-icon.svg'" alt="icon" />
+        @if (isOpen) {
+          <p>{{ sidebar.name }}</p>
+        }
+      </div>
+    }
+  </div>
+
+  <hr />
+
+  <div class="--admin-tool-header d-flex justify-content-between align-items-center">
+    @if(isOpen) {
+      <p>Admin Tools</p>
+    }
+    <img
+      src="assets/images/common/purple-down.svg"
+      [class.rotated]="showAdminTool()"
+      (click)="toggleAdminTools()"
+      alt="down-icon"
+    />
+  </div>
+
+  @if (showAdminTool()) {
+    <div class="--admin-tools-wrapper" [class.expanded]="showAdminTool()">
+      @for (tool of listSidebar.adminTool; track $index) {
+        <div
+          class="--sidebar-item"
+          [class.active]="isActiveRoute(tool.routerLink)"
+          [class.isOpen]="!isOpen"
+          (click)="navigateTo(tool.routerLink)"
+        >
+          <img [src]="'assets/images/common/' + tool.icon + '-icon.svg'" alt="icon" />
+          @if (isOpen) {
+            <p>{{ tool.name }}</p>
+          }
+        </div>
+      }
+    </div>
+  }
+
+  @if (isOpen) {
+    <div class="--switch-mode-wrapper mt-3">
+      <div class="--light" (click)="toggleTheme()">
+        <img [src]="'assets/images/' + currentMode + '/light-icon.svg'" alt="light_icon">
+        <p>Light</p>
+      </div>
+      <div class="--dark" (click)="toggleTheme()">
+        <img [src]="'assets/images/' + currentMode + '/dark-icon.svg'" alt="dark_icon">
+        <p>Dark</p>
+      </div>
+      <div
+        class="--active-indicator"
+        [class.light]="currentMode === THEME.LIGHT"
+        [class.dark]="currentMode === THEME.DARK"
+      ></div>
+    </div>
+  }
+</nav>

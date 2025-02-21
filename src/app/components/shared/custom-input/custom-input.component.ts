@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-custom-input',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './custom-input.component.html',
   styleUrl: './custom-input.component.scss',
   providers: [
@@ -18,6 +19,7 @@ export class CustomInputComponent {
   @Input() type: 'text' | 'password' = 'text';
   @Input() icon = '';
   @Input() placeholder = '';
+  @Input() mode = '';
 
   value = '';
   isPasswordVisible = false;

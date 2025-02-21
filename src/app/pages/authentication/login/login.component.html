@@ -1,6 +1,6 @@
 <div class="--form-login-wrapper">
   <div class="d-flex justify-content-center my-5 mb-3">
-    <img src="assets/images/logo-auth.svg" alt="hoa_logo" />
+    <img [src]="'assets/images/' + currentMode + '/logo-auth.svg'" alt="hoa_logo">
   </div>
 
   <h4 class="--text-title text-center fw-bold mb-3">Welcome to Palm Springs HOA</h4>
@@ -14,7 +14,7 @@
       <app-custom-input
         formControlName="email"
         type="text"
-        icon="assets/images/at-sign.svg"
+        [icon]="'assets/images/' + currentMode + '/at-sign.svg'"
         placeholder="Your email"
       ></app-custom-input>
     </div>
@@ -25,7 +25,7 @@
       <app-custom-input
         formControlName="password"
         type="password"
-        icon="assets/images/password-icon.svg"
+        [icon]="'assets/images/' + currentMode + '/password-icon.svg'"
         placeholder="Your password"
       ></app-custom-input>
     </div>

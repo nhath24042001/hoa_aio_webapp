@@ -3,7 +3,7 @@
   padding: 10px;
   border-radius: 15px;
   display: flex;
-  background: #F8FAFB;
+  background: var(--input-bg);
 
   .--input-icon {
     margin-right: 10px;
@@ -12,7 +12,8 @@
   input {
     outline: none;
     flex: 1;
-    background: #F8FAFB;
+    background: var(--input-bg);
+    color: var(--background);
   }
 
   img {

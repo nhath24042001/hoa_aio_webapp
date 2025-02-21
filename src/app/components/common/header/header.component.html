@@ -1,0 +1,64 @@
+<div class="--header-wrapper w-100 d-flex justify-content-between align-items-center">
+  <div class="--header-left d-flex">
+    <h4 class="--app-text">Palm Springs HOA</h4>
+    <h4 class="mx-2 --slash-icon">/</h4>
+    <h4 class="--section-name">Overview</h4>
+  </div>
+
+  <div class="--header-right d-flex align-items-center">
+    <div class="--notification d-flex justify-content-center align-items-center" (click)="onOpenNotify($event)">
+      <img [src]="'assets/images/' + currentMode + '/notification.svg'" alt="notification_icon" />
+      <div class="--notification-badge d-flex justify-content-center align-items-center">
+        <span>7</span>
+      </div>
+    </div>
+
+    <div class="--menu-button d-flex align-items-center gap-3" (click)="onOpenMenu($event)">
+      <img src="assets/images/common/sample-avatar.svg" alt="avatar_image" />
+
+      <div class="">
+        <h6>Robert Graph</h6>
+        <p>rgraph123&#64;gmail.com</p>
+      </div>
+
+      <img class="--down-icon" src="assets/images/common/purple-down.svg" alt="down-icon" />
+    </div>
+
+    <p-popover #op styleClass="--menu-popover">
+      <div class="--menu-dropdown-container">
+        @for (menu of menu_dropdowns; track $index) {
+          <div class="--menu-dropdown-item d-flex align-items-center gap-3">
+            <img [src]="'assets/images/' + currentMode + '/' + menu.icon + '.svg'" [alt]="menu.icon + '_icon'" />
+            <p>{{ menu.name }}</p>
+          </div>
+        }
+
+        <div class="--theme-wrapper d-flex align-items-center justify-content-between">
+            <h6>Light/dark mode</h6>
+
+          <div class="--switch-mode-wrapper">
+            <div class="--light" (click)="toggleTheme()">
+              <img [src]="'assets/images/' + currentMode + '/light-icon.svg'" alt="light_icon">
+            </div>
+            <div class="--dark" (click)="toggleTheme()">
+              <img [src]="'assets/images/' + currentMode + '/dark-icon.svg'" alt="dark_icon">
+            </div>
+            <div
+              class="--active-indicator"
+              [class.light]="currentMode === THEME.LIGHT"
+              [class.dark]="currentMode === THEME.DARK"
+            ></div>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="--menu-dropdown-item d-flex align-items-center gap-3" (click)="onLogout()">
+          <img src="assets/images/common/log-out.svg" alt="logout_icon" />
+
+          <p class="--logout-text">Log out</p>
+        </div>
+      </div>
+    </p-popover>
+  </div>
+</div>

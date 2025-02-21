@@ -1,1 +1,11 @@
-<p>main-layout works!</p>
+<div class="--main-layout d-flex">
+  <app-sidebar [isOpen]="isSidebarOpen"></app-sidebar>
+
+  <div class="--main-content w-100">
+    <app-header></app-header>
+
+    <div class="--content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

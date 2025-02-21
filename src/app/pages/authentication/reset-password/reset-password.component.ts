@@ -4,6 +4,8 @@ import { InputOtpModule } from 'primeng/inputotp';
 import { FormsModule } from '@angular/forms';
 import { NgxOtpInputComponentOptions, NgxOtpInputComponent } from 'ngx-otp-input';
 import { Router } from '@angular/router';
+import { BaseComponent } from '../../../components/common/base/base.component';
+import { ThemeService } from '../../../services/theme.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -11,7 +13,7 @@ import { Router } from '@angular/router';
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.scss'
 })
-export class ResetPasswordComponent {
+export class ResetPasswordComponent extends BaseComponent{
   isSubmitting = false;
   loading = false;
   email = signal('fajar@gmail.com');
@@ -29,7 +31,9 @@ export class ResetPasswordComponent {
     this.otpValues[index] = event || '-';
   }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, themeService: ThemeService) {
+    super(themeService);
+  }
 
   onBackPreviousStep() {
     this.router.navigate(['/auth/forgot-password']);

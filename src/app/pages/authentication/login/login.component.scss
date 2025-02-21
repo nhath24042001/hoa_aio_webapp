@@ -1,29 +1,33 @@
 .--form-login-wrapper {
-  background: #FFF;
+  background: var(--background);
   padding: 50px 90px;
   border-radius: 10px;
   width: 750px;
   height: 600px;
 
+  h4 {
+    color: var(--title-text);
+  }
+
   .--form-container {
     label {
       font-weight: 500 !important;
       font-size: 12px;
-      color: #0D0D12;
+      color: var(--title-text);
     }
   }
 
   .--bottom-container {
     label {
       font-size: 12px;
-      color: #666D80;
+      color: var(--title-text);
       margin-top: 5px;
     }
 
     p {
       font-size: 12px;
       line-height: 18px;
-      color: #C1C7D0;
+      color: var(--title-subtext);
       cursor: pointer;
     }
   }

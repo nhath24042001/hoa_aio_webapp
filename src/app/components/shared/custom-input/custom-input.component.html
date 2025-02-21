@@ -1,4 +1,4 @@
-<div class="--custom-input">
+<div class="--custom-input" [ngClass]="mode ? '--dark-mode' : '--light-mode'">
   <img class="--input-icon" [src]="icon" alt="icon_img" />
   <input
     [type]="type === 'password' && !isPasswordVisible ? 'password' : 'text'"
@@ -9,10 +9,11 @@
   @if (type === 'password') {
     <button type="button" (click)="togglePasswordVisibility()">
 
-      @if (isPasswordVisible) {
-        <img src="assets/images/show-password-icon.svg" alt="show_password_icon" />
-      } @else {
-        <img src="assets/images/hide-password-icon.svg" alt="hide_password_icon" />
+      @if (!isPasswordVisible) {
+        <img src="assets/images/common/show-password-icon.svg" alt="show_password_icon" />
+      }
+      @else {
+        <img src="assets/images/common/hide-password-icon.svg" alt="hide_password_icon" />
       }
     </button>
   }

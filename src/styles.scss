@@ -55,22 +55,22 @@ p {
 
 .--text-tittle {
   font-size: 28px;
-  color: #0D0D12;
+  color: var(--title-text) !important;
 }
 
 .--text-subtitle {
   font-size: 15px;
-  color: #666D80;
+  color: var(--title-subtext);
 
   strong {
-    color: #000 !important;
+    color: var(--const-color) !important;
   }
 }
 
 .--text {
   font-size: 12px;
   line-height: 18px;
-  color: #666D80;
+  color: var(--title-subtext);
 
   span {
     color: #6938DA !important;

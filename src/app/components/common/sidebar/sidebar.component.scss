@@ -1,0 +1,127 @@
+.--sidebar-wrapper {
+  width: 300px;
+  height: 100vh;
+  padding: 20px;
+  transition: width 0.3s ease;
+  border-right: 1px solid #DFE1E7;
+  position: relative;
+  background: var(--background);
+
+  &.closed {
+    width: 89px;
+  }
+
+  &.closed .--toggle-container {
+    position: absolute;
+    right: -12px;
+    top: 35px;
+    background-color: var(--background);
+    transform: rotate(180deg);
+  }
+
+  .--logo-img {
+    cursor: pointer;
+  }
+
+  .--toggle-container {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #DFE1E7;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .--sidebar-item {
+    padding: 12px 10px;
+    display: flex;
+    gap: 20px;
+    cursor: pointer;
+    transition: all .3s ease;
+    color: var(--color);
+
+    &.active {
+      background-color: var(--active-primary);
+      border-radius: 8px;
+      color: #471EA7;
+      font-weight: bold;
+    }
+
+    &.isOpen {
+      justify-content: center;
+    }
+  }
+
+  .--admin-tool-header {
+    p {
+      color: var(--normal-text);
+    }
+
+    img {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+
+      &.rotated {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .--admin-tools-wrapper {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+
+    &.expanded {
+      max-height: 500px;
+      opacity: 1;
+    }
+  }
+
+  .--switch-mode-wrapper {
+    display: flex;
+    background: var(--toggle-theme);
+    color: var(--const-color);
+    padding: 4px;
+    border-radius: 10px;
+    width: 260px;
+    height: 40px;
+    justify-content: space-between;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+
+    div {
+      width: 120px;
+      height: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      z-index: 20;
+      cursor: pointer;
+
+      p {
+        font-size: 12px;
+      }
+    }
+
+    .--active-indicator {
+      position: absolute;
+      top: 4px;
+      bottom: 4px;
+      width: 120px;
+      background: var(--toggle-theme-active);
+      border-radius: 10px;
+      transition: transform 0.3s ease-in;
+      z-index: 10;
+
+      &.light {
+        transform: translateX(0);
+      }
+
+      &.dark {
+        transform: translateX(130px);
+      }
+    }
+  }
+}

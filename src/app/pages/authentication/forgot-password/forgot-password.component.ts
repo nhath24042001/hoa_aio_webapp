@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+import { BaseComponent } from '../../../components/common/base/base.component';
+import { ThemeService } from '../../../services/theme.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -10,15 +12,17 @@ import { ButtonModule } from 'primeng/button';
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.scss'
 })
-export class ForgotPasswordComponent {
+export class ForgotPasswordComponent extends BaseComponent {
   forgotPswForm: FormGroup;
   isSubmitting = false;
   loading = false;
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    themeService: ThemeService
   ) {
+    super(themeService);
     this.forgotPswForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
     });
