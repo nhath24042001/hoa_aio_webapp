@@ -5,11 +5,12 @@ import { TabsModule } from 'primeng/tabs';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { ButtonPrimaryComponent } from '~/pages/main/components/shared/button-primary/button-primary.component';
 import { AnnouncementListComponent } from '~/pages/main/components/modules/announcement/announcement-list/announcement-list.component';
+import { MainSlot } from '../../components/shared/main-slot/main-slot.component';
 import { IAnnouncement } from '~/@types/announcement';
 
 @Component({
   selector: 'app-announcements',
-  imports: [TabsModule, EmptyContentComponent, ButtonPrimaryComponent, AnnouncementListComponent],
+  imports: [TabsModule, EmptyContentComponent, ButtonPrimaryComponent, AnnouncementListComponent, MainSlot],
   templateUrl: './announcements.component.html',
   styleUrl: './announcements.component.scss'
 })
@@ -19,12 +20,12 @@ export class AnnouncementsComponent {
       {
         title: 'Announcement that was saved as draft',
         type: 'Draft',
-        created: '2025-02-24',
+        created: '2025-10-16 08:46:00',
         personSent: 'Kerry Gant'
       },
       {
         title: 'Announcement with Some Content',
-        created: '2025-02-24',
+        created: '2025-02-24: 08:46:00',
         personSent: 'Larry Birch'
       }
     ],

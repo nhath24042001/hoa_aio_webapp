@@ -9,7 +9,7 @@
 }
 
 ::ng-deep .p-tab {
-  border-width: 0;
+  border-width: 0px !important;
   color: #6F6F6F;
   font-weight: 500;
   font-size: 15px;
@@ -21,4 +21,8 @@
 
 ::ng-deep .p-tablist-active-bar {
   height: 2px;
+}
+
+::ng-deep .p-tabpanels {
+  padding: 12px 0;
 }

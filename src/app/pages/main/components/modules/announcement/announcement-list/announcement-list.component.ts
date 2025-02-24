@@ -3,7 +3,7 @@ import { IAnnouncementChild } from '~/@types/announcement';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-announcement-list',
+  selector: 'announcement-list',
   imports: [DatePipe],
   templateUrl: './announcement-list.component.html',
   styleUrl: './announcement-list.component.scss'

@@ -34,6 +34,12 @@ ul {
   list-style: none;
 }
 
+li {
+  &::marker {
+    margin: 5px !important;
+  }
+}
+
 p {
   margin: 0 !important;
 }
