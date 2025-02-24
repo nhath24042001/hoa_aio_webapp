@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { BaseComponent } from '../../../../components/common/base/base.component';
-import { ThemeService } from '../../../../services/theme.service';
+import { BaseComponent } from '../../../../../../components/common/base/base.component';
+import { ThemeService } from '../../../../../../services/theme.service';
 import { Router } from '@angular/router';
 
 @Component({

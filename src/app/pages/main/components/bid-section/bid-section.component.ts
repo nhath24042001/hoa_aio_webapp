@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EmptyContentComponent } from '../empty-content/empty-content.component';
+import { EmptyContentComponent } from '../shared/empty-content/empty-content.component';
 import { ButtonPrimaryComponent } from '../shared/button-primary/button-primary.component';
 
 @Component({
