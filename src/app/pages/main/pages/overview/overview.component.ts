@@ -5,10 +5,12 @@ import { TaskManagementComponent } from '../task-management/task-management.comp
 import { TaskSectionComponent } from '~/pages/main/components/modules/overview/task-section/task-section.component';
 import { AnnouncementSectionComponent } from '~/pages/main/components/modules/overview/announcement-section/announcement-section.component';
 import { BidSectionComponent } from '../../components/bid-section/bid-section.component';
+import { CalendarComponent } from '../calendar/calendar.component';
+import { CalendarSectionComponent } from "../../components/modules/overview/calendar-section/calendar-section.component";
 
 @Component({
   selector: 'app-overview',
-  imports: [OverviewStasComponent, TaskManagementComponent, AnnouncementSectionComponent, BidSectionComponent, TaskSectionComponent],
+  imports: [OverviewStasComponent, TaskManagementComponent, AnnouncementSectionComponent, BidSectionComponent, TaskSectionComponent, CalendarComponent, CalendarSectionComponent],
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.scss'
 })

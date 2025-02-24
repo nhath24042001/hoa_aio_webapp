@@ -1,1 +1,14 @@
-<p>calendar-section works!</p>
+<div class="--calendar-section">
+  <div class="--task-top d-flex justify-content-between align-items-center">
+    <h4 class="mb-0">Calendar</h4>
+    <app-button-primary
+      icon="assets/images/common/arrow-right.svg"
+      label="New Event"
+      iconPos="right"
+    ></app-button-primary>
+  </div>
+
+  <div class="--calendar-lib mt-4">
+    <full-calendar [options]="calendarOptions"></full-calendar>
+  </div>
+</div>
