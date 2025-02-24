@@ -1,40 +1,40 @@
-@import './variables';
+@use './variables' as v;
 
 
 :root {
-  --background: #{$background-light};
-  --color: #{$color-light};
-  --theme-color: #{$theme-color-light};
-  --primary-color: #{$primary-color-light};
-  --active-primary: #{$active-primary-light};
-  --theme-style: #{$theme-style-light};
-  --border-color: #{$border-color-light};
-  --title-text: #{$title-text};
-  --title-subtext: #{$title-subtext};
-  --input-bg: #{$input-bg-light};
-  --const-color: #{$constant-color-light};
-  --normal-text: #{$normal-text-light};
-  --toggle-theme: #{$toggle-theme-light};
-  --toggle-theme-active: #{$toggle-theme-active-light};
-  --border-notification: #{$border-notification-light};
-  --message-bg: #{$message-bg-light};
+  --background: #{v.$background-light};
+  --color: #{v.$color-light};
+  --theme-color: #{v.$theme-color-light};
+  --primary-color: #{v.$primary-color-light};
+  --active-primary: #{v.$active-primary-light};
+  --theme-style: #{v.$theme-style-light};
+  --border-color: #{v.$border-color-light};
+  --title-text: #{v.$title-text};
+  --title-subtext: #{v.$title-subtext};
+  --input-bg: #{v.$input-bg-light};
+  --const-color: #{v.$constant-color-light};
+  --normal-text: #{v.$normal-text-light};
+  --toggle-theme: #{v.$toggle-theme-light};
+  --toggle-theme-active: #{v.$toggle-theme-active-light};
+  --border-notification: #{v.$border-notification-light};
+  --message-bg: #{v.$message-bg-light};
 }
 
 .my-app-dark {
-  --background: #{$background-dark};
-  --color: #{$color-dark};
-  --theme-color: #{$theme-color-dark};
-  --primary-color: #{$primary-color-dark};
-  --active-primary: #{$active-primary-dark};
-  --theme-style: #{$theme-style-dark};
-  --border-color: #{$border-color-dark};
-  --title-text: #{$title-text-dark};
-  --title-subtext: #{$title-subtext-dark};
-  --input-bg: #{$input-bg-dark};
-  --const-color: #{$constant-color-dark};
-  --normal-text: #{$primary-color-dark};
-  --toggle-theme: #{$toggle-theme-dark};
-  --toggle-theme-active: #{$toggle-theme-active-dark};
-  --border-notification: #{$border-notification-dark};
-  --message-bg: #{$message-bg-dark};
+  --background: #{v.$background-dark};
+  --color: #{v.$color-dark};
+  --theme-color: #{v.$theme-color-dark};
+  --primary-color: #{v.$primary-color-dark};
+  --active-primary: #{v.$active-primary-dark};
+  --theme-style: #{v.$theme-style-dark};
+  --border-color: #{v.$border-color-dark};
+  --title-text: #{v.$title-text-dark};
+  --title-subtext: #{v.$title-subtext-dark};
+  --input-bg: #{v.$input-bg-dark};
+  --const-color: #{v.$constant-color-dark};
+  --normal-text: #{v.$primary-color-dark};
+  --toggle-theme: #{v.$toggle-theme-dark};
+  --toggle-theme-active: #{v.$toggle-theme-active-dark};
+  --border-notification: #{v.$border-notification-dark};
+  --message-bg: #{v.$message-bg-dark};
 }

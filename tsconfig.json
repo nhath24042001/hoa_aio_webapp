@@ -29,7 +29,7 @@
       "~/environments/*": ["src/environments/*"],
       "~/constants/*": ["src/app/constants/*"],
       "~/pipes/*": ["src/app/pipes/*"]
-    }
+    },
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
