@@ -1,0 +1,11 @@
+<div class="--custom-btn-primary d-flex align-items-center gap-3" [class]="isPrimaryActive ? '--active-primary' : '--primary'" >
+  @if(iconPos == 'left') {
+    <img [src]="icon" alt="button_icon" />
+  }
+
+  <span class="">{{ label }}</span>
+
+  @if(iconPos == 'right') {
+    <img [src]="icon" alt="button_icon" />
+  }
+</div>

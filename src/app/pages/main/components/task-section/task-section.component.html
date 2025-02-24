@@ -1,0 +1,24 @@
+<div class="--open-task-section">
+  <div class="--task-top d-flex justify-content-between align-items-center">
+    <h4 class="mb-0">Open Task (0)</h4>
+
+    <app-button-primary
+    icon="assets/images/common/plus-solid.svg"
+    label="New Task"
+    ></app-button-primary>
+  </div>
+
+  @if (tasks.length) {
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="d-flex justify-content-center">
+        <img src="assets/images/common/task-icon.svg" alt="task_icon" />
+      </div>
+    </div>
+  } @else {
+    <app-empty-content
+      icon="assets/images/common/task-med.svg"
+      title="There are no tasks to show yet."
+      createText="Create a new task"
+    ></app-empty-content>
+  }
+</div>

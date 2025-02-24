@@ -1,0 +1,17 @@
+.--empty-content-wrapper {
+  h5 {
+    font-weight: 600;
+    font-size: 28px;
+    color: var(--const-color);
+  }
+
+  .--create-container {
+    cursor: pointer;
+
+    h6 {
+      font-size: 15px;
+      color: #6938DA;
+      margin-bottom: 0 !important;
+    }
+  }
+}
