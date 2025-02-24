@@ -92,99 +92,87 @@
   }
 }
 
-::ng-deep .p-popover-content {
-  background: var(--background);
-  width: 283px;
+// ::ng-deep .p-popover-content {
+//   background: var(--background);
+//   width: 283px;
 
-  .--menu-dropdown-container {
+//   .--menu-dropdown-container {
 
-    hr {
-      margin: 0 0 10px 0;
-    }
+//     hr {
+//       margin: 0 0 10px 0;
+//     }
 
-    .--menu-dropdown-item {
-      padding: 10px;
-      cursor: pointer;
+//     .--menu-dropdown-item {
+//       padding: 10px;
+//       cursor: pointer;
 
-      p {
-        font-weight: 500;
-        font-size: 16px;
-        color: var(--color);
-      }
+//       p {
+//         font-weight: 500;
+//         font-size: 16px;
+//         color: var(--color);
+//       }
 
-      .--logout-text {
-        color: #FF515F;
-      }
-    }
+//       .--logout-text {
+//         color: #FF515F;
+//       }
+//     }
 
-    .--theme-wrapper {
-      padding: 10px;
+//     .--theme-wrapper {
+//       padding: 10px;
 
-      h6 {
-        font-weight: 600;
-        font-size: 15px;
-        color: var(--color);
-        margin-bottom: 0 !important;
-      }
+//       h6 {
+//         font-weight: 600;
+//         font-size: 15px;
+//         color: var(--color);
+//         margin-bottom: 0 !important;
+//       }
 
-      .--switch-mode-wrapper {
-        display: flex;
-        background: var(--toggle-theme);
-        color: var(--const-color);
-        padding: 4px;
-        border-radius: 10px;
-        width: 100px;
-        height: 40px;
-        justify-content: space-between;
-        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-        position: relative;
+//       .--switch-mode-wrapper {
+//         display: flex;
+//         background: var(--toggle-theme);
+//         color: var(--const-color);
+//         padding: 4px;
+//         border-radius: 10px;
+//         width: 100px;
+//         height: 40px;
+//         justify-content: space-between;
+//         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+//         position: relative;
 
-        div {
-          width: 40px;
-          height: 32px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 7px;
-          z-index: 20;
-          cursor: pointer;
+//         div {
+//           width: 40px;
+//           height: 32px;
+//           display: flex;
+//           justify-content: center;
+//           align-items: center;
+//           gap: 7px;
+//           z-index: 20;
+//           cursor: pointer;
 
-          p {
-            font-size: 12px;
-          }
-        }
+//           p {
+//             font-size: 12px;
+//           }
+//         }
 
-        .--active-indicator {
-          position: absolute;
-          top: 4px;
-          bottom: 4px;
-          width: 40px;
-          background: var(--toggle-theme-active);
-          border-radius: 10px;
-          transition: transform 0.3s ease-in;
-          z-index: 10;
+//         .--active-indicator {
+//           position: absolute;
+//           top: 4px;
+//           bottom: 4px;
+//           width: 40px;
+//           background: var(--toggle-theme-active);
+//           border-radius: 10px;
+//           transition: transform 0.3s ease-in;
+//           z-index: 10;
 
-          &.light {
-            transform: translateX(0);
-          }
+//           &.light {
+//             transform: translateX(0);
+//           }
 
-          &.dark {
-            transform: translateX(50px);
-          }
-        }
-      }
-    }
-  }
-}
-
-// ::ng-deep .p-popover {
-//   left: 1145px !important;
-
-//   &::after {
-//     left: 145px !important;
-//   }
-
-//   &::before {
-//     left: 145px !important;
+//           &.dark {
+//             transform: translateX(50px);
+//           }
+//         }
+//       }
+//     }
 //   }
 // }

@@ -2,12 +2,12 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-button-primary',
+  selector: 'button-primary',
   imports: [CommonModule],
   templateUrl: './button-primary.component.html',
   styleUrl: './button-primary.component.scss'
 })
-export class ButtonPrimaryComponent {
+export class ButtonPrimary {
   @Input() label: string = '';
   @Input() iconPos: string = 'left';
   @Input() icon: string = '';

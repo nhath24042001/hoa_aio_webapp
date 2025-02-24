@@ -7,13 +7,8 @@
             <p-tab value="0">Active Announcements</p-tab>
             <p-tab value="1">Expired Announcements</p-tab>
           </p-tablist>
-          <div>
-            <app-button-primary
-              icon="assets/images/common/white-plus-solid.svg"
-              label="New Announcement"
-              [isPrimaryActive]="true"
-            ></app-button-primary>
-          </div>
+
+          <main-header [filterList]="userTypes" (searchChanged)="onSearchAnnouncement($event)" (addSection)="onOpenAnnouncement()"></main-header>
         </div>
 
         <p-tabpanels>
@@ -30,11 +25,11 @@
 } @else {
   <div class="--content-section p-4 d-flex flex-column">
     <div class="d-flex justify-content-end">
-      <app-button-primary
+      <button-primary
         icon="assets/images/common/white-plus-solid.svg"
         label="New Announcement"
         [isPrimaryActive]="true"
-      ></app-button-primary>
+      ></button-primary>
     </div>
     <div class="flex-fill d-flex justify-content-center align-items-center">
       <app-empty-content
