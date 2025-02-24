@@ -29,8 +29,6 @@ export class SetNewPasswordComponent extends BaseComponent {
   isSubmitting = false;
   loading = false;
 
-  rememberMe = signal<boolean>(false);
-
   constructor(
     public fb: FormBuilder,
     private router: Router,
@@ -41,6 +39,14 @@ export class SetNewPasswordComponent extends BaseComponent {
       newPassword: ['', [Validators.required, Validators.email]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
     });
+  }
+
+  isMatchingPasswords() {
+    if (!this.newPasswordForm.value.newPassword || !this.newPasswordForm.value.confirmPassword) {
+      return false;
+    }
+    const { password, confirmPassword } = this.newPasswordForm.value;
+    return password === confirmPassword;
   }
 
   onBackPreviousStep() {

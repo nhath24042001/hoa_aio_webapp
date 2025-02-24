@@ -20,6 +20,7 @@ export class CustomInputComponent {
   @Input() icon = '';
   @Input() placeholder = '';
   @Input() mode = '';
+  @Input() isError = false;
 
   value = '';
   isPasswordVisible = false;
