@@ -93,3 +93,7 @@ p {
     cursor: pointer;
   }
 }
+
+.--content-section {
+  height: calc(100vh - 93px);
+}

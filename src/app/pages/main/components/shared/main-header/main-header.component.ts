@@ -13,6 +13,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 export class MainHeader {
   @ViewChild('popover', { static: false }) popover?: PopoverDirective;
   @Input() filterList: any[] = [];
+  @Input() labelButton: string = '';
   @Output() searchChanged = new EventEmitter<string>();
   @Output() filterChanged = new EventEmitter<any>();
   @Output() addSection = new EventEmitter<void>();

@@ -1,1 +1,24 @@
-<full-calendar [options]="calendarOptions"></full-calendar>
+<div class="--calendar-wrapper p-4">
+  <div class="--calendar-header">
+    <p-tabs value="0">
+      <div class="d-flex justify-content-between align-items-center">
+        <p-tablist>
+          <p-tab value="0">General Calendar</p-tab>
+          <p-tab value="1">Club Calendar</p-tab>
+        </p-tablist>
+
+        <main-header labelButton="New Event" [filterList]="userTypes" (searchChanged)="onSearch()"></main-header>
+      </div>
+
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <p-select [options]="viewOptions" [(ngModel)]="selectedView" optionLabel="name" placeholder="Select a City" (ngModelChange)="onViewChange($event)" />
+          <full-calendar [options]="calendarOptions()"></full-calendar>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <full-calendar [options]="calendarOptions()"></full-calendar>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </div>
+</div>
