@@ -8,12 +8,12 @@
             <p-tab value="1">Expired Announcements</p-tab>
           </p-tablist>
 
-          <main-header [filterList]="userTypes" (searchChanged)="onSearchAnnouncement($event)" (addSection)="onOpenAnnouncement()"></main-header>
+          <main-header [filterList]="userTypes" (searchChanged)="onSearchAnnouncement()" (addSection)="onOpenAnnouncement()"></main-header>
         </div>
 
         <p-tabpanels>
           <p-tabpanel value="0">
-            <announcement-list [announcements]="announcements.active"></announcement-list>
+            <announcement-list [announcements]="announcements.active" (onEmitAction)="onImplementAction($event)"></announcement-list>
           </p-tabpanel>
           <p-tabpanel value="1">
             <announcement-list [announcements]="announcements.expired"></announcement-list>

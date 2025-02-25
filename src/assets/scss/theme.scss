@@ -18,6 +18,11 @@
   --toggle-theme-active: #{v.$toggle-theme-active-light};
   --border-notification: #{v.$border-notification-light};
   --message-bg: #{v.$message-bg-light};
+  --chips-bg: #{v.$chips-bg-light};
+  --input-custom: #{v.$input-custom-light};
+  --dialog-title: #{v.$dialog-title-light};
+  --dialog-text: #{v.$dialog-text-light};
+  --tag-text: #{v.$tag-text-light};
 }
 
 .my-app-dark {
@@ -37,4 +42,9 @@
   --toggle-theme-active: #{v.$toggle-theme-active-dark};
   --border-notification: #{v.$border-notification-dark};
   --message-bg: #{v.$message-bg-dark};
+  --chips-bg: #{v.$chips-bg-dark};
+  --input-custom: #{v.$input-custom-dark};
+  --dialog-title: #{v.$dialog-title-dark};
+  --dialog-text: #{v.$dialog-text-dark};
+  --tag-text: #{v.$tag-text-dark};
 }

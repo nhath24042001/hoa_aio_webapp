@@ -1,0 +1,108 @@
+.--dynamic-announcement {
+  background: var(--background);
+  border-radius: 20px;
+
+  h3 {
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--dialog-title);
+  }
+
+  .--close {
+    width: 44px;
+    height: 24px;
+    display: flex;
+    justify-content: end;
+    border-left: 1px solid #DFE1E7;
+    cursor: pointer;
+  }
+
+  .--dynamic-title {
+    h4 {
+      font-weight: 600;
+      font-size: 28px;
+      color: #818898;
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--dialog-text);
+      display: flex;
+      align-items: center;
+      width: 150px;
+    }
+  }
+
+  .--dynamic-content {
+    h5 {
+      font-weight: 500;
+      font-size: 12px;
+      color: var(--dialog-text);
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--dialog-text);
+    }
+  }
+
+  .--dynamic-action {
+    p {
+      font-weight: 500;
+      font-size: 12px;
+      color: var(--dialog-text);
+    }
+
+    .--attachment {
+      width: 40px;
+      height: 40px;
+      background: #F3EEFF;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .--save-draft {
+      background: #F3EEFF;
+      border-radius: 30px;
+      padding: 8px 24px;
+      cursor: pointer;
+
+      p {
+        font-weight: 500;
+        font-size: 15px;
+        color: #6938DA;
+      }
+    }
+  }
+}
+
+::ng-deep .p-multiselect,
+::ng-deep .p-datepicker-input,
+::ng-deep .p-textarea,
+::ng-deep .p-inputtext {
+  background: var(--input-custom);
+  border-color: var(--border-color);
+}
+
+::ng-deep .p-textarea {
+  height: 154px;
+}
+
+::ng-deep .p-multiselect-header {
+  display: none !important;
+}
+
+::ng-deep .p-multiselect-chip {
+  background: var(--chips-bg) !important;
+  border-radius: 30px !important;
+}
+
+::ng-deep .p-multiselect-label-container {
+  padding: 4px 8px;
+}
+
+::ng-deep .p-multiselect-list {
+  background: var(--background);
+}

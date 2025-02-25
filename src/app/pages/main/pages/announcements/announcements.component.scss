@@ -26,3 +26,15 @@
 ::ng-deep .p-tabpanels {
   padding: 12px 0 !important;
 }
+
+::ng-deep .p-dialog-mask {
+  background: rgba(0, 0, 0, 0.3) !important;
+}
+
+::ng-deep .p-dialog-header {
+  display: none !important;
+}
+
+::ng-deep .p-dialog-content {
+  padding: 0 !important;
+}

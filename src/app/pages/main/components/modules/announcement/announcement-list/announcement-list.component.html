@@ -27,22 +27,22 @@
 
           <ng-template #popoverContent>
             <div class="--action-content">
-              <div class="--action-item py-2">
+              <div class="--action-item py-2" (click)="onEmitterAction(announce, ACTIONS.EDIT)">
                 <img src="assets/images/common/edit.svg" alt="edit_icon" />
                 <span>{{ ACTIONS.EDIT }}</span>
               </div>
-              <div class="--action-item py-2">
+              <div class="--action-item py-2" (click)="onEmitterAction(announce, ACTIONS.PUBLISH)">
                 <img src="assets/images/common/green_publish.svg" alt="publish_icon" />
                 <span>{{ ACTIONS.PUBLISH }}</span>
               </div>
-              <div class="--action-item py-2">
+              <div class="--action-item py-2" (click)="onEmitterAction(announce, ACTIONS.DELETE)">
                 <img src="assets/images/common/red_trash.svg" alt="trash_icon" />
                 <span>{{ ACTIONS.DELETE }}</span>
               </div>
             </div>
           </ng-template>
         } @else {
-          <img src="assets/images/common/trash.svg" class="me-3" alt="trash_icon" />
+          <img src="assets/images/common/trash.svg" class="--pointer" (click)="onEmitterAction(announce, ACTIONS.DELETE)" class="me-3" alt="trash_icon" />
         }
       </div>
     </div>

@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { some } from 'lodash-es';
 import { TabsModule } from 'primeng/tabs';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
 import { AnnouncementListComponent } from '~/pages/main/components/modules/announcement/announcement-list/announcement-list.component';
 import { MainHeader } from '../../components/shared/main-header/main-header.component';
-import { IAnnouncement } from '~/@types/announcement';
+import { DynamicAnnouncement } from '../../components/modules/announcement/dynamic-announcement/dynamic-announcement.component';
+
+import { IAnnouncement, IAnnouncementChild } from '~/@types/announcement';
 
 @Component({
   selector: 'app-announcements',
@@ -21,6 +24,8 @@ import { IAnnouncement } from '~/@types/announcement';
   styleUrl: './announcements.component.scss'
 })
 export class AnnouncementsComponent {
+  ref: DynamicDialogRef | undefined;
+
   announcements: IAnnouncement = {
     active: [
       {
@@ -67,13 +72,26 @@ export class AnnouncementsComponent {
     }
   ];
 
+  constructor(public dialogService: DialogService) {}
+
   checkAnnouncementExists(): boolean {
     return some([...this.announcements.active, ...this.announcements.expired]);
   }
 
-  onSearchAnnouncement(e: any): void {
-    console.log(e);
+  onSearchAnnouncement(): void {}
+
+  onOpenAnnouncement(): void {
+    this.ref = this.dialogService.open(DynamicAnnouncement, {
+      modal: true,
+      width: '1000px'
+      // breakpoints: {
+      //   '960px': '75vw',
+      //   '640px': '90vw'
+      // }
+    });
+
+    this.ref.onClose.subscribe((product: any) => {});
   }
 
-  onOpenAnnouncement(): void {}
+  onImplementAction(event: { announcement: IAnnouncementChild; type: string }): void {}
 }

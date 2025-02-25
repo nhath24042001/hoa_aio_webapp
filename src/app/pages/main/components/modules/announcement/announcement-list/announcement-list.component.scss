@@ -12,8 +12,8 @@
     .--content {
       .--tag {
         border: 1px solid #6938da;
-        background: #f3eeff;
-        color: #471ea7;
+        background: var(--active-primary);
+        color: var(--tag-text);
         border-radius: 5px;
         font-weight: 600;
         font-size: 10px;
@@ -23,7 +23,7 @@
       .--dot {
         width: 5px;
         height: 5px;
-        background: #6f6f6f;
+        background: var(--normal-text);
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -33,8 +33,13 @@
       span {
         font-weight: 500;
         font-size: 10px;
-        color: #6F6F6F;
+        color: var(--normal-text);
       }
+
+    }
+
+    img {
+      cursor: pointer;
     }
   }
 
@@ -42,9 +47,7 @@
     cursor: pointer;
   }
 
-  .--action-content {
-
-  }
+  .--action-content {}
 }
 
 ::ng-deep .p-tabpanels {
@@ -52,5 +55,6 @@
 }
 
 ::ng-deep .p-tab {
+
   background: var(--background) !important;
 }
