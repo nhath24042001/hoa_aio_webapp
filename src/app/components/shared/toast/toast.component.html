@@ -6,14 +6,23 @@
           <img [src]="icon" [alt]="icon + '_icon'" />
         </div>
         <div class="--btn-close" (click)="cancel()">
-          <img src="assets/images/common/close-icon.svg" alt="close-icon" />
+          <img [src]="'assets/images/' + currentMode + '/close.svg'" alt="close_icon" />
         </div>
       </div>
       <h3 class="mt-3">{{ title }}</h3>
       <div class="mt-3 d-flex justify-content-center">
         <p class="text-center w-75">{{ description }}</p>
       </div>
-      <p-button class="d-block mt-3" [label]="buttonText" (onClick)="confirm()" />
+      @if (type === 'success') {
+        <p-button class="--btn-success d-block mt-3" [label]="buttonText" (onClick)="confirm()" />
+      } @else if (type === 'error') {
+        <div class="--error-icon">
+          <p-button class="--btn-error d-block mt-3" [label]="buttonText" (onClick)="confirm()" />
+          <p-button class="--btn-cancel d-block mt-3" label="Cancel" (onClick)="cancel()" />
+        </div>
+      } @else {
+        <p-button class="d-block mt-3" [label]="buttonText" (onClick)="confirm()" />
+      }
     </div>
   </div>
 }

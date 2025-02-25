@@ -10,6 +10,7 @@ import { MainHeader } from '../../components/shared/main-header/main-header.comp
 import { DynamicAnnouncement } from '../../components/modules/announcement/dynamic-announcement/dynamic-announcement.component';
 
 import { IAnnouncement, IAnnouncementChild } from '~/@types/announcement';
+import { ToastService } from '~/services/toast.service';
 
 @Component({
   selector: 'app-announcements',
@@ -72,7 +73,10 @@ export class AnnouncementsComponent {
     }
   ];
 
-  constructor(public dialogService: DialogService) {}
+  constructor(
+    public dialogService: DialogService,
+    private toastService: ToastService
+  ) {}
 
   checkAnnouncementExists(): boolean {
     return some([...this.announcements.active, ...this.announcements.expired]);
@@ -93,5 +97,21 @@ export class AnnouncementsComponent {
     this.ref.onClose.subscribe((product: any) => {});
   }
 
-  onImplementAction(event: { announcement: IAnnouncementChild; type: string }): void {}
+  async onImplementAction(event: {
+    announcement: IAnnouncementChild;
+    type: string;
+  }): Promise<void> {
+    const confirmed = await this.toastService.showConfirm({
+      icon: 'assets/images/common/red-trash-md.svg',
+      title: 'Delete Item',
+      description:
+        'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
+      type: 'error',
+      buttonText: 'Delete'
+    });
+
+    if (confirmed) {
+      console.log('run 1');
+    }
+  }
 }

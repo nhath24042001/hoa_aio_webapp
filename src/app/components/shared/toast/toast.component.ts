@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ToastService } from './../../../services/toast.service';
 import { ButtonModule } from 'primeng/button';
+import { BaseComponent } from '~/components/common/base/base.component';
+import { ThemeService } from '~/services/theme.service';
 
 @Component({
   selector: 'app-toast',
@@ -8,7 +10,7 @@ import { ButtonModule } from 'primeng/button';
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss'
 })
-export class ToastComponent<T> {
+export class ToastComponent<T> extends BaseComponent {
   icon = '';
   title = '';
   description = '';
@@ -19,12 +21,17 @@ export class ToastComponent<T> {
 
   private callback: ((confirmed: boolean) => void) | null = null;
 
-  constructor(private toastService: ToastService) {
-    this.toastService.confirmState$.subscribe(state => {
+  constructor(
+    private toastService: ToastService,
+    themeService: ThemeService
+  ) {
+    super(themeService);
+    this.toastService.confirmState$.subscribe((state) => {
       this.title = state.title;
       this.description = state.description;
       this.buttonText = state.buttonText;
       this.icon = state.icon;
+      this.type = state.type;
       this.callback = state.callback;
       this.visible = true;
     });

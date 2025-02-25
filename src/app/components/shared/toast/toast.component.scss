@@ -42,16 +42,6 @@
       cursor: pointer;
     }
 
-    .--btn-confirm {
-      background: #6c63ff;
-      color: white;
-      padding: 8px 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
     h3 {
       font-weight: 600;
       font-size: 24px;
@@ -61,6 +51,40 @@
     p {
       font-size: 12px;
       color: var(--normal-text);
+
+    }
+
+    ::ng-deep .--btn-success {
+      .p-button {
+        background: #ABFF52;
+        color: #0D0D12;
+      }
+
+      span {
+        color: #0D0D12;
+      }
+    }
+
+    ::ng-deep .--btn-error {
+      .p-button {
+        background: #FF515F !important;
+        border: 0;
+      }
+
+      span {
+        color: #FFF;
+      }
+    }
+
+    ::ng-deep .--btn-cancel {
+      .p-button {
+        background: transparent !important;
+        border: 0;
+      }
+
+      span {
+        color: #6F6F6F;
+      }
     }
   }
 }
