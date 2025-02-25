@@ -1,6 +1,7 @@
 .--announcement-list-wrapper {
   .--announcement-item {
     border-bottom: 1px solid #bea2ff;
+    background-color: var(--background) !important;
 
     h4 {
       font-weight: 600;
@@ -42,6 +43,14 @@
   }
 
   .--action-content {
-    
+
   }
+}
+
+::ng-deep .p-tabpanels {
+  background: var(--background) !important;
+}
+
+::ng-deep .p-tab {
+  background: var(--background) !important;
 }
