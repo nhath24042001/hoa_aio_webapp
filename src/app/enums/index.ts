@@ -1,5 +1,5 @@
-export interface AnnounceAction {
-  EDIT: 'edit';
-  PUBLISH: 'publish';
-  DELETE: 'delete';
+export enum AnnounceAction {
+  EDIT = 'edit',
+  PUBLISH = 'publish',
+  DELETE = 'delete'
 }

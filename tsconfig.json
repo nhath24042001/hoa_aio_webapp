@@ -28,7 +28,12 @@
       "~/assets/*": ["src/assets/*"],
       "~/environments/*": ["src/environments/*"],
       "~/constants/*": ["src/app/constants/*"],
-      "~/pipes/*": ["src/app/pipes/*"]
+      "~/pipes/*": ["src/app/pipes/*"],
+      "~/directives/*": ["src/app/directives/*"],
+      "~/guards/*": ["src/app/guards/*"],
+      "~/interceptors/*": ["src/app/interceptors/*"],
+      "~/models/*": ["src/app/models/*"],
+      "~/enums/*": ["src/app/enums/*"]
     },
   },
   "angularCompilerOptions": {
