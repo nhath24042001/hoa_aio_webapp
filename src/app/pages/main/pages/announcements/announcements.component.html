@@ -8,12 +8,37 @@
             <p-tab value="1">Expired Announcements</p-tab>
           </p-tablist>
 
-          <main-header labelButton="New Announcement" [filterList]="userTypes" (searchChanged)="onSearchAnnouncement()" (addSection)="onOpenAnnouncement()"></main-header>
+          <main-header
+            labelButton="New Announcement"
+            (searchChanged)="onSearchAnnouncement()"
+            (addSection)="onOpenAnnouncement()"
+          >
+            <div filter-content>
+              <div class="--filter-content">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h2>Filters</h2>
+                  <h4>Clear all</h4>
+                </div>
+
+                <h3>Show user type</h3>
+
+                @for (filter of userTypes; track $index) {
+                  <div class="--checkbox d-flex align-items-center">
+                    <p-checkbox [value]="filter.value" size="small" />
+                    <span>{{ filter.label }}</span>
+                  </div>
+                }
+              </div>
+            </div>
+          </main-header>
         </div>
 
         <p-tabpanels>
           <p-tabpanel value="0">
-            <announcement-list [announcements]="announcements.active" (onEmitAction)="onImplementAction($event)"></announcement-list>
+            <announcement-list
+              [announcements]="announcements.active"
+              (onEmitAction)="onImplementAction($event)"
+            ></announcement-list>
           </p-tabpanel>
           <p-tabpanel value="1">
             <announcement-list [announcements]="announcements.expired"></announcement-list>

@@ -95,5 +95,58 @@ p {
 }
 
 .--content-section {
-  height: calc(100vh - 93px);
+  height: calc(100vh - 101px);
+}
+
+.--box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding: 0 10px;
+  border-radius: 5px;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+.--urgent, .--new {
+  background: #FFB9BF;
+  color: #FF515F;
+  border: 1px solid #FF515F;
+}
+
+.--important {
+  background: #F3EEFF;
+  color: #6938DA;
+  border: 1px solid #6938DA;
+}
+
+.--normal, .--accepted {
+  background: #DAFFED;
+  color: #55C68D;
+  border: 1px solid #55C68D;
+}
+
+.--normal {
+  background: #FFF6E6;
+  color: #EFA00B;
+  border: 1px solid #FFA800;
+}
+
+.--assigned {
+  background: #D1F0FA;
+  color: #116B97;
+  border: 1px solid #116B97;
+}
+
+.--cancelled, .--rejected {
+  background: #ECEFF3;
+  color: #818898;
+  border: 1px solid #818898;
+}
+
+.--resolved {
+  background: #CFFF9C;
+  color: #4E9700;
+  border: 1px solid #4E9700;
 }

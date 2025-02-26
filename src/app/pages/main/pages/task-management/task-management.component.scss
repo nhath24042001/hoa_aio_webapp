@@ -1,0 +1,59 @@
+.--filter-content {
+  background: var(--background);
+  width: 450px;
+  border: 1px solid #DFE1E7;
+  border-radius: 10px;
+
+  h2 {
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--const-color);
+  }
+
+  h4 {
+    font-weight: 600;
+    font-size: 12px;
+    color: #ff515f;
+    cursor: pointer;
+  }
+
+  .--text-filter,
+  .--text-date {
+    font-weight: 400;
+    font-size: 15px;
+    color: #666D80;
+    display: flex;
+    align-items: center;
+  }
+
+  .--text-filter {
+    width: 120px;
+  }
+
+  .--text-date {
+    width: 180px;
+  }
+
+}
+
+::ng-deep .p-tabpanels {
+  padding: 12px 0 !important;
+}
+
+::ng-deep .p-datatable-thead th {
+  background: var(--active-primary) !important;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--const-color);
+}
+
+::ng-deep td {
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--const-color);
+}
+
+::ng-deep .popover {
+  border-width: 0 !important;
+  max-width: 500px !important;
+}

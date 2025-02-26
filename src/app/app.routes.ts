@@ -75,7 +75,9 @@ export const mainRoutes: Routes = [
       {
         path: 'task-management',
         loadComponent: () =>
-          import('./pages/main/pages/project/project.component').then((m) => m.ProjectComponent)
+          import('./pages/main/pages/task-management/task-management.component').then(
+            (m) => m.TaskManagementComponent
+          )
       },
       {
         path: 'projects',

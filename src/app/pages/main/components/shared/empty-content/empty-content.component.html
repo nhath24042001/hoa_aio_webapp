@@ -1,7 +1,11 @@
 <div class="--empty-content-wrapper d-flex justify-content-center align-items-center">
   <div>
     <div class="d-flex justify-content-center align-items-center">
-      <img [src]="icon" alt="section_icon" />
+      @if(currentMode === 'light') {
+        <img [src]="icon" alt="section_icon" />
+      } @else {
+        <img [src]="iconDark" alt="section_icon" />
+      }
     </div>
 
     <h5 class="mt-2 text-center">{{ title }}</h5>

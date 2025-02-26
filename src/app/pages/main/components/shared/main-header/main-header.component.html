@@ -4,6 +4,7 @@
     <input type="text" placeholder="Search" (input)="onSearchChange($event)" />
   </div>
 
+
   <div
     class="--filter-box mx-4 d-flex justify-content-center align-items-center"
     [popover]="popoverContent"
@@ -13,22 +14,8 @@
     <img src="assets/images/common/filter.svg" alt="filter_icon" />
   </div>
 
-  <ng-template #popoverContent>
-    <div class="--filter-content">
-      <div class="d-flex justify-content-between align-items-center">
-        <h2>Filters</h2>
-        <h4>Clear all</h4>
-      </div>
-
-      <h3>Show user type</h3>
-
-      @for (filter of filterList; track $index) {
-        <div class="--checkbox d-flex align-items-center">
-          <p-checkbox [value]="filter.value" size="small" />
-          <span>{{ filter.label }}</span>
-        </div>
-      }
-    </div>
+  <ng-template #popoverContent style="width: 500px">
+    <ng-content select="[filter-content]"></ng-content>
   </ng-template>
 
   <button-primary

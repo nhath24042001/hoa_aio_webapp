@@ -3,7 +3,7 @@ import { IAnnouncementChild } from '~/@types/announcement';
 import { DatePipe } from '@angular/common';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { PopoverDirective } from 'ngx-bootstrap/popover';
-import { AnnounceAction } from '~/enums/index';
+import { Action } from '~/enums/index';
 
 @Component({
   selector: 'announcement-list',
@@ -16,7 +16,7 @@ export class AnnouncementListComponent {
   @Input() announcements: IAnnouncementChild[] = [];
   @Output() onEmitAction = new EventEmitter<{ announcement: IAnnouncementChild; type: string }>();
 
-  ACTIONS = AnnounceAction;
+  ACTIONS = Action;
 
   onEmitterAction(announcement: IAnnouncementChild, type: string) {
     this.onEmitAction.emit({ announcement, type });

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { some } from 'lodash-es';
 import { TabsModule } from 'primeng/tabs';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { CheckboxModule } from 'primeng/checkbox';
+import { PopoverModule } from 'ngx-bootstrap/popover';
 
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
@@ -19,7 +21,9 @@ import { ToastService } from '~/services/toast.service';
     EmptyContentComponent,
     ButtonPrimary,
     AnnouncementListComponent,
-    MainHeader
+    MainHeader,
+    CheckboxModule,
+    PopoverModule
   ],
   templateUrl: './announcements.component.html',
   styleUrl: './announcements.component.scss'
