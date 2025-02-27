@@ -1,6 +1,6 @@
 export const THEME = {
   LIGHT: 'light',
-  DARK: 'dark',
+  DARK: 'dark'
 };
 
 export const ACTIONS = {
@@ -48,5 +48,59 @@ export const TASK_STATUS = [
   {
     icon: 'status-cancel',
     name: STATUS_LIST.CANCEL
+  }
+];
+
+export const PROJECT_TYPES = [
+  { name: 'Maintenance', code: 'NY' },
+  { name: 'Renovation', code: 'RM' },
+  { name: 'New construction', code: 'LDN' },
+  { name: 'Inspection', code: 'IST' },
+  { name: 'Other', code: 'PRS' }
+];
+
+export const PRIORITY_LIST = [
+  {
+    name: 'Low',
+    code: 'low'
+  },
+  {
+    name: 'Medium',
+    code: 'medium'
+  },
+  {
+    name: 'High',
+    code: 'high'
+  },
+  {
+    name: 'Critical',
+    code: 'critical'
+  }
+];
+
+export const LIST_TASK_STATUS = [
+  {
+    name: STATUS_LIST.NEW,
+    code: 'new'
+  },
+  {
+    name: STATUS_LIST.PLANNING,
+    code: 'planning'
+  },
+  {
+    name: STATUS_LIST.IN_PROGRESS,
+    code: 'in_progress'
+  },
+  {
+    name: STATUS_LIST.ON_HOLD,
+    code: 'on_hold'
+  },
+  {
+    name: STATUS_LIST.COMPLETED,
+    code: 'completed'
+  },
+  {
+    name: STATUS_LIST.CANCELLED,
+    code: 'cancelled'
   }
 ];

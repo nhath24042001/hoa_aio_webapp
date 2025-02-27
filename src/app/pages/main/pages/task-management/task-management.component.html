@@ -13,7 +13,7 @@
             <p-tab value="2"><div>Action Items</div></p-tab>
           </p-tablist>
 
-          <main-header labelButton="New Task" (searchChanged)="onSearch()">
+          <main-header labelButton="New Task" (searchChanged)="onSearch()" (addSection)="onOpenCreateTask()">
             <div filter-content>
               <div class="--filter-content p-3">
                 <div class="d-flex justify-content-between align-items-center">

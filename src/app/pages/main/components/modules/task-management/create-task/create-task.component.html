@@ -1,0 +1,131 @@
+<div class="--dynamic-dialog p-4">
+  <div class="mb-4 d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+      <img src="assets/images/common/file-plus.svg" class="me-3" alt="file_icon" />
+      <h3 class="mb-0">Create New Task</h3>
+    </div>
+
+    <div class="--close" (click)="closeDialog()">
+      <img [src]="'assets/images/' + currentMode + '/close.svg'" alt="close_icon" />
+    </div>
+  </div>
+
+  <p-divider />
+
+  <div class="--dynamic-title">
+    <h4>Task Name</h4>
+
+    <div class="row">
+      <div class="col-6">
+        @for (box of left_box; track $index) {
+          <div class="mb-3 d-flex align-items-center">
+            <img
+              [src]="'assets/images/common/' + box.icon + '.svg'"
+              [alt]="box.icon + '_icon'"
+              class="me-2"
+            />
+
+            <p>{{ box.label }}</p>
+
+            @if (box.type === 'select') {
+              <p-select
+                [options]="box.list"
+                variant="filled"
+                optionLabel="name"
+                [placeholder]="box.placeholder"
+                styleClass="flex-fill"
+              />
+            } @else if (box.type === 'input') {
+              <input
+                type="text"
+                variant="filled"
+                pInputText
+                [placeholder]="box.placeholder"
+                class="flex-fill"
+              />
+            } @else {
+              <p-datepicker
+                [placeholder]="box.placeholder"
+                showIcon
+                iconDisplay="input"
+                class="flex-fill"
+              />
+            }
+          </div>
+        }
+      </div>
+      <div class="col-6">
+        @for (box of right_box; track $index) {
+          <div class="mb-3 d-flex align-items-center">
+            <img
+              [src]="'assets/images/common/' + box.icon + '.svg'"
+              [alt]="box.icon + '_icon'"
+              class="me-2"
+            />
+
+            <p>{{ box.label }}</p>
+
+            @if (box.type === 'select') {
+              <p-select
+                [options]="box.list"
+                variant="filled"
+                optionLabel="name"
+                [placeholder]="box.placeholder"
+                styleClass="flex-fill"
+              />
+            } @else if (box.type === 'input') {
+              <input
+                type="text"
+                variant="filled"
+                pInputText
+                [placeholder]="box.placeholder"
+                class="flex-fill"
+              />
+            } @else {
+              <p-datepicker
+                variant="filled"
+                [placeholder]="box.placeholder"
+                showIcon
+                iconDisplay="input"
+                class="flex-fill"
+              />
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <p-divider />
+
+  <div class="--dynamic-content mt-3">
+    <h5>Announcement Content</h5>
+
+    <textarea pTextarea pSize="large" placeholder="Enter content" rows="3" class="w-100"></textarea>
+  </div>
+
+  <div class="--dynamic-action mt-3 d-flex justify-content-between align-items-center">
+    <p>Announcement ID: 3567890</p>
+
+    <div class="d-flex align-items-center">
+      <div class="--attachment me-3 d-flex justify-content-center align-items-center">
+        <img src="assets/images/common/attachment.svg" alt="attachment_icon" />
+      </div>
+
+      <div class="--attachment d-flex justify-content-center align-items-center">
+        <img src="assets/images/common/video-recorder.svg" alt="video_icon" />
+      </div>
+
+      <div class="--save-draft mx-3 d-flex algin-items-center">
+        <img src="assets/images/common/save-draft.svg" class="me-2" alt="save_draft_icon" />
+        <p>Save Draft</p>
+      </div>
+
+      <button-primary
+        icon="assets/images/common/white-file-plus.svg"
+        label="Create Task"
+        [isPrimaryActive]="true"
+      ></button-primary>
+    </div>
+  </div>
+</div>
