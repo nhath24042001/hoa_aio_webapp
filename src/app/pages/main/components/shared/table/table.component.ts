@@ -74,7 +74,7 @@ export class Table<T> extends BaseComponent {
   }
 
   getClass(className: string) {
-    return `--${className}`;
+    return this.currentMode === 'light' ? `--${className}` : `--${className}-dark`;
   }
 
   onPageChange(event: any) {

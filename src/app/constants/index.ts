@@ -19,6 +19,7 @@ export const STATUS_LIST = {
   ASSIGNED: 'Assigned',
   ACCEPTED: 'Accepted',
   RESOLVE: 'Resolve',
+  RESOLVED: 'Resolved',
   IN_PROGRESS: 'In progress',
   ON_HOLD: 'On hold',
   COMPLETED: 'Completed',
@@ -139,7 +140,7 @@ export const tasks = [
     task_type: 'Landscape',
     priority: Priority.IMPORTANT,
     created: '2024-01-24',
-    status: 'new',
+    status: 'accepted',
     assigned_to: [
       {
         id: 1,
@@ -162,7 +163,7 @@ export const tasks = [
     task_type: 'Accounting',
     priority: Priority.IMPORTANT,
     created: '2024-02-03',
-    status: 'new',
+    status: 'accepted',
     assigned_to: [
       {
         id: 1,
@@ -185,7 +186,7 @@ export const tasks = [
     task_type: 'Design change request',
     priority: Priority.NORMAL,
     created: '2024-12-24',
-    status: 'new',
+    status: 'resolved',
     assigned_to: [
       {
         id: 1,
@@ -208,7 +209,7 @@ export const tasks = [
     task_type: 'Hearing',
     priority: Priority.IMPORTANT,
     created: '2024-01-02',
-    status: 'new',
+    status: 'rejected',
     assigned_to: [
       {
         id: 1,

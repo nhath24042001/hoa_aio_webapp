@@ -164,6 +164,45 @@ ul li {
   border: 1px solid #4E9700;
 }
 
+.--urgent-dark,
+.--new-dark {
+  background: #CC2936;
+  color: #FFB9BF;
+  border: 1px solid #FF515F;
+}
+
+.--important-dark {
+  background: #6938DA;
+  color: #BEA2FF;
+  border: 1px solid #6938DA;
+}
+
+.--normal-dark,
+.--accepted-dark {
+  background: #55C68D;
+  color: #DAFFED;
+  border: 1px solid #DAFFED;
+}
+
+.--resolved-dark {
+  background: #4E9700;
+  color: #CFFF9C;
+  border: 1px solid #CFFF9C;
+}
+
+.--rejected-dark {
+  background: #272835;
+  color: #A4ACB9;
+  border: 1px solid #A4ACB9;
+}
+
+.--show-all {
+  color: #6938DA;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+}
+
 .--dynamic-dialog {
   background: var(--background);
   border-radius: 20px;
