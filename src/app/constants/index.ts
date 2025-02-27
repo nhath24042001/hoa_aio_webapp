@@ -146,7 +146,7 @@ export const tasks = [
         id: 1,
         name: 'Urgon Tuya',
         avatar:
-          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+          'https://images.pexels.com/photos/7046685/pexels-photo-7046685.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
@@ -169,7 +169,7 @@ export const tasks = [
         id: 1,
         name: 'John Doe',
         avatar:
-          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+          'https://images.pexels.com/photos/8638618/pexels-photo-8638618.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
@@ -198,7 +198,7 @@ export const tasks = [
         id: 2,
         name: 'Jane Smith',
         avatar:
-          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+          'https://images.pexels.com/photos/7046685/pexels-photo-7046685.jpeg?auto=compress&cs=tinysrgb&w=600'
       }
     ]
   },
@@ -215,13 +215,13 @@ export const tasks = [
         id: 1,
         name: 'John Doe',
         avatar:
-          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
         name: 'Jane Smith',
         avatar:
-          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+          'https://images.pexels.com/photos/7862484/pexels-photo-7862484.jpeg?auto=compress&cs=tinysrgb&w=600'
       }
     ]
   }
