@@ -30,11 +30,6 @@ p {
   font-size: 100%;
 }
 
-ol,
-ul {
-  list-style: none;
-}
-
 li {
   &::marker {
     margin: 5px !important;
@@ -43,6 +38,21 @@ li {
 
 p {
   margin: 0 !important;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--const-color);
+}
+
+span {
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--const-color);
+}
+
+ul li {
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--const-color);
 }
 
 /* FONT BASES */
@@ -164,13 +174,37 @@ p {
     color: var(--dialog-title);
   }
 
-  .--close {
-    width: 44px;
-    height: 24px;
+  .--right {
     display: flex;
     justify-content: end;
-    border-left: 1px solid #DFE1E7;
-    cursor: pointer;
+
+    .--image-wrapper {
+      border-left: 1px solid #DFE1E7;
+      padding-left: 10px;
+
+      img {
+        width: 44px;
+        height: 24px;
+        cursor: pointer;
+      }
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 12px;
+      color: #6F6F6F;
+    }
+
+    .--share-box {
+      width: 66px;
+      height: 38px;
+      border-radius: 20px;
+      background: var(--const-color);
+      color: var(--background);
+      font-weight: 500;
+      font-size: 12px;
+      cursor: pointer;
+    }
   }
 
   .--dynamic-title {
@@ -180,6 +214,12 @@ p {
       color: #818898;
     }
 
+    h3 {
+      font-weight: 600;
+      font-size: 28px;
+      color: #000000;
+    }
+
     p {
       font-weight: 500;
       font-size: 15px;
@@ -187,6 +227,20 @@ p {
       display: flex;
       align-items: center;
       width: 130px;
+
+      &.--detail {
+        width: 150px;
+      }
+    }
+
+    span {
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--const-color);
+    }
+
+    .--box-title {
+      height: 40px;
     }
   }
 
@@ -197,10 +251,39 @@ p {
       color: var(--dialog-text);
     }
 
-    p {
-      font-weight: 500;
-      font-size: 15px;
+    p.--title {
       color: var(--dialog-text);
+    }
+
+    h4 {
+      font-weight: 600;
+      font-size: 20px;
+      color: #000000;
+    }
+
+    .--comment-box {
+      background: #F6F8FA;
+      border-radius: 10px;
+
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .--attachment-box {
+      width: 180px;
+      height: 75px;
+      border-radius: 12px;
+      border: 1px solid #DFE1E7;
+
+      p {
+        font-size: 12px;
+      }
+
+      .--file-size {
+        color: #818898
+      }
     }
   }
 

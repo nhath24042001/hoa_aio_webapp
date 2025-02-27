@@ -1,1 +1,159 @@
-<p>task-detail works!</p>
+<div class="--dynamic-dialog p-4">
+  <div class="--box-title mb-1 d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+      <img src="assets/images/common/clipboard-check.svg" class="me-3" alt="clipboard_icon" />
+      <h3 class="mb-0">Action items</h3>
+    </div>
+
+    <div class="--right" (click)="closeDialog()">
+      <div>
+        <p class="text-end">Created: December 2, 2024</p>
+        <p class="text-end">Updated: December 20, 2024</p>
+      </div>
+
+      <div class="--share-box mx-3 d-flex justify-content-center align-items-center">Share</div>
+
+      <div class="--image-wrapper d-flex align-items-center">
+        <img src="assets/images/common/edit-sm.svg" alt="edit_icon" />
+        <img
+          [src]="'assets/images/' + currentMode + '/close.svg'"
+          class="--close"
+          alt="close_icon"
+        />
+      </div>
+    </div>
+  </div>
+
+  <p-divider />
+
+  <div class="--dynamic-title">
+    <h3 class="mb-4">Sign contract with plumbing vendor</h3>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="--box-title mb-1 d-flex align-items-center">
+          <img src="assets/images/common/loading.svg" alt="loading_icon" class="me-2" />
+          <p class="--detail">Status</p>
+          <p-select [options]="status_list" optionLabel="name" placeholder="Select" />
+        </div>
+
+        <div class="--box-title mb-1 d-flex align-items-center">
+          <img src="assets/images/common/task-icon.svg" alt="task_icon" class="me-2" />
+          <p class="--detail">Type</p>
+
+          <span>Maintenance</span>
+        </div>
+
+        <div class="--box-title mb-1 d-flex align-items-center">
+          <img src="assets/images/common/flag.svg" alt="flag_icon" class="me-2" />
+          <p class="--detail">Priority</p>
+
+          <span>Critical</span>
+        </div>
+
+        <div class="--box-title mb-1 d-flex align-items-center">
+          <img src="assets/images/common/hourglass.svg" alt="hour_icon" class="me-2" />
+          <p class="--detail">ETA</p>
+
+          <span>28 March, 2025</span>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="--box-title mb-1 d-flex align-items-center">
+          <img src="assets/images/common/user-up.svg" alt="user_icon" class="me-2" />
+          <p class="--detail">Assigned to</p>
+          <p-avatar-group>
+            <p-avatar
+              image="https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600"
+              size="large"
+              shape="circle"
+            />
+            <!-- <p-avatar label="+2" shape="circle" size="large" /> -->
+          </p-avatar-group>
+        </div>
+
+        <div class="--box-title mb-1 d-flex align-items-center">
+          <img src="assets/images/common/perspective.svg" alt="perspective_icon" class="me-2" />
+          <p class="--detail">Project</p>
+
+          <span>Palm Springs Vendor List</span>
+        </div>
+
+        <div class="--box-title mb-1 d-flex align-items-center">
+          <img src="assets/images/common/user-square.svg" alt="perspective_icon" class="me-2" />
+          <p class="--detail">Resident name</p>
+
+          <span>-</span>
+        </div>
+
+        <div class="--box-title mb-1 d-flex align-items-center">
+          <img src="assets/images/common/home.svg" alt="perspective_icon" class="me-2" />
+          <p class="--detail">Property Address</p>
+
+          <span>42 Main Drive, Palm Springs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p-divider />
+
+  <div class="--dynamic-content">
+    <h4>Detail</h4>
+
+    <div class="--detail-content">
+      <p>
+        Negotiate terms and finalize the service agreement with the selected plumbing vendor for the
+        office renovation project. Ensure all requirements are clearly outlined to avoid any service
+        disruptions.
+      </p>
+    </div>
+
+    <div class="mt-3 mb-1 d-flex justify-content-between align-items-center">
+      <h4>Comments</h4>
+
+      <button-primary
+        icon="assets/images/common/plus-solid.svg"
+        label="New Comment"
+      ></button-primary>
+    </div>
+
+    @for (comment of comments; track $index) {
+      <div class="--comment-box p-3">
+        <div class="d-flex align-items-center">
+          <img [src]="comment.image" [alt]="comment.name + '_icon'" class="me-2" />
+          <p class="--name">{{ comment.name }}</p>
+        </div>
+
+        <p class="mt-3">{{ comment.content }}</p>
+      </div>
+    }
+
+    <h4 class="mt-3">Attachments</h4>
+
+    <div class="d-flex algin-items-center">
+      @for (attach of attachments; track $index) {
+        <div class="--attachment-box me-4 d-flex align-items-center justify-content-center">
+          <img src="assets/images/common/placeholder-img.svg" class="me-2" alt="placeholder_icon" />
+
+          <div>
+            <p class="">{{ attach.file_nme }}</p>
+            <p class="--file-size">{{ attach.file_size }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="--dynamic-action mt-3 d-flex justify-content-between align-items-center">
+    <p>Announcement ID: 3567890</p>
+
+    <div class="d-flex align-items-center">
+      <button-primary
+        icon="assets/images/common/white-check.svg"
+        label="Done"
+        [isPrimaryActive]="true"
+      ></button-primary>
+    </div>
+  </div>
+</div>

@@ -23,6 +23,7 @@ export class CreateTask extends BaseComponent {
   priority_list = PRIORITY_LIST;
   status_list = LIST_TASK_STATUS;
 
+
   left_box = [
     {
       icon: 'task-icon',
