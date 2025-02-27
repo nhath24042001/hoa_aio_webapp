@@ -1,3 +1,6 @@
+import { ITask } from '~/@types/task';
+import { Priority } from '~/enums';
+
 export const THEME = {
   LIGHT: 'light',
   DARK: 'dark'
@@ -102,5 +105,123 @@ export const LIST_TASK_STATUS = [
   {
     name: STATUS_LIST.CANCELLED,
     code: 'cancelled'
+  }
+];
+
+export const tasks = [
+  {
+    task_id: '12321',
+    type: 'action_item',
+    task_name: 'Sign contract with plumbing vendor',
+    task_type: 'Maintenance',
+    priority: Priority.URGENT,
+    created: '2023-08-01',
+    status: 'new',
+    assigned_to: [
+      {
+        id: 1,
+        name: 'John Doe',
+        avatar:
+          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+      },
+      {
+        id: 2,
+        name: 'Jane Smith',
+        avatar:
+          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+      }
+    ]
+  },
+  {
+    task_id: '12322',
+    type: 'action_item',
+    task_name: 'Trim entrance area trees',
+    task_type: 'Landscape',
+    priority: Priority.IMPORTANT,
+    created: '2024-01-24',
+    status: 'new',
+    assigned_to: [
+      {
+        id: 1,
+        name: 'Urgon Tuya',
+        avatar:
+          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+      },
+      {
+        id: 2,
+        name: 'Jonathan Wick',
+        avatar:
+          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+      }
+    ]
+  },
+  {
+    task_id: '12323',
+    type: 'claim',
+    task_name: 'Create About Page for Company Profile',
+    task_type: 'Accounting',
+    priority: Priority.IMPORTANT,
+    created: '2024-02-03',
+    status: 'new',
+    assigned_to: [
+      {
+        id: 1,
+        name: 'John Doe',
+        avatar:
+          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+      },
+      {
+        id: 2,
+        name: 'Jane Smith',
+        avatar:
+          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+      }
+    ]
+  },
+  {
+    task_id: '12324',
+    type: 'action_item',
+    task_name: 'Create UI Stock Mobile',
+    task_type: 'Design change request',
+    priority: Priority.NORMAL,
+    created: '2024-12-24',
+    status: 'new',
+    assigned_to: [
+      {
+        id: 1,
+        name: 'John Doe',
+        avatar:
+          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+      },
+      {
+        id: 2,
+        name: 'Jane Smith',
+        avatar:
+          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+      }
+    ]
+  },
+  {
+    task_id: '12325',
+    type: 'claim',
+    task_name: 'Usability Testing POS Mobile Apps',
+    task_type: 'Hearing',
+    priority: Priority.IMPORTANT,
+    created: '2024-01-02',
+    status: 'new',
+    assigned_to: [
+      {
+        id: 1,
+        name: 'John Doe',
+        avatar:
+          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+      },
+      {
+        id: 2,
+        name: 'Jane Smith',
+        avatar:
+          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+      }
+    ]
   }
 ];

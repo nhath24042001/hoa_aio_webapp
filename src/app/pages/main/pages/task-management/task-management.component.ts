@@ -136,6 +136,7 @@ export class TaskManagementComponent {
   onSearch() {}
 
   onOpenCreateTask(): void {
+    debugger;
     this.ref = this.dialogService.open(CreateTask, {
       modal: true,
       width: '1000px'

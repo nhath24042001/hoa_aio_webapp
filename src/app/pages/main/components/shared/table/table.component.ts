@@ -34,6 +34,8 @@ export class Table<T> extends BaseComponent {
   @ViewChild('popover', { static: false }) popover?: PopoverDirective;
   @Input() data!: T[];
   @Input() headers!: IHeaderTable[];
+  @Input() showPagination: boolean = false;
+
   ACTIONS = Action;
 
   first: number = 0;

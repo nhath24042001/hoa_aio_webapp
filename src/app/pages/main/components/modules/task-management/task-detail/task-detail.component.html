@@ -5,7 +5,7 @@
       <h3 class="mb-0">Action items</h3>
     </div>
 
-    <div class="--right" (click)="closeDialog()">
+    <div class="--right">
       <div>
         <p class="text-end">Created: December 2, 2024</p>
         <p class="text-end">Updated: December 20, 2024</p>
@@ -19,6 +19,7 @@
           [src]="'assets/images/' + currentMode + '/close.svg'"
           class="--close"
           alt="close_icon"
+          (click)="closeDialog()"
         />
       </div>
     </div>

@@ -5,11 +5,21 @@ import { TaskSectionComponent } from '~/pages/main/components/modules/overview/t
 import { AnnouncementSectionComponent } from '~/pages/main/components/modules/overview/announcement-section/announcement-section.component';
 import { BidSectionComponent } from '~/pages/main/components/modules/overview/bid-section/bid-section.component';
 import { CalendarSectionComponent } from "../../components/modules/overview/calendar-section/calendar-section.component";
+import { tasks } from '~/constants';
+import { IHeaderTable } from '~/@types/task';
 
 @Component({
   selector: 'app-overview',
-  imports: [OverviewStasComponent, AnnouncementSectionComponent, BidSectionComponent, TaskSectionComponent, CalendarSectionComponent],
+  imports: [
+    OverviewStasComponent,
+    AnnouncementSectionComponent,
+    BidSectionComponent,
+    TaskSectionComponent,
+    CalendarSectionComponent
+  ],
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.scss'
 })
-export class OverviewComponent extends BaseComponent {}
+export class OverviewComponent extends BaseComponent {
+  tasks = tasks;
+}
