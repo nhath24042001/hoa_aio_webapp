@@ -43,9 +43,15 @@ p {
   color: var(--const-color);
 }
 
-h4 {
+// h4 {
+//   font-weight: 600;
+//   font-size: 24px;
+//   color: var(--const-color);
+// }
+
+h6 {
   font-weight: 600;
-  font-size: 24px;
+  font-size: 18px;
   color: var(--const-color);
 }
 
@@ -60,6 +66,20 @@ ul li {
   font-size: 15px;
   color: var(--const-color);
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #F3EEFF;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
 
 /* FONT BASES */
 @font-face {

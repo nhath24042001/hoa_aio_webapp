@@ -13,8 +13,14 @@ import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/but
 export class CalendarSectionComponent {
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin],
-    initialView: 'dayGridMonth',
-    weekends: true,
-    events: [{ title: 'Meeting', start: new Date() }]
+    headerToolbar: {
+      left: 'title prev,next',
+      right: ''
+    },
+    events: [
+      { title: 'Event', start: '2025-02-10', className: 'custom-event-1' },
+      { title: 'Event 1', start: '2025-02-15', className: 'custom-event-2' }
+    ],
+    height: '700px',
   };
 }

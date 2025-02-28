@@ -4,7 +4,7 @@
 
 ::ng-deep .fc-scrollgrid-sync-inner {
   text-align: left;
-  padding: 10px
+  padding: 10px;
 }
 
 ::ng-deep .fc-col-header-cell-cushion {
@@ -42,7 +42,8 @@
   border-radius: 10px !important;
 }
 
-::ng-deep .fc-prev-button, ::ng-deep .fc-next-button {
+::ng-deep .fc-prev-button,
+::ng-deep .fc-next-button {
   background: var(--background) !important;
   border: 0 !important;
 
