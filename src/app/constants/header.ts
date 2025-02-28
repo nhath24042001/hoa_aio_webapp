@@ -2,7 +2,7 @@ export const MENU_DROPDOWN = [
   {
     icon: 'account-menu',
     name: 'My Account',
-    routeLink: '/my-account'
+    routeLink: 'my-account'
   },
   {
     icon: 'notification-menu',

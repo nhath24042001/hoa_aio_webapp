@@ -62,4 +62,8 @@ export class HeaderComponent {
     localStorage.removeItem('token');
     this.router.navigate(['/auth/login']);
   }
+
+  onMenuClick(menu: any) {
+    this.router.navigate(['/main/' + menu.routeLink]);
+  }
 }

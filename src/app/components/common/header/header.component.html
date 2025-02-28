@@ -58,7 +58,7 @@
     <ng-template #menuPopover>
       <div class="--menu-dropdown-container">
         @for (menu of menu_dropdowns; track $index) {
-          <div class="--menu-dropdown-item d-flex align-items-center justify-content-between">
+          <div class="--menu-dropdown-item d-flex align-items-center justify-content-between" (click)="onMenuClick(menu)">
             <div class="d-flex align-items-center gap-3">
               <img
                 [src]="'assets/images/' + currentMode + '/' + menu.icon + '.svg'"

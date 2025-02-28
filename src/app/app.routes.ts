@@ -119,6 +119,12 @@ export const mainRoutes: Routes = [
         path: 'reports',
         loadComponent: () =>
           import('./pages/main/pages/report/report.component').then((m) => m.ReportComponent)
+      },
+      {
+        path: 'my-account',
+        loadComponent: () => import('./pages/main/pages/account/account.component').then(
+          (m) => m.AccountComponent
+        )
       }
     ]
   },
