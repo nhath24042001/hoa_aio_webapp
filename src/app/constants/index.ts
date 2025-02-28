@@ -1,4 +1,3 @@
-import { ITask } from '~/@types/task';
 import { Priority } from '~/enums';
 
 export const THEME = {

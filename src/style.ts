@@ -6,14 +6,14 @@ export const MyPreset = definePreset(Aura, {
     colorScheme: {
       light: {
         primary: {
-          50: '#6938DA', // background
-          100: '#6938DA', // color
-          200: '#6938DA', // primary color
-          300: '#6938DA', // active primary color
+          50: '#6938DA',
+          100: '#6938DA',
+          200: '#6938DA',
+          300: '#6938DA',
           400: '#6938DA',
-          500: '#6938DA', // white / black
+          500: '#6938DA',
           600: '#6938DA',
-          700: '#6938DA', // border menu
+          700: '#6938DA',
           800: '#6938DA',
           900: '#6938DA',
           950: '#6938DA'

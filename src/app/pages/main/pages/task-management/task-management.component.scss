@@ -57,3 +57,22 @@
   border-width: 0 !important;
   max-width: 500px !important;
 }
+
+::ng-deep .p-tablist-tab-list {
+  border-width: 0;
+}
+
+::ng-deep .p-tab {
+  border-width: 0px !important;
+  color: #6F6F6F;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+::ng-deep .p-tab-active {
+  color: #6938DA;
+}
+
+::ng-deep .p-tablist-active-bar {
+  height: 2px;
+}

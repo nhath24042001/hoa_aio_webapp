@@ -1,0 +1,72 @@
+<div class="--dynamic-dialog p-4">
+  <div class="mb-4 d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+      <img src="assets/images/common/annotation-sm.svg" class="me-3" alt="annotation_icon" />
+      <p class="--dialog-text-header mb-0">Announcement</p>
+    </div>
+
+    <div class="--right">
+      <div>
+        <p class="text-end">Created: December 2, 2024</p>
+        <p class="text-end">Updated: December 20, 2024</p>
+      </div>
+
+      <div class="--share-box mx-3 d-flex justify-content-center align-items-center">Share</div>
+
+      <div class="--image-wrapper d-flex align-items-center">
+        <img src="assets/images/common/edit-sm.svg" class="me-3" alt="edit_icon" />
+        <img
+          [src]="'assets/images/' + currentMode + '/close.svg'"
+          class="--close"
+          alt="close_icon"
+          (click)="closeDialog()"
+        />
+      </div>
+    </div>
+  </div>
+
+  <p-divider />
+
+  <div class="--dynamic-title">
+    <h2>{{ announce_detail.title }}</h2>
+
+    <div class="d-flex align-items-center">
+      <img src="assets/images/common/task-icon.svg" class="me-2" alt="task_icon" />
+
+      <p>User Types</p>
+
+      @for (type of announce_detail.user_types; track $index) {
+        <div class="--user-tag d-flex justify-content-center align-items-center">
+          <p>{{ type.name }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="mt-3 d-flex algin-items-center">
+      <img src="assets/images/common/location.svg" class="me-2" alt="location_icon" />
+      <p>Expiration date</p>
+
+      <p class="--text-normal">{{ announce_detail.expired_date | date }}</p>
+    </div>
+  </div>
+
+  <p-divider />
+
+  <div class="--dynamic-content mt-3">
+    <h5>Announcement Content</h5>
+
+    <p class="my-4">{{ announce_detail.content }}</p>
+
+    <div class="mt-3 d-flex align-items-center">
+      <img src="assets/images/common/attachment-link.svg" class="me-2" alt="attachment_icon" />
+      <p class="me-3">Link</p>
+
+      <!-- <p class="--link">{{ announce_detail.link }}</p> -->
+      <a [href]="announce_detail.link" class="--link">{{ announce_detail.link }}</a>
+    </div>
+  </div>
+
+  <div class="--dynamic-action mt-3 d-flex justify-content-between align-items-center">
+    <p>Announcement ID: {{ announce_detail.id }}</p>
+  </div>
+</div>
