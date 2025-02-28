@@ -1,11 +1,10 @@
-import { AfterViewInit, Component, signal, ViewChild } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
 import { TabsModule } from 'primeng/tabs';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import listPlugin from '@fullcalendar/list';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { SelectModule } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
@@ -19,8 +18,8 @@ import { MainHeader } from '../../components/shared/main-header/main-header.comp
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss'
 })
-export class CalendarComponent implements AfterViewInit {
-  @ViewChild('calendar', { static: false }) calendarComponent!: FullCalendarComponent;
+export class CalendarComponent {
+  @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
 
   isActiveEvent = false;
   userTypes = [
@@ -56,36 +55,39 @@ export class CalendarComponent implements AfterViewInit {
   selectedView = signal({ name: 'Month', code: 'dayGridMonth' });
 
   calendarOptions = signal<CalendarOptions>({
-    plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin],
+    plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin],
     headerToolbar: {
       left: 'today title prev,next',
       right: ''
     },
-    initialView: this.selectedView().code
+    initialView: 'dayGridMonth'
   });
 
   onSearch(): void {}
 
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      if (this.calendarComponent) {
-        const calendarApi = this.calendarComponent.getApi();
-        calendarApi.changeView(this.selectedView().code);
-      } else {
-        console.error('calendarComponent is undefined');
-      }
-    }, 1200);
+  someMethod() {
+    if (this.calendarComponent) {
+      const calendarApi = this.calendarComponent.getApi();
+      console.log('calendarApi', calendarApi);
+      calendarApi.next();
+    } else {
+      console.error('calendarComponent is undefined');
+    }
   }
 
   onViewChange(event: any) {
-    const newView = event.value;
+    const newView = event.code;
     this.selectedView.set(newView);
 
     if (this.calendarComponent) {
       const calendarApi = this.calendarComponent.getApi();
-      calendarApi.changeView(newView.code);
+      calendarApi.changeView(newView);
     } else {
       console.error('calendarComponent is undefined');
     }
+  }
+
+  handleDateSelect(selectInfo: any) {
+    alert(`Selected: ${selectInfo.startStr} to ${selectInfo.endStr}`);
   }
 }

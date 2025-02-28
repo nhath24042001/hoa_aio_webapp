@@ -13,7 +13,7 @@
       <p-tabpanels>
         <p-tabpanel value="0">
           <p-select [options]="viewOptions" [(ngModel)]="selectedView" optionLabel="name" placeholder="Select a City" (ngModelChange)="onViewChange($event)" />
-          <full-calendar [options]="calendarOptions()"></full-calendar>
+          <full-calendar #calendar [options]="calendarOptions()"></full-calendar>
         </p-tabpanel>
         <p-tabpanel value="1">
           <full-calendar [options]="calendarOptions()"></full-calendar>
