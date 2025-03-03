@@ -1,0 +1,82 @@
+.--chip-container {
+  padding: 4px 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background: #F8FAFB;
+  width: 100%;
+  min-height: 82px;
+  max-height: fit-content;
+  display: flex;
+
+  input {
+    border: none;
+    outline: none;
+    flex: 1;
+    min-height: 30px;
+    resize: none;
+    background: #F8FAFB;
+    outline: none;
+  }
+
+  .--chip {
+    background: #ABFF52;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+
+    img {
+      cursor: pointer;
+    }
+
+    span {
+      font-weight: 500;
+      font-size: 12px;
+      color: var(--const-color);
+    }
+  }
+}
+
+
+.chip i {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+::ng-deep .p-dialog-header {
+  display: none;
+}
+
+::ng-deep .p-dialog-content {
+  padding: 0;
+}
+
+::ng-deep .p-datepicker {
+  width: 100%;
+}
+
+::ng-deep .p-textarea {
+  height: 154px;
+}
+
+::ng-deep .p-multiselect,
+::ng-deep .p-datepicker-input,
+::ng-deep .p-textarea,
+::ng-deep .p-inputtext,
+::ng-deep .p-select {
+  background: var(--input-custom);
+  border-color: var(--border-color) !important;
+}
+
+::ng-deep .p-chip {
+  padding: 4px 12px !important;
+  background: #ABFF52;
+}
+
+::ng-deep .p-chip-label {
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--const-color);
+}

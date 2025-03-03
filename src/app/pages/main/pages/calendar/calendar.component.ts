@@ -16,7 +16,7 @@ import { BaseComponent } from '~/components/common/base/base.component';
 import { ThemeService } from '~/services/theme.service';
 import { Table } from '~/pages/main/components/shared/table/table.component';
 import { calendarHeader, calendarData } from './../../../../data/calendar';
-
+import { DynamicEvent } from '~/pages/main/components/modules/calendar/dynamic-event/dynamic-event.component';
 @Component({
   selector: 'app-calendar',
   imports: [FullCalendarModule, TabsModule, FormsModule, SelectModule, MainHeader, DatePipe, Table],
@@ -25,6 +25,7 @@ import { calendarHeader, calendarData } from './../../../../data/calendar';
 })
 export class CalendarComponent extends BaseComponent implements AfterViewInit, OnInit {
   @ViewChild('calendar') calendarComponent?: FullCalendarComponent;
+  ref: DynamicDialogRef | undefined;
 
   isActiveEvent = false;
   isListView = signal(false);
@@ -54,7 +55,10 @@ export class CalendarComponent extends BaseComponent implements AfterViewInit, O
     initialView: 'dayGridMonth'
   });
 
-  constructor(themeService: ThemeService) {
+  constructor(
+    themeService: ThemeService,
+    public dialogService: DialogService
+  ) {
     super(themeService);
   }
 
@@ -87,5 +91,47 @@ export class CalendarComponent extends BaseComponent implements AfterViewInit, O
     if (!this.isListView() && this.calendarApi) {
       this.calendarApi.changeView(this.selectedView().code);
     }
+  }
+
+  onOpenCreateEvent(): void {
+    this.ref = this.dialogService.open(DynamicEvent, {
+      modal: true,
+      width: '1000px',
+      data: {
+        type: 'create'
+      }
+    });
+
+    this.ref.onClose.subscribe((task: any) => {});
+  }
+
+  onOpenTaskDetail(): void {
+    this.ref = this.dialogService.open(DynamicEvent, {
+      modal: true,
+      width: '1000px',
+      data: {
+        type: 'detail',
+        event: {
+          id: '4567890',
+          title: 'Event Title - Truncated if title is very long',
+          event_type: 'Community Event',
+          start_date: '2023-06-20:10:00:00',
+          end_date: '2023-06-20:12:00:00',
+          registration_required: 'Yes',
+          location: 'Main Auditorium',
+          price: '$12',
+          participants: ['Michelle Stockton', 'Grant Freemason'],
+          description:
+            'This is a description of the event. It can be very long and will be truncated if it is too long.',
+          rsvp_list: 'Michelle Stockton, Grant Freemason',
+          attachments: [
+            {
+              file_name: 'Event Invite.jpg',
+              file_size: '2MB'
+            }
+          ]
+        }
+      }
+    });
   }
 }

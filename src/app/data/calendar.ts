@@ -1,3 +1,5 @@
+import { EventType } from '~/enums';
+
 export const calendarData = [
   {
     task_name: 'Event Title - Truncated if title is very long',
@@ -43,4 +45,23 @@ export const calendarHeader = [
   { field: 'startDate', name: 'Start' },
   { field: 'createdDate', name: 'Created' },
   { field: 'action', name: '' }
-]
+];
+
+export const eventList = [
+  {
+    name: EventType.COMMUNITY,
+    code: 'community'
+  },
+  {
+    name: EventType.FACILITY,
+    code: 'facility'
+  },
+  {
+    name: EventType.ADMINISTRATIVE,
+    code: 'administrative'
+  },
+  {
+    name: EventType.MAINTENANCE,
+    code: 'maintenance'
+  }
+];

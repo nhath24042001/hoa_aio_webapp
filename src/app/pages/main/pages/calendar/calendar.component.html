@@ -7,7 +7,7 @@
           <p-tab value="1">Club Calendar</p-tab>
         </p-tablist>
 
-        <main-header labelButton="New Event" (searchChanged)="onSearch()"></main-header>
+        <main-header labelButton="New Event" (searchChanged)="onSearch()" (addSection)="onOpenTaskDetail()"></main-header>
       </div>
 
       <p-tabpanels>
