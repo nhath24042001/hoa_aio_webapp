@@ -7,13 +7,15 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DatePickerModule } from 'primeng/datepicker';
 import { TextareaModule } from 'primeng/textarea';
 import { ChipModule } from 'primeng/chip';
-import { DatePipe } from '@angular/common';
 
 import { BaseComponent } from '~/components/common/base/base.component';
 import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
 import { ThemeService } from '~/services/theme.service';
 import { eventList } from '~/data/calendar';
 import { ACTION_DIALOG } from '~/enums';
+import { DialogHeader } from '~/pages/main/components/dialog/dialog-header/dialog-header.component';
+import { FormField } from '~/pages/main/components/dialog/form-field/form-field.component';
+import { FormParticipantSelector } from '~/pages/main/components/dialog/form-participant-selector/form-participant-selector.component';
 
 @Component({
   selector: 'dynamic-event',
@@ -25,8 +27,10 @@ import { ACTION_DIALOG } from '~/enums';
     DatePickerModule,
     TextareaModule,
     ChipModule,
-    DatePipe,
-    ButtonPrimary
+    ButtonPrimary,
+    DialogHeader,
+    FormField,
+    FormParticipantSelector
   ],
   templateUrl: './dynamic-event.component.html',
   styleUrl: './dynamic-event.component.scss'
@@ -48,7 +52,11 @@ export class DynamicEvent extends BaseComponent {
   ) {
     super(themeService);
     this.dialogType = this.config.data.type;
-    this.eventData = this.config.data.event;
+    this.eventData = this.config.data.event ?? {};
+  }
+
+  get isCreateMode() {
+    return this.dialogType === this.ACTION_DIALOG.CREATE;
   }
 
   left_box = [
@@ -119,7 +127,7 @@ export class DynamicEvent extends BaseComponent {
     }
   }
 
-  removeTag(index: number) {
+  removeTag(index: any) {
     this.tags.splice(index, 1);
   }
 

@@ -1,0 +1,49 @@
+<div class="mb-3 d-flex align-items-center">
+  <img
+    [src]="'assets/images/' + currentMode + '/' + icon + '.svg'"
+    [alt]="icon + '_icon'"
+    class="me-2"
+  />
+  <p [style.width]="isCreateMode ? width : ''" [class.--detail]="isCreateMode" class="--text-box">
+    {{ label }}
+  </p>
+
+  @if (isCreateMode) {
+    @switch (type) {
+      @case ('select') {
+        <p-select
+          [options]="options"
+          variant="filled"
+          optionLabel="name"
+          [placeholder]="placeholder"
+          styleClass="flex-fill"
+        />
+      }
+      @case ('input') {
+        <input
+          type="text"
+          variant="filled"
+          pInputText
+          [placeholder]="placeholder"
+          class="flex-fill"
+        />
+      }
+      @default {
+        <p-datepicker
+          [placeholder]="placeholder"
+          showIcon
+          iconDisplay="input"
+          class="flex-fill"
+          variant="filled"
+        />
+      }
+    }
+  }
+  @else {
+    @if (field === 'start_date' || field === 'end_date') {
+      <span>{{ value | date: 'MMM. dd, hh:mm a' }}</span>
+    } @else {
+      <span>{{ value }}</span>
+    }
+  }
+</div>

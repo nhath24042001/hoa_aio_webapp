@@ -1,48 +1,11 @@
 <div class="--dynamic-dialog p-4">
-  @if (dialogType === ACTION_DIALOG.CREATE) {
-    <div class="mb-4 d-flex justify-content-between align-items-center">
-      <div class="d-flex align-items-center">
-        <img
-          [src]="'assets/images/' + currentMode + '/calendar-plus.svg'"
-          class="me-3"
-          alt="calendar_icon"
-        />
-        <h3 class="mb-0">Create New Event</h3>
-      </div>
-
-      <div class="--right" (click)="closeDialog()">
-        <div class="--image-wrapper">
-          <img [src]="'assets/images/' + currentMode + '/close.svg'" alt="close_icon" />
-        </div>
-      </div>
-    </div>
-  } @else {
-    <div class="--box-title mb-1 d-flex justify-content-between align-items-center">
-      <div class="d-flex align-items-center">
-        <img src="assets/images/common/calendar-date.svg" class="me-2" alt="clipboard_icon" />
-        <h3 class="mb-0">Event Details</h3>
-      </div>
-
-      <div class="--right">
-        <div>
-          <p class="text-end">Created: {{ eventData.start_date | date }}</p>
-          <p class="text-end">Updated: {{ eventData.end_date | date }}</p>
-        </div>
-
-        <div class="--share-box mx-3 d-flex justify-content-center align-items-center">Share</div>
-
-        <div class="--image-wrapper d-flex align-items-center">
-          <img src="assets/images/common/edit-sm.svg" class="me-3" alt="edit_icon" />
-          <img
-            [src]="'assets/images/' + currentMode + '/close.svg'"
-            class="--close"
-            alt="close_icon"
-            (click)="closeDialog()"
-          />
-        </div>
-      </div>
-    </div>
-  }
+  <app-dialog-header
+    [title]="dialogType === ACTION_DIALOG.CREATE ? 'Create New Event' : 'Event Details'"
+    [eventData]="eventData"
+    [ACTION_DIALOG]="ACTION_DIALOG"
+    [currentMode]="currentMode"
+    (closeDialog)="closeDialog()"
+  ></app-dialog-header>
 
   <p-divider />
 
@@ -56,111 +19,39 @@
     <div class="row mt-4">
       <div class="col-6">
         @for (box of left_box; track $index) {
-          <div class="mb-3 d-flex align-items-center">
-            <img
-              [src]="'assets/images/' + currentMode + '/' + box.icon + '.svg'"
-              [alt]="box.icon + '_icon'"
-              class="me-2"
-            />
-
-            @if (dialogType === ACTION_DIALOG.CREATE) {
-              <p [style.width]="box.width" class="--text-box">{{ box.label }}</p>
-            } @else {
-              <p class="--text-box --detail me-3">{{ box.label }}</p>
-            }
-
-            @if (dialogType === ACTION_DIALOG.CREATE) {
-              @if (box.type === 'select') {
-                <p-select
-                  [options]="box.list"
-                  variant="filled"
-                  optionLabel="name"
-                  [placeholder]="box.placeholder"
-                  styleClass="flex-fill"
-                />
-              } @else if (box.type === 'input') {
-                <input
-                  type="text"
-                  variant="filled"
-                  pInputText
-                  [placeholder]="box.placeholder"
-                  class="flex-fill"
-                />
-              } @else {
-                <p-datepicker
-                  [placeholder]="box.placeholder"
-                  showIcon
-                  iconDisplay="input"
-                  class="flex-fill"
-                  variant="filled"
-                />
-              }
-            } @else {
-              @if (box.field === 'start_date') {
-                <span>{{ eventData[box.field] | date: 'MMM. dd, hh:mm a' }}</span>
-              } @else {
-                <span>{{ eventData[box.field] }}</span>
-              }
-            }
-          </div>
+          <app-form-field
+            [icon]="box.icon"
+            [label]="box.label"
+            [type]="box.type"
+            [width]="box.width"
+            [field]="box.field"
+            [value]="eventData[box.field]"
+            [placeholder]="box.placeholder"
+            [options]="box.list"
+            [currentMode]="currentMode"
+            [dialogType]="dialogType"
+            [ACTION_DIALOG]="ACTION_DIALOG"
+          ></app-form-field>
         }
       </div>
       <div class="col-6">
         @for (box of right_box; track $index) {
-          <div class="mb-3 d-flex align-items-center">
-            <img
-              [src]="'assets/images/' + currentMode + '/' + box.icon + '.svg'"
-              [alt]="box.icon + '_icon'"
-              class="me-2"
-            />
-
-            <p class="--text-box --detail me-3">{{ box.label }}</p>
-
-            @if (dialogType === ACTION_DIALOG.CREATE) {
-              @if (box.type === 'select') {
-                <p-select
-                  [options]="box.list"
-                  variant="filled"
-                  optionLabel="name"
-                  [placeholder]="box.placeholder"
-                  styleClass="flex-fill"
-                />
-              } @else if (box.type === 'input') {
-                <input
-                  type="text"
-                  variant="filled"
-                  pInputText
-                  [placeholder]="box.placeholder"
-                  class="flex-fill"
-                />
-              } @else {
-                <p-datepicker
-                  [placeholder]="box.placeholder"
-                  showIcon
-                  iconDisplay="input"
-                  class="flex-fill"
-                  variant="filled"
-                />
-              }
-            } @else {
-              @if (box.field === 'start_date') {
-                <span>{{ eventData[box.field] | date: 'MMM. dd, hh:mm a' }}</span>
-              } @else {
-                <span>{{ eventData[box.field] }}</span>
-              }
-            }
-          </div>
+          <app-form-field
+            [icon]="box.icon"
+            [label]="box.label"
+            [type]="box.type"
+            [field]="box.field"
+            [value]="eventData[box.field]"
+            [placeholder]="box.placeholder"
+            [options]="box.list"
+            [currentMode]="currentMode"
+            [dialogType]="dialogType"
+            [ACTION_DIALOG]="ACTION_DIALOG"
+          ></app-form-field>
         }
       </div>
 
       <div class="d-flex align-items-center">
-        <img
-          [src]="'assets/images/' + currentMode + '/user-group.svg'"
-          alt="user_icon"
-          class="me-2"
-        />
-        <p class="--text-box">Participants</p>
-
         @if (dialogType === ACTION_DIALOG.CREATE) {
           <div class="--chip-container" (click)="focusInput()">
             <div class="w-100 d-flex align-items-start flex-wrap gap-2">
@@ -191,6 +82,12 @@
             <p-chip [label]="chip" class="me-2" />
           }
         }
+
+        <!-- <app-form-participant-selector
+          [participants]="eventData.participants"
+          [isEditing]="dialogType !== ACTION_DIALOG.CREATE"
+          [currentMode]="currentMode"
+        ></app-form-participant-selector> -->
       </div>
     </div>
 
