@@ -34,14 +34,14 @@
 
 ::ng-deep .p-paginator-first,
 ::ng-deep .p-paginator-last {
-  display: none;
+  display: none !important;
 }
 
 ::ng-deep .p-paginator-page {
   width: 30px;
   height: 30px;
   border: 1px solid #DFE1E7;
-  border-radius: 5px;
+  border-radius: 5px !important;
   font-weight: 500;
   font-size: 12px;
 

@@ -1,62 +1,78 @@
 <p-table
   [value]="data"
-  [rows]="5"
-  [tableStyle]="{ 'min-width': '50rem' }"
-  [rowsPerPageOptions]="[5, 10, 20]"
+  [rows]="rows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
   showGridlines
+  [tableStyle]="{ 'min-width': '50rem' }"
 >
   <ng-template #header>
     <tr>
-      @for (header of headers; track $index) {
-        <th [width]="header.width">{{ header.name }}</th>
-      }
+      <th *ngFor="let header of headers" [width]="header.width">
+        {{ header.name }}
+      </th>
+      <th *ngIf="actions.length">Actions</th>
     </tr>
   </ng-template>
-  <ng-template #body let-task>
+
+  <ng-template #body let-row>
     <tr>
-      <td>
-        <img [src]="convertTableType(task.type)" alt="task_icon" />
-      </td>
-      <td>{{ task.task_name }}</td>
-      <td>{{ task.task_type }}</td>
-      <td>
-        <div class="--box" [ngClass]="getClass(task.priority)">
-          {{ task.priority }}
-        </div>
-      </td>
-      <td>{{ task.created | date: 'dd MMM, yyyy' }}</td>
-      <td class="d-flex justify-content-center">
-        <p-avatar-group>
-          @for (avatar of task.assigned_to; track $index) {
-            <p-avatar [image]="avatar.avatar" size="large" shape="circle" />
+      @for (header of headers; track $index) {
+        @switch (header.field) {
+          @case ('type_icon') {
+            <td>
+              <img [src]="convertTableType(row[header.field])" alt="task_icon" />
+            </td>
           }
-          <!-- <p-avatar label="+2" shape="circle" size="large" /> -->
-        </p-avatar-group>
-      </td>
-      <td>
-        <div class="--box" [ngClass]="getClass(task.status)">
-          {{ task.status }}
-        </div>
-      </td>
-      <td>
-        <div [popover]="popoverContent" class="--pointer">
-          <img src="assets/images/common/dots-vertical.svg" alt="dot_icon" />
-        </div>
+          @case ('priority') {
+            <td>
+              <div class="--box" [ngClass]="getClass(row[header.field])">
+                {{ row[header.field] }}
+              </div>
+            </td>
+          }
+          @case ('status') {
+            <td>
+              <div class="--box" [ngClass]="getClass(row[header.field])">
+                {{ row[header.field] }}
+              </div>
+            </td>
+          }
+          @case ('assigned_to') {
+            <td class="d-flex justify-content-center">
+              <p-avatar-group>
+                @for (avatar of row[header.field]; track $index) {
+                  <p-avatar [image]="avatar.avatar" size="large" shape="circle" />
+                }
+                <!-- <p-avatar label="+2" shape="circle" size="large" /> -->
+              </p-avatar-group>
+            </td>
+          }
+          @case ('createdDate') {
+            <td>
+              <span> {{ row[header.field] | date: 'dd MMM, yyyy' }} </span>
+            </td>
+          }
+          @case ('action') {
+            <td>
+              <div [popover]="popoverContent" class="--pointer">
+                <img src="assets/images/common/dots-vertical.svg" alt="dot_icon" />
+              </div>
 
-        <ng-template #popoverContent>
-          <div class="--action-wrapper">
-            <div>
-              <img src="assets/images/common/edit.svg" alt="edit_icon" />
-              <span>{{ ACTIONS.EDIT }}</span>
-            </div>
-
-            <div>
-              <img src="assets/images/common/red_trash.svg" alt="trash_icon" />
-              <span>{{ ACTIONS.DELETE }}</span>
-            </div>
-          </div>
-        </ng-template>
-      </td>
+              <ng-template #popoverContent>
+                <div class="--action-wrapper">
+                  <div *ngFor="let action of actions" (click)="action.action(row)">
+                    <img [src]="action.icon" alt="action_icon" />
+                    <span>{{ action.label }}</span>
+                  </div>
+                </div>
+              </ng-template>
+            </td>
+          }
+          @default {
+            <td>{{ row[header.field] }}</td>
+          }
+        }
+      }
     </tr>
   </ng-template>
 </p-table>
@@ -69,17 +85,12 @@
         (onPageChange)="onPageChange($event)"
         [first]="first"
         [rows]="rows"
-        [totalRecords]="20"
+        [totalRecords]="data.length"
       />
 
       <div class="d-flex align-items-center">
         <span class="me-2">Show</span>
-        <p-select
-          [options]="pageOptions"
-          [(ngModel)]="selectedPageOption"
-          optionLabel="name"
-          size="small"
-        />
+        <p-select [options]="rowsPerPageOptions" [(ngModel)]="rows" size="small" />
       </div>
     </div>
   </div>

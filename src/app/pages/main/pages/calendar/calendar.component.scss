@@ -1,3 +1,16 @@
+.--calendar-toolbar {
+  .--today {
+    background: var(--background);
+    border: 1px solid #DFE1E7;
+    padding: 6px 16px;
+    border-radius: 10px;
+  }
+
+  .--pre,
+  .--next {
+    cursor: pointer;
+  }
+}
 ::ng-deep .p-tabpanels {
   padding: 20px 0 !important;
 }
@@ -69,4 +82,29 @@
 
 ::ng-deep .p-tablist-active-bar {
   height: 2px;
+}
+
+::ng-deep .fc-header-toolbar {
+  display: none !important;
+}
+
+::ng-deep .p-select-option-selected {
+  background: #6938DA !important;
+
+  span {
+    color: #FFF;
+  }
+}
+
+::ng-deep .p-datatable-thead th {
+  background: var(--active-primary) !important;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--const-color);
+}
+
+::ng-deep td {
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--const-color);
 }

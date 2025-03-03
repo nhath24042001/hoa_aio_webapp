@@ -91,7 +91,7 @@ export class TaskManagementComponent {
 
   headers: IHeaderTable[] = [
     {
-      field: 'type',
+      field: 'type_icon',
       name: '',
       width: '20px'
     },
