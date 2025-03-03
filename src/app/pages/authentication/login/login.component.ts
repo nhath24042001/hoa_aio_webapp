@@ -1,12 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
+import { MessageModule } from 'primeng/message';
+
 import { CustomInputComponent } from '../../../components/shared/custom-input/custom-input.component';
-import { Router } from '@angular/router';
 import { ThemeService } from '../../../services/theme.service';
 import { BaseComponent } from '../../../components/common/base/base.component';
 
@@ -18,7 +20,8 @@ import { BaseComponent } from '../../../components/common/base/base.component';
     InputGroupAddonModule,
     ButtonModule,
     CheckboxModule,
-    CustomInputComponent
+    CustomInputComponent,
+    MessageModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -27,6 +30,8 @@ export class LoginComponent extends BaseComponent {
   loginForm: FormGroup;
   isSubmitting = false;
   loading = false;
+  isShowError = false;
+  messageError = signal<string>('');
 
   rememberMe = signal<boolean>(false);
 
@@ -47,7 +52,18 @@ export class LoginComponent extends BaseComponent {
 
     setTimeout(() => {
       this.loading = false;
-      this.router.navigate(['main/overview']);
+      this.isSubmitting = true;
+
+      // CALL API
+      const { email, password } = this.loginForm.value;
+
+      if (email === 'admin@gmail.com' && password === '123123') {
+        this.isShowError = false;
+        this.router.navigate(['main/overview']);
+      } else {
+        this.isShowError = true;
+        this.messageError.set('Type admin@gmail.com/123123 to login');
+      }
     }, 2000);
   }
 

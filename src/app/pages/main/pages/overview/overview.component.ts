@@ -1,15 +1,25 @@
 import { Component } from '@angular/core';
 import { BaseComponent } from '../../../../components/common/base/base.component';
-import { OverviewStasComponent } from '../../components/overview-stas/overview-stas.component';
-import { TaskManagementComponent } from '../task-management/task-management.component';
-import { TaskSectionComponent } from "../../components/task-section/task-section.component";
-import { AnnouncementSectionComponent } from '../../components/announcement-section/announcement-section.component';
-import { BidSectionComponent } from '../../components/bid-section/bid-section.component';
+import { OverviewStasComponent } from '~/pages/main/components/modules/overview/overview-stas/overview-stas.component';
+import { TaskSectionComponent } from '~/pages/main/components/modules/overview/task-section/task-section.component';
+import { AnnouncementSectionComponent } from '~/pages/main/components/modules/overview/announcement-section/announcement-section.component';
+import { BidSectionComponent } from '~/pages/main/components/modules/overview/bid-section/bid-section.component';
+import { CalendarSectionComponent } from "../../components/modules/overview/calendar-section/calendar-section.component";
+import { tasks } from '~/constants';
+import { IHeaderTable } from '~/@types/task';
 
 @Component({
   selector: 'app-overview',
-  imports: [OverviewStasComponent, TaskManagementComponent, AnnouncementSectionComponent, BidSectionComponent, TaskSectionComponent],
+  imports: [
+    OverviewStasComponent,
+    AnnouncementSectionComponent,
+    BidSectionComponent,
+    TaskSectionComponent,
+    CalendarSectionComponent
+  ],
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.scss'
 })
-export class OverviewComponent extends BaseComponent {}
+export class OverviewComponent extends BaseComponent {
+  tasks = tasks;
+}

@@ -1,0 +1,24 @@
+<div class="--bid-section p-4">
+  <div class="--task-top d-flex justify-content-between align-items-center">
+    <h4 class="mb-0">Open Bids</h4>
+
+    <button-primary icon="assets/images/common/plus-solid.svg" label="New Bid"></button-primary>
+  </div>
+
+  @if (bids.length) {
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="d-flex justify-content-center">
+        <img src="assets/images/common/task-icon.svg" alt="task_icon" />
+      </div>
+    </div>
+  } @else {
+    <div class="mb-5">
+      <app-empty-content
+        icon="assets/images/light/bid-med.svg"
+        iconDark="assets/images/dark/bid-med.svg"
+        title="There are no bid to show yet."
+        createText="Create a new bid"
+      ></app-empty-content>
+    </div>
+  }
+</div>

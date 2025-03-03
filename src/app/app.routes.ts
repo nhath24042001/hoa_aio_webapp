@@ -75,7 +75,9 @@ export const mainRoutes: Routes = [
       {
         path: 'task-management',
         loadComponent: () =>
-          import('./pages/main/pages/project/project.component').then((m) => m.ProjectComponent)
+          import('./pages/main/pages/task-management/task-management.component').then(
+            (m) => m.TaskManagementComponent
+          )
       },
       {
         path: 'projects',
@@ -117,6 +119,12 @@ export const mainRoutes: Routes = [
         path: 'reports',
         loadComponent: () =>
           import('./pages/main/pages/report/report.component').then((m) => m.ReportComponent)
+      },
+      {
+        path: 'my-account',
+        loadComponent: () => import('./pages/main/pages/account/account.component').then(
+          (m) => m.AccountComponent
+        )
       }
     ]
   },

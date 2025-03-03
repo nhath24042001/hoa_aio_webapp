@@ -1,0 +1,35 @@
+.--main-header {
+  .--search-box {
+    background: var(--background);
+    border-radius: 10px;
+    padding: 8px 16px;
+    width: 260px;
+    border: 1px solid var(--border-color);
+
+    input {
+      background: var(--background);
+      outline: none;
+    }
+
+    img {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  }
+
+  .--filter-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+  }
+}
+
+::ng-deep .popover-body {
+  padding: 0px !important;
+}
+
+::ng-deep .popover-arrow {
+  display: none !important;
+}

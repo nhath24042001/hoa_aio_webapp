@@ -1,12 +1,19 @@
-<div class="--custom-input" [ngClass]="mode ? '--dark-mode' : '--light-mode'">
+<div
+  class="--custom-input"
+  [ngClass]="mode ? '--dark-mode' : '--light-mode'"
+  [class.--error]="isError"
+  [class.--input-entered]="value"
+>
   <img class="--input-icon" [src]="icon" alt="icon_img" />
   <input
     [type]="type === 'password' && !isPasswordVisible ? 'password' : 'text'"
     [value]="value"
     (input)="onInput($event)"
+    [class.--input-entered]="value"
     [placeholder]="placeholder"
   />
-  @if (type === 'password') {
+
+  <!-- @if (type === 'password') {
     <button type="button" (click)="togglePasswordVisibility()">
 
       @if (!isPasswordVisible) {
@@ -16,5 +23,5 @@
         <img src="assets/images/common/hide-password-icon.svg" alt="hide_password_icon" />
       }
     </button>
-  }
+  } -->
 </div>

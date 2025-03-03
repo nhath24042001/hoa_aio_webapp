@@ -1,0 +1,22 @@
+.--open-task-section {
+  border-top: 1px solid #ECEFF3;
+
+  h4 {
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--const-color);
+  }
+}
+
+::ng-deep .p-datatable-thead th {
+  background: var(--active-primary) !important;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--const-color);
+}
+
+::ng-deep td {
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--const-color);
+}

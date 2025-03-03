@@ -10,6 +10,7 @@ import { CustomInputComponent } from '../../../components/shared/custom-input/cu
 import { Router } from '@angular/router';
 import { BaseComponent } from '../../../components/common/base/base.component';
 import { ThemeService } from '../../../services/theme.service';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-set-new-password',
@@ -29,12 +30,11 @@ export class SetNewPasswordComponent extends BaseComponent {
   isSubmitting = false;
   loading = false;
 
-  rememberMe = signal<boolean>(false);
-
   constructor(
+    themeService: ThemeService,
     public fb: FormBuilder,
     private router: Router,
-    themeService: ThemeService
+    private toastService: ToastService
   ) {
     super(themeService);
     this.newPasswordForm = this.fb.group({
@@ -43,15 +43,29 @@ export class SetNewPasswordComponent extends BaseComponent {
     });
   }
 
+  isMatchingPasswords() {
+    if (!this.newPasswordForm.value.newPassword || !this.newPasswordForm.value.confirmPassword) {
+      return false;
+    }
+    const { password, confirmPassword } = this.newPasswordForm.value;
+    return password === confirmPassword;
+  }
+
   onBackPreviousStep() {
     this.router.navigate(['/auth/reset-password']);
   }
 
-  onSubmit() {
-    this.loading = true;
+  async onSubmit() {
+    const confirmed = await this.toastService.showConfirm({
+      icon: 'assets/images/common/check-full.svg',
+      title: 'Password updated successfully',
+      description: 'Your password has been successfully updated, please log in first',
+      type: 'primary',
+      buttonText: 'Login now'
+    })
 
-    setTimeout(() => {
-      this.loading = false;
-    }, 2000);
+    if (confirmed) {
+      this.router.navigate(['/auth/login']);
+    }
   }
 }

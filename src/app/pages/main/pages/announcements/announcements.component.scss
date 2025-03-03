@@ -1,0 +1,68 @@
+.--filter-content {
+  background: var(--background);
+  width: 240px;
+  padding: 24px;
+
+  h2 {
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--const-color);
+  }
+
+  h4 {
+    font-weight: 600;
+    font-size: 12px;
+    color: #ff515f;
+    cursor: pointer;
+  }
+
+  h3 {
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--const-color);
+  }
+
+  .--checkbox {
+    span {
+      margin-top: 7px;
+      margin-left: 8px;
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--const-color);
+    }
+  }
+}
+::ng-deep .p-tablist-tab-list {
+  border-width: 0;
+}
+
+::ng-deep .p-tab {
+  border-width: 0px !important;
+  color: #6F6F6F;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+::ng-deep .p-tab-active {
+  color: #6938DA;
+}
+
+::ng-deep .p-tablist-active-bar {
+  height: 2px;
+}
+
+::ng-deep .p-tabpanels {
+  padding: 12px 0 !important;
+}
+
+::ng-deep .p-dialog-mask {
+  background: rgba(0, 0, 0, 0.3) !important;
+}
+
+::ng-deep .p-dialog-header {
+  display: none !important;
+}
+
+::ng-deep .p-dialog-content {
+  padding: 0 !important;
+}

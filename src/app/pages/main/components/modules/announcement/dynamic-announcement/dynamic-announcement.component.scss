@@ -1,0 +1,28 @@
+::ng-deep .p-multiselect,
+::ng-deep .p-datepicker-input,
+::ng-deep .p-textarea,
+::ng-deep .p-inputtext {
+  background: var(--input-custom);
+  border-color: var(--border-color);
+}
+
+::ng-deep .p-textarea {
+  height: 154px;
+}
+
+::ng-deep .p-multiselect-header {
+  display: none !important;
+}
+
+::ng-deep .p-multiselect-chip {
+  background: var(--chips-bg) !important;
+  border-radius: 30px !important;
+}
+
+::ng-deep .p-multiselect-label-container {
+  padding: 4px 8px;
+}
+
+::ng-deep .p-multiselect-list {
+  background: var(--background);
+}

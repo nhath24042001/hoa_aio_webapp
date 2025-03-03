@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { InputOtpModule } from 'primeng/inputotp';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule } from '@angular/forms';
 import { NgxOtpInputComponentOptions, NgxOtpInputComponent } from 'ngx-otp-input';
 import { Router } from '@angular/router';
 import { BaseComponent } from '../../../components/common/base/base.component';
@@ -13,7 +13,7 @@ import { ThemeService } from '../../../services/theme.service';
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.scss'
 })
-export class ResetPasswordComponent extends BaseComponent{
+export class ResetPasswordComponent extends BaseComponent {
   isSubmitting = false;
   loading = false;
   email = signal('fajar@gmail.com');
@@ -24,14 +24,16 @@ export class ResetPasswordComponent extends BaseComponent{
     autoFocus: true,
     showBlinkingCursor: true
   };
+  isOtpComplete = false;
 
-  otpValues: string[] = ['-', '-', '-', '-', '-', '-'];
-
-  onOtpChange(event: string, index: number) {
-    this.otpValues[index] = event || '-';
+  onOtpChange(event: string[]) {
+    this.isOtpComplete = event.every(value => value !== '');
   }
 
-  constructor(private router: Router, themeService: ThemeService) {
+  constructor(
+    private router: Router,
+    themeService: ThemeService
+  ) {
     super(themeService);
   }
 

@@ -1,0 +1,27 @@
+<div class="--main-header d-flex align-items-center">
+  <div class="--search-box d-flex align-items-center">
+    <img src="assets/images/common/search.svg" alt="search_icon" />
+    <input type="text" placeholder="Search" (input)="onSearchChange($event)" />
+  </div>
+
+
+  <div
+    class="--filter-box mx-4 d-flex justify-content-center align-items-center"
+    [popover]="popoverContent"
+    placement="bottom"
+    triggers="click"
+  >
+    <img src="assets/images/common/filter.svg" alt="filter_icon" />
+  </div>
+
+  <ng-template #popoverContent style="width: 500px">
+    <ng-content select="[filter-content]"></ng-content>
+  </ng-template>
+
+  <button-primary
+    icon="assets/images/common/white-plus-solid.svg"
+    [label]="labelButton"
+    [isPrimaryActive]="true"
+    (click)="onAddSection()"
+  ></button-primary>
+</div>

@@ -1,10 +1,13 @@
 .--form-login-wrapper {
   background: var(--background);
-  padding: 50px 90px;
+  padding: 30px 90px 50px 90px;
   border-radius: 10px;
   width: 750px;
   height: 600px;
 
+  .--error-container {
+      height: 52px;
+    }
   h4 {
     color: var(--title-text);
   }
@@ -35,4 +38,16 @@
 
 ::ng-deep .p-button {
   width: 100%;
+  color: var(--const-color);
+  }
+
+  ::ng-deep .p-message-content {
+    background: var(--message-bg);
+    color: var(--const-color);
+    height: 52px !important;
+    border-radius: 10px;
+
+    span {
+      font-size: 14px;
+    }
 }
