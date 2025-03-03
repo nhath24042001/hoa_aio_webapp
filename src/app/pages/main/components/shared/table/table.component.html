@@ -7,10 +7,11 @@
 >
   <ng-template #header>
     <tr>
-      <th *ngFor="let header of headers" [width]="header.width">
-        {{ header.name }}
-      </th>
-      <th *ngIf="actions.length">Actions</th>
+      @for (header of headers; track $index) {
+        <th [width]="header.width">
+          {{ header.name }}
+        </th>
+      }
     </tr>
   </ng-template>
 

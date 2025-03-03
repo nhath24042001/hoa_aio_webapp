@@ -6,7 +6,7 @@ export interface ITaskManagement {
 
 export interface ITask {
   task_id: string;
-  type: string;
+  type_icon: string;
   task_type: string;
   task_name: string;
   priority: string;

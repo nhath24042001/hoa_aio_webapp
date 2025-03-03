@@ -111,7 +111,7 @@ export const LIST_TASK_STATUS = [
 export const tasks = [
   {
     task_id: '12321',
-    type: 'action_item',
+    type_icon: 'action_item',
     task_name: 'Sign contract with plumbing vendor',
     task_type: 'Maintenance',
     priority: Priority.URGENT,
@@ -134,7 +134,7 @@ export const tasks = [
   },
   {
     task_id: '12322',
-    type: 'action_item',
+    type_icon: 'action_item',
     task_name: 'Trim entrance area trees',
     task_type: 'Landscape',
     priority: Priority.IMPORTANT,
@@ -157,7 +157,7 @@ export const tasks = [
   },
   {
     task_id: '12323',
-    type: 'claim',
+    type_icon: 'claim',
     task_name: 'Create About Page for Company Profile',
     task_type: 'Accounting',
     priority: Priority.IMPORTANT,
@@ -180,7 +180,7 @@ export const tasks = [
   },
   {
     task_id: '12324',
-    type: 'action_item',
+    type_icon: 'action_item',
     task_name: 'Create UI Stock Mobile',
     task_type: 'Design change request',
     priority: Priority.NORMAL,
@@ -203,7 +203,7 @@ export const tasks = [
   },
   {
     task_id: '12325',
-    type: 'claim',
+    type_icon: 'claim',
     task_name: 'Usability Testing POS Mobile Apps',
     task_type: 'Hearing',
     priority: Priority.IMPORTANT,

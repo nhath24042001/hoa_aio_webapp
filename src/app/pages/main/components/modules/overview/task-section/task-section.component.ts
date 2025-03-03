@@ -15,7 +15,7 @@ export class TaskSectionComponent<T> {
 
   headers: IHeaderTable[] = [
     {
-      field: 'type',
+      field: 'type_icon',
       name: '',
       width: '20px'
     },
