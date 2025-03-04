@@ -215,6 +215,17 @@ ul li {
   border: 1px solid #4E9700;
 }
 
+.--low {
+  background: #FFF6E6;
+  color: #EFA00B;
+  border: 1px solid #FFA800;
+}
+
+.--planning {
+  background: #FFDD9E;
+  color: #AB7000;
+  border: 1px solid #AB7000;
+}
 .--urgent-dark,
 .--new-dark {
   background: #CC2936;
@@ -247,6 +258,17 @@ ul li {
   border: 1px solid #A4ACB9;
 }
 
+.--low-dark {
+  background: #674300;
+  color: #FFC455;
+  border: 1px solid #FFC455;
+}
+
+.--planning-dark {
+  background: #AB7000;
+  color: #FFDD9E;
+  border: 1px solid #FFDD9E;
+}
 .--show-all {
   color: #6938DA;
   font-weight: 600;
