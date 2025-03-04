@@ -9,13 +9,13 @@ import { TextareaModule } from 'primeng/textarea';
 import { ChipModule } from 'primeng/chip';
 
 import { BaseComponent } from '~/components/common/base/base.component';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
 import { ThemeService } from '~/services/theme.service';
 import { eventList } from '~/data/calendar';
 import { ACTION_DIALOG } from '~/enums';
 import { DialogHeader } from '~/pages/main/components/dialog/dialog-header/dialog-header.component';
 import { FormField } from '~/pages/main/components/dialog/form-field/form-field.component';
-import { FormParticipantSelector } from '~/pages/main/components/dialog/form-participant-selector/form-participant-selector.component';
+import { FormAttachment } from './../../../dialog/form-attachment/form-attachment.component';
+import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
 
 @Component({
   selector: 'dynamic-event',
@@ -27,10 +27,10 @@ import { FormParticipantSelector } from '~/pages/main/components/dialog/form-par
     DatePickerModule,
     TextareaModule,
     ChipModule,
-    ButtonPrimary,
     DialogHeader,
     FormField,
-    FormParticipantSelector
+    FormAttachment,
+    ButtonPrimary
   ],
   templateUrl: './dynamic-event.component.html',
   styleUrl: './dynamic-event.component.scss'
