@@ -178,3 +178,134 @@ export const projectHeaders: IHeaderTable[] = [
     width: '20px'
   }
 ];
+
+export const left_project_box = [
+  {
+    icon: 'list-sm',
+    field: 'project_type',
+    label: 'Type',
+    type: 'select',
+    placeholder: 'Select',
+    list: [
+      {
+        name: 'Renovation',
+        code: 'renovation'
+      },
+      {
+        name: 'Maintenance',
+        code: 'maintenance'
+      },
+      {
+        name: 'New construction',
+        code: 'new_construction'
+      },
+      {
+        name: 'Inspection',
+        code: 'inspection'
+      },
+      {
+        name: 'Other',
+        code: 'other'
+      }
+    ]
+  },
+  {
+    icon: 'flag',
+    field: 'priority',
+    label: 'Priority',
+    type: 'select',
+    placeholder: 'Low',
+    list: [
+      {
+        name: 'Low',
+        code: 'low'
+      },
+      {
+        name: 'Medium',
+        code: 'medium'
+      },
+      {
+        name: 'High',
+        code: 'high'
+      },
+      {
+        name: 'Critical',
+        code: 'critical'
+      }
+    ]
+  },
+  {
+    icon: 'sticker-circle',
+    field: 'status',
+    label: 'Status',
+    type: 'select',
+    placeholder: 'Select',
+    list: [
+      {
+        name: 'New',
+        code: 'new'
+      },
+      {
+        name: 'Planning',
+        code: 'planning'
+      },
+      {
+        name: 'In Progress',
+        code: 'in_progress'
+      },
+      {
+        name: 'On Hold',
+        code: 'on_hold'
+      },
+      {
+        name: 'Completed',
+        code: 'completed'
+      },
+      {
+        name: 'Cancelled',
+        code: 'canceled'
+      }
+    ]
+  },
+  {
+    icon: 'finger',
+    field: 'bid',
+    label: 'Bid',
+    type: 'select',
+    placeholder: 'Select',
+    list: [
+      {
+        name: 'Yes',
+        code: 'yes'
+      },
+      {
+        name: 'No',
+        code: 'no'
+      }
+    ]
+  }
+];
+
+export const right_project_box = [
+  {
+    icon: 'hourglass',
+    field: 'eta_time',
+    label: 'ETA',
+    type: 'date',
+    placeholder: 'Set ETA date'
+  },
+  {
+    icon: 'receipt',
+    field: 'cost',
+    label: 'Estimated Cost',
+    type: 'input',
+    placeholder: 'Enter estimate'
+  },
+  {
+    icon: 'perspective',
+    field: 'project_manager',
+    label: 'Project Manager',
+    type: 'input',
+    placeholder: 'Me (enter name to change)'
+  }
+];

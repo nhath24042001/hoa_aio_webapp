@@ -7,6 +7,8 @@ import { EmptyContentComponent } from '~/pages/main/components/shared/empty-cont
 import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
 import { projectHeaders, projectsData } from '~/data/project';
 import { Table } from '~/pages/main/components/shared/table/table.component';
+import { CreateProject } from '~/pages/main/components/modules/project/create-project/create-project.component';
+import { ProjectDetail } from '~/pages/main/components/modules/project/project-detail/project-detail.component';
 
 @Component({
   selector: 'app-project',
@@ -24,18 +26,20 @@ export class ProjectComponent {
 
   onSearch() {}
 
-  onOpenCreateTask(): void {
-    // this.ref = this.dialogService.open(CreateTask, {
-    //   modal: true,
-    //   width: '1000px'
-    // });
-    // this.ref.onClose.subscribe((task: any) => {});
+  onOpenCreateProject(): void {
+    this.ref = this.dialogService.open(CreateProject, {
+      modal: true,
+      width: '1000px'
+    });
+    this.ref.onClose.subscribe((task: any) => {});
   }
 
-  onOpenTaskDetail(): void {
-    // this.ref = this.dialogService.open(TaskDetail, {
-    //   modal: true,
-    //   width: '1000px'
-    // });
+  onOpenProjectDetail(project: any): void {
+    this.ref = this.dialogService.open(ProjectDetail, {
+      modal: true,
+      width: '1000px',
+      data: {}
+    });
+    this.ref.onClose.subscribe((task: any) => {});
   }
 }

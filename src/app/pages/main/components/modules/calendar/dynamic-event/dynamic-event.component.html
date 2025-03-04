@@ -3,6 +3,7 @@
     [title]="dialogType === ACTION_DIALOG.CREATE ? 'Create New Event' : 'Event Details'"
     [eventData]="eventData"
     [ACTION_DIALOG]="ACTION_DIALOG"
+    [isEditMode]="dialogType === ACTION_DIALOG.DETAIL"
     [currentMode]="currentMode"
     (closeDialog)="closeDialog()"
   ></app-dialog-header>

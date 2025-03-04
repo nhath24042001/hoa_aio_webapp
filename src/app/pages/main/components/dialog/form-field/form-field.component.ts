@@ -21,9 +21,10 @@ export class FormField {
   @Input() value = '';
   @Input() currentMode = '';
   @Input() dialogType = '';
-  @Input() ACTION_DIALOG : any;
+  @Input() ACTION_DIALOG: any;
+  @Input() isCreateMode = false;
 
-  get isCreateMode() {
-    return this.dialogType === this.ACTION_DIALOG.CREATE;
-  }
+  // get isCreateMode() {
+  //   return this.dialogType === this.ACTION_DIALOG.CREATE;
+  // }
 }

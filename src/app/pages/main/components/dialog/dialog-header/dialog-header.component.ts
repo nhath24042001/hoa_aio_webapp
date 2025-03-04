@@ -14,10 +14,10 @@ export class DialogHeader {
   @Input() title: string = '';
   @Input() icon: string = '';
   @Input() ACTION_DIALOG: any;
+  @Input() isEditMode: boolean = false;
   @Output() closeDialog = new EventEmitter<void>();
 
-  constructor() {
-  }
+  constructor() {}
 
   closeDialogEmitter() {
     this.closeDialog.emit();
