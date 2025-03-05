@@ -16,8 +16,8 @@
     color: var(---background);
 
     &.--input-entered {
-      background: var(---background);
-      color: var(--const-color);
+      // background: var(---background);
+        // color: var(--const-color);
     }
   }
 
@@ -31,8 +31,8 @@
     box-shadow: 0px 0px 5px #EC778D;
   }
 
-  &.--input-entered {
-    background: var(---background);
-    color: var(--const-color);
-  }
+    // &.--input-entered {
+    //   background: var(---background);
+    //   color: var(--const-color);
+    // }
 }

@@ -38,7 +38,7 @@ export class SetNewPasswordComponent extends BaseComponent {
   ) {
     super(themeService);
     this.newPasswordForm = this.fb.group({
-      newPassword: ['', [Validators.required, Validators.email]],
+      newPassword: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
@@ -49,6 +49,12 @@ export class SetNewPasswordComponent extends BaseComponent {
     }
     const { password, confirmPassword } = this.newPasswordForm.value;
     return password === confirmPassword;
+  }
+
+  passwordsMatch(): boolean {
+    const newPassword = this.newPasswordForm.get('newPassword')?.value;
+    const confirmPassword = this.newPasswordForm.get('confirmPassword')?.value;
+    return newPassword === confirmPassword;
   }
 
   onBackPreviousStep() {

@@ -62,7 +62,7 @@ export class LoginComponent extends BaseComponent {
         this.router.navigate(['main/overview']);
       } else {
         this.isShowError = true;
-        this.messageError.set('Type admin@gmail.com/123123 to login');
+        this.messageError.set('Your username or password is incorrect');
       }
     }, 2000);
   }

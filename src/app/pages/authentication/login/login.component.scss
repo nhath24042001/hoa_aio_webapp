@@ -6,8 +6,9 @@
   height: 600px;
 
   .--error-container {
-      height: 52px;
-    }
+    height: 52px;
+  }
+
   h4 {
     color: var(--title-text);
   }
@@ -33,21 +34,28 @@
       color: var(--title-subtext);
       cursor: pointer;
     }
+
+    .--forgot-password {
+      opacity: 0.6;
+    }
   }
 }
 
 ::ng-deep .p-button {
   width: 100%;
-  color: var(--const-color);
+
+  span {
+    color: var(--background);
   }
+}
 
-  ::ng-deep .p-message-content {
-    background: var(--message-bg);
-    color: var(--const-color);
-    height: 52px !important;
-    border-radius: 10px;
+::ng-deep .p-message-content {
+  background: var(--message-bg);
+  color: var(--const-color);
+  height: 34px !important;
+  border-radius: 10px;
 
-    span {
-      font-size: 14px;
-    }
+  span {
+    font-size: 14px;
+  }
 }
