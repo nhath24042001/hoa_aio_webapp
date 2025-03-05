@@ -4,6 +4,7 @@
   [rowsPerPageOptions]="rowsPerPageOptions"
   showGridlines
   [tableStyle]="{ 'min-width': '50rem' }"
+  [styleClass]="currentMode === 'dark' ? '--dark' : '--light'"
 >
   <ng-template #header>
     <tr>

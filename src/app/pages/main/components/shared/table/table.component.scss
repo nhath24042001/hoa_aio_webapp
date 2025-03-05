@@ -50,3 +50,22 @@
 ::ng-deep .p-paginator-page-selected {
   background: #6938DA !important;
 }
+
+::ng-deep .p-datatable-thead th {
+  background: var(--active-primary) !important;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--const-color);
+  transition: all 1s step-start !important;
+}
+
+::ng-deep td {
+  font-weight: 500;
+  font-size: 13px;
+}
+
+::ng-deep .p-datatable-tbody tr {
+  background-color: var(--background);
+  color: var(--const-color);
+  transition: all 1s step-start !important;
+}
