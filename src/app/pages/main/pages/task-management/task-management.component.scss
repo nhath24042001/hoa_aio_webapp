@@ -77,3 +77,8 @@
 ::ng-deep .p-tablist-active-bar {
   height: 2px;
 }
+
+::ng-deep .p-tabpanels,
+::ng-deep .p-paginator {
+  background: var(--background) !important;
+}

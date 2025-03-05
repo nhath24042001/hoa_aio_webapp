@@ -40,7 +40,7 @@ export class TaskManagementComponent {
     all_tasks: [
       {
         task_id: '12321',
-        type_icon: 'action_item',
+        type_icon: 'clipboard-sm',
         task_name: 'Sign contract with plumbing vendor',
         task_type: 'Maintenance',
         priority: Priority.URGENT,

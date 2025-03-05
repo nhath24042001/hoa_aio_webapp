@@ -65,7 +65,7 @@
 }
 
 ::ng-deep .p-datatable-tbody tr {
-  background-color: var(--background);
+  background-color: var(--background) !important;
   color: var(--const-color);
   transition: all 1s step-start !important;
 }
