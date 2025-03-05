@@ -79,7 +79,7 @@
 
     .--menu-dropdown-container {
       background: var(--background);
-      width: 270px;
+      width: 250px;
       border: 1px solid #DFE1E7;
       border-radius: 10px;
 
@@ -88,7 +88,7 @@
       }
 
       .--menu-dropdown-item {
-        padding: 16px 20px 10px 10px;
+        padding: 16px 10px 10px 10px;
         cursor: pointer;
 
         p {
@@ -163,7 +163,7 @@
 
     .--notification-wrapper {
       background: var(--background);
-      width: 400px;
+      width: 320px;
       border: 1px solid #DFE1E7;
       border-radius: 10px;
       padding: 16px 16px;

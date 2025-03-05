@@ -25,7 +25,7 @@
         @for (notify of notifications; track $index) {
           <div class="notification-box d-flex align-items-center justify-content-between">
             <div>
-              <p>{{ notify.title }}</p>
+              <p class="--truncate">{{ notify.title }}</p>
               <span>{{ notify.created | date: 'MMM. dd, hh:mm a' }}</span>
             </div>
 
@@ -36,7 +36,7 @@
           </div>
         }
 
-        <p class="--show-all mt-3">Show All</p>
+        <p class="--show-all mt-3" (click)="onRouteChange('announcements')">Show All</p>
       </div>
     </ng-template>
     <div
@@ -58,7 +58,10 @@
     <ng-template #menuPopover>
       <div class="--menu-dropdown-container">
         @for (menu of menu_dropdowns; track $index) {
-          <div class="--menu-dropdown-item d-flex align-items-center justify-content-between" (click)="onMenuClick(menu)">
+          <div
+            class="--menu-dropdown-item d-flex align-items-center justify-content-between"
+            (click)="onMenuClick(menu)"
+          >
             <div class="d-flex align-items-center gap-3">
               <img
                 [src]="'assets/images/' + currentMode + '/' + menu.icon + '.svg'"
@@ -103,14 +106,17 @@
 
         <hr />
 
-        <div class="--menu-dropdown-item d-flex align-items-center justify-content-between" (click)="onLogout()">
+        <div
+          class="--menu-dropdown-item d-flex align-items-center justify-content-between"
+          (click)="onLogout()"
+        >
           <div class="d-flex align-items-center gap-3">
             <img src="assets/images/common/log-out.svg" alt="logout_icon" />
 
             <p class="--logout-text">Log out</p>
           </div>
 
-          <img src="assets/images/common/red-chevron-right.svg" alt="chevron_right_icon">
+          <img src="assets/images/common/red-chevron-right.svg" alt="chevron_right_icon" />
         </div>
       </div>
     </ng-template>

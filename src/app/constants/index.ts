@@ -111,7 +111,7 @@ export const LIST_TASK_STATUS = [
 export const tasks = [
   {
     task_id: '12321',
-    type_icon: 'action_item',
+    type_icon: 'clipboard-sm',
     task_name: 'Sign contract with plumbing vendor',
     task_type: 'Maintenance',
     priority: Priority.URGENT,
@@ -134,7 +134,7 @@ export const tasks = [
   },
   {
     task_id: '12322',
-    type_icon: 'action_item',
+    type_icon: 'clipboard-sm',
     task_name: 'Trim entrance area trees',
     task_type: 'Landscape',
     priority: Priority.IMPORTANT,
@@ -180,7 +180,7 @@ export const tasks = [
   },
   {
     task_id: '12324',
-    type_icon: 'action_item',
+    type_icon: 'clipboard-sm',
     task_name: 'Create UI Stock Mobile',
     task_type: 'Design change request',
     priority: Priority.NORMAL,

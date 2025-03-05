@@ -15,14 +15,6 @@ export const authRoutes: Routes = [
         canActivate: [authLoggedInGuard]
       },
       {
-        path: 'register',
-        loadComponent: () =>
-          import('./pages/authentication/register/register.component').then(
-            (m) => m.RegisterComponent
-          ),
-        canActivate: [authLoggedInGuard]
-      },
-      {
         path: 'forgot-password',
         loadComponent: () =>
           import('./pages/authentication/forgot-password/forgot-password.component').then(

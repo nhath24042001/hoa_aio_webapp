@@ -73,14 +73,6 @@ export class Table<T> extends BaseComponent {
 
   convertTableType(type: string) {
     return `assets/images/${this.currentMode}/${type}.svg`;
-    // switch (type) {
-    //   case 'action_item':
-    //     return `assets/images/${this.currentMode}/clipboard-sm.svg`;
-    //   case 'claim':
-    //     return `assets/images/${this.currentMode}/annotation-sm.svg`;
-    //   default:
-    //     return 'Unknown';
-    // }
   }
 
   getClass(className: string) {

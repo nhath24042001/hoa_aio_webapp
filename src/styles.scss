@@ -147,6 +147,13 @@ ul li {
   cursor: pointer;
 }
 
+.--truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .--create-text {
   h6 {
     margin-bottom: 0 !important;
@@ -226,6 +233,7 @@ ul li {
   color: #AB7000;
   border: 1px solid #AB7000;
 }
+
 .--urgent-dark,
 .--new-dark {
   background: #CC2936;
@@ -269,6 +277,7 @@ ul li {
   color: #FFDD9E;
   border: 1px solid #FFDD9E;
 }
+
 .--show-all {
   color: #6938DA;
   font-weight: 600;

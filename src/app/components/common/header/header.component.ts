@@ -66,4 +66,8 @@ export class HeaderComponent {
   onMenuClick(menu: any) {
     this.router.navigate(['/main/' + menu.routeLink]);
   }
+
+  onRouteChange(route: string) {
+    this.router.navigate(['/main/' + route]);
+  }
 }
