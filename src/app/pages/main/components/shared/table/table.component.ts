@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { CommonModule, DatePipe } from '@angular/common';
 import { AvatarModule } from 'primeng/avatar';
@@ -13,6 +13,12 @@ import { IHeaderTable } from '~/@types/task';
 import { BaseComponent } from '~/components/common/base/base.component';
 import { ThemeService } from '~/services/theme.service';
 import { Action } from '~/enums';
+
+interface TableAction {
+  label: string;
+  icon: string;
+  action: (row: any) => void;
+}
 
 @Component({
   selector: 'app-table',
@@ -35,6 +41,9 @@ export class Table<T> extends BaseComponent {
   @Input() data!: T[];
   @Input() headers!: IHeaderTable[];
   @Input() showPagination: boolean = false;
+  @Input() actions: TableAction[] = [];
+  @Input() rowsPerPageOptions = [5, 10, 20];
+  @Output() pageChange = new EventEmitter<number>();
 
   ACTIONS = Action;
 
@@ -63,14 +72,15 @@ export class Table<T> extends BaseComponent {
   }
 
   convertTableType(type: string) {
-    switch (type) {
-      case 'action_item':
-        return `assets/images/${this.currentMode}/clipboard-sm.svg`;
-      case 'claim':
-        return `assets/images/${this.currentMode}/annotation-sm.svg`;
-      default:
-        return 'Unknown';
-    }
+    return `assets/images/${this.currentMode}/${type}.svg`;
+    // switch (type) {
+    //   case 'action_item':
+    //     return `assets/images/${this.currentMode}/clipboard-sm.svg`;
+    //   case 'claim':
+    //     return `assets/images/${this.currentMode}/annotation-sm.svg`;
+    //   default:
+    //     return 'Unknown';
+    // }
   }
 
   getClass(className: string) {
@@ -78,6 +88,8 @@ export class Table<T> extends BaseComponent {
   }
 
   onPageChange(event: any) {
-    // this.onPageChangeEvent.emit(event);
+    this.first = event.first;
+    this.rows = event.rows;
+    this.pageChange.emit(event.page);
   }
 }

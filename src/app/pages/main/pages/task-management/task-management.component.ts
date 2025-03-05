@@ -40,7 +40,7 @@ export class TaskManagementComponent {
     all_tasks: [
       {
         task_id: '12321',
-        type: 'action_item',
+        type_icon: 'action_item',
         task_name: 'Sign contract with plumbing vendor',
         task_type: 'Maintenance',
         priority: Priority.URGENT,
@@ -63,7 +63,7 @@ export class TaskManagementComponent {
       },
       {
         task_id: '12322',
-        type: 'claim',
+        type_icon: 'claim',
         task_name: 'Trim entrance area trees',
         task_type: 'Landscape',
         priority: Priority.IMPORTANT,
@@ -91,7 +91,7 @@ export class TaskManagementComponent {
 
   headers: IHeaderTable[] = [
     {
-      field: 'type',
+      field: 'type_icon',
       name: '',
       width: '20px'
     },
@@ -136,7 +136,6 @@ export class TaskManagementComponent {
   onSearch() {}
 
   onOpenCreateTask(): void {
-    debugger;
     this.ref = this.dialogService.open(CreateTask, {
       modal: true,
       width: '1000px'

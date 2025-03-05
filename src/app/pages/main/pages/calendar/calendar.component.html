@@ -7,13 +7,42 @@
           <p-tab value="1">Club Calendar</p-tab>
         </p-tablist>
 
-        <main-header labelButton="New Event" (searchChanged)="onSearch()"></main-header>
+        <main-header labelButton="New Event" (searchChanged)="onSearch()" (addSection)="onOpenCreateEvent()"></main-header>
       </div>
 
       <p-tabpanels>
         <p-tabpanel value="0">
-          <p-select [options]="viewOptions" [(ngModel)]="selectedView" optionLabel="name" placeholder="Select a City" (ngModelChange)="onViewChange($event)" />
-          <full-calendar #calendar [options]="calendarOptions()"></full-calendar>
+          <div class="--calendar-toolbar d-flex justify-content-between align-items-center">
+            <div class="mb-4 d-flex align-items-center">
+              <button class="--today" (click)="onNavigation('today')">Today</button>
+              <h5 class="mb-0 mx-4">{{ calendarTitle | date: 'MMMM, yyyy' }}</h5>
+              <img
+                [src]="'assets/images/' + currentMode + '/gray-chevron-left.svg'"
+                class="--pre me-2"
+                (click)="onNavigation('prev')"
+                alt="chevron_right"
+              />
+
+              <img
+                [src]="'assets/images/' + currentMode + '/gray-chevron-right.svg'"
+                class="--next"
+                (click)="onNavigation('next')"
+                alt="chevron_right"
+              />
+            </div>
+            <p-select
+              [options]="viewOptions"
+              [(ngModel)]="selectedView"
+              optionLabel="name"
+              placeholder="Select a City"
+              (ngModelChange)="onViewChange($event)"
+            />
+          </div>
+          @if (!isListView()) {
+            <full-calendar #calendar [options]="calendarOptions()"></full-calendar>
+          } @else {
+            <app-table [headers]="calendarHeader" [data]="calendarData" [showPagination]="true"></app-table>
+          }
         </p-tabpanel>
         <p-tabpanel value="1">
           <full-calendar [options]="calendarOptions()"></full-calendar>

@@ -1,0 +1,113 @@
+<div class="--dynamic-dialog p-4">
+  <app-dialog-header
+    title="Create New Project"
+    icon="assets/images/common/file-plus.svg"
+    [currentMode]="currentMode"
+    [isEditMode]="false"
+    (closeDialog)="closeDialog()"
+  ></app-dialog-header>
+
+  <p-divider />
+
+  <div class="--dynamic-title">
+    <h4>Project Title</h4>
+
+    <div class="row mt-4">
+      <div class="col-6">
+        @for (box of left_box; track $index) {
+          <app-form-field
+            [icon]="box.icon"
+            [label]="box.label"
+            [type]="box.type"
+            [field]="box.field"
+            [placeholder]="box.placeholder"
+            [options]="box.list"
+            [currentMode]="currentMode"
+            [isCreateMode]="true"
+          ></app-form-field>
+        }
+      </div>
+      <div class="col-6">
+        @for (box of right_box; track $index) {
+          <app-form-field
+            [icon]="box.icon"
+            [label]="box.label"
+            [type]="box.type"
+            [field]="box.field"
+            [placeholder]="box.placeholder"
+            [currentMode]="currentMode"
+            [isCreateMode]="true"
+          ></app-form-field>
+        }
+      </div>
+    </div>
+
+    <div class="mb-3 d-flex align-items-center">
+      <img [src]="'assets/images/' + currentMode + '/truck-sm.svg'" class="me-2" alt="trunk_icon" />
+      <p class="--text-box">Vendor</p>
+      <input
+        type="text"
+        variant="filled"
+        pInputText
+        placeholder="Enter names of possible vendors, separated by comma"
+        class="flex-fill"
+      />
+    </div>
+
+    <div class="mb-3 d-flex algin-items-center">
+      <img
+        [src]="'assets/images/' + currentMode + '/clipboard-check-sm.svg'"
+        class="me-2"
+        alt="trunk_icon"
+      />
+      <p class="--text-box">Action items</p>
+      <textarea
+        rows="2"
+        cols="20"
+        pTextarea
+        variant="filled"
+        class="--custom--textarea"
+        placeholder="Enter action items, separated by comma"
+      ></textarea>
+    </div>
+  </div>
+
+  <p-divider />
+
+  <div class="--dynamic-content mt-3">
+    <h5>Project Description</h5>
+
+    <textarea
+      pTextarea
+      pSize="large"
+      placeholder="Enter description"
+      rows="3"
+      class="w-100"
+    ></textarea>
+  </div>
+
+  <div class="--dynamic-action mt-3 d-flex justify-content-between align-items-center">
+    <p>Project ID: 3567890</p>
+
+    <div class="d-flex align-items-center">
+      <div class="--attachment me-3 d-flex justify-content-center align-items-center">
+        <img src="assets/images/common/attachment.svg" alt="attachment_icon" />
+      </div>
+
+      <div class="--attachment d-flex justify-content-center align-items-center">
+        <img src="assets/images/common/video-recorder.svg" alt="video_icon" />
+      </div>
+
+      <div class="--save-draft mx-3 d-flex algin-items-center">
+        <img src="assets/images/common/save-draft.svg" class="me-2" alt="save_draft_icon" />
+        <p>Save Draft</p>
+      </div>
+
+      <button-primary
+        icon="assets/images/common/white-file-plus.svg"
+        label="Create Project"
+        [isPrimaryActive]="true"
+      ></button-primary>
+    </div>
+  </div>
+</div>
