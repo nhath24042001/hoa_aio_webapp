@@ -1,0 +1,31 @@
+<div class="--calendar-toolbar d-flex justify-content-between align-items-center">
+  <div class="mb-4 d-flex align-items-center">
+    <button class="--today" (click)="onNavigation('today')">Today</button>
+    <h5 class="mb-0 mx-4">{{ calendarTitle2 | date: 'MMMM, yyyy' }}</h5>
+    <img
+      [src]="'assets/images/' + currentMode + '/gray-chevron-left.svg'"
+      class="--pre me-2"
+      (click)="onNavigation('prev')"
+      alt="chevron_right"
+    />
+
+    <img
+      [src]="'assets/images/' + currentMode + '/gray-chevron-right.svg'"
+      class="--next"
+      (click)="onNavigation('next')"
+      alt="chevron_right"
+    />
+  </div>
+  <p-select
+    [options]="viewOptions2"
+    [(ngModel)]="selectedView2"
+    optionLabel="name"
+    placeholder="Select a City"
+    (ngModelChange)="onViewChange($event)"
+  />
+</div>
+@if (!isListView2()) {
+  <full-calendar #clubCalendar [options]="calendarOptions2()"></full-calendar>
+} @else {
+  <app-table [headers]="calendarHeader2" [data]="calendarData2" [showPagination]="true"></app-table>
+}

@@ -67,6 +67,7 @@
   color: #6F6F6F;
   font-weight: 500;
   font-size: 15px;
+  background: var(--background) !important;
 }
 
 ::ng-deep .p-tab-active {

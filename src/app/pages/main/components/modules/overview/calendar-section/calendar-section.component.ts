@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, OnInit, signal, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnInit,
+  signal,
+  ViewChild,
+  ChangeDetectorRef
+} from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular';
@@ -31,6 +38,7 @@ export class CalendarSectionComponent extends BaseComponent implements AfterView
 
   constructor(
     themeService: ThemeService,
+    private cdr: ChangeDetectorRef,
     public dialogService: DialogService
   ) {
     super(themeService);
@@ -42,6 +50,7 @@ export class CalendarSectionComponent extends BaseComponent implements AfterView
 
   ngAfterViewInit(): void {
     this.calendarTitle = this.calendarApi?.view.title || '';
+    this.cdr.detectChanges();
   }
 
   onNavigation(action: 'today' | 'prev' | 'next'): void {
