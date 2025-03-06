@@ -44,3 +44,7 @@
 ::ng-deep .p-paginator {
   background: var(--background) !important;
 }
+
+::ng-deep .p-tab {
+  transition: all 1s step-start !important;
+}

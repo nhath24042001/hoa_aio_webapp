@@ -33,3 +33,7 @@
 ::ng-deep .p-dialog-content {
   padding: 0 !important;
 }
+
+::ng-deep .p-tab {
+  transition: all 1s step-start !important;
+}

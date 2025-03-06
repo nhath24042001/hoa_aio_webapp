@@ -103,8 +103,24 @@
               (actionTriggered)="handleTableAction($event)"
             ></app-table>
           </p-tabpanel>
-          <p-tabpanel value="1"> 2 </p-tabpanel>
-          <p-tabpanel value="2"> 3 </p-tabpanel>
+          <p-tabpanel value="1">
+            <app-table
+              [data]="tasks.all_tasks"
+              [headers]="headers"
+              [showPagination]="true"
+              [actions]="actions"
+              (actionTriggered)="handleTableAction($event)"
+            ></app-table>
+          </p-tabpanel>
+          <p-tabpanel value="2">
+            <app-table
+              [data]="tasks.all_tasks"
+              [headers]="headers"
+              [showPagination]="true"
+              [actions]="actions"
+              (actionTriggered)="handleTableAction($event)"
+            ></app-table>
+          </p-tabpanel>
         </p-tabpanels>
       </p-tabs>
     </div>
