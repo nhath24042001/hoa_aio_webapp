@@ -4,7 +4,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <p-tablist>
           <p-tab value="0">General Calendar</p-tab>
-          <p-tab value="1">Club Calendar</p-tab>
+          <!-- <p-tab value="1">Club Calendar</p-tab> -->
         </p-tablist>
 
         <main-header
@@ -16,7 +16,9 @@
 
       <p-tabpanels>
         <p-tabpanel value="0">
-          <app-general-calendar></app-general-calendar>
+          <app-general-calendar
+            (actionEmitter)="handleTableAction($event)"
+          ></app-general-calendar>
         </p-tabpanel>
         <p-tabpanel value="1">
           <app-club-calendar></app-club-calendar>

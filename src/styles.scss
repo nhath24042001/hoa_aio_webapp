@@ -404,6 +404,9 @@ ul li {
       background: #F6F8FA;
       border-radius: 10px;
 
+      &.--dark {
+          background: #1A1B25;
+        }
       img {
         width: 24px;
         height: 24px;

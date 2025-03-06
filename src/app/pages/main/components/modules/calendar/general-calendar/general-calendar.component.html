@@ -27,5 +27,5 @@
 @if (!isListView()) {
   <full-calendar #calendar [options]="calendarOptions()"></full-calendar>
 } @else {
-  <app-table [headers]="calendarHeader" [data]="calendarData" [showPagination]="true"></app-table>
+  <app-table [headers]="calendarHeader" [data]="calendarData" [actions]="actions" [showPagination]="true" (actionTriggered)="onAction($event)"></app-table>
 }

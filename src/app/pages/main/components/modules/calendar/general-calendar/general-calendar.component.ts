@@ -3,7 +3,9 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  EventEmitter,
   OnInit,
+  Output,
   signal,
   ViewChild
 } from '@angular/core';
@@ -28,6 +30,7 @@ import { ThemeService } from '~/services/theme.service';
 })
 export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnInit {
   @ViewChild('calendar') calendarComponent?: FullCalendarComponent;
+  @Output() actionEmitter = new EventEmitter<{ action: string; data: any }>();
 
   isListView = signal(false);
   calendarTitle = '';
@@ -50,15 +53,38 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
       { title: 'Event Title - Truncate', start: '2025-03-04', className: '--event --event-orange' },
       { title: 'Event Title - Truncate', start: '2025-03-05', className: '--event --event-purple' },
       { title: 'Event Title - Truncate', start: '2025-03-05', className: '--event --event-orange' },
-      { title: 'Event Title - Truncate', start: '2025-03-06', className: '--event --event-green-light' },
+      {
+        title: 'Event Title - Truncate',
+        start: '2025-03-06',
+        className: '--event --event-green-light'
+      },
       { title: 'Event Title - Truncate', start: '2025-03-06', className: '--event --event-green' },
       { title: 'Event Title - Truncate', start: '2025-03-07', className: '--event --event-green' },
       { title: 'Event Title - Truncate', start: '2025-03-07', className: '--event --event-orange' },
       { title: 'Event Title - Truncate', start: '2025-03-10', className: '--event --event-purple' },
-      { title: 'Event Title - Truncate', start: '2025-03-10', className: '--event --event-green-light' },
-      { title: 'Event Title - Truncate', start: '2025-03-07', className: '--event --event-green' },
+      {
+        title: 'Event Title - Truncate',
+        start: '2025-03-10',
+        className: '--event --event-green-light'
+      },
+      { title: 'Event Title - Truncate', start: '2025-03-07', className: '--event --event-green' }
     ]
   });
+
+  actions = [
+    {
+      label: 'Edit',
+      icon: 'calendar-edit',
+      actionKey: 'edit',
+      className: '--pointer mb-2'
+    },
+    {
+      label: 'Cancel Event',
+      icon: 'calendar-x',
+      actionKey: 'delete',
+      className: '--delete-action --pointer'
+    }
+  ];
 
   constructor(
     themeService: ThemeService,
@@ -95,5 +121,9 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
     if (!this.isListView() && this.calendarApi) {
       this.calendarApi.changeView(this.selectedView().code);
     }
+  }
+
+  onAction(event: any): void {
+    this.actionEmitter.emit({ action: event.actionKey, data: event.rowData });
   }
 }

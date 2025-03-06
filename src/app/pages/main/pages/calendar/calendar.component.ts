@@ -9,6 +9,8 @@ import { MainHeader } from '../../components/shared/main-header/main-header.comp
 import { DynamicEvent } from '~/pages/main/components/modules/calendar/dynamic-event/dynamic-event.component';
 import { GeneralCalendar } from '~/pages/main/components/modules/calendar/general-calendar/general-calendar.component';
 import { ClubCalendar } from '~/pages/main/components/modules/calendar/club-calendar/club-calendar.component';
+import { C } from 'node_modules/@fullcalendar/core/internal-common';
+import { ToastService } from '~/services/toast.service';
 
 @Component({
   selector: 'app-calendar',
@@ -35,7 +37,10 @@ export class CalendarComponent {
     { label: 'Vendors', value: 'vendors', isChecked: false }
   ];
 
-  constructor(public dialogService: DialogService) {}
+  constructor(
+    public dialogService: DialogService,
+    private toastService: ToastService
+  ) {}
 
   onSearch(): void {}
 
@@ -79,5 +84,33 @@ export class CalendarComponent {
         }
       }
     });
+  }
+
+  handleTableAction(event: any) {
+    switch (event.action) {
+      case 'edit':
+        this.onOpenTaskDetail();
+        break;
+      case 'delete':
+        this.onOpenDeleteDialog();
+        break;
+      default:
+        console.warn('Unknown action:', event.actionKey);
+    }
+  }
+
+  async onOpenDeleteDialog(): Promise<void> {
+    const confirmed = await this.toastService.showConfirm({
+      icon: 'assets/images/common/calendar-x-lg.svg',
+      title: 'Cancel Event',
+      description:
+        'Are you sure? Proceeding will delete the event from the system, and can not be undone.',
+      type: 'error',
+      buttonText: 'Cancel event'
+    });
+
+    if (confirmed) {
+      console.log('run 1');
+    }
   }
 }
