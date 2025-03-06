@@ -126,6 +126,23 @@ export class TaskManagementComponent {
     }
   ];
 
+  actions = [
+    {
+      label: 'Edit',
+      icon: 'edit',
+      actionKey: 'edit',
+      className: '--pointer mb-2',
+      action: (row: any) => {}
+    },
+    {
+      label: 'Delete',
+      icon: 'trash',
+      actionKey: 'delete',
+      className: '--delete-action --pointer',
+      action: (row: any) => {}
+    }
+  ];
+
   task_status = TASK_STATUS;
   selectedStatus: string = '';
   startDate = '';

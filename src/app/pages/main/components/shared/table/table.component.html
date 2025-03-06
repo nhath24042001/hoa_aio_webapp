@@ -56,18 +56,24 @@
           }
           @case ('action') {
             <td>
-              <div [popover]="popoverContent" placement="bottom" triggers="click"  class="--pointer">
+              <div #dotIcon class="--action-img --pointer">
                 <img src="assets/images/common/dots-vertical.svg" alt="dot_icon" />
               </div>
 
-              <ng-template #popoverContent>
-                <div class="--action-wrapper">
-                  <div *ngFor="let action of actions" (click)="action.action(row)">
-                    <img [src]="action.icon" alt="action_icon" />
-                    <span>{{ action.label }}</span>
-                  </div>
+              <div #tooltipContent style="display: none">
+                <div class="--table-action">
+                  @for (action of actions; track $index) {
+                    <div [className]="action.className" (click)="action.action(row)">
+                      <img
+                        [src]="'assets/images/' + currentMode + '/' + action.icon + '.svg'"
+                        class="me-2"
+                        alt="action_icon"
+                      />
+                      <span>{{ action.label }}</span>
+                    </div>
+                  }
                 </div>
-              </ng-template>
+              </div>
             </td>
           }
           @default {

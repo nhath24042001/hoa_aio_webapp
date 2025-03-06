@@ -1,13 +1,23 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { CommonModule, DatePipe } from '@angular/common';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
-import { PopoverModule } from 'ngx-bootstrap/popover';
-import { PopoverDirective } from 'ngx-bootstrap/popover';
 import { PaginatorModule } from 'primeng/paginator';
 import { SelectModule } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
+import { PopoverModule } from 'primeng/popover';
+import { ButtonModule } from 'primeng/button';
+import tippy from 'tippy.js'; // Popover lib sup
+import 'tippy.js/dist/tippy.css';
 
 import { IHeaderTable } from '~/@types/task';
 import { BaseComponent } from '~/components/common/base/base.component';
@@ -17,6 +27,13 @@ import { Action } from '~/enums';
 interface TableAction {
   label: string;
   icon: string;
+  actionKey: string;
+}
+
+interface TableAction {
+  label: string;
+  icon: string;
+  className: string;
   action: (row: any) => void;
 }
 
@@ -28,24 +45,26 @@ interface TableAction {
     DatePipe,
     AvatarModule,
     AvatarGroupModule,
-    PopoverModule,
     PaginatorModule,
     SelectModule,
-    FormsModule
+    FormsModule,
+    PopoverModule,
+    ButtonModule
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })
-export class Table<T> extends BaseComponent {
-  @ViewChild('popover', { static: false }) popover?: PopoverDirective;
+export class Table<T> extends BaseComponent implements AfterViewInit {
+  @ViewChild('dotIcon', { static: false }) dotIcon!: ElementRef;
+  @ViewChild('tooltipContent', { static: false }) tooltipContent!: ElementRef;
+
   @Input() data!: T[];
   @Input() headers!: IHeaderTable[];
   @Input() showPagination: boolean = false;
   @Input() actions: TableAction[] = [];
   @Input() rowsPerPageOptions = [5, 10, 20];
   @Output() pageChange = new EventEmitter<number>();
-
-  ACTIONS = Action;
+  @Output() actionTriggered = new EventEmitter<{ actionKey: string; rowData: T }>();
 
   first: number = 0;
 
@@ -71,6 +90,23 @@ export class Table<T> extends BaseComponent {
     super(themeService);
   }
 
+  ngAfterViewInit() {
+    const dotIcons = document.querySelectorAll('.--action-img');
+    const tooltipContent = this.tooltipContent.nativeElement.innerHTML;
+
+    dotIcons.forEach((dotIcon) => {
+      tippy(dotIcon, {
+        content: tooltipContent,
+        allowHTML: true,
+        placement: 'left',
+        theme: 'light',
+        trigger: 'click',
+        arrow: false,
+        interactive: true
+      });
+    });
+  }
+
   convertTableType(type: string) {
     return `assets/images/${this.currentMode}/${type}.svg`;
   }
@@ -83,5 +119,9 @@ export class Table<T> extends BaseComponent {
     this.first = event.first;
     this.rows = event.rows;
     this.pageChange.emit(event.page);
+  }
+
+  onActionClick(actionKey: string, rowData: T) {
+    this.actionTriggered.emit({ actionKey, rowData });
   }
 }

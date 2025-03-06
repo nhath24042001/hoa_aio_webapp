@@ -10,6 +10,10 @@
 
 }
 
+.tooltip-content {
+  visibility: hidden;
+  position: absolute;
+}
 .--paginator {
   span {
     font-weight: 500;
@@ -22,6 +26,18 @@
   cursor: pointer;
 }
 
+.--table-action {
+  background: var(--background);
+  padding: 10px;
+  border: 1px solid #DFE1E7;
+  border-radius: 10px;
+
+  .--delete-action {
+    span {
+      color: #FF515F;
+    }
+  }
+}
 ::ng-deep .p-avatar {
   width: 30px !important;
   height: 30px !important;
@@ -68,4 +84,13 @@
   background-color: var(--background) !important;
   color: var(--const-color);
   transition: all 1s step-start !important;
+}
+
+::ng-deep .tippy-content {
+  padding: 0;
+}
+
+::ng-deep .tippy-box {
+  background: var(--background);
+  border-radius: 10px;
 }
