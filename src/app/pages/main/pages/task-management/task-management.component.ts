@@ -16,6 +16,7 @@ import { TaskDetail } from '~/pages/main/components/modules/task-management/task
 import { IHeaderTable, ITaskManagement } from '~/@types/task';
 import { Priority } from '~/enums';
 import { TASK_STATUS } from '~/constants';
+import { ToastService } from '~/services/toast.service';
 
 @Component({
   selector: 'app-task-management',
@@ -146,7 +147,10 @@ export class TaskManagementComponent {
   startDate = '';
   endDate = '';
 
-  constructor(public dialogService: DialogService) {}
+  constructor(
+    public dialogService: DialogService,
+    private toastService: ToastService
+  ) {}
 
   onSearch() {}
 
@@ -159,7 +163,7 @@ export class TaskManagementComponent {
     this.ref.onClose.subscribe((task: any) => {});
   }
 
-  onOpenTaskDetail(): void {
+  onOpenTaskDetail(task: any): void {
     this.ref = this.dialogService.open(TaskDetail, {
       modal: true,
       width: '1000px'
@@ -169,28 +173,28 @@ export class TaskManagementComponent {
   handleTableAction(event: { actionKey: string; rowData: any }) {
     switch (event.actionKey) {
       case 'edit':
-        this.editItem(event.rowData);
+        this.onOpenTaskDetail(event.rowData);
         break;
       case 'delete':
-        this.deleteItem(event.rowData);
-        break;
-      case 'publish':
-        this.publishItem(event.rowData);
+        this.onOpenDeleteDialog();
         break;
       default:
         console.warn('Unknown action:', event.actionKey);
     }
   }
 
-  editItem(row: any) {
-    this.onOpenTaskDetail();
-  }
+  async onOpenDeleteDialog(): Promise<void> {
+    const confirmed = await this.toastService.showConfirm({
+      icon: 'assets/images/common/calendar-x-lg.svg',
+      title: 'Delete task',
+      description:
+        'Are you sure? Proceeding will delete the event from the system, and can not be undone.',
+      type: 'error',
+      buttonText: 'Delete task'
+    });
 
-  deleteItem(row: any) {
-    console.log('Delete item:', row);
-  }
-
-  publishItem(row: any) {
-    console.log('Publish item:', row);
+    if (confirmed) {
+      console.log('run 1');
+    }
   }
 }
