@@ -14,6 +14,7 @@
   visibility: hidden;
   position: absolute;
 }
+
 .--paginator {
   span {
     font-weight: 500;
@@ -26,18 +27,17 @@
   cursor: pointer;
 }
 
-.--table-action {
-  background: var(--background);
-  padding: 10px;
-  border: 1px solid #DFE1E7;
-  border-radius: 10px;
-
-  .--delete-action {
-    span {
-      color: #FF515F;
-    }
+.--delete-action {
+  span {
+    color: #FF515F;
   }
 }
+.popover-content {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
 ::ng-deep .p-avatar {
   width: 30px !important;
   height: 30px !important;
@@ -86,11 +86,7 @@
   transition: all 1s step-start !important;
 }
 
-::ng-deep .tippy-content {
-  padding: 0;
-}
-
-::ng-deep .tippy-box {
-  background: var(--background);
-  border-radius: 10px;
+::ng-deep .p-popover::before,
+::ng-deep .p-popover::after {
+  display: none;
 }

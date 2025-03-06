@@ -1,11 +1,11 @@
 import {
-  AfterViewInit,
   Component,
   ElementRef,
   EventEmitter,
   Input,
   Output,
-  ViewChild
+  QueryList,
+  ViewChildren
 } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { CommonModule, DatePipe } from '@angular/common';
@@ -16,25 +16,15 @@ import { SelectModule } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
 import { PopoverModule } from 'primeng/popover';
 import { ButtonModule } from 'primeng/button';
-import tippy from 'tippy.js'; // Popover lib sup
-import 'tippy.js/dist/tippy.css';
 
 import { IHeaderTable } from '~/@types/task';
 import { BaseComponent } from '~/components/common/base/base.component';
 import { ThemeService } from '~/services/theme.service';
-import { Action } from '~/enums';
-
-interface TableAction {
-  label: string;
-  icon: string;
-  actionKey: string;
-}
-
 interface TableAction {
   label: string;
   icon: string;
   className: string;
-  action: (row: any) => void;
+  actionKey: string;
 }
 
 @Component({
@@ -54,9 +44,9 @@ interface TableAction {
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })
-export class Table<T> extends BaseComponent implements AfterViewInit {
-  @ViewChild('dotIcon', { static: false }) dotIcon!: ElementRef;
-  @ViewChild('tooltipContent', { static: false }) tooltipContent!: ElementRef;
+export class Table<T> extends BaseComponent {
+  @ViewChildren('dotIcons') dotIcons!: QueryList<ElementRef>;
+  @ViewChildren('tooltipContents') tooltipContents!: QueryList<ElementRef>;
 
   @Input() data!: T[];
   @Input() headers!: IHeaderTable[];
@@ -90,23 +80,6 @@ export class Table<T> extends BaseComponent implements AfterViewInit {
     super(themeService);
   }
 
-  ngAfterViewInit() {
-    const dotIcons = document.querySelectorAll('.--action-img');
-    const tooltipContent = this.tooltipContent.nativeElement.innerHTML;
-
-    dotIcons.forEach((dotIcon) => {
-      tippy(dotIcon, {
-        content: tooltipContent,
-        allowHTML: true,
-        placement: 'left',
-        theme: 'light',
-        trigger: 'click',
-        arrow: false,
-        interactive: true
-      });
-    });
-  }
-
   convertTableType(type: string) {
     return `assets/images/${this.currentMode}/${type}.svg`;
   }
@@ -122,6 +95,12 @@ export class Table<T> extends BaseComponent implements AfterViewInit {
   }
 
   onActionClick(actionKey: string, rowData: T) {
+    console.log('object :>> ', { actionKey, rowData });
     this.actionTriggered.emit({ actionKey, rowData });
+  }
+
+  onClickTest(event: Event) {
+    event.stopPropagation();
+    console.log('run 1');
   }
 }

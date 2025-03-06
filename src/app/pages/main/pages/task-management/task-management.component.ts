@@ -131,15 +131,13 @@ export class TaskManagementComponent {
       label: 'Edit',
       icon: 'edit',
       actionKey: 'edit',
-      className: '--pointer mb-2',
-      action: (row: any) => {}
+      className: '--pointer mb-2'
     },
     {
       label: 'Delete',
       icon: 'trash',
       actionKey: 'delete',
-      className: '--delete-action --pointer',
-      action: (row: any) => {}
+      className: '--delete-action --pointer'
     }
   ];
 
@@ -166,5 +164,33 @@ export class TaskManagementComponent {
       modal: true,
       width: '1000px'
     });
+  }
+
+  handleTableAction(event: { actionKey: string; rowData: any }) {
+    switch (event.actionKey) {
+      case 'edit':
+        this.editItem(event.rowData);
+        break;
+      case 'delete':
+        this.deleteItem(event.rowData);
+        break;
+      case 'publish':
+        this.publishItem(event.rowData);
+        break;
+      default:
+        console.warn('Unknown action:', event.actionKey);
+    }
+  }
+
+  editItem(row: any) {
+    console.log('Edit item:', row);
+  }
+
+  deleteItem(row: any) {
+    console.log('Delete item:', row);
+  }
+
+  publishItem(row: any) {
+    console.log('Publish item:', row);
   }
 }

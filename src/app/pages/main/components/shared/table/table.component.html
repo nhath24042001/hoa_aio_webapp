@@ -56,24 +56,28 @@
           }
           @case ('action') {
             <td>
-              <div #dotIcon class="--action-img --pointer">
+              <div class="dot-icon --pointer" (click)="op.toggle($event)">
                 <img src="assets/images/common/dots-vertical.svg" alt="dot_icon" />
               </div>
 
-              <div #tooltipContent style="display: none">
-                <div class="--table-action">
-                  @for (action of actions; track $index) {
-                    <div [className]="action.className" (click)="action.action(row)">
+              <p-popover #op>
+                <div class="flex flex-col gap-4">
+                  @for (item of actions; track $index) {
+                    <div
+                      [className]="item.className"
+                      (click)="onClickTest($event)"
+                      (click)="onActionClick(item.actionKey, row)"
+                    >
                       <img
-                        [src]="'assets/images/' + currentMode + '/' + action.icon + '.svg'"
+                        [src]="'assets/images/' + currentMode + '/' + item.icon + '.svg'"
                         class="me-2"
                         alt="action_icon"
                       />
-                      <span>{{ action.label }}</span>
+                      <span>{{ item.label }}</span>
                     </div>
                   }
                 </div>
-              </div>
+              </p-popover>
             </td>
           }
           @default {

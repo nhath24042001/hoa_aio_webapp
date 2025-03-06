@@ -100,6 +100,7 @@
               [headers]="headers"
               [showPagination]="true"
               [actions]="actions"
+              (actionTriggered)="handleTableAction($event)"
             ></app-table>
           </p-tabpanel>
           <p-tabpanel value="1"> 2 </p-tabpanel>
