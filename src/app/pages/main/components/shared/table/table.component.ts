@@ -95,12 +95,6 @@ export class Table<T> extends BaseComponent {
   }
 
   onActionClick(actionKey: string, rowData: T) {
-    console.log('object :>> ', { actionKey, rowData });
     this.actionTriggered.emit({ actionKey, rowData });
-  }
-
-  onClickTest(event: Event) {
-    event.stopPropagation();
-    console.log('run 1');
   }
 }

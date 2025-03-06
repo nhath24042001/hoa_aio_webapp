@@ -62,18 +62,17 @@
 
               <p-popover #op>
                 <div class="flex flex-col gap-4">
-                  @for (item of actions; track $index) {
+                  @for (action of actions; track $index) {
                     <div
-                      [className]="item.className"
-                      (click)="onClickTest($event)"
-                      (click)="onActionClick(item.actionKey, row)"
+                      [className]="action.className"
+                      (click)="onActionClick(action.actionKey, row)"
                     >
                       <img
-                        [src]="'assets/images/' + currentMode + '/' + item.icon + '.svg'"
+                        [src]="'assets/images/' + currentMode + '/' + action.icon + '.svg'"
                         class="me-2"
                         alt="action_icon"
                       />
-                      <span>{{ item.label }}</span>
+                      <span>{{ action.label }}</span>
                     </div>
                   }
                 </div>

@@ -1,7 +1,7 @@
 export enum Action {
-  EDIT = 'edit',
-  PUBLISH = 'publish',
-  DELETE = 'delete'
+  EDIT = 'Edit',
+  PUBLISH = 'Publish',
+  DELETE = 'Delete'
 }
 
 export enum Priority {

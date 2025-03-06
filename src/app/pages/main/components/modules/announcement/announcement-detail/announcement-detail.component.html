@@ -33,7 +33,7 @@
     <div class="d-flex align-items-center">
       <img src="assets/images/common/task-icon.svg" class="me-2" alt="task_icon" />
 
-      <p>User Types</p>
+      <p class="--text-box">User Types</p>
 
       @for (type of announce_detail.user_types; track $index) {
         <div class="--user-tag d-flex justify-content-center align-items-center">
@@ -44,7 +44,7 @@
 
     <div class="mt-3 d-flex algin-items-center">
       <img src="assets/images/common/location.svg" class="me-2" alt="location_icon" />
-      <p>Expiration date</p>
+      <p class="--text-box">Expiration date</p>
 
       <p class="--text-normal">{{ announce_detail.expired_date | date }}</p>
     </div>

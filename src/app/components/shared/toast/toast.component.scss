@@ -56,8 +56,12 @@
 
     ::ng-deep .--btn-success {
       .p-button {
-        background: #ABFF52;
-        color: #0D0D12;
+        background: #74DB07;
+          border: 1px solid #74DB07;
+        
+          span {
+            color: #FFF;
+          }
       }
 
       span {

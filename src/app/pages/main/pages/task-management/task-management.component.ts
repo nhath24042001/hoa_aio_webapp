@@ -183,7 +183,7 @@ export class TaskManagementComponent {
   }
 
   editItem(row: any) {
-    console.log('Edit item:', row);
+    this.onOpenTaskDetail();
   }
 
   deleteItem(row: any) {

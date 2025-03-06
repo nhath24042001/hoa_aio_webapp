@@ -16,33 +16,35 @@
           </div>
         </div>
         @if (announce.type === 'Draft') {
-          <div
-            class="--action me-3 d-flex justify-content-center align-items-center"
-            [popover]="popoverContent"
-            placement="top left"
-            triggers="click"
-          >
-            <img src="assets/images/common/dots-vertical.svg" alt="dot_icon" />
-          </div>
-
-          <ng-template #popoverContent>
-            <div class="--action-content">
-              <div class="--action-item py-2" (click)="onEmitterAction(announce, ACTIONS.EDIT)">
-                <img src="assets/images/common/edit.svg" alt="edit_icon" />
-                <span>{{ ACTIONS.EDIT }}</span>
-              </div>
-              <div class="--action-item py-2" (click)="onEmitterAction(announce, ACTIONS.PUBLISH)">
-                <img src="assets/images/common/green_publish.svg" alt="publish_icon" />
-                <span>{{ ACTIONS.PUBLISH }}</span>
-              </div>
-              <div class="--action-item py-2" (click)="onEmitterAction(announce, ACTIONS.DELETE)">
-                <img src="assets/images/common/red_trash.svg" alt="trash_icon" />
-                <span>{{ ACTIONS.DELETE }}</span>
-              </div>
+          <p-popover #op>
+            <div class="flex flex-col gap-4">
+              @for (action of actions; track $index) {
+                <div
+                  [className]="action.className"
+                  (click)="onActionClick(action.actionKey, announce)"
+                >
+                  <img
+                    [src]="'assets/images/' + currentMode + '/' + action.icon + '.svg'"
+                    class="me-2"
+                    alt="action_icon"
+                  />
+                  <span>{{ action.label }}</span>
+                </div>
+              }
             </div>
-          </ng-template>
+          </p-popover>
+
+          <div class="dot-icon --pointer" (click)="op.toggle($event)">
+            <img src="assets/images/common/dots-vertical.svg" class="me-3" alt="dot_icon" />
+          </div>
         } @else {
-          <img src="assets/images/common/trash.svg" class="--pointer" (click)="onEmitterAction(announce, ACTIONS.DELETE)" class="me-3" alt="trash_icon" />
+          <img
+            src="assets/images/common/trash.svg"
+            class="--pointer"
+            (click)="onActionClick('delete', announce)"
+            class="me-3"
+            alt="trash_icon"
+          />
         }
       </div>
     </div>
