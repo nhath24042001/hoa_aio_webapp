@@ -4,7 +4,7 @@
   [rowsPerPageOptions]="rowsPerPageOptions"
   showGridlines
   [tableStyle]="{ 'min-width': '50rem' }"
-  [styleClass]="currentMode === 'dark' ? '--dark' : '--light'"
+  [ngClass]="[currentMode === 'dark' ? '--dark' : '--light', className]"
 >
   <ng-template #header>
     <tr>
@@ -49,6 +49,12 @@
               </p-avatar-group>
             </td>
           }
+          @case ('image') {
+            <td class="d-flex justify-content-center">
+              <img class="--row-img" [src]="row[header.field]" alt="table_image" />
+            </td>
+          }
+
           @case ('created') {
             <td>
               <span> {{ row[header.field] | date: 'dd MMM, yyyy' }} </span>

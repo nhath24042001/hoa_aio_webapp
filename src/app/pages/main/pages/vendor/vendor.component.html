@@ -1,1 +1,73 @@
-<p>vendor works!</p>
+@if (isActive) {
+  <div class="--vendor-wrapper p-4">
+    <div class="--task-header">
+      <p-tabs [value]="activeTab" (valueChange)="onTabChange($event)">
+        <div class="d-flex justify-content-between align-items-center">
+          <p-tablist>
+            @for (tab of tabs; track $index) {
+              <p-tab value="{{ $index }}">
+                <img [src]="activeTab === $index.toString() ? tab.activeImg : tab.img" alt="tab_img" />
+                <div>{{ tab.name }}</div>
+              </p-tab>
+            }
+          </p-tablist>
+
+          <main-header labelButton="New Bid" [isShowFilter]="false" (searchChanged)="onSearch()">
+            <div inner-header>
+              <a href="#" class="--link me-3">Download CSV</a>
+            </div>
+          </main-header>
+        </div>
+
+        <p-tabpanels>
+          <p-tabpanel value="0">
+            <app-table [headers]="companyHeader" [data]="companyList" [actions]="actions" className="mt-3"></app-table>
+          </p-tabpanel>
+          <p-tabpanel value="1">2</p-tabpanel>
+          <p-tabpanel value="2">3</p-tabpanel>
+        </p-tabpanels>
+      </p-tabs>
+    </div>
+  </div>
+} @else {
+  <div class="--content-section p-4 d-flex flex-column">
+    <div class="d-flex justify-content-end">
+      <button-primary
+        icon="assets/images/common/white-plus-solid.svg"
+        label="New Task"
+        [isPrimaryActive]="true"
+      ></button-primary>
+    </div>
+    <div class="flex-fill d-flex justify-content-center align-items-center">
+      @if (role === 'Manager') {
+        <app-empty-content
+          icon="assets/images/light/truck-lg.svg"
+          iconDark="assets/images/dark/truck-lg.svg"
+          title="There are no vendors to show yet."
+          createText="Create a new vendor"
+        >
+          <div extra-content class="mt-3">
+            <p>
+              To add <strong>vendors</strong> from an existing list
+              <a class="--link">Download this CSV Template</a> update the details and upload
+            </p>
+
+            <div class="d-flex justify-content-center align-items-center mt-2">
+              <div class="--upload-wrapper d-flex align-items-center">
+                <img src="assets/images/common/upload-cloud.svg" class="me-2" alt="upload_img" />
+                <p>Upload vendors list (click or drag file here)</p>
+              </div>
+            </div>
+          </div>
+        </app-empty-content>
+      } @else {
+        <app-empty-content
+          icon="assets/images/light/annotation-alert-lg.svg"
+          iconDark="assets/images/dark/annotation-alert-lg.svg"
+          title="There are no bids to show yet."
+          createText="Create a new bid"
+        ></app-empty-content>
+      }
+    </div>
+  </div>
+}

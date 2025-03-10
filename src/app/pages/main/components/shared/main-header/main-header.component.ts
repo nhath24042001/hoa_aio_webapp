@@ -13,14 +13,9 @@ import { CheckboxModule } from 'primeng/checkbox';
 export class MainHeader {
   @ViewChild('popover', { static: false }) popover?: PopoverDirective;
   @Input() labelButton: string = '';
+  @Input() isShowFilter: boolean = true;
   @Output() searchChanged = new EventEmitter<string>();
   @Output() addSection = new EventEmitter<void>();
-
-  // togglePopover() {
-  //   if (this.popover) {
-  //     this.popover.toggle();
-  //   }
-  // }
 
   onSearchChange(event: any) {
     this.searchChanged.emit(event.target.value);

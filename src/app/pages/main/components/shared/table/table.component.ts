@@ -1,12 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  QueryList,
-  ViewChildren
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { CommonModule, DatePipe } from '@angular/common';
 import { AvatarModule } from 'primeng/avatar';
@@ -45,13 +37,11 @@ interface TableAction {
   styleUrl: './table.component.scss'
 })
 export class Table<T> extends BaseComponent {
-  @ViewChildren('dotIcons') dotIcons!: QueryList<ElementRef>;
-  @ViewChildren('tooltipContents') tooltipContents!: QueryList<ElementRef>;
-
   @Input() data!: T[];
   @Input() headers!: IHeaderTable[];
   @Input() showPagination: boolean = false;
   @Input() actions: TableAction[] = [];
+  @Input() className: string = '';
   @Input() rowsPerPageOptions = [5, 10, 20];
   @Output() pageChange = new EventEmitter<number>();
   @Output() actionTriggered = new EventEmitter<{ actionKey: string; rowData: T }>();

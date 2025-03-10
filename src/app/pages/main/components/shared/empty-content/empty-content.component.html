@@ -1,4 +1,4 @@
-<div class="--empty-content-wrapper d-flex justify-content-center align-items-center">
+<div class="--empty-content-wrapper d-flex flex-column justify-content-center align-items-center">
   <div>
     <div class="d-flex justify-content-center align-items-center">
       @if(currentMode === 'light') {
@@ -15,4 +15,6 @@
       <h6>{{ createText }}</h6>
     </div>
   </div>
+
+  <ng-content select="[extra-content]"></ng-content>
 </div>
