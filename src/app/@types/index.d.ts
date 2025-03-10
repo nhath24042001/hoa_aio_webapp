@@ -26,3 +26,14 @@ export interface IConfirmDialog {
   type: ConfirmType;
   callback: (confirmed: boolean) => void;
 }
+
+export interface DynamicField {
+  key: string;
+  label: string;
+  type: 'text' | 'select' | 'date' | 'textarea' | 'number' | 'checkbox';
+  options?: { label: string; code: string }[];
+  required?: boolean;
+  disabled?: boolean;
+  hidden?: boolean;
+}
+

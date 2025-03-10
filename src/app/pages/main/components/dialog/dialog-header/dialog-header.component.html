@@ -5,7 +5,7 @@
   </div>
 
   <div class="--right">
-    @if (isEditMode && eventData) {
+    @if (!isCreateMode) {
       <div>
         <p class="text-end">Created: {{ eventData.start_date | date }}</p>
         <p class="text-end">Updated: {{ eventData.end_date | date }}</p>
@@ -26,9 +26,3 @@
     />
   </div>
 </div>
-
-<!-- [src]="
-        dialogType === ACTION_DIALOG.CREATE
-          ? 'assets/images/' + currentMode + '/calendar-plus.svg'
-          : 'assets/images/common/calendar-date.svg'
-      " -->

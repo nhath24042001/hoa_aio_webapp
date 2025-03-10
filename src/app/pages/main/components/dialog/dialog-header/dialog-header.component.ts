@@ -8,16 +8,20 @@ import { DatePipe } from '@angular/common';
   styleUrl: './dialog-header.component.scss'
 })
 export class DialogHeader {
-  @Input() dialogType: string = '';
+  @Input() iconCreate: string = '';
+  @Input() iconEdit: string = '';
   @Input() eventData: any;
   @Input() currentMode: string = '';
   @Input() title: string = '';
-  @Input() icon: string = '';
-  @Input() ACTION_DIALOG: any;
-  @Input() isEditMode: boolean = false;
+  @Input() isCreateMode: boolean = false;
   @Output() closeDialog = new EventEmitter<void>();
 
   constructor() {}
+
+  get icon() {
+    const basePath = `assets/images/${this.currentMode}/`;
+    return this.isCreateMode ? `${basePath}${this.iconEdit}` : `${basePath}${this.iconEdit}`;
+  }
 
   closeDialogEmitter() {
     this.closeDialog.emit();

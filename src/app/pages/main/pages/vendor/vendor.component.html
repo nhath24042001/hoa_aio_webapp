@@ -6,13 +6,21 @@
           <p-tablist>
             @for (tab of tabs; track $index) {
               <p-tab value="{{ $index }}">
-                <img [src]="activeTab === $index.toString() ? tab.activeImg : tab.img" alt="tab_img" />
+                <img
+                  [src]="activeTab === $index.toString() ? tab.activeImg : tab.img"
+                  alt="tab_img"
+                />
                 <div>{{ tab.name }}</div>
               </p-tab>
             }
           </p-tablist>
 
-          <main-header labelButton="New Bid" [isShowFilter]="false" (searchChanged)="onSearch()">
+          <main-header
+            labelButton="New Bid"
+            [isShowFilter]="false"
+            (searchChanged)="onSearch()"
+            (addSection)="onOpenCreateVendor()"
+          >
             <div inner-header>
               <a href="#" class="--link me-3">Download CSV</a>
             </div>
@@ -21,7 +29,12 @@
 
         <p-tabpanels>
           <p-tabpanel value="0">
-            <app-table [headers]="companyHeader" [data]="companyList" [actions]="actions" className="mt-3"></app-table>
+            <app-table
+              [headers]="companyHeader"
+              [data]="companyList"
+              [actions]="actions"
+              className="mt-3"
+            ></app-table>
           </p-tabpanel>
           <p-tabpanel value="1">2</p-tabpanel>
           <p-tabpanel value="2">3</p-tabpanel>
