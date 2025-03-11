@@ -12,6 +12,8 @@ import { ButtonModule } from 'primeng/button';
 import { IHeaderTable } from '~/@types/task';
 import { BaseComponent } from '~/components/common/base/base.component';
 import { ThemeService } from '~/services/theme.service';
+import { convertToTitleCase } from '~/utils/string-utils';
+
 interface TableAction {
   label: string;
   icon: string;
@@ -68,6 +70,10 @@ export class Table<T> extends BaseComponent {
 
   constructor(themeService: ThemeService) {
     super(themeService);
+  }
+
+  convertToTitleCase(text: string) {
+    return convertToTitleCase(text);
   }
 
   convertTableType(type: string) {

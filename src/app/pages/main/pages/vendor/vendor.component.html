@@ -16,10 +16,10 @@
           </p-tablist>
 
           <main-header
-            labelButton="New Bid"
+            [labelButton]="buttonText"
             [isShowFilter]="false"
             (searchChanged)="onSearch()"
-            (addSection)="onOpenCreateVendor()"
+            (addSection)="onOpenCreate()"
           >
             <div inner-header>
               <a href="#" class="--link me-3">Download CSV</a>
@@ -33,11 +33,22 @@
               [headers]="companyHeader"
               [data]="companyList"
               [actions]="actions"
-              className="mt-3"
             ></app-table>
           </p-tabpanel>
-          <p-tabpanel value="1">2</p-tabpanel>
-          <p-tabpanel value="2">3</p-tabpanel>
+          <p-tabpanel value="1">
+            <app-table
+              [headers]="bidHeader"
+              [data]="bidList"
+              [actions]="actions"
+            ></app-table>
+          </p-tabpanel>
+          <p-tabpanel value="2">
+            <app-table
+              [headers]="bidHeader"
+              [data]="estimateList"
+              [actions]="actions"
+            ></app-table
+          ></p-tabpanel>
         </p-tabpanels>
       </p-tabs>
     </div>

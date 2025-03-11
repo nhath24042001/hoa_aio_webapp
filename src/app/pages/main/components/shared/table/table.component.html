@@ -35,7 +35,7 @@
           @case ('status') {
             <td>
               <div class="--box" [ngClass]="getClass(row[header.field])">
-                {{ row[header.field] }}
+                {{ convertToTitleCase(row[header.field]) }}
               </div>
             </td>
           }
@@ -86,7 +86,9 @@
             </td>
           }
           @default {
-            <td>{{ row[header.field] }}</td>
+            <td>
+              <span class="--truncate">{{ row[header.field] }}</span>
+            </td>
           }
         }
       }

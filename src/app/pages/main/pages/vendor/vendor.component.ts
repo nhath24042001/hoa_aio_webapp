@@ -7,10 +7,19 @@ import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/but
 import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';
 import { VendorDialog } from '~/pages/main/components/modules/vendor/vendor-dialog/vendor-dialog.component';
+import { BidDialog } from '~/pages/main/components/modules/vendor/bid-dialog/bid-dialog.component';
+import { RequestEstimateDialog } from '~/pages/main/components/modules/vendor/request-estimate-dialog/request-estimate-dialog.component';
 
 import { ToastService } from '~/services/toast.service';
 import { tabHeader } from '~/constants/tab';
-import { companyHeaders, companyList, vendorActions } from '~/data/vendor';
+import {
+  bidHeaders,
+  bidList,
+  companyHeaders,
+  companyList,
+  estimateList,
+  vendorActions
+} from '~/data/vendor';
 
 @Component({
   selector: 'app-vendor',
@@ -27,6 +36,9 @@ export class VendorComponent {
   tabs = tabHeader;
   companyList = companyList;
   companyHeader = companyHeaders;
+  bidHeader = bidHeaders;
+  bidList = bidList;
+  estimateList = estimateList;
   actions = vendorActions;
 
   constructor(
@@ -34,14 +46,35 @@ export class VendorComponent {
     private toastService: ToastService
   ) {}
 
+  get buttonText(): string {
+    switch (this.activeTab) {
+      case '0':
+        return 'New Vendor';
+      case '1':
+        return 'New Bid';
+      default:
+        return 'Request an Estimate';
+    }
+  }
+
+  get componentRender() {
+    switch (this.activeTab) {
+      case '0':
+        return VendorDialog;
+      case '1':
+        return BidDialog;
+      default:
+        return RequestEstimateDialog;
+    }
+  }
+
   onSearch() {}
 
   onTabChange(tabIndex: number | string) {
     this.activeTab = tabIndex.toString();
   }
-
-  onOpenCreateVendor(): void {
-    this.ref = this.dialogService.open(VendorDialog, {
+  onOpenCreate(): void {
+    this.ref = this.dialogService.open(this.componentRender, {
       modal: true,
       width: '1000px',
       data: {
@@ -49,6 +82,6 @@ export class VendorComponent {
       }
     });
 
-    this.ref.onClose.subscribe((task: any) => {});
+    // this.ref.onClose.subscribe((task: any) => {});
   }
 }
