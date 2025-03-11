@@ -41,7 +41,7 @@ export class VendorDialog {
       placeholder: 'Select'
     },
     {
-      icon: 'user-up',
+      icon: 'user-up-sm',
       field: 'contact_person',
       label: 'Contact Person',
       type: 'input',
