@@ -1,26 +1,59 @@
-import { Component, Input } from '@angular/core';
-
-import { BaseComponent } from '~/components/common/base/base.component';
+import { Component, Input, OnInit } from '@angular/core';
 import { DialogHeader } from '../dialog-header/dialog-header.component';
 import { ThemeService } from '~/services/theme.service';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Divider } from 'primeng/divider';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { DynamicField } from '~/@types';
+import { BaseComponent } from '~/components/common/base/base.component';
+import { FormField } from '../form-field/form-field.component';
+import { DialogTextarea } from '../dialog-textarea/dialog-textarea.component';
+import { DialogActions } from '../dialog-actions/dialog-actions.component';
 
 @Component({
   selector: 'app-dynamic-dialog',
-  imports: [DialogHeader],
+  imports: [Divider, DialogHeader, FormField, DialogTextarea, DialogActions],
   templateUrl: './dynamic-dialog.component.html',
   styleUrl: './dynamic-dialog.component.scss'
 })
-export class DynamicDialog extends BaseComponent {
+export class DynamicDialog extends BaseComponent implements OnInit {
   @Input() dialogTitle = '';
   @Input() iconCreate = '';
   @Input() iconEdit = '';
   @Input() dialogType = '';
+  @Input() formFields: DynamicField[] = [];
+  @Input() list_textarea: any[] = [];
+
+  formGroup!: FormGroup;
 
   get isCreateMode() {
     return this.dialogType === 'create';
   }
 
-  constructor(themeService: ThemeService) {
+  get formTitle() {
+    return 'Company Name';
+  }
+
+  constructor(
+    themeService: ThemeService,
+    public ref: DynamicDialogRef,
+    private fb: FormBuilder
+  ) {
     super(themeService);
+    this.initDynamicForm();
+  }
+
+  initDynamicForm() {
+    let formControls: { [key: string]: any } = {};
+    this.formFields.forEach((field) => {
+      formControls[field.field] = field.type === 'file' ? [null] : ['', Validators.required];
+    });
+
+    this.formGroup = this.fb.group(formControls);
+  }
+
+  closeDialog() {
+    this.ref.close();
   }
 }

@@ -12,17 +12,19 @@
       </div>
 
       <div class="--share-box mx-3 d-flex justify-content-center align-items-center">Share</div>
-
-      <div class="--image-wrapper d-flex align-items-center">
-        <img src="assets/images/common/edit-sm.svg" class="me-3" alt="edit_icon" />
-      </div>
     }
 
-    <img
-      [src]="'assets/images/' + currentMode + '/close.svg'"
-      class="me-3"
-      (click)="closeDialogEmitter()"
-      alt="close_icon"
-    />
+    <div class="--image-wrapper d-flex align-items-center">
+      @if (!isCreateMode) {
+        <img src="assets/images/common/edit-sm.svg" class="me-3" alt="edit_icon" />
+      }
+
+      <img
+        [src]="'assets/images/' + currentMode + '/close.svg'"
+        class="me-3"
+        (click)="closeDialogEmitter()"
+        alt="close_icon"
+      />
+    </div>
   </div>
 </div>

@@ -17,6 +17,7 @@
           optionLabel="name"
           [placeholder]="placeholder"
           styleClass="flex-fill"
+          [(ngModel)]="formControl"
         />
       }
       @case ('input') {
@@ -26,6 +27,7 @@
           pInputText
           [placeholder]="placeholder"
           class="flex-fill"
+          [(ngModel)]="formControl"
         />
       }
       @default {
@@ -35,11 +37,11 @@
           iconDisplay="input"
           class="flex-fill"
           variant="filled"
+          [(ngModel)]="formControl"
         />
       }
     }
-  }
-  @else {
+  } @else {
     @if (field === 'start_date' || field === 'end_date') {
       <span>{{ value | date: 'MMM. dd, hh:mm a' }}</span>
     } @else {

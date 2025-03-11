@@ -43,7 +43,10 @@ export class VendorComponent {
   onOpenCreateVendor(): void {
     this.ref = this.dialogService.open(VendorDialog, {
       modal: true,
-      width: '1000px'
+      width: '1000px',
+      data: {
+        type: 'create'
+      }
     });
 
     this.ref.onClose.subscribe((task: any) => {});

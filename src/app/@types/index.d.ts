@@ -28,12 +28,15 @@ export interface IConfirmDialog {
 }
 
 export interface DynamicField {
-  key: string;
+  icon: string;
+  field: string;
+  type: 'input' | 'select' | 'date' | 'textarea' | 'number' | 'checkbox' | 'file';
   label: string;
-  type: 'text' | 'select' | 'date' | 'textarea' | 'number' | 'checkbox';
-  options?: { label: string; code: string }[];
+  position: string;
+  placeholder: string;
+  list?: { name: string; code: string }[];
+  value?: string;
   required?: boolean;
   disabled?: boolean;
   hidden?: boolean;
 }
-
