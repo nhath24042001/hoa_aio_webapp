@@ -10,11 +10,12 @@ import { DatePipe } from '@angular/common';
 export class DialogHeader {
   @Input() iconCreate: string = '';
   @Input() iconEdit: string = '';
-  @Input() eventData: any;
+  @Input() formHeader: any;
   @Input() currentMode: string = '';
   @Input() title: string = '';
   @Input() isCreateMode: boolean = false;
   @Output() closeDialog = new EventEmitter<void>();
+  @Output() changeAction = new EventEmitter<void>();
 
   constructor() {}
 
@@ -27,5 +28,9 @@ export class DialogHeader {
 
   closeDialogEmitter() {
     this.closeDialog.emit();
+  }
+
+  onChangeAction(): void {
+    this.changeAction.emit();
   }
 }

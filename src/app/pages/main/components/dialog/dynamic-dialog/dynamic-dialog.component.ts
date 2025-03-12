@@ -22,8 +22,14 @@ export class DynamicDialog extends BaseComponent implements OnInit {
   @Input() iconCreate = '';
   @Input() iconEdit = '';
   @Input() dialogType = '';
+  @Input() title = '';
   @Input() formFields: DynamicField[] = [];
   @Input() list_textarea: any[] = [];
+  @Input() buttonText = '';
+  @Input() buttonIcon = '';
+  @Input() formID = '';
+  @Input() moduleName = '';
+  @Input() formData: any = {};
 
   formGroup!: FormGroup;
 
@@ -32,7 +38,7 @@ export class DynamicDialog extends BaseComponent implements OnInit {
   }
 
   get formTitle() {
-    return 'Company Name';
+    return this.dialogType === 'create' ? this.title : this.formData.data.title;
   }
 
   constructor(
@@ -55,5 +61,9 @@ export class DynamicDialog extends BaseComponent implements OnInit {
 
   closeDialog() {
     this.ref.close();
+  }
+
+  changeAction() {
+    this.dialogType = 'create';
   }
 }

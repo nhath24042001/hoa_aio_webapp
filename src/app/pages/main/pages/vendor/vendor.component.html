@@ -33,6 +33,7 @@
               [headers]="companyHeader"
               [data]="companyList"
               [actions]="actions"
+              (actionTriggered)="onAction($event)"
             ></app-table>
           </p-tabpanel>
           <p-tabpanel value="1">

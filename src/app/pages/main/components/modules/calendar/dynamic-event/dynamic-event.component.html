@@ -2,10 +2,10 @@
   <app-dialog-header
     icon="assets/images/light/calendar-plus.svg"
     [title]="dialogType === ACTION_DIALOG.CREATE ? 'Create New Event' : 'Event Details'"
-    [eventData]="eventData"
     [currentMode]="currentMode"
     (closeDialog)="closeDialog()"
-  ></app-dialog-header>
+    ></app-dialog-header>
+    <!-- [eventData]="eventData" -->
 
   <p-divider />
 
@@ -26,13 +26,13 @@
             [width]="box.width"
             [field]="box.field"
             [value]="eventData[box.field]"
-            [placeholder]="box.placeholder"
             [options]="box.list"
             [currentMode]="currentMode"
             [dialogType]="dialogType"
             [isCreateMode]="isCreateMode"
             [ACTION_DIALOG]="ACTION_DIALOG"
-          ></app-form-field>
+            ></app-form-field>
+            <!-- [placeholder]="box.placeholder" -->
         }
       </div>
       <div class="col-6">

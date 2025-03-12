@@ -167,13 +167,13 @@ export const vendorActions = [
   {
     label: 'Approve',
     icon: 'green-check-circle-broken',
-    actionKey: 'edit',
+    actionKey: 'approve',
     className: '--pointer mb-3'
   },
   {
     label: 'Mark as pending',
     icon: 'orange-finger',
-    actionKey: 'edit',
+    actionKey: 'mask_as_pending',
     className: '--pointer mb-3'
   },
   {

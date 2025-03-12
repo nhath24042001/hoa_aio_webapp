@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input } from '@angular/core';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { SelectModule } from 'primeng/select';
 import { InputTextModule } from 'primeng/inputtext';
 import { DatePicker } from 'primeng/datepicker';
@@ -21,7 +21,7 @@ import { InputFile } from '~/components/shared/input-file/input-file.component';
     }
   ]
 })
-export class FormField {
+export class FormField implements OnInit {
   @Input() icon = '';
   @Input() label = '';
   @Input() type = '';
@@ -35,6 +35,8 @@ export class FormField {
   @Input() ACTION_DIALOG: any;
   @Input() isCreateMode = false;
   @Input() formControl!: FormControl | any;
+
+  classField = '';
 
   onChange: any = () => {};
   onTouched: any = () => {};
@@ -56,5 +58,18 @@ export class FormField {
   updateValue(event: any) {
     this.value = event;
     this.onChange(event);
+  }
+
+  onStatusChange(event: any) {
+    this.classField = `--${event.value.code}`;
+  }
+
+  ngOnInit(): void {
+    if (this.dialogType == 'edit' && this.field === 'status') {
+      if (this.options && this.options.length > 0) {
+        this.formControl = this.options[0];
+        this.classField = `--${this.options[0].code}`;
+      }
+    }
   }
 }

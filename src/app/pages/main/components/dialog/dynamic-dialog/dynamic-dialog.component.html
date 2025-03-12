@@ -5,7 +5,9 @@
     [iconEdit]="iconEdit"
     [isCreateMode]="isCreateMode"
     [currentMode]="currentMode"
+    [formHeader]="formData.data"
     (closeDialog)="closeDialog()"
+    (changeAction)="changeAction()"
   ></app-dialog-header>
 
   <p-divider />
@@ -24,14 +26,13 @@
                 [type]="box.type"
                 [field]="box.field"
                 [placeholder]="box.placeholder"
+                [value]="box.value"
                 [options]="box.list"
                 [currentMode]="currentMode"
                 [dialogType]="dialogType"
                 [isCreateMode]="isCreateMode"
                 [formControl]="box.value"
               ></app-form-field>
-              <!-- [value]="eventData[box.field]" -->
-              <!-- [ACTION_DIALOG]="ACTION_DIALOG" -->
             }
           }
         </div>
@@ -45,6 +46,7 @@
                 [field]="box.field"
                 [placeholder]="box.placeholder"
                 [options]="box.list"
+                [value]="box.value"
                 [currentMode]="currentMode"
                 [dialogType]="dialogType"
                 [isCreateMode]="isCreateMode"
@@ -61,6 +63,7 @@
             [label]="box.label"
             [type]="box.type"
             [field]="box.field"
+            [value]="box.value"
             [placeholder]="box.placeholder"
             [options]="box.list"
             [currentMode]="currentMode"
@@ -75,10 +78,18 @@
 
     <div class="--dynamic-content mt-3">
       @for (textarea of list_textarea; track $index) {
-        <app-dialog-textarea [title]="textarea.title" [placeholder]="textarea.placeholder"></app-dialog-textarea>
+        <app-dialog-textarea
+          [title]="textarea.title"
+          [placeholder]="textarea.placeholder"
+        ></app-dialog-textarea>
       }
     </div>
 
-    <app-dialog-actions></app-dialog-actions>
+    <app-dialog-actions
+      [buttonText]="buttonText"
+      [formID]="formID"
+      [moduleName]="moduleName"
+      [buttonIcon]="buttonIcon"
+    ></app-dialog-actions>
   </form>
 </div>

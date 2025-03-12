@@ -20,6 +20,7 @@ import {
   estimateList,
   vendorActions
 } from '~/data/vendor';
+import { Action } from '~/enums';
 
 @Component({
   selector: 'app-vendor',
@@ -83,5 +84,51 @@ export class VendorComponent {
     });
 
     // this.ref.onClose.subscribe((task: any) => {});
+  }
+
+  onOpenEditDialog(data: any): void {
+    this.ref = this.dialogService.open(this.componentRender, {
+      modal: true,
+      width: '1000px',
+      data: {
+        type: 'edit',
+        data: {
+          title: 'AB Services Co.',
+          created_date: '2/2/2021',
+          update_date: '2/2/2022',
+          status: 'pending',
+          formData: {
+            industry_type: 'maintenance',
+            contact_person: 'Amber Bruce',
+            contact_email: 'amber@abservices.co',
+            phone: '555-565-7898',
+            license_number: '117845678987',
+            image: '',
+            rating: '5/5',
+            expiry_date: '2/2/2022',
+            vendor_title: 'General Maintenance Service Providers'
+          }
+        }
+      }
+    });
+  }
+
+  onAction(event: { actionKey: string; rowData: any }): void {
+    switch (event.actionKey) {
+      case Action.EDIT:
+        this.onOpenEditDialog(event.rowData);
+        break;
+      case 'approve':
+        // this.toastService.showSuccess('Approved successfully');
+        break;
+      case 'pending':
+        // this.toastService.showWarning('Marked as pending');
+        break;
+      case 'delete':
+        // this.toastService.showDanger('Deleted successfully');
+        break;
+      default:
+        break;
+    }
   }
 }

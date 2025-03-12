@@ -22,8 +22,8 @@ export class VendorDialog {
       position: 'left',
       list: [
         {
-          name: '1',
-          code: '1'
+          name: 'Maintenance',
+          code: 'maintenance'
         },
         {
           name: '2',
@@ -90,7 +90,7 @@ export class VendorDialog {
     },
     {
       icon: 'star',
-      field: 'rate',
+      field: 'rating',
       label: 'Rating',
       type: 'select',
       position: 'right',
@@ -148,9 +148,42 @@ export class VendorDialog {
   constructor(public config: DynamicDialogConfig) {
     this.data = config.data;
     this.type = this.data.type;
+
+    if (this.type === 'edit') {
+      this.list_columns = this.list_columns.filter((col) => col.field !== 'document');
+      this.list_columns.unshift({
+        icon: 'loading',
+        field: 'status',
+        label: 'Status',
+        type: 'select',
+        position: 'left',
+        list: [
+          {
+            name: 'Pending',
+            code: 'pending'
+          },
+          {
+            name: 'Approved',
+            code: 'approved'
+          }
+        ],
+        placeholder: 'Select'
+      });
+
+      this.list_columns = this.list_columns.map((column) => {
+        return {
+          ...column,
+          value: this.data.data.formData[column.field]
+        };
+      });
+    }
   }
 
   get title() {
     return this.type === 'create' ? 'Create New Vendor' : 'Vendor Details';
+  }
+
+  get formData() {
+    return this.config.data;
   }
 }

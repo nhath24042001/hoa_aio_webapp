@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { ButtonPrimary } from '../../shared/button-primary/button-primary.component';
 
@@ -8,4 +8,10 @@ import { ButtonPrimary } from '../../shared/button-primary/button-primary.compon
   templateUrl: './dialog-actions.component.html',
   styleUrl: './dialog-actions.component.scss'
 })
-export class DialogActions {}
+export class DialogActions {
+  @Input() moduleName = '';
+  @Input() formID = '';
+  @Input() isCreateMode = false;
+  @Input() buttonText = '';
+  @Input() buttonIcon = 'assets/images/common/white-file-plus.svg';
+}
