@@ -5,7 +5,7 @@
   </div>
 
   <div class="--right">
-    @if (!isCreateMode) {
+    @if (dialogType === 'detail' || dialogType === 'edit') {
       <div>
         <p class="text-end">Created: {{ formHeader.created_date | date }}</p>
         <p class="text-end">Updated: {{ formHeader.update_date | date }}</p>
@@ -15,8 +15,22 @@
     }
 
     <div class="--image-wrapper d-flex align-items-center">
-      @if (!isCreateMode) {
-        <img src="assets/images/common/edit-sm.svg" class="me-3" (click)="onChangeAction()" alt="edit_icon" />
+      @if (dialogType === 'detail' || dialogType === 'edit') {
+        @if (dialogType === 'detail') {
+          <img
+            src="assets/images/common/edit-sm.svg"
+            class="me-3"
+            (click)="onChangeAction()"
+            alt="edit_icon"
+          />
+        } @else {
+          <img
+            src="assets/images/common/editable.svg"
+            class="me-3"
+            (click)="onChangeAction()"
+            alt="edit_icon"
+          />
+        }
       }
 
       <img

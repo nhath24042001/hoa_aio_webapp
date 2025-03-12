@@ -34,7 +34,7 @@ export class DynamicDialog extends BaseComponent implements OnInit {
   formGroup!: FormGroup;
 
   get isCreateMode() {
-    return this.dialogType === 'create';
+    return this.dialogType === 'create' || this.dialogType === 'edit';
   }
 
   get formTitle() {
@@ -64,6 +64,6 @@ export class DynamicDialog extends BaseComponent implements OnInit {
   }
 
   changeAction() {
-    this.dialogType = 'create';
+    this.dialogType = this.dialogType === 'detail' ? 'edit' : 'detail';
   }
 }

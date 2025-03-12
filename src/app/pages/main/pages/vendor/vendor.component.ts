@@ -91,7 +91,7 @@ export class VendorComponent {
       modal: true,
       width: '1000px',
       data: {
-        type: 'edit',
+        type: 'detail',
         data: {
           title: 'AB Services Co.',
           created_date: '2/2/2021',

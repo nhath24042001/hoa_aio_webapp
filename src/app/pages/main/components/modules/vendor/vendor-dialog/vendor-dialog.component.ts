@@ -149,7 +149,7 @@ export class VendorDialog {
     this.data = config.data;
     this.type = this.data.type;
 
-    if (this.type === 'edit') {
+    if (this.type !== 'create') {
       this.list_columns = this.list_columns.filter((col) => col.field !== 'document');
       this.list_columns.unshift({
         icon: 'loading',

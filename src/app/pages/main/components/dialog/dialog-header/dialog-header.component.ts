@@ -13,7 +13,7 @@ export class DialogHeader {
   @Input() formHeader: any;
   @Input() currentMode: string = '';
   @Input() title: string = '';
-  @Input() isCreateMode: boolean = false;
+  @Input() dialogType: string = '';
   @Output() closeDialog = new EventEmitter<void>();
   @Output() changeAction = new EventEmitter<void>();
 
@@ -21,7 +21,7 @@ export class DialogHeader {
 
   get icon() {
     const basePath = `assets/images/${this.currentMode}/`;
-    return this.isCreateMode
+    return this.dialogType === 'create'
       ? `${basePath}${this.iconCreate}.svg`
       : `${basePath}${this.iconEdit}.svg`;
   }
