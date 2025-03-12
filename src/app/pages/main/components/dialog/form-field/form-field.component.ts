@@ -6,9 +6,11 @@ import { DatePipe } from '@angular/common';
 import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 
+import { InputFile } from '~/components/shared/input-file/input-file.component';
+
 @Component({
   selector: 'app-form-field',
-  imports: [SelectModule, InputTextModule, DatePicker, DatePipe, FormsModule],
+  imports: [SelectModule, InputTextModule, DatePicker, DatePipe, FormsModule, InputFile],
   templateUrl: './form-field.component.html',
   styleUrl: './form-field.component.scss',
   providers: [
@@ -25,7 +27,7 @@ export class FormField {
   @Input() type = '';
   @Input() field = '';
   @Input() width: string | undefined = '';
-  @Input() placeholder: string | undefined = '';
+  @Input() placeholder: string = '';
   @Input() options: any[] | undefined = [];
   @Input() value: any = '';
   @Input() currentMode = '';

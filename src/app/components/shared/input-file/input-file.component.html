@@ -1,0 +1,16 @@
+<div
+  class="--file-upload-container w-100 d-flex flex-column align-items-center"
+  [class]="{ '--disabled': disabled }"
+>
+  <label class="--upload-label d-flex align-items-center gap-2">
+    @if (fileName) {
+      <span>{{ fileName }}</span>
+    } @else {
+      <div class="d-flex align-items-center">
+        <img [src]="'assets/images/' + currentMode + '/upload-cloud.svg'" class="me-2" alt="Upload File" />
+        <span class="--placeholder">{{ placeholder }}</span>
+      </div>
+    }
+    <input type="file" (change)="onFileSelected($event)" />
+  </label>
+</div>

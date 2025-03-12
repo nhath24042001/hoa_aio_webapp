@@ -20,23 +20,29 @@
           [(ngModel)]="formControl"
         />
       }
-      @case ('input') {
-        <input
-          type="text"
-          variant="filled"
-          pInputText
-          [placeholder]="placeholder"
-          class="flex-fill"
-          [(ngModel)]="formControl"
-        />
-      }
-      @default {
+      @case ('date') {
         <p-datepicker
           [placeholder]="placeholder"
           showIcon
           iconDisplay="input"
           class="flex-fill"
           variant="filled"
+          [(ngModel)]="formControl"
+        />
+      }
+      @case ('file') {
+        <div class="flex-fill">
+          <app-input-file [placeholder]="placeholder"></app-input-file>
+        </div>
+      }
+
+      @default {
+        <input
+          type="text"
+          variant="filled"
+          pInputText
+          [placeholder]="placeholder"
+          class="flex-fill"
           [(ngModel)]="formControl"
         />
       }
