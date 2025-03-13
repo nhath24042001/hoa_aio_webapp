@@ -19,6 +19,7 @@ import { ThemeService } from '~/services/theme.service';
 export class InputFile extends BaseComponent {
   @Input() disabled = false;
   @Input() placeholder = '';
+  @Input() icon: string | undefined = '';
   @Output() fileSelected = new EventEmitter<File | null>();
 
   fileName: string | null = null;

@@ -7,7 +7,19 @@
       <span>{{ fileName }}</span>
     } @else {
       <div class="d-flex align-items-center">
-        <img [src]="'assets/images/' + currentMode + '/upload-cloud.svg'" class="me-2" alt="Upload File" />
+        @if (icon) {
+          <img
+            [src]="'assets/images/' + currentMode + '/' + icon + '.svg'"
+            class="me-2"
+            alt="upload_file"
+          />
+        } @else {
+          <img
+            [src]="'assets/images/' + currentMode + '/upload-cloud.svg'"
+            class="me-2"
+            alt="upload_file"
+          />
+        }
         <span class="--placeholder">{{ placeholder }}</span>
       </div>
     }

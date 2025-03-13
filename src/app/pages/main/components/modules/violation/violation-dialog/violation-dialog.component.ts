@@ -96,6 +96,7 @@ export class ViolationDialog {
       label: 'Letter to owner',
       type: 'file',
       position: 'left',
+      customIcon: 'mail-plus-2',
       placeholder: 'Write a letter'
     },
     {

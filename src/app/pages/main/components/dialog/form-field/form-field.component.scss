@@ -3,3 +3,8 @@
   height: 60px !important;
   object-fit: cover;
 }
+
+::ng-deep .p-select,
+::ng-deep .p-inputtext {
+  background: var(--input-custom) !important;
+}

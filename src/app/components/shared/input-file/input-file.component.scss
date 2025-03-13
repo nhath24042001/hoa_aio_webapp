@@ -1,9 +1,9 @@
 .--file-upload-container {
   cursor: pointer;
-  background: #F8FAFB;
+  background: var(--input-custom);
   padding: 5px 10px;
   border-radius: 30px;
-  border: 1px solid #BEA2FF;
+  border: 1px solid var(--border-color);
 
   .--upload-label {
     cursor: pointer;

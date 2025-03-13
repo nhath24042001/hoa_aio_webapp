@@ -38,6 +38,7 @@ export class FormField implements OnInit {
   @Input() width: string | undefined = '';
   @Input() placeholder: string = '';
   @Input() options: any[] | undefined = [];
+  @Input() customIcon: string | undefined = '';
   @Input() value: any = '';
   @Input() currentMode = '';
   @Input() dialogType = '';
