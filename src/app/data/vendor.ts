@@ -210,3 +210,34 @@ export const violationActions = [
     className: '--delete-action --pointer'
   }
 ];
+
+export const violationType = [
+  {
+    name: 'Noise',
+    code: 'noise'
+  },
+  {
+    name: 'Landscaping',
+    code: 'landscaping'
+  },
+  {
+    name: 'Pets',
+    code: 'pets'
+  },
+  {
+    name: 'Garbage',
+    code: 'garbage'
+  },
+  {
+    name: 'Illegal Rentals',
+    code: 'illegal_rentals'
+  },
+  {
+    name: 'Vehicles',
+    code: 'vehicles'
+  },
+  {
+    name: 'Design Change',
+    code: 'design_change'
+  }
+];

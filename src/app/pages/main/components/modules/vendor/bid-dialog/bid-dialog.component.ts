@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { DynamicField } from '~/@types';
 import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dynamic-dialog.component';

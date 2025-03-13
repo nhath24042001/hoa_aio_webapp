@@ -14,12 +14,83 @@
           }
         </p-tablist>
 
-        <main-header labelButton="New Violation">
+        <main-header labelButton="New Violation" (addSection)="onOpenCreateDialog()">
           @if (activeTab === '0') {
             <div inner-header>
               <a href="#" class="--link me-3">Download CSV</a>
             </div>
           }
+
+          <div filter-content>
+            <div class="--filter-content p-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <h5>Filters</h5>
+                <span class="--clear-all">Clear all</span>
+              </div>
+
+              <div class="--filter-box mt-2 d-flex align-items-center">
+                <p class="--text-filter">Status</p>
+
+                <div class="d-flex flex-fill">
+                  <p-multi-select
+                    variant="filled"
+                    [options]="violationType"
+                    optionLabel="name"
+                    [maxSelectedLabels]="2"
+                    placeholder="All"
+                    styleClass="flex-fill me-2"
+                  ></p-multi-select>
+                  <img src="assets/images/common/close-circle.svg" alt="close_circle_icon" />
+                </div>
+              </div>
+
+              <div class="mt-2 d-flex align-items-center">
+                <p class="--text-date">Creation date</p>
+                <div class="d-flex align-items-center">
+                  <p-datepicker
+                    [(ngModel)]="filter_object().creation_date.start_date"
+                    variant="filled"
+                    [iconDisplay]="'input'"
+                    [showIcon]="true"
+                    placeholder="Start date"
+                  />
+                  <p class="--normal-text mx-2">to</p>
+                  <p-datepicker
+                    [(ngModel)]="filter_object().creation_date.end_date"
+                    variant="filled"
+                    [iconDisplay]="'input'"
+                    [showIcon]="true"
+                    styleClass="me-2"
+                    placeholder="End date"
+                  />
+                  <img src="assets/images/common/close-circle.svg" alt="close_circle_icon" />
+                </div>
+              </div>
+
+              <div class="mt-2 d-flex align-items-center">
+                <p class="--text-date">Due date</p>
+                <div class="d-flex align-items-center">
+                  <p-datepicker
+                    [(ngModel)]="filter_object().due_date.start_date"
+                    variant="filled"
+                    [iconDisplay]="'input'"
+                    [showIcon]="true"
+                    placeholder="Start date"
+                  />
+                  <p class="--normal-text mx-2">to</p>
+                  <p-datepicker
+                    [(ngModel)]="filter_object().due_date.end_date"
+                    variant="filled"
+                    [iconDisplay]="'input'"
+                    [showIcon]="true"
+                    styleClass="me-2"
+                    placeholder="End date"
+                  />
+                  <img src="assets/images/common/close-circle.svg" alt="close_circle_icon" />
+                </div>
+              </div>
+            </div>
+          </div>
         </main-header>
       </div>
 

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TabsModule } from 'primeng/tabs';
-import { PopoverModule } from 'ngx-bootstrap/popover';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { FormsModule } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
@@ -28,7 +27,6 @@ import { ToastService } from '~/services/toast.service';
     EmptyContentComponent,
     ButtonPrimary,
     MainHeader,
-    PopoverModule,
     Table
   ],
   templateUrl: './task-management.component.html',
