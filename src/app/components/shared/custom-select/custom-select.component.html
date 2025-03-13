@@ -1,0 +1,19 @@
+<p-select
+  [options]="options"
+  [(ngModel)]="formControl"
+  optionLabel="name"
+  [styleClass]="classField()"
+  (onChange)="onStatusChange($event)"
+>
+  <ng-template #selectedItem let-selectedOption>
+    @if (formControl) {
+      <div>{{ formControl.name }}</div>
+    }
+  </ng-template>
+
+  <ng-template let-country #item>
+    <div [classList]="`--custom-${country.code}`">
+      <div>{{ country.name }}</div>
+    </div>
+  </ng-template>
+</p-select>

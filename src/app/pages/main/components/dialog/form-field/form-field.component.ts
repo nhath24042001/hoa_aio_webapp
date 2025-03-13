@@ -7,10 +7,19 @@ import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 
 import { InputFile } from '~/components/shared/input-file/input-file.component';
+import { CustomSelect } from '~/components/shared/custom-select/custom-select.component';
 
 @Component({
   selector: 'app-form-field',
-  imports: [SelectModule, InputTextModule, DatePicker, DatePipe, FormsModule, InputFile],
+  imports: [
+    SelectModule,
+    InputTextModule,
+    DatePicker,
+    DatePipe,
+    FormsModule,
+    InputFile,
+    CustomSelect
+  ],
   templateUrl: './form-field.component.html',
   styleUrl: './form-field.component.scss',
   providers: [
