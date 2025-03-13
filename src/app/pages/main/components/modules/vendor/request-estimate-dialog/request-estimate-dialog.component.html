@@ -1,1 +1,14 @@
-<p>request-estimate-dialog works!</p>
+<app-dynamic-dialog
+  [dialogType]="type"
+  iconCreate="finger-plus"
+  iconEdit="coins-stacked"
+  title="Request Title"
+  [dialogTitle]="title"
+  [formFields]="list_columns"
+  [list_textarea]="list_textarea"
+  buttonText="Request Estimate"
+  buttonIcon="assets/images/common/white-help-hexagon.svg"
+  formID="4567890"
+  moduleName="Bid:"
+  [formData]="formData"
+></app-dynamic-dialog>
