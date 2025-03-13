@@ -60,6 +60,12 @@
               <span> {{ row[header.field] | date: 'dd MMM, yyyy' }} </span>
             </td>
           }
+
+          @case ('due_date') {
+            <td>
+              <span> {{ row[header.field] | date: 'dd MMM, yyyy' }} </span>
+            </td>
+          }
           @case ('action') {
             <td>
               <div class="dot-icon --pointer" (click)="op.toggle($event)">

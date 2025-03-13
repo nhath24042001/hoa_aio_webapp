@@ -1,58 +1,48 @@
 @if (isActive) {
   <div class="--vendor-wrapper p-4">
-    <div class="--task-header">
-      <p-tabs [value]="activeTab" (valueChange)="onTabChange($event)">
-        <div class="d-flex justify-content-between align-items-center">
-          <p-tablist>
-            @for (tab of tabs; track $index) {
-              <p-tab value="{{ $index }}">
-                <img
-                  [src]="activeTab === $index.toString() ? tab.activeImg : tab.img"
-                  alt="tab_img"
-                />
-                <div>{{ tab.name }}</div>
-              </p-tab>
-            }
-          </p-tablist>
+    <p-tabs [value]="activeTab" (valueChange)="onTabChange($event)">
+      <div class="d-flex justify-content-between align-items-center">
+        <p-tablist>
+          @for (tab of tabs; track $index) {
+            <p-tab value="{{ $index }}">
+              <img
+                [src]="activeTab === $index.toString() ? tab.activeImg : tab.img"
+                alt="tab_img"
+              />
+              <div>{{ tab.name }}</div>
+            </p-tab>
+          }
+        </p-tablist>
 
-          <main-header
-            [labelButton]="buttonText"
-            [isShowFilter]="false"
-            (searchChanged)="onSearch()"
-            (addSection)="onOpenCreate()"
-          >
-            <div inner-header>
-              <a href="#" class="--link me-3">Download CSV</a>
-            </div>
-          </main-header>
-        </div>
+        <main-header
+          [labelButton]="buttonText"
+          [isShowFilter]="false"
+          (searchChanged)="onSearch()"
+          (addSection)="onOpenCreate()"
+        >
+          <div inner-header>
+            <a href="#" class="--link me-3">Download CSV</a>
+          </div>
+        </main-header>
+      </div>
 
-        <p-tabpanels>
-          <p-tabpanel value="0">
-            <app-table
-              [headers]="companyHeader"
-              [data]="companyList"
-              [actions]="actions"
-              (actionTriggered)="onAction($event)"
-            ></app-table>
-          </p-tabpanel>
-          <p-tabpanel value="1">
-            <app-table
-              [headers]="bidHeader"
-              [data]="bidList"
-              [actions]="actions"
-            ></app-table>
-          </p-tabpanel>
-          <p-tabpanel value="2">
-            <app-table
-              [headers]="bidHeader"
-              [data]="estimateList"
-              [actions]="actions"
-            ></app-table
-          ></p-tabpanel>
-        </p-tabpanels>
-      </p-tabs>
-    </div>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <app-table
+            [headers]="companyHeader"
+            [data]="companyList"
+            [actions]="actions"
+            (actionTriggered)="onAction($event)"
+          ></app-table>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <app-table [headers]="bidHeader" [data]="bidList" [actions]="actions"></app-table>
+        </p-tabpanel>
+        <p-tabpanel value="2">
+          <app-table [headers]="bidHeader" [data]="estimateList" [actions]="actions"></app-table
+        ></p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
   </div>
 } @else {
   <div class="--content-section p-4 d-flex flex-column">

@@ -1,1 +1,64 @@
-<p>violation works!</p>
+@if (isActive) {
+  <div class="p-4">
+    <p-tabs [value]="activeTab" (valueChange)="onTabChange($event)">
+      <div class="d-flex justify-content-between align-items-center">
+        <p-tablist>
+          @for (tab of tabs; track $index) {
+            <p-tab value="{{ $index }}">
+              <img
+                [src]="activeTab === $index.toString() ? tab.activeImg : tab.img"
+                alt="tab_img"
+              />
+              <div>{{ tab.name }}</div>
+            </p-tab>
+          }
+        </p-tablist>
+
+        <main-header labelButton="New Violation">
+          @if (activeTab === '0') {
+            <div inner-header>
+              <a href="#" class="--link me-3">Download CSV</a>
+            </div>
+          }
+        </main-header>
+      </div>
+
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <app-table
+            [headers]="violationHeader"
+            [data]="openViolationList"
+            [actions]="actions"
+            (actionTriggered)="onAction($event)"
+          ></app-table>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <app-table
+            [headers]="violationHeader"
+            [data]="closedViolationList"
+            [actions]="actions"
+            (actionTriggered)="onAction($event)"
+          ></app-table>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </div>
+} @else {
+  <div class="--content-section p-4 d-flex flex-column">
+    <div class="d-flex justify-content-end">
+      <button-primary
+        icon="assets/images/common/white-plus-solid.svg"
+        label="New Violation"
+        [isPrimaryActive]="true"
+      ></button-primary>
+    </div>
+    <div class="flex-fill d-flex justify-content-center align-items-center">
+      <app-empty-content
+        icon="assets/images/light/annotation-violation-lg.svg"
+        iconDark="assets/images/dark/annotation-violation-lg.svg"
+        title="There are no violation reports to show yet."
+        createText="Create a new violation report"
+      ></app-empty-content>
+    </div>
+  </div>
+}

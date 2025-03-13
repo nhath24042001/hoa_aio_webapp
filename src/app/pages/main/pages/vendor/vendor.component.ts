@@ -11,7 +11,7 @@ import { BidDialog } from '~/pages/main/components/modules/vendor/bid-dialog/bid
 import { RequestEstimateDialog } from '~/pages/main/components/modules/vendor/request-estimate-dialog/request-estimate-dialog.component';
 
 import { ToastService } from '~/services/toast.service';
-import { tabHeader } from '~/constants/tab';
+import { vendorTabHeader } from '~/constants/tab';
 import {
   bidHeaders,
   bidList,
@@ -34,7 +34,7 @@ export class VendorComponent {
   role = 'vendor';
   activeTab = '0';
 
-  tabs = tabHeader;
+  tabs = vendorTabHeader;
   companyList = companyList;
   companyHeader = companyHeaders;
   bidHeader = bidHeaders;

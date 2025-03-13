@@ -154,7 +154,7 @@ ul li {
 
 .--truncate {
   display: -webkit-box;
-  line-clamp: 1;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -185,12 +185,18 @@ ul li {
 .--urgent,
 .--new,
 .--draft,
-.--clarification_requested {
+.--clarification_requested,
+.--first_notice {
   background: #FFB9BF;
   color: #FF515F;
   border: 1px solid #FF515F;
 }
 
+.--second_notice {
+  background: #FF858F;
+  color: #880B15;
+  border: 1px solid #880B15;
+}
 .--important {
   background: #F3EEFF;
   color: #6938DA;
@@ -213,7 +219,8 @@ ul li {
 }
 
 .--assigned,
-.--under_review {
+.--under_review,
+.--hearing {
   background: #D1F0FA;
   color: #116B97;
   border: 1px solid #116B97;
@@ -229,7 +236,8 @@ ul li {
 .--resolved,
 .--approved,
 .--awarded,
-.--replied {
+.--replied,
+.--closed {
   background: #CFFF9C;
   color: #4E9700;
   border: 1px solid #4E9700;

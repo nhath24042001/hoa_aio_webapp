@@ -183,3 +183,30 @@ export const vendorActions = [
     className: '--delete-action --pointer'
   }
 ];
+
+export const violationActions = [
+  {
+    label: 'Edit',
+    icon: 'edit',
+    actionKey: 'edit',
+    className: '--pointer mb-3'
+  },
+  {
+    label: 'Send Letter to Owner',
+    icon: 'mail-plus',
+    actionKey: 'send',
+    className: '--pointer mb-3'
+  },
+  {
+    label: 'Close',
+    icon: 'violation-closed',
+    actionKey: 'mask_as_pending',
+    className: '--pointer mb-3'
+  },
+  {
+    label: 'Delete',
+    icon: 'trash',
+    actionKey: 'delete',
+    className: '--delete-action --pointer'
+  }
+];
