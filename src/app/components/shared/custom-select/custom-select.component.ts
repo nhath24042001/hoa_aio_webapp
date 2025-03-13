@@ -1,8 +1,9 @@
 import { Component, input, Input, OnInit, signal } from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SelectModule } from 'primeng/select';
-import { NgModel } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { BaseComponent } from '~/components/common/base/base.component';
+import { ThemeService } from '~/services/theme.service';
 
 @Component({
   selector: 'app-custom-select',
@@ -17,7 +18,7 @@ import { FormsModule } from '@angular/forms';
     }
   ]
 })
-export class CustomSelect implements OnInit {
+export class CustomSelect extends BaseComponent implements OnInit {
   @Input({ required: true }) options: any[] | undefined = [];
   @Input() formControl!: FormControl | any;
   dialogType = input('');
@@ -29,7 +30,12 @@ export class CustomSelect implements OnInit {
     this.classField.update(() => `--${event.value.code}`);
   }
 
-  ngOnInit(): void {
+  constructor(themeService: ThemeService) {
+    super(themeService);
+  }
+
+  override ngOnInit(): void {
+    super.ngOnInit();
     if (this.field() === 'status') {
       if (this.options && this.options.length > 0) {
         this.formControl = this.options[0];

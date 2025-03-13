@@ -25,8 +25,7 @@ import { Action } from '~/enums';
     Table,
     MultiSelectModule,
     DatePicker,
-    FormsModule,
-    ViolationDialog
+    FormsModule
   ],
   templateUrl: './violation.component.html',
   styleUrl: './violation.component.scss'

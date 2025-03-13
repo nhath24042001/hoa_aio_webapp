@@ -1,8 +1,9 @@
 ::ng-deep .p-select.--new,
-::ng-deep .p-select.--first-notice,
+::ng-deep .p-select.--first_notice,
 ::ng-deep .p-select.--draft {
   background: #FF515F !important;
   border-radius: 10px;
+  border: 0;
 
   span,
   svg {
@@ -17,6 +18,7 @@
 ::ng-deep .p-select.--accepted {
   background: #55C68D !important;
   border-radius: 10px;
+  border: 0;
 
   span,
   svg {
@@ -32,6 +34,7 @@
 ::ng-deep .p-select.--open {
   background: #EFA00B !important;
   border-radius: 10px;
+  border: 0;
 
   span,
   svg {
@@ -46,6 +49,7 @@
 ::ng-deep .p-select.--approved {
   background: #4E9700 !important;
   border-radius: 10px;
+  border: 0;
 
   span,
   svg {
@@ -57,9 +61,11 @@
   }
 }
 
-::ng-deep .p-select.--awarded {
+::ng-deep .p-select.--awarded,
+::ng-deep .p-select.--closed {
   background: #74DB07 !important;
   border-radius: 10px;
+  border: 0;
 
   span,
   svg {
@@ -71,14 +77,44 @@
   }
 }
 
-::ng-deep .p-select-option-selected {
-  background: #6938DA !important;
-  color: #FFF !important;
+::ng-deep .p-select.--hearing {
+  background: #33CFFF !important;
+  border-radius: 10px;
+  border: 0;
+
+  span,
+  svg {
+    color: hsl(0, 0%, 100%) !important;
+  }
+
+  .p-select-label {
+    padding: 4px 12px !important;
+  }
 }
 
-::ng-deep .p-select-option:hover {
-  background: #6938DA !important;
-  color: #FFF !important;
+::ng-deep .p-select.--second_notice {
+  background: #CC2936 !important;
+  border-radius: 10px;
+  border: 0;
+
+  span,
+  svg {
+    color: hsl(0, 0%, 100%) !important;
+  }
+
+  .p-select-label {
+    padding: 4px 12px !important;
+  }
+}
+
+// ::ng-deep .p-select-option-selected:hover,
+// ::ng-deep .p-select-option
+::ng-deep .p-select-option-selected {
+  background: var(--background) !important;
+
+    div {
+      color: var(--const-color);
+    }
 }
 
 ::ng-deep .p-select-label {
@@ -87,4 +123,9 @@
 
 ::ng-deep .p-select-list {
   padding: 0;
+}
+
+::ng-deep .p-select {
+  width: 160px;
+
 }

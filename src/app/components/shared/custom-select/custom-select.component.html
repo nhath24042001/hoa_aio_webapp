@@ -6,13 +6,16 @@
   (onChange)="onStatusChange($event)"
 >
   <ng-template #selectedItem let-selectedOption>
-    @if (formControl) {
-      <div>{{ formControl.name }}</div>
-    }
+    <div>{{ formControl.name }}</div>
   </ng-template>
 
   <ng-template let-country #item>
-    <div [classList]="`--custom-${country.code}`">
+    <div [classList]="`--custom-${country.code} d-flex align-items-center `">
+      <img
+        [src]="'assets/images/' + currentMode + '/' + country.icon + '.svg'"
+        class="me-2"
+        alt="list_icon"
+      />
       <div>{{ country.name }}</div>
     </div>
   </ng-template>

@@ -34,7 +34,7 @@ export interface DynamicField {
   label: string;
   position: string;
   placeholder: string;
-  list?: { name: string; code: string }[];
+  list?: { name: string; code: string; icon?: string }[];
   value?: string;
   required?: boolean;
   disabled?: boolean;

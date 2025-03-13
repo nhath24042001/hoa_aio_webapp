@@ -24,19 +24,23 @@ export class ViolationDialog {
       list: [
         {
           name: 'First notice',
-          code: 'first_notice'
+          code: 'first_notice',
+          icon: 'violation-first'
         },
         {
           name: 'Second notice',
-          code: 'second_notice'
+          code: 'second_notice',
+          icon: 'violation-second'
         },
         {
           name: 'Hearing',
-          code: 'hearing'
+          code: 'hearing',
+          icon: 'hearing-2'
         },
         {
           name: 'Closed',
-          code: 'closed'
+          code: 'closed',
+          icon: 'violation-closed'
         }
       ]
     },

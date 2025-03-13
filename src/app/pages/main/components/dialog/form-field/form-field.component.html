@@ -43,6 +43,13 @@
           <app-input-file [placeholder]="placeholder"></app-input-file>
         </div>
       }
+      @case ('custom-select') {
+        <app-custom-select
+          [options]="options"
+          [field]="field"
+          [dialogType]="dialogType"
+        ></app-custom-select>
+      }
 
       @default {
         <input
