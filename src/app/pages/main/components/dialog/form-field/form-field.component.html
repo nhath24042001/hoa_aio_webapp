@@ -2,7 +2,7 @@
   <img
     [src]="'assets/images/' + currentMode + '/' + icon + '.svg'"
     [alt]="icon + '_icon'"
-    class="me-3"
+    class="me-2"
   />
   <p [style.width]="isCreateMode ? width : ''" [class.--detail]="!isCreateMode" class="--text-box">
     {{ label }}
@@ -11,14 +11,22 @@
   @if (isCreateMode) {
     @switch (type) {
       @case ('select') {
-        <p-select
-          [options]="options"
-          variant="filled"
-          optionLabel="name"
-          [placeholder]="placeholder"
-          styleClass="flex-fill"
-          [(ngModel)]="formControl"
-        />
+        @if (field === 'status') {
+          <app-custom-select
+            [options]="options"
+            [field]="field"
+            [dialogType]="dialogType"
+          ></app-custom-select>
+        } @else {
+          <p-select
+            [options]="options"
+            variant="filled"
+            optionLabel="name"
+            [placeholder]="placeholder"
+            styleClass="flex-fill"
+            [(ngModel)]="formControl"
+          />
+        }
       }
       @case ('date') {
         <p-datepicker

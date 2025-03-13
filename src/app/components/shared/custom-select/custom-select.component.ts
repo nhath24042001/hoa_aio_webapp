@@ -30,7 +30,7 @@ export class CustomSelect implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.dialogType() !== 'create' && this.field() === 'status') {
+    if (this.field() === 'status') {
       if (this.options && this.options.length > 0) {
         this.formControl = this.options[0];
         this.classField.update(() => `--${this.options![0].code}`);
