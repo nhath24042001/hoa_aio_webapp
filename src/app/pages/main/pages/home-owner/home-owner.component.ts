@@ -1,5 +1,6 @@
 import { Component, computed, signal } from '@angular/core';
 import { TabsModule } from 'primeng/tabs';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { homeOwnerTabHeader } from '~/constants/tab';
 import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
@@ -13,6 +14,8 @@ import {
 } from '~/data/home-owner';
 import { Table } from '~/pages/main/components/shared/table/table.component';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
+import { NewProperty } from '~/pages/main/components/modules/home-owner/new-property/new-property.component';
+import { NewOwner } from '~/pages/main/components/modules/home-owner/new-owner/new-owner.component';
 
 @Component({
   selector: 'app-home-owner',
@@ -21,6 +24,7 @@ import { EmptyContentComponent } from '~/pages/main/components/shared/empty-cont
   styleUrl: './home-owner.component.scss'
 })
 export class HomeOwnerComponent {
+  ref: DynamicDialogRef | undefined;
   activeTab = signal('0');
   tabs = homeOwnerTabHeader;
   headers = propertiesHeader;
@@ -33,7 +37,18 @@ export class HomeOwnerComponent {
     return this.activeTab() === '0' ? 'New Property' : 'New Home Owner';
   });
 
+  constructor(public dialogService: DialogService) {}
+
   onTabChange(tabIndex: number | string) {
     this.activeTab.set(tabIndex.toString());
+  }
+
+  onAddSection() {
+    const createDialog = this.activeTab() === '0' ? NewProperty : NewOwner;
+
+    this.ref = this.dialogService.open(createDialog, {
+      modal: true,
+      width: '1100px'
+    });
   }
 }

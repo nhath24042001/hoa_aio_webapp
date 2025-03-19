@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 
 import { InputFile } from '~/components/shared/input-file/input-file.component';
 import { CustomSelect } from '~/components/shared/custom-select/custom-select.component';
+import { InputPhone } from '~/components/shared/input-phone/input-phone.component';
 
 @Component({
   selector: 'app-form-field',
@@ -18,7 +19,8 @@ import { CustomSelect } from '~/components/shared/custom-select/custom-select.co
     DatePipe,
     FormsModule,
     InputFile,
-    CustomSelect
+    CustomSelect,
+    InputPhone
   ],
   templateUrl: './form-field.component.html',
   styleUrl: './form-field.component.scss',

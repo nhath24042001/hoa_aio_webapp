@@ -50,6 +50,9 @@
           [dialogType]="dialogType"
         ></app-custom-select>
       }
+      @case ('phone') {
+        <app-input-phone [placeholder]="placeholder"></app-input-phone>
+      }
 
       @default {
         <input

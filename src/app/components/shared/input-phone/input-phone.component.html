@@ -1,0 +1,29 @@
+<div class="--custom-input-phone d-flex items-center gap-2">
+  <p-select [options]="countries" optionLabel="name" [(ngModel)]="selectedCountry">
+    <ng-template #selectedItem let-selectedOption>
+      @if (selectedOption) {
+        <div class="d-flex items-center gap-2">
+          <img
+            [src]="selectedOption.flag"
+            style="width: 30px; height: 20px; object-fit: cover"
+            alt="flag_icon"
+          />
+          <div>{{ selectedOption.dialCode }}</div>
+        </div>
+      }
+    </ng-template>
+    <ng-template let-country #item>
+      <div class="d-flex items-center gap-2">
+        <img
+          [src]="country.flag"
+          [class]="'flag flag-' + country.code.toLowerCase()"
+          style="width: 30px; height: 20px; object-fit: cover"
+        />
+        <div>({{ country.dialCode }})</div>
+        <div>{{ country.name }}</div>
+      </div>
+    </ng-template>
+  </p-select>
+
+  <p-inputmask mask="999-999-999" [placeholder]="placeholder()" />
+</div>

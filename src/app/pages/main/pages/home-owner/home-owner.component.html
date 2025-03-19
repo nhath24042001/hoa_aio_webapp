@@ -13,7 +13,7 @@
         }
       </p-tablist>
 
-      <main-header [labelButton]="labelButton()">
+      <main-header [labelButton]="labelButton()" (addSection)="onAddSection()">
         <div inner-header>
           <a href="#" class="--link me-3">Download CSV</a>
         </div>

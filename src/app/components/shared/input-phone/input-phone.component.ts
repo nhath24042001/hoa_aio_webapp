@@ -1,0 +1,44 @@
+import { Component, input, OnInit } from '@angular/core';
+import { orderBy } from 'lodash-es';
+import { AppService } from '~/services/app.service';
+import { SelectModule } from 'primeng/select';
+import { InputMaskModule } from 'primeng/inputmask';
+import { FormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-input-phone',
+  imports: [SelectModule, InputMaskModule, FormsModule],
+  templateUrl: './input-phone.component.html',
+  styleUrl: './input-phone.component.scss'
+})
+export class InputPhone implements OnInit {
+  placeholder = input('');
+
+  constructor(private appService: AppService) {}
+  countries: any[] = [];
+  selectedCountry: any;
+
+  ngOnInit(): void {
+    this.getCountryList();
+  }
+
+  getCountryList() {
+    this.appService.getListCountries().subscribe((res) => {
+      let countryList = res.map((country: any) => ({
+        name: country.name.common,
+        dialCode: country.idd.root + (country.idd.suffixes ? country.idd.suffixes[0] : ''),
+        flag: country.flags.png,
+        code: country.cca2
+      }));
+      this.countries = orderBy(
+        countryList,
+        (country) => parseInt(country.dialCode.replace('+', ''), 10),
+        'asc'
+      );
+
+      if (this.countries.length) {
+        this.selectedCountry = this.countries[0];
+      }
+    });
+  }
+}

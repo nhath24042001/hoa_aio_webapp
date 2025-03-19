@@ -1,0 +1,12 @@
+.--custom-input-phone {
+  background: var(--custom-input-bg) !important;
+  border: 1px solid #DFE1E7;
+  border-radius: 10px;
+  min-width: 330px;
+
+  ::ng-deep .p-select, ::ng-deep .p-inputmask {
+    background: transparent !important;
+    border: none;
+    box-shadow: none;
+  }
+}
