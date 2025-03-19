@@ -1,1 +1,68 @@
-<p>home-owner works!</p>
+<div class="p-4">
+  <p-tabs [value]="activeTab()" (valueChange)="onTabChange($event)">
+    <div class="d-flex justify-content-between align-items-center">
+      <p-tablist>
+        @for (tab of tabs; track $index) {
+          <p-tab value="{{ $index }}">
+            <img
+              [src]="activeTab() === $index.toString() ? tab.activeImg : tab.img"
+              alt="tab_img"
+            />
+            <div>{{ tab.name }}</div>
+          </p-tab>
+        }
+      </p-tablist>
+
+      <main-header [labelButton]="labelButton()">
+        <div inner-header>
+          <a href="#" class="--link me-3">Download CSV</a>
+        </div>
+      </main-header>
+    </div>
+
+    <p-tabpanels>
+      <p-tabpanel value="0">
+        @if (data.length) {
+          <app-table
+            [headers]="headers"
+            [data]="data"
+            [actions]="actions"
+            [showPagination]="true"
+          ></app-table>
+        } @else {
+          <div class="--empty-content">
+            <app-empty-content
+              icon="assets/images/light/home-lg.svg"
+              iconDark="assets/images/dark/home-lg.svg"
+              title="There are no properties yet."
+              createText="Add a new property"
+              moduleName="properties"
+              [showUpload]="true"
+            ></app-empty-content>
+          </div>
+        }
+      </p-tabpanel>
+      <p-tabpanel value="1">
+        @if (homeOwnerList.length) {
+          <app-table
+            [headers]="homeOwnerHeader"
+            [data]="homeOwnerList"
+            [actions]="actions"
+            [showPagination]="true"
+          ></app-table>
+        } @else {
+          <div class="--empty-content">
+            <app-empty-content
+              icon="assets/images/light/home-owner-lg.svg"
+              iconDark="assets/images/dark/home-owner-lg.svg"
+              title="There are no home owners yet."
+              createText="Add a new home owner"
+              moduleName="home owners"
+              [showUpload]="true"
+            ></app-empty-content>
+          </div>
+        }
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
+</div>

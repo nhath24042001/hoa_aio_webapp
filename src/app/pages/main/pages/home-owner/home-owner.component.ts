@@ -1,11 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
+import { TabsModule } from 'primeng/tabs';
+
+import { homeOwnerTabHeader } from '~/constants/tab';
+import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
+import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
+import {
+  homeOwnerHeader,
+  homeOwnerList,
+  propertiesActions,
+  propertiesHeader,
+  propertiesList
+} from '~/data/home-owner';
+import { Table } from '~/pages/main/components/shared/table/table.component';
+import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 
 @Component({
   selector: 'app-home-owner',
-  imports: [],
+  imports: [TabsModule, MainHeader, Table, EmptyContentComponent],
   templateUrl: './home-owner.component.html',
   styleUrl: './home-owner.component.scss'
 })
 export class HomeOwnerComponent {
+  activeTab = signal('0');
+  tabs = homeOwnerTabHeader;
+  headers = propertiesHeader;
+  data = propertiesList;
+  actions = propertiesActions;
+  homeOwnerHeader = homeOwnerHeader;
+  homeOwnerList = homeOwnerList;
 
+  labelButton = computed(() => {
+    return this.activeTab() === '0' ? 'New Property' : 'New Home Owner';
+  });
+
+  onTabChange(tabIndex: number | string) {
+    this.activeTab.set(tabIndex.toString());
+  }
 }

@@ -60,20 +60,9 @@
           iconDark="assets/images/dark/truck-lg.svg"
           title="There are no vendors to show yet."
           createText="Create a new vendor"
+          moduleName="vendors"
+          [showUpload]="true"
         >
-          <div extra-content class="mt-3">
-            <p>
-              To add <strong>vendors</strong> from an existing list
-              <a class="--link">Download this CSV Template</a> update the details and upload
-            </p>
-
-            <div class="d-flex justify-content-center align-items-center mt-2">
-              <div class="--upload-wrapper d-flex align-items-center">
-                <img src="assets/images/common/upload-cloud.svg" class="me-2" alt="upload_img" />
-                <p>Upload vendors list (click or drag file here)</p>
-              </div>
-            </div>
-          </div>
         </app-empty-content>
       } @else {
         <app-empty-content

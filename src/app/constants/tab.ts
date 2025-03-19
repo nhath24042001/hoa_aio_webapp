@@ -28,3 +28,16 @@ export const violationTabHeader = [
     activeImg: 'assets/images/common/violation-closed-active.svg'
   }
 ];
+
+export const homeOwnerTabHeader = [
+  {
+    name: 'Properties',
+    img: 'assets/images/common/gray-home.svg',
+    activeImg: 'assets/images/common/active-home.svg'
+  },
+  {
+    name: 'Home Owner',
+    img: 'assets/images/common/home-owner.svg',
+    activeImg: 'assets/images/common/active-home-owner.svg'
+  }
+];

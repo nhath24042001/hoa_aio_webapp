@@ -237,7 +237,8 @@ ul li {
   color: #D1F0FA;
 }
 .--cancelled,
-.--rejected {
+.--rejected,
+.--inactive {
   background: #ECEFF3;
   color: #818898;
   border: 1px solid #818898;
@@ -247,7 +248,8 @@ ul li {
 .--approved,
 .--awarded,
 .--replied,
-.--closed {
+.--closed,
+.--active {
   background: #CFFF9C;
   color: #4E9700;
   border: 1px solid #4E9700;
@@ -288,13 +290,15 @@ ul li {
 }
 
 .--resolved-dark,
-.--approved-dark {
+.--approved-dark,
+.--active-dark {
   background: #4E9700;
   color: #CFFF9C;
   border: 1px solid #CFFF9C;
 }
 
-.--rejected-dark {
+.--rejected-dark,
+.--inactive-dark {
   background: #272835;
   color: #A4ACB9;
   border: 1px solid #A4ACB9;

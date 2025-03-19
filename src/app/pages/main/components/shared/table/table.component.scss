@@ -74,3 +74,7 @@
 ::ng-deep .p-popover::after {
   display: none;
 }
+
+::ng-deep .p-select-option-selected {
+  background: var(--active-primary) !important;
+}
