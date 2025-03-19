@@ -13,6 +13,7 @@ export class EmptyContentComponent extends BaseComponent {
   @Input() iconDark: string = '';
   @Input() title: string = '';
   @Input() createText: string = '';
+  @Input() isShowBtn: boolean = true;
 
   constructor(themeService: ThemeService) {
     super(themeService);

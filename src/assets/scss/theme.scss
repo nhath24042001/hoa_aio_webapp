@@ -23,6 +23,7 @@
   --dialog-title: #{v.$dialog-title-light};
   --dialog-text: #{v.$dialog-text-light};
   --tag-text: #{v.$tag-text-light};
+        --input-color: #{v.$input-bg-light};
 }
 
 .my-app-dark {
@@ -47,4 +48,5 @@
   --dialog-title: #{v.$dialog-title-dark};
   --dialog-text: #{v.$dialog-text-dark};
   --tag-text: #{v.$tag-text-dark};
+    --input-color: #{v.$background-dark};
 }

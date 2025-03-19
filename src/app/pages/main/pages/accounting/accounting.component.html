@@ -1,1 +1,108 @@
-<p>accounting works!</p>
+@if (isActive) {
+  <div class="container-fluid p-4">
+    <div class="row">
+      <div class="col-6">
+        <div class="row h-100">
+          <div class="col-6">
+            <div
+              class="--overview-box d-flex justify-content-center align-items-center flex-column"
+            >
+              <img [src]="'assets/images/' + currentMode + '/scales.svg'" alt="scale_icon" />
+              <h1 class="--stat-heading">$16,564</h1>
+              <h5>Current Balance</h5>
+              <span>Balance Sheet</span>
+            </div>
+          </div>
+          <div class="col-6">
+            <div
+              class="--overview-box d-flex justify-content-center align-items-center flex-column"
+            >
+              <img [src]="'assets/images/' + currentMode + '/overview-3.svg'" alt="overview_icon" />
+              <h1 class="--stat-heading">$864</h1>
+              <h5>Overdue Payments</h5>
+              <span>5 Payments</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <p-select
+          [options]="cities"
+          [(ngModel)]="selectedCity"
+          optionLabel="name"
+          placeholder="Current year"
+          variant="filled"
+          class="mb-3"
+        />
+
+        <div class="row">
+          <div class="col-6">
+            <div
+              class="--overview-box py-3 d-flex justify-content-center align-items-center flex-column"
+            >
+              <img [src]="'assets/images/' + currentMode + '/overview-2.svg'" alt="scale_icon" />
+              <h1 class="--stat-heading">$25,234</h1>
+              <h5>Income</h5>
+            </div>
+          </div>
+          <div class="col-6">
+            <div
+              class="--overview-box d-flex justify-content-center align-items-center flex-column"
+            >
+              <img [src]="'assets/images/' + currentMode + '/scales.svg'" alt="scale_icon" />
+              <h1 class="--stat-heading">$8,543</h1>
+              <h5>Expense</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p-divider></p-divider>
+
+  <div class="--main-header d-flex justify-content-between align-items-center p-4">
+    <div class="d-flex align-items-center">
+      <p-select
+        [options]="cities"
+        [(ngModel)]="selectedCity"
+        optionLabel="name"
+        placeholder="Current year"
+        variant="filled"
+        class="me-3"
+      />
+
+      <p>3 overdue payments</p>
+    </div>
+
+    <div class="d-flex align-items-center">
+      <div class="--search-box d-flex align-items-center me-4">
+        <img src="assets/images/common/search.svg" alt="search_icon" />
+        <input type="text" placeholder="Search" />
+      </div>
+
+      <div
+        class="--filter-box d-flex justify-content-center align-items-center"
+        placement="bottom"
+        triggers="click"
+      >
+        <img src="assets/images/common/filter.svg" alt="filter_icon" />
+      </div>
+    </div>
+  </div>
+  <div class="p-4">
+    <app-table [headers]="header" [data]="data"></app-table>
+  </div>
+} @else {
+  <div class="--content-section p-4 d-flex flex-column">
+    <div class="flex-fill d-flex justify-content-center align-items-center">
+      <app-empty-content
+        [isShowBtn]="false"
+        icon="assets/images/light/annotation-violation-lg.svg"
+        iconDark="assets/images/dark/annotation-violation-lg.svg"
+        title="There are no violation reports to show yet."
+        createText="Create a new violation report"
+      ></app-empty-content>
+    </div>
+  </div>
+}
