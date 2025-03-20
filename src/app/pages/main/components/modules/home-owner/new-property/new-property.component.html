@@ -10,12 +10,13 @@
     </div>
 
     <div class="--right">
-      <img
-        [src]="'assets/images/' + currentMode + '/close.svg'"
-        class="me-3"
-        (click)="closeDialog()"
-        alt="close_icon"
-      />
+      <div class="--image-wrapper">
+        <img
+          [src]="'assets/images/' + currentMode + '/close.svg'"
+          (click)="closeDialog()"
+          alt="close_icon"
+        />
+      </div>
     </div>
   </div>
 
@@ -71,7 +72,7 @@
     <p>Property ID: 4567890</p>
 
     <button-primary
-      [icon]="buttonIcon()"
+      icon="assets/images/light/home-plus-02.svg"
       label="Create Property"
       [isPrimaryActive]="true"
     ></button-primary>

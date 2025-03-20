@@ -171,7 +171,7 @@ export const homeOwnerList = [
   }
 ];
 
-export const homeInputFields = [
+export const propertiesInputFields = [
   {
     icon: 'location',
     field: 'address',
@@ -420,5 +420,190 @@ export const homeInputFields = [
       }
     ],
     width: '270px'
+  }
+];
+
+export const homeOwnerInputFields = [
+  {
+    icon: 'home-owner',
+    field: 'first_name',
+    label: 'First Name',
+    type: 'input',
+    position: 'left',
+    placeholder: 'Enter first name'
+  },
+  {
+    icon: 'home-owner',
+    field: 'last_name',
+    label: 'Last Name',
+    type: 'input',
+    position: 'left',
+    placeholder: 'Enter last name'
+  },
+  {
+    icon: 'phone',
+    field: 'mobile_number',
+    label: 'Mobile no.',
+    type: 'phone',
+    position: 'left',
+    placeholder: '555-556-789',
+    width: '270px'
+  },
+  {
+    icon: 'phone',
+    field: 'secondary_number',
+    label: 'Secondary no.',
+    type: 'phone',
+    position: 'left',
+    placeholder: '555-556-789',
+    width: '270px'
+  },
+  {
+    icon: 'at-sign',
+    field: 'email',
+    label: 'Email Address',
+    type: 'input',
+    position: 'left',
+    placeholder: 'Enter Email'
+  },
+  {
+    icon: 'loading',
+    field: 'status',
+    label: 'Status',
+    type: 'select',
+    position: 'left',
+    placeholder: 'Select',
+    list: [
+      {
+        name: 'Yes',
+        code: 'y'
+      },
+      {
+        name: 'No',
+        code: 'n'
+      }
+    ]
+  },
+  {
+    icon: 'home-owner',
+    field: 'property_owner',
+    label: 'Property Owner',
+    type: 'select',
+    position: 'left',
+    placeholder: 'Select',
+    list: [
+      {
+        name: 'Yes',
+        code: 'y'
+      },
+      {
+        name: 'No',
+        code: 'n'
+      }
+    ]
+  },
+  {
+    icon: 'home-owner',
+    field: 'board_member',
+    label: 'Board Member',
+    type: 'select',
+    position: 'left',
+    placeholder: 'Select',
+    list: [
+      {
+        name: 'Yes',
+        code: 'y'
+      },
+      {
+        name: 'No',
+        code: 'n'
+      }
+    ]
+  },
+  {
+    icon: 'image-upload',
+    field: 'image',
+    label: 'Picture',
+    type: 'file',
+    position: 'right',
+    placeholder: 'Upload file'
+  },
+  {
+    icon: 'calendar',
+    field: 'start_date',
+    label: 'Lease Start Date',
+    type: 'date',
+    position: 'right',
+    placeholder: 'Set date'
+  },
+  {
+    icon: 'calendar',
+    field: 'end_date',
+    label: 'Lease End Date',
+    type: 'date',
+    position: 'right',
+    placeholder: 'Set date'
+  },
+  {
+    icon: 'location',
+    field: 'mail',
+    label: 'Mailing Address',
+    type: 'input',
+    position: 'right',
+    placeholder: 'Enter address'
+  },
+  {
+    icon: 'location',
+    field: 'city',
+    label: 'City',
+    type: 'select',
+    position: 'right',
+    placeholder: 'Select',
+    list: [
+      {
+        name: 'New York',
+        code: 'ny'
+      }
+    ]
+  },
+  {
+    icon: 'location',
+    field: 'state',
+    label: 'State',
+    type: 'select',
+    position: 'right',
+    placeholder: 'Select',
+    list: [
+      {
+        name: 'New York',
+        code: 'ny'
+      }
+    ]
+  },
+  {
+    icon: 'location',
+    field: 'zip_code',
+    label: 'Zip Code',
+    type: 'input',
+    position: 'right',
+    placeholder: 'Enter number'
+  },
+  {
+    icon: 'car',
+    field: 'vehicle',
+    label: 'Number of Vehicles',
+    type: 'input',
+    position: 'right',
+    placeholder: 'Enter number',
+    width: '300px'
+  },
+  {
+    icon: 'car',
+    field: 'vehicle_info',
+    label: 'Vehicles Info',
+    type: 'input',
+    position: 'extra',
+    placeholder:
+      'For each car - Make/Model, Year, License Plate Number, Parking Permit Number, Parking Space'
   }
 ];
