@@ -178,7 +178,8 @@ export const propertiesInputFields = [
     label: 'Address',
     type: 'input',
     position: 'left',
-    placeholder: 'Enter address'
+    placeholder: 'Enter address',
+    value: ''
   },
   {
     icon: 'location',
@@ -200,7 +201,8 @@ export const propertiesInputFields = [
         name: 'Pets',
         code: 'pets'
       }
-    ]
+    ],
+    value: ''
   },
   {
     icon: 'location',
@@ -222,7 +224,8 @@ export const propertiesInputFields = [
         name: 'Pets',
         code: 'pets'
       }
-    ]
+    ],
+    value: ''
   },
   {
     icon: 'location',
@@ -252,7 +255,8 @@ export const propertiesInputFields = [
         name: 'Pets',
         code: 'pets'
       }
-    ]
+    ],
+    value: ''
   },
   {
     icon: 'location',
@@ -260,7 +264,8 @@ export const propertiesInputFields = [
     label: 'Mailing Address',
     type: 'input',
     position: 'left',
-    placeholder: 'Enter address'
+    placeholder: 'Enter address',
+    value: ''
   },
   {
     icon: 'phone',
@@ -268,7 +273,8 @@ export const propertiesInputFields = [
     label: 'Owner Phone no.',
     type: 'phone',
     position: 'left',
-    placeholder: '555-556-789'
+    placeholder: '555-556-789',
+    value: ''
   },
   {
     icon: 'home-owner',
@@ -282,7 +288,8 @@ export const propertiesInputFields = [
         name: 'Owner',
         code: 'owner'
       }
-    ]
+    ],
+    value: ''
   },
   {
     icon: 'home-owner',
@@ -296,7 +303,8 @@ export const propertiesInputFields = [
         name: 'Owner-occupied',
         code: 'Owner-occupied'
       }
-    ]
+    ],
+    value: ''
   },
   {
     icon: 'home-owner',
@@ -304,7 +312,8 @@ export const propertiesInputFields = [
     label: 'Tenant Names',
     type: 'input',
     position: 'left',
-    placeholder: 'Enter name if other than owner'
+    placeholder: 'Enter name if other than owner',
+    value: ''
   },
   {
     icon: 'phone',
@@ -312,7 +321,8 @@ export const propertiesInputFields = [
     label: 'Tenant Phone no.',
     type: 'phone',
     position: 'left',
-    placeholder: '555-556-789'
+    placeholder: '555-556-789',
+    value: ''
   },
   {
     icon: 'at-sign',
@@ -320,7 +330,8 @@ export const propertiesInputFields = [
     label: 'Tenant Email',
     type: 'input',
     position: 'left',
-    placeholder: 'Enter Email if other than owner'
+    placeholder: 'Enter Email if other than owner',
+    value: ''
   },
   {
     icon: 'calendar',
@@ -328,7 +339,8 @@ export const propertiesInputFields = [
     label: 'Purchase date',
     type: 'date',
     position: 'right',
-    placeholder: 'Set date'
+    placeholder: 'Set date',
+    value: ''
   },
   {
     icon: 'hourglass',
@@ -336,7 +348,8 @@ export const propertiesInputFields = [
     label: 'End date',
     type: 'date',
     position: 'right',
-    placeholder: 'Set date'
+    placeholder: 'Set date',
+    value: ''
   },
   {
     icon: 'hourglass',
@@ -350,7 +363,8 @@ export const propertiesInputFields = [
         name: 'Individual',
         code: 'in'
       }
-    ]
+    ],
+    value: ''
   },
   {
     icon: 'home-sm',
@@ -364,7 +378,8 @@ export const propertiesInputFields = [
         name: 'Individual',
         code: 'in'
       }
-    ]
+    ],
+    value: ''
   },
   {
     icon: 'ruler',
@@ -372,7 +387,8 @@ export const propertiesInputFields = [
     label: 'Square Footage',
     type: 'input',
     position: 'right',
-    placeholder: 'Enter number'
+    placeholder: 'Enter number',
+    value: ''
   },
   {
     icon: 'ruler',
@@ -381,7 +397,8 @@ export const propertiesInputFields = [
     type: 'input',
     position: 'right',
     placeholder: '#Beds / #Baths',
-    width: '270px'
+    width: '270px',
+    value: ''
   },
   {
     icon: 'car',
@@ -400,7 +417,8 @@ export const propertiesInputFields = [
         code: 'no'
       }
     ],
-    width: '270px'
+    width: '270px',
+    value: ''
   },
   {
     icon: 'package',
@@ -419,7 +437,8 @@ export const propertiesInputFields = [
         code: 'no'
       }
     ],
-    width: '270px'
+    width: '270px',
+    value: ''
   }
 ];
 
@@ -430,7 +449,8 @@ export const homeOwnerInputFields = [
     label: 'First Name',
     type: 'input',
     position: 'left',
-    placeholder: 'Enter first name'
+    placeholder: 'Enter first name',
+    value: ''
   },
   {
     icon: 'home-owner',
@@ -438,7 +458,8 @@ export const homeOwnerInputFields = [
     label: 'Last Name',
     type: 'input',
     position: 'left',
-    placeholder: 'Enter last name'
+    placeholder: 'Enter last name',
+    value: ''
   },
   {
     icon: 'phone',
@@ -447,7 +468,8 @@ export const homeOwnerInputFields = [
     type: 'phone',
     position: 'left',
     placeholder: '555-556-789',
-    width: '270px'
+    width: '270px',
+    value: ''
   },
   {
     icon: 'phone',
@@ -456,7 +478,8 @@ export const homeOwnerInputFields = [
     type: 'phone',
     position: 'left',
     placeholder: '555-556-789',
-    width: '270px'
+    width: '270px',
+    value: ''
   },
   {
     icon: 'at-sign',
@@ -464,7 +487,8 @@ export const homeOwnerInputFields = [
     label: 'Email Address',
     type: 'input',
     position: 'left',
-    placeholder: 'Enter Email'
+    placeholder: 'Enter Email',
+    value: ''
   },
   {
     icon: 'loading',
@@ -482,7 +506,8 @@ export const homeOwnerInputFields = [
         name: 'No',
         code: 'n'
       }
-    ]
+    ],
+    value: ''
   },
   {
     icon: 'home-owner',
@@ -500,7 +525,8 @@ export const homeOwnerInputFields = [
         name: 'No',
         code: 'n'
       }
-    ]
+    ],
+    value: ''
   },
   {
     icon: 'home-owner',
@@ -518,7 +544,8 @@ export const homeOwnerInputFields = [
         name: 'No',
         code: 'n'
       }
-    ]
+    ],
+    value: ''
   },
   {
     icon: 'image-upload',
@@ -526,7 +553,8 @@ export const homeOwnerInputFields = [
     label: 'Picture',
     type: 'file',
     position: 'right',
-    placeholder: 'Upload file'
+    placeholder: 'Upload file',
+    value: ''
   },
   {
     icon: 'calendar',
@@ -534,7 +562,8 @@ export const homeOwnerInputFields = [
     label: 'Lease Start Date',
     type: 'date',
     position: 'right',
-    placeholder: 'Set date'
+    placeholder: 'Set date',
+    value: ''
   },
   {
     icon: 'calendar',
@@ -542,7 +571,8 @@ export const homeOwnerInputFields = [
     label: 'Lease End Date',
     type: 'date',
     position: 'right',
-    placeholder: 'Set date'
+    placeholder: 'Set date',
+    value: ''
   },
   {
     icon: 'location',
@@ -550,7 +580,8 @@ export const homeOwnerInputFields = [
     label: 'Mailing Address',
     type: 'input',
     position: 'right',
-    placeholder: 'Enter address'
+    placeholder: 'Enter address',
+    value: ''
   },
   {
     icon: 'location',
@@ -564,7 +595,8 @@ export const homeOwnerInputFields = [
         name: 'New York',
         code: 'ny'
       }
-    ]
+    ],
+    value: ''
   },
   {
     icon: 'location',
@@ -578,7 +610,8 @@ export const homeOwnerInputFields = [
         name: 'New York',
         code: 'ny'
       }
-    ]
+    ],
+    value: ''
   },
   {
     icon: 'location',
@@ -586,7 +619,8 @@ export const homeOwnerInputFields = [
     label: 'Zip Code',
     type: 'input',
     position: 'right',
-    placeholder: 'Enter number'
+    placeholder: 'Enter number',
+    value: ''
   },
   {
     icon: 'car',
@@ -595,7 +629,8 @@ export const homeOwnerInputFields = [
     type: 'input',
     position: 'right',
     placeholder: 'Enter number',
-    width: '300px'
+    width: '300px',
+    value: ''
   },
   {
     icon: 'car',
@@ -604,6 +639,36 @@ export const homeOwnerInputFields = [
     type: 'input',
     position: 'extra',
     placeholder:
-      'For each car - Make/Model, Year, License Plate Number, Parking Permit Number, Parking Space'
+      'For each car - Make/Model, Year, License Plate Number, Parking Permit Number, Parking Space',
+    value: ''
   }
+];
+
+export const accountingHeader = [
+  { field: 'month', name: 'Month' },
+  { field: 'payment_type', name: 'Payment Type' },
+  { field: 'amount', name: 'Amount' }
+];
+
+export const accountingList = [
+  {
+    month: 'December 2024',
+    payment_type: 'Monthly',
+    amount: -124
+  },
+  {
+    month: 'November 2024',
+    payment_type: 'Special charge',
+    amount: 87
+  },
+  {
+    month: 'November 2024',
+    payment_type: 'Monthly',
+    amount: 124
+  },
+  {
+    month: 'December 2024',
+    payment_type: 'Monthly',
+    amount: 124
+  },
 ];

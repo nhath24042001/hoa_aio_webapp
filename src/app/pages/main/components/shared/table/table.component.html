@@ -113,10 +113,13 @@
         [totalRecords]="data.length"
       />
 
-      <div class="d-flex align-items-center">
-        <span class="me-2">Show</span>
-        <p-select [options]="rowsPerPageOptions" [(ngModel)]="rows" size="small" />
-      </div>
+      @if (showListPerPage) {
+        <div class="d-flex align-items-center">
+          <span class="me-2">Show</span>
+
+          <p-select [options]="rowsPerPageOptions" [(ngModel)]="rows" size="small" />
+        </div>
+      }
     </div>
   </div>
 }

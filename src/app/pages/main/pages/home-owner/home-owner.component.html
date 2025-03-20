@@ -28,6 +28,7 @@
             [data]="data"
             [actions]="actions"
             [showPagination]="true"
+            (actionTriggered)="onAction($event)"
           ></app-table>
         } @else {
           <div class="--empty-content">
@@ -49,6 +50,7 @@
             [data]="homeOwnerList"
             [actions]="actions"
             [showPagination]="true"
+            (actionTriggered)="onAction($event)"
           ></app-table>
         } @else {
           <div class="--empty-content">

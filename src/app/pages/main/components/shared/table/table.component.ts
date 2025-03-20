@@ -42,6 +42,7 @@ export class Table<T> extends BaseComponent {
   @Input() data!: T[];
   @Input() headers!: IHeaderTable[];
   @Input() showPagination: boolean = false;
+  @Input() showListPerPage: boolean = true;
   @Input() actions: TableAction[] = [];
   @Input() className: string = '';
   @Input() rowsPerPageOptions = [5, 10, 20];

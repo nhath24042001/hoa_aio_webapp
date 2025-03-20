@@ -78,3 +78,7 @@
 ::ng-deep .p-select-option-selected {
   background: var(--active-primary) !important;
 }
+
+::ng-deep .p-paginator {
+  padding: 0 !important;
+}
