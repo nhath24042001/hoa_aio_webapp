@@ -89,14 +89,23 @@
       <p-tabpanel value="1">
         <div class="mb-3 d-flex justify-content-between align-items-center">
           <div class="--acounting-info d-flex align-items-center">
-            <img [src]="'assets/images/' + currentMode + '/bank-note.svg'" class="me-2" alt="bank_note" />
+            <img
+              [src]="'assets/images/' + currentMode + '/bank-note.svg'"
+              class="me-2"
+              alt="bank_note"
+            />
             <p>Payment History</p>
           </div>
 
           <p-select [options]="cities" optionLabel="name" placeholder="Select all" />
         </div>
 
-        <app-table [headers]="headers" [data]="dataTable" [showPagination]="true" [showListPerPage]="false"></app-table>
+        <app-table
+          [headers]="headers"
+          [data]="dataTable"
+          [showPagination]="true"
+          [showListPerPage]="false"
+        ></app-table>
       </p-tabpanel>
     </p-tabpanels>
   </p-tabs>

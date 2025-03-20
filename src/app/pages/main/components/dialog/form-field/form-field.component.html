@@ -4,7 +4,7 @@
     [alt]="icon + '_icon'"
     class="me-2"
   />
-  <p [style.width]="width" [class.--detail]="!isCreateMode" class="--text-box">
+  <p [style.width]="isCreateMode ? width : ''" [class.--detail]="!isCreateMode" class="--text-box">
     {{ label }}
   </p>
 
@@ -68,7 +68,7 @@
   } @else {
     @if (field === 'start_date' || field === 'end_date') {
       <span>{{ value | date: 'MMM. dd, hh:mm a' }}</span>
-    } @else if (field === 'status') {
+    } @else if (field === 'status' && type !== 'select') {
       <app-custom-select
         [options]="options"
         [field]="field"

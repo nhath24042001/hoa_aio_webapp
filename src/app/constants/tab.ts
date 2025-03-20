@@ -54,3 +54,21 @@ export const propertiesDetailTabHeader = [
     activeImg: 'assets/images/common/bank-note-active.svg'
   }
 ];
+
+export const ownerDetailHeader = [
+  {
+    name: 'General Info',
+    img: 'assets/images/common/home-owner.svg',
+    activeImg: 'assets/images/common/active-home-owner.svg'
+  },
+  {
+    name: 'Documents',
+    img: 'assets/images/common/gray-file.svg',
+    activeImg: 'assets/images/light/file.svg'
+  },
+  {
+    name: 'Accounting Info',
+    img: 'assets/images/common/bank-note.svg',
+    activeImg: 'assets/images/common/bank-note-active.svg'
+  }
+];
