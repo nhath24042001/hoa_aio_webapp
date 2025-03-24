@@ -4,7 +4,6 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { homeOwnerTabHeader } from '~/constants/tab';
 import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
 import {
   homeOwnerHeader,
   homeOwnerList,
