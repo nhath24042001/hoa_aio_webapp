@@ -1,0 +1,42 @@
+::ng-deep .p-select,
+::ng-deep .p-textarea,
+::ng-deep .p-datepicker,
+::ng-deep .--document-type {
+  width: 100%;
+}
+
+::ng-deep .p-dialog-header {
+  display: none;
+}
+
+::ng-deep .p-dialog-content {
+  padding: 0;
+}
+
+::ng-deep .p-multiselect,
+::ng-deep .p-datepicker-input,
+::ng-deep .p-textarea,
+::ng-deep .p-inputtext,
+::ng-deep .p-select {
+  background: var(--input-custom) !important;
+  border-color: var(--border-color) !important;
+}
+
+::ng-deep .p-chip {
+  padding: 4px 12px !important;
+  background: #ABFF52 !important;
+}
+
+::ng-deep .p-chip-label {
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--const-color);
+}
+
+::ng-deep .p-dialog-content {
+  overflow: hidden;
+}
+
+::ng-deep .p-dialog {
+  max-height: 100%;
+}

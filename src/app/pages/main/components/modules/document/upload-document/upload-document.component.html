@@ -1,0 +1,111 @@
+<div class="--dynamic-dialog p-4">
+  <div class="--dialog-header w-100 d-flex justify-content-between mb-4">
+    <div class="d-flex align-items-center">
+      <img
+        class="me-3"
+        [src]="'assets/images/' + currentMode + '/upload-cloud-03.svg'"
+        alt="dialog_icon"
+      />
+      <h3 class="mb-0">Upload a document</h3>
+    </div>
+
+    <div class="--right">
+      <div class="--image-wrapper d-flex align-items-center">
+        <img
+          [src]="'assets/images/' + currentMode + '/close.svg'"
+          class="me-3"
+          (click)="closeDialog()"
+          alt="close_icon"
+        />
+      </div>
+    </div>
+  </div>
+
+  <p-divider />
+
+  <div class="--content">
+    <p class="mb-3">Specify the type of document</p>
+    <p-select
+      [options]="document_types"
+      optionLabel="name"
+      placeholder="Select document type"
+      styleClass="--document-type"
+    />
+
+    <div class="mt-3 d-flex align-items-center">
+      <img
+        [src]="'assets/images/' + currentMode + '/upload-cloud-03.svg'"
+        class="me-2"
+        alt="upload_cloud"
+      />
+      <p class="me-4">Select a file</p>
+
+      <div class="flex-fill">
+        <app-input-file icon="file-plus" placeholder="Upload file"></app-input-file>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-7">
+        <div class="mt-4 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/home-owner.svg'"
+            class="me-2"
+            alt="home_owner"
+          />
+          <p class="--me5">Associated Home Owner</p>
+        </div>
+
+        <div class="mt-4 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/calendar.svg'"
+            class="me-2"
+            alt="calendar"
+          />
+          <p class="me-4">Meeting date (for meeting minutes)</p>
+        </div>
+
+        <div class="mt-4 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/microphone.svg'"
+            class="me-2"
+            alt="microphone"
+          />
+          <p class="mt-2">Recording? (for meeting minutes)</p>
+        </div>
+      </div>
+      <div class="col-5">
+        <p-select
+          [options]="owner_list"
+          optionLabel="name"
+          placeholder="Select"
+          styleClass="mt-3"
+        />
+        <div class="mt-3">
+          <p-datepicker showIcon iconDisplay="input" variant="filled" placeholder="Set date" />
+        </div>
+        <p-select
+          [options]="owner_list"
+          optionLabel="name"
+          placeholder="Select"
+          styleClass="mt-3"
+        />
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <p class="mb-2">Comments</p>
+      <textarea rows="3" pTextarea placeholder="Enter comment"></textarea>
+    </div>
+  </div>
+
+  <div class="--dynamic-action mt-3 d-flex justify-content-between align-items-center">
+    <p>Task ID: 4567890</p>
+
+    <button-primary
+      icon="assets/images/common/check.svg"
+      label="Done"
+      [isPrimaryActive]="true"
+    ></button-primary>
+  </div>
+</div>

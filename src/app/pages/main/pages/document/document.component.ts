@@ -6,6 +6,8 @@ import { documentTabHeader } from '~/constants/tab';
 import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';
+import { UploadDocument } from '~/pages/main/components/modules/document/upload-document/upload-document.component';
+import { ComposeLetter } from '~/pages/main/components/modules/document/compose-letter/compose-letter.component';
 import {
   documentActions,
   documentHeader,
@@ -42,5 +44,17 @@ export class DocumentComponent {
     this.activeTab.set(tabIndex.toString());
   }
 
-  onAddSection() {}
+  onAddSection() {
+    if (this.activeTab() === '0') {
+      this.ref = this.dialogService.open(UploadDocument, {
+        modal: true,
+        width: '800px'
+      });
+    } else {
+      this.ref = this.dialogService.open(ComposeLetter, {
+        modal: true,
+        width: '1000px'
+      });
+    }
+  }
 }
