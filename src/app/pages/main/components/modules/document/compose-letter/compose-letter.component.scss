@@ -1,3 +1,8 @@
+.--content {
+  p {
+    width: 100px;
+  }
+}
 ::ng-deep .p-dialog-header {
   display: none;
 }
@@ -15,7 +20,7 @@
 ::ng-deep .p-textarea,
 ::ng-deep .p-inputtext,
 ::ng-deep .p-select {
-  background: var(--input-custom);
+  background: var(--input-custom) !important;
   border-color: var(--border-color) !important;
 }
 
@@ -36,4 +41,27 @@
 
 ::ng-deep .p-dialog {
   max-height: 100%;
+}
+
+::ng-deep .ql-editor {
+  position: relative !important;
+}
+
+.--editor-footer {
+  position: absolute;
+  bottom: 105px;
+  left: 40px;
+
+  strong {
+    font-family: League Gothic;
+    font-weight: 600;
+    font-size: 24px;
+    color: #6F6F6F;
+  }
+
+  span {
+    font-weight: 500;
+    font-size: 12px;
+    color: #6F6F6F;
+  }
 }
