@@ -1,10 +1,14 @@
-import { Component, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PasswordModule } from 'primeng/password';
+import { InputTextModule } from 'primeng/inputtext';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-custom-input',
-  imports: [CommonModule],
+  imports: [CommonModule, PasswordModule, InputTextModule, FormsModule],
   templateUrl: './custom-input.component.html',
   styleUrl: './custom-input.component.scss',
   providers: [
@@ -21,12 +25,18 @@ export class CustomInputComponent {
   @Input() placeholder = '';
   @Input() mode = '';
   @Input() isError = false;
+  @Input() formControl!: FormControl;
+  @Input() value: string = '';
+  @Output() valueChange = new EventEmitter<string>();
 
-  value = '';
   isPasswordVisible = false;
 
   onChange: any = () => {};
   onTouched: any = () => {};
+
+  onValueChange(event: any) {
+    this.valueChange.emit(this.value);
+  }
 
   togglePasswordVisibility() {
     this.isPasswordVisible = !this.isPasswordVisible;

@@ -1,25 +1,15 @@
 <div
-  class="--custom-input"
+  class="--custom-input d-flex align-items-center"
   [ngClass]="mode ? '--dark-mode' : '--light-mode'"
   [class.--error]="isError"
-  [class.--input-entered]="value"
 >
   <img class="--input-icon" [src]="icon" alt="icon_img" />
-  <input
-    [type]="type === 'password' && !isPasswordVisible ? 'password' : 'text'"
-    [value]="value"
-    (input)="onInput($event)"
-    [class.--input-entered]="value"
-    [placeholder]="placeholder"
-  />
 
   @if (type === 'password') {
-    <button type="button" (click)="togglePasswordVisibility()">
-      @if (!isPasswordVisible) {
-        <img src="assets/images/common/show-password.svg" alt="show_password_icon" />
-      } @else {
-        <img src="assets/images/common/hide-password.svg" alt="hide_password_icon" />
-      }
-    </button>
+    <div class="flex-fill">
+      <p-password [(ngModel)]="value" [toggleMask]="true" [feedback]="false"[placeholder]="placeholder" />
+    </div>
+  } @else {
+    <input type="text" [(ngModel)]="value" [placeholder]="placeholder" pInputText/>
   }
 </div>

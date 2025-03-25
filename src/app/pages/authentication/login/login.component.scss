@@ -59,3 +59,7 @@
     font-size: 14px;
   }
 }
+
+::ng-deep .p-button-loading-icon {
+  color: var(--background);
+}

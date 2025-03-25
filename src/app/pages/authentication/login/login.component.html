@@ -24,6 +24,7 @@
 
       <app-custom-input
         formControlName="email"
+        (valueChange)="loginForm.controls['email'].setValue($event)"
         type="text"
         [icon]="'assets/images/' + currentMode + '/gray-at-sign.svg'"
         [isError]="isShowError"
@@ -48,7 +49,6 @@
       [loading]="loading"
       class="d-block"
       label="Login"
-      [disabled]="!loginForm.valid"
       (click)="onSubmit()"
     />
   </form>

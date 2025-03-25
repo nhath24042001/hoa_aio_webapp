@@ -57,13 +57,13 @@ export class LoginComponent extends BaseComponent {
       // CALL API
       const { email, password } = this.loginForm.value;
 
-      if (email === 'admin@gmail.com' && password === '123123') {
-        this.isShowError = false;
-        this.router.navigate(['main/overview']);
-      } else {
-        this.isShowError = true;
-        this.messageError.set('Your username or password is incorrect');
-      }
+      // if (email === 'admin@gmail.com' && password === '123123') {
+      //   this.isShowError = false;
+      // } else {
+      //   this.isShowError = true;
+      //   this.messageError.set('Your username or password is incorrect');
+      // }
+      this.router.navigate(['main/overview']);
     }, 2000);
   }
 
