@@ -5,30 +5,40 @@
   </div>
 
   <div class="--right">
-    @if (isEditMode && eventData) {
+    @if (dialogType === 'detail' || dialogType === 'edit') {
       <div>
-        <p class="text-end">Created: {{ eventData.start_date | date }}</p>
-        <p class="text-end">Updated: {{ eventData.end_date | date }}</p>
+        <p class="text-end">Created: {{ formHeader.created_date | date }}</p>
+        <p class="text-end">Updated: {{ formHeader.update_date | date }}</p>
       </div>
 
       <div class="--share-box mx-3 d-flex justify-content-center align-items-center">Share</div>
-
-      <div class="--image-wrapper d-flex align-items-center">
-        <img src="assets/images/common/edit-sm.svg" class="me-3" alt="edit_icon" />
-      </div>
     }
 
-    <img
-      [src]="'assets/images/' + currentMode + '/close.svg'"
-      class="me-3"
-      (click)="closeDialogEmitter()"
-      alt="close_icon"
-    />
+    <div class="--image-wrapper d-flex align-items-center">
+      @if (dialogType === 'detail' || dialogType === 'edit') {
+        @if (dialogType === 'detail') {
+          <img
+            src="assets/images/common/edit-sm.svg"
+            class="me-3"
+            (click)="onChangeAction()"
+            alt="edit_icon"
+          />
+        } @else {
+          <img
+            src="assets/images/common/editable.svg"
+            class="me-3"
+            (click)="onChangeAction()"
+            alt="edit_icon"
+          />
+        }
+      }
+
+      <img
+        [src]="'assets/images/' + currentMode + '/close.svg'"
+        class="me-3"
+        (click)="closeDialogEmitter()"
+        alt="close_icon"
+      />
+    </div>
   </div>
 </div>
-
-<!-- [src]="
-        dialogType === ACTION_DIALOG.CREATE
-          ? 'assets/images/' + currentMode + '/calendar-plus.svg'
-          : 'assets/images/common/calendar-date.svg'
-      " -->

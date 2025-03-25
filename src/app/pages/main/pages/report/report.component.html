@@ -1,1 +1,32 @@
-<p>report works!</p>
+@if (reports.length) {
+  <div class="p-4">
+    <div class="mb-2 d-flex w-100 justify-content-end">
+      <button-primary
+        icon="assets/images/common/white-plus-solid.svg"
+        label="New Report"
+        [isPrimaryActive]="true"
+        (onClick)="onOpenGenerateReport()"
+      ></button-primary>
+    </div>
+    <app-table [headers]="headers" [data]="reports" [actions]="actions"></app-table>
+  </div>
+} @else {
+  <div class="--content-section p-4 d-flex flex-column">
+    <div class="d-flex justify-content-end">
+      <button-primary
+        icon="assets/images/common/white-plus-solid.svg"
+        label="New Report"
+        [isPrimaryActive]="true"
+        (onClick)="onOpenGenerateReport()"
+      ></button-primary>
+    </div>
+    <div class="flex-fill d-flex justify-content-center align-items-center">
+      <app-empty-content
+        icon="assets/images/light/report-lg.svg"
+        iconDark="assets/images/dark/report.svg"
+        title="There are no reports yet."
+        createText="Generate a new report"
+      ></app-empty-content>
+    </div>
+  </div>
+}

@@ -1,0 +1,124 @@
+<div class="--dynamic-dialog p-4">
+  <div class="--dialog-header w-100 d-flex justify-content-between mb-4">
+    <div class="d-flex align-items-center">
+      <img class="me-3" [src]="'assets/images/' + currentMode + '/home.svg'" alt="dialog_icon" />
+      <h3 class="mb-0">Property Details</h3>
+    </div>
+
+    <div class="--right">
+      <div>
+        <p class="text-end">Created: December 2, 2024</p>
+        <p class="text-end">Updated: December 2, 2024</p>
+      </div>
+
+      <div class="--share-box mx-3 d-flex justify-content-center align-items-center">Share</div>
+
+      <div class="--image-wrapper d-flex align-items-center">
+        <img src="assets/images/common/edit-sm.svg" class="me-3" alt="edit_icon" />
+
+        <img
+          [src]="'assets/images/' + currentMode + '/close.svg'"
+          class="me-3"
+          (click)="closeDialog()"
+          alt="close_icon"
+        />
+      </div>
+    </div>
+  </div>
+
+  <p-divider />
+
+  <p-tabs [value]="activeTab()" (valueChange)="onTabChange($event)">
+    <div class="d-flex justify-content-between align-items-center">
+      <p-tablist>
+        @for (tab of tabs; track $index) {
+          <p-tab value="{{ $index }}">
+            <img
+              [src]="activeTab() === $index.toString() ? tab.activeImg : tab.img"
+              alt="tab_img"
+            />
+            <div>{{ tab.name }}</div>
+          </p-tab>
+        }
+      </p-tablist>
+    </div>
+
+    <p-tabpanels>
+      <p-tabpanel value="0">
+        <div class="--dynamic-title">
+          <div class="row">
+            <div class="col-6">
+              @for (box of formFields; track $index) {
+                @if (box.position === 'left') {
+                  <app-form-field
+                    [icon]="box.icon"
+                    [label]="box.label"
+                    [type]="box.type"
+                    [field]="box.field"
+                    [width]="box.width"
+                    [placeholder]="box.placeholder"
+                    [options]="box.list"
+                    [currentMode]="currentMode"
+                    [isCreateMode]="false"
+                    [value]="box.value"
+                  ></app-form-field>
+                }
+              }
+            </div>
+            <div class="col-6">
+              @for (box of formFields; track $index) {
+                @if (box.position === 'right') {
+                  <app-form-field
+                    [icon]="box.icon"
+                    [label]="box.label"
+                    [type]="box.type"
+                    [field]="box.field"
+                    [width]="box.width"
+                    [placeholder]="box.placeholder"
+                    [options]="box.list"
+                    [currentMode]="currentMode"
+                    [isCreateMode]="false"
+                    [value]="box.value"
+                  ></app-form-field>
+                }
+              }
+            </div>
+          </div>
+        </div>
+      </p-tabpanel>
+      <p-tabpanel value="1">
+        <div class="mb-3 d-flex justify-content-between align-items-center">
+          <div class="--acounting-info d-flex align-items-center">
+            <img
+              [src]="'assets/images/' + currentMode + '/bank-note.svg'"
+              class="me-2"
+              alt="bank_note"
+            />
+            <p>Payment History</p>
+          </div>
+
+          <p-select [options]="cities" optionLabel="name" placeholder="Select all" />
+        </div>
+
+        <app-table
+          [headers]="headers"
+          [data]="dataTable"
+          [showPagination]="true"
+          [showListPerPage]="false"
+        ></app-table>
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
+
+  <p-divider />
+
+  <div class="--dynamic-action mt-3 d-flex justify-content-between align-items-center">
+    <p>Property ID: 4567890</p>
+
+    <button-primary
+      icon="assets/images/common/check.svg"
+      label="Done"
+      [isPrimaryActive]="true"
+    ></button-primary>
+  </div>
+</div>

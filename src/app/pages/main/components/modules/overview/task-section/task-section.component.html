@@ -7,8 +7,7 @@
 
   @if (tasks.length) {
     <div class="mt-3">
-      <app-table [data]="tasks" [headers]="headers"></app-table>
-
+      <app-table [data]="tasks" [headers]="headers" [actions]="actions"></app-table>
       <p class="--show-all mt-3">Show All</p>
     </div>
   } @else {

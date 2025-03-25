@@ -24,16 +24,40 @@
 
         <p-tabpanels>
           <p-tabpanel value="0">
-            <app-table [data]="projects" [headers]="headers" [showPagination]="true"></app-table>
+            <app-table
+              [data]="projects"
+              [headers]="headers"
+              [showPagination]="true"
+              [actions]="actions"
+              (actionTriggered)="handleTableAction($event)"
+            ></app-table>
           </p-tabpanel>
           <p-tabpanel value="1">
-            <app-table [data]="projects" [headers]="headers" [showPagination]="true"></app-table>
+            <app-table
+              [data]="projects"
+              [headers]="headers"
+              [showPagination]="true"
+              [actions]="actions"
+              (actionTriggered)="handleTableAction($event)"
+            ></app-table>
           </p-tabpanel>
           <p-tabpanel value="2">
-            <app-table [data]="projects" [headers]="headers" [showPagination]="true"></app-table>
+            <app-table
+              [data]="projects"
+              [headers]="headers"
+              [showPagination]="true"
+              [actions]="actions"
+              (actionTriggered)="handleTableAction($event)"
+            ></app-table>
           </p-tabpanel>
           <p-tabpanel value="3">
-            <app-table [data]="projects" [headers]="headers" [showPagination]="true"></app-table>
+            <app-table
+              [data]="projects"
+              [headers]="headers"
+              [showPagination]="true"
+              [actions]="actions"
+              (actionTriggered)="handleTableAction($event)"
+            ></app-table>
           </p-tabpanel>
         </p-tabpanels>
       </p-tabs>

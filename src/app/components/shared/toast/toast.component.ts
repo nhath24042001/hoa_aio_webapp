@@ -17,6 +17,7 @@ export class ToastComponent<T> extends BaseComponent {
   type = '';
   buttonText = '';
   data!: T;
+  buttonColor: string = '';
   visible: boolean = false;
 
   private callback: ((confirmed: boolean) => void) | null = null;

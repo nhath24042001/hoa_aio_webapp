@@ -1,0 +1,19 @@
+.--file-upload-container {
+  cursor: pointer;
+  background: var(--input-custom);
+  padding: 5px 10px;
+  border-radius: 30px;
+  border: 1px solid var(--border-color);
+
+  .--upload-label {
+    cursor: pointer;
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .--placeholder {
+      color: #666D80;
+    }
+  }
+}

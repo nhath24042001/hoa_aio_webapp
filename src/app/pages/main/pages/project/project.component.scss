@@ -29,6 +29,7 @@
   color: #6F6F6F;
   font-weight: 500;
   font-size: 15px;
+  background: var(--background) !important;
 }
 
 ::ng-deep .p-tab-active {
@@ -37,4 +38,13 @@
 
 ::ng-deep .p-tablist-active-bar {
   height: 2px;
+}
+
+::ng-deep .p-tabpanels,
+::ng-deep .p-paginator {
+  background: var(--background) !important;
+}
+
+::ng-deep .p-tab {
+  transition: all 1s step-start !important;
 }

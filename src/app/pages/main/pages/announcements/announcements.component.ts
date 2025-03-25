@@ -10,11 +10,11 @@ import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/but
 import { AnnouncementListComponent } from '~/pages/main/components/modules/announcement/announcement-list/announcement-list.component';
 import { MainHeader } from '~/pages/main/components//shared/main-header/main-header.component';
 import { DynamicAnnouncement } from '~/pages/main/components/modules/announcement/dynamic-announcement/dynamic-announcement.component';
-import { AnnouncementDetail} from '~/pages/main/components/modules/announcement/announcement-detail/announcement-detail.component';
+import { AnnouncementDetail } from '~/pages/main/components/modules/announcement/announcement-detail/announcement-detail.component';
 
 import { IAnnouncement, IAnnouncementChild } from '~/@types/announcement';
 import { ToastService } from '~/services/toast.service';
- @Component({
+@Component({
   selector: 'app-announcements',
   imports: [
     TabsModule,
@@ -58,7 +58,7 @@ export class AnnouncementsComponent {
         title: 'Long Announcement Title Can Be Truncated',
         created: '2025-02-24: 08:46:00',
         personSent: 'Larry Birch'
-      },
+      }
     ],
     expired: [
       {
@@ -132,6 +132,20 @@ export class AnnouncementsComponent {
     announcement: IAnnouncementChild;
     type: string;
   }): Promise<void> {
+    switch (event.type) {
+      case 'edit':
+        this.onOpenAnnouncementDetail();
+        break;
+      case 'publish':
+        this.onOpenPublishDialog();
+        break;
+      case 'delete':
+        this.onOpenDeleteDialog();
+        break;
+    }
+  }
+
+  async onOpenDeleteDialog(): Promise<void> {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/red-trash-md.svg',
       title: 'Delete Item',
@@ -139,6 +153,21 @@ export class AnnouncementsComponent {
         'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
       type: 'error',
       buttonText: 'Delete'
+    });
+
+    if (confirmed) {
+      console.log('run 1');
+    }
+  }
+
+  async onOpenPublishDialog(): Promise<void> {
+    const confirmed = await this.toastService.showConfirm({
+      icon: 'assets/images/common/check-circle-broken-lg.svg',
+      title: 'Announcement Posted',
+      description:
+        'The announcement has been posted, and will be available to its recipients shortly.',
+      type: 'success',
+      buttonText: 'Ok'
     });
 
     if (confirmed) {

@@ -1,0 +1,88 @@
+<div class="--dynamic-dialog p-4">
+  <div class="--dialog-header w-100 d-flex justify-content-between mb-4">
+    <div class="d-flex align-items-center">
+      <img
+        class="me-3"
+        [src]="'assets/images/' + currentMode + '/mail-plus-2.svg'"
+        alt="dialog_icon"
+      />
+      <h3 class="mb-0">Compose a Letter</h3>
+    </div>
+
+    <div class="--right">
+      <div class="--image-wrapper d-flex align-items-center">
+        <img
+          [src]="'assets/images/' + currentMode + '/close.svg'"
+          class="me-3"
+          (click)="closeDialog()"
+          alt="close_icon"
+        />
+      </div>
+    </div>
+  </div>
+
+  <p-divider />
+
+  <div class="--content">
+    <div class="d-flex align-items-center">
+      <img
+        [src]="'assets/images/' + currentMode + '/home-owner.svg'"
+        class="me-2"
+        alt="home_owner"
+      />
+      <p class="me-3">Recipient</p>
+      <input
+        type="text"
+        size="small"
+        placeholder="Enter name, Use comma to separate multiple names"
+        pInputText
+        class="flex-fill"
+      />
+    </div>
+
+    <div class="mt-3 d-flex align-items-center">
+      <img [src]="'assets/images/' + currentMode + '/file.svg'" class="me-2" alt="file_icon" />
+      <p class="me-3">Subject</p>
+      <input
+        type="text"
+        size="small"
+        placeholder="Enter title for the letter"
+        pInputText
+        class="flex-fill"
+      />
+    </div>
+
+    <div class="--editor-letter mt-3">
+      <p-editor [(ngModel)]="editorContent" [style]="{ height: '300px' }"> </p-editor>
+
+      <div class="--editor-footer">
+        <strong>Palm Springs HOA</strong><br />
+        <span>Phone: 242-554-3212 • Email: </span>
+        <a class="--link" href="#">hoa&#64;palmspringshoa.co</a>
+      </div>
+    </div>
+  </div>
+
+  <p-divider />
+
+  <div class="--dynamic-action mt-3 d-flex justify-content-between align-items-center">
+    <p>Letter ID: 4567890</p>
+
+    <div class="d-flex align-items-center">
+      <div class="--attachment me-3 d-flex justify-content-center align-items-center">
+        <img src="assets/images/common/attachment.svg" alt="attachment_icon" />
+      </div>
+
+      <div class="--save-draft mx-3 d-flex algin-items-center">
+        <img src="assets/images/common/save-draft.svg" class="me-2" alt="save_draft_icon" />
+        <p>Save Draft</p>
+      </div>
+
+      <button-primary
+        icon="assets/images/common/check.svg"
+        label="Send Letter"
+        [isPrimaryActive]="true"
+      ></button-primary>
+    </div>
+  </div>
+</div>

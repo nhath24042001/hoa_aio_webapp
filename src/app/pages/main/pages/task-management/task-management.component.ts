@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TabsModule } from 'primeng/tabs';
-import { PopoverModule } from 'ngx-bootstrap/popover';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { FormsModule } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
@@ -16,6 +15,7 @@ import { TaskDetail } from '~/pages/main/components/modules/task-management/task
 import { IHeaderTable, ITaskManagement } from '~/@types/task';
 import { Priority } from '~/enums';
 import { TASK_STATUS } from '~/constants';
+import { ToastService } from '~/services/toast.service';
 
 @Component({
   selector: 'app-task-management',
@@ -27,7 +27,6 @@ import { TASK_STATUS } from '~/constants';
     EmptyContentComponent,
     ButtonPrimary,
     MainHeader,
-    PopoverModule,
     Table
   ],
   templateUrl: './task-management.component.html',
@@ -40,7 +39,7 @@ export class TaskManagementComponent {
     all_tasks: [
       {
         task_id: '12321',
-        type_icon: 'action_item',
+        type_icon: 'clipboard-sm',
         task_name: 'Sign contract with plumbing vendor',
         task_type: 'Maintenance',
         priority: Priority.URGENT,
@@ -126,12 +125,30 @@ export class TaskManagementComponent {
     }
   ];
 
+  actions = [
+    {
+      label: 'Edit',
+      icon: 'edit',
+      actionKey: 'edit',
+      className: '--pointer mb-2'
+    },
+    {
+      label: 'Delete',
+      icon: 'trash',
+      actionKey: 'delete',
+      className: '--delete-action --pointer'
+    }
+  ];
+
   task_status = TASK_STATUS;
   selectedStatus: string = '';
   startDate = '';
   endDate = '';
 
-  constructor(public dialogService: DialogService) {}
+  constructor(
+    public dialogService: DialogService,
+    private toastService: ToastService
+  ) {}
 
   onSearch() {}
 
@@ -144,10 +161,38 @@ export class TaskManagementComponent {
     this.ref.onClose.subscribe((task: any) => {});
   }
 
-  onOpenTaskDetail(): void {
+  onOpenTaskDetail(task: any): void {
     this.ref = this.dialogService.open(TaskDetail, {
       modal: true,
       width: '1000px'
     });
+  }
+
+  handleTableAction(event: { actionKey: string; rowData: any }) {
+    switch (event.actionKey) {
+      case 'edit':
+        this.onOpenTaskDetail(event.rowData);
+        break;
+      case 'delete':
+        this.onOpenDeleteDialog();
+        break;
+      default:
+        console.warn('Unknown action:', event.actionKey);
+    }
+  }
+
+  async onOpenDeleteDialog(): Promise<void> {
+    const confirmed = await this.toastService.showConfirm({
+      icon: 'assets/images/common/calendar-x-lg.svg',
+      title: 'Delete task',
+      description:
+        'Are you sure? Proceeding will delete the event from the system, and can not be undone.',
+      type: 'error',
+      buttonText: 'Delete task'
+    });
+
+    if (confirmed) {
+      console.log('run 1');
+    }
   }
 }

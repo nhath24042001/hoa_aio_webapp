@@ -1,0 +1,97 @@
+<div class="--dynamic-dialog p-4">
+  <app-dialog-header
+    [title]="dialogTitle"
+    [iconCreate]="iconCreate"
+    [iconEdit]="iconEdit"
+    [dialogType]="dialogType"
+    [currentMode]="currentMode"
+    [formHeader]="formData.data"
+    (closeDialog)="closeDialog()"
+    (changeAction)="changeAction()"
+  ></app-dialog-header>
+
+  <p-divider />
+
+  <form>
+    <div class="--dynamic-title">
+      <h3 class="mb-4" [class.--detail]="!isCreateMode">{{ formTitle }}</h3>
+
+      <div class="row">
+        <div class="col-6">
+          @for (box of formFields; track $index) {
+            @if (box.position === 'left') {
+              <app-form-field
+                [icon]="box.icon"
+                [label]="box.label"
+                [type]="box.type"
+                [field]="box.field"
+                [placeholder]="box.placeholder"
+                [value]="box.value"
+                [options]="box.list"
+                [customIcon]="box.customIcon"
+                [currentMode]="currentMode"
+                [dialogType]="dialogType"
+                [isCreateMode]="isCreateMode"
+                [formControl]="box.value"
+              ></app-form-field>
+            }
+          }
+        </div>
+        <div class="col-6">
+          @for (box of formFields; track $index) {
+            @if (box.position === 'right') {
+              <app-form-field
+                [icon]="box.icon"
+                [label]="box.label"
+                [type]="box.type"
+                [field]="box.field"
+                [placeholder]="box.placeholder"
+                [options]="box.list"
+                [customIcon]="box.customIcon"
+                [value]="box.value"
+                [currentMode]="currentMode"
+                [dialogType]="dialogType"
+                [isCreateMode]="isCreateMode"
+              ></app-form-field>
+            }
+          }
+        </div>
+      </div>
+
+      @for (box of formFields; track $index) {
+        @if (box.position === 'extra') {
+          <app-form-field
+            [icon]="box.icon"
+            [label]="box.label"
+            [type]="box.type"
+            [field]="box.field"
+            [value]="box.value"
+            [placeholder]="box.placeholder"
+            [options]="box.list"
+            [currentMode]="currentMode"
+            [dialogType]="dialogType"
+            [isCreateMode]="isCreateMode"
+          ></app-form-field>
+        }
+      }
+    </div>
+
+    <p-divider />
+
+    <div class="--dynamic-content mt-3">
+      @for (textarea of list_textarea; track $index) {
+        <app-dialog-textarea
+          [title]="textarea.title"
+          [placeholder]="textarea.placeholder"
+        ></app-dialog-textarea>
+      }
+    </div>
+
+    <app-dialog-actions
+      [buttonText]="buttonText"
+      [formID]="formID"
+      [moduleName]="moduleName"
+      [buttonIcon]="buttonIcon"
+    ></app-dialog-actions>
+  </form>
+</div>

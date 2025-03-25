@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { DividerModule } from 'primeng/divider';
 import { CommonModule } from '@angular/common';
 import { LIST_SIDEBAR } from '../../../constants/sidebar';
 import { Router } from '@angular/router';
@@ -7,7 +8,7 @@ import { ThemeService } from '../../../services/theme.service';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule],
+  imports: [CommonModule, DividerModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })

@@ -1,7 +1,9 @@
 export enum Action {
   EDIT = 'edit',
   PUBLISH = 'publish',
-  DELETE = 'delete'
+  DELETE = 'delete',
+  APPROVE = 'approve',
+  MARK_AS_PENDING = 'mask_as_pending'
 }
 
 export enum Priority {

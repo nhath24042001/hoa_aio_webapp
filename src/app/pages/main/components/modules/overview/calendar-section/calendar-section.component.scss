@@ -6,6 +6,12 @@
     font-size: 20px;
     color: var(--const-color);
   }
+
+  .--calendar-lib {
+    img {
+      cursor: pointer;
+    }
+  }
 }
 
 ::ng-deep .fc-toolbar-chunk {
@@ -98,4 +104,12 @@
 
 ::ng-deep .fc-event-title {
   color: #000;
+}
+
+::ng-deep .fc-scrollgrid-sync-table {
+  background-color: var(--background);
+}
+
+::ng-deep .fc-scrollgrid-section-header {
+  background-color: var(--background);
 }

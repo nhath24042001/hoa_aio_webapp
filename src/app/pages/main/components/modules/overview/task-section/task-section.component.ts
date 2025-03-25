@@ -3,6 +3,7 @@ import { EmptyContentComponent } from '~/pages/main/components/shared/empty-cont
 import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';
 import { IHeaderTable } from '~/@types/task';
+import { Action } from '~/enums';
 
 @Component({
   selector: 'task-section',
@@ -12,6 +13,7 @@ import { IHeaderTable } from '~/@types/task';
 })
 export class TaskSectionComponent<T> {
   @Input() tasks: T[] = [];
+  ACTIONS = Action;
 
   headers: IHeaderTable[] = [
     {
@@ -47,6 +49,21 @@ export class TaskSectionComponent<T> {
       field: 'action',
       name: '',
       width: '20px'
+    }
+  ];
+
+  actions = [
+    {
+      label: this.ACTIONS.EDIT,
+      icon: 'edit',
+      actionKey: 'edit',
+      className: '--edit-action --pointer mb-2'
+    },
+    {
+      label: this.ACTIONS.DELETE,
+      icon: 'trash',
+      actionKey: 'delete',
+      className: '--delete-action --pointer'
     }
   ];
 }

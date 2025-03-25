@@ -13,6 +13,9 @@ export class EmptyContentComponent extends BaseComponent {
   @Input() iconDark: string = '';
   @Input() title: string = '';
   @Input() createText: string = '';
+  @Input() isShowBtn: boolean = true;
+  @Input() showUpload: boolean = false;
+  @Input() moduleName = '';
 
   constructor(themeService: ThemeService) {
     super(themeService);

@@ -11,37 +11,72 @@
   @if (isCreateMode) {
     @switch (type) {
       @case ('select') {
-        <p-select
-          [options]="options"
-          variant="filled"
-          optionLabel="name"
-          [placeholder]="placeholder"
-          styleClass="flex-fill"
-        />
+        @if (field === 'status') {
+          <app-custom-select
+            [options]="options"
+            [field]="field"
+            [dialogType]="dialogType"
+          ></app-custom-select>
+        } @else {
+          <p-select
+            [options]="options"
+            variant="filled"
+            optionLabel="name"
+            [placeholder]="placeholder"
+            styleClass="flex-fill"
+            [(ngModel)]="formControl"
+          />
+        }
       }
-      @case ('input') {
-        <input
-          type="text"
-          variant="filled"
-          pInputText
-          [placeholder]="placeholder"
-          class="flex-fill"
-        />
-      }
-      @default {
+      @case ('date') {
         <p-datepicker
           [placeholder]="placeholder"
           showIcon
           iconDisplay="input"
           class="flex-fill"
           variant="filled"
+          [(ngModel)]="formControl"
+        />
+      }
+      @case ('file') {
+        <div class="flex-fill">
+          <app-input-file [placeholder]="placeholder" [icon]="customIcon"></app-input-file>
+        </div>
+      }
+      @case ('custom-select') {
+        <app-custom-select
+          [options]="options"
+          [field]="field"
+          [dialogType]="dialogType"
+        ></app-custom-select>
+      }
+      @case ('phone') {
+        <app-input-phone [placeholder]="placeholder"></app-input-phone>
+      }
+
+      @default {
+        <input
+          type="text"
+          variant="filled"
+          pInputText
+          [placeholder]="placeholder"
+          class="flex-fill"
+          [(ngModel)]="formControl"
         />
       }
     }
-  }
-  @else {
+  } @else {
     @if (field === 'start_date' || field === 'end_date') {
       <span>{{ value | date: 'MMM. dd, hh:mm a' }}</span>
+    } @else if (field === 'status' && type !== 'select') {
+      <app-custom-select
+        [options]="options"
+        [field]="field"
+        [dialogType]="dialogType"
+      ></app-custom-select>
+      <!-- [(ngModel)]="formControl" -->
+    } @else if (field === 'image' && value) {
+      <img class="--image-wrapper" [src]="value" alt="image" />
     } @else {
       <span>{{ value }}</span>
     }

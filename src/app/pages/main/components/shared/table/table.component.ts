@@ -1,23 +1,24 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { CommonModule, DatePipe } from '@angular/common';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
-import { PopoverModule } from 'ngx-bootstrap/popover';
-import { PopoverDirective } from 'ngx-bootstrap/popover';
 import { PaginatorModule } from 'primeng/paginator';
 import { SelectModule } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
+import { PopoverModule } from 'primeng/popover';
+import { ButtonModule } from 'primeng/button';
 
 import { IHeaderTable } from '~/@types/task';
 import { BaseComponent } from '~/components/common/base/base.component';
 import { ThemeService } from '~/services/theme.service';
-import { Action } from '~/enums';
+import { convertToTitleCase } from '~/utils/string-utils';
 
 interface TableAction {
   label: string;
   icon: string;
-  action: (row: any) => void;
+  className: string;
+  actionKey: string;
 }
 
 @Component({
@@ -28,24 +29,25 @@ interface TableAction {
     DatePipe,
     AvatarModule,
     AvatarGroupModule,
-    PopoverModule,
     PaginatorModule,
     SelectModule,
-    FormsModule
+    FormsModule,
+    PopoverModule,
+    ButtonModule
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })
 export class Table<T> extends BaseComponent {
-  @ViewChild('popover', { static: false }) popover?: PopoverDirective;
   @Input() data!: T[];
   @Input() headers!: IHeaderTable[];
   @Input() showPagination: boolean = false;
+  @Input() showListPerPage: boolean = true;
   @Input() actions: TableAction[] = [];
+  @Input() className: string = '';
   @Input() rowsPerPageOptions = [5, 10, 20];
   @Output() pageChange = new EventEmitter<number>();
-
-  ACTIONS = Action;
+  @Output() actionTriggered = new EventEmitter<{ actionKey: string; rowData: T }>();
 
   first: number = 0;
 
@@ -71,16 +73,12 @@ export class Table<T> extends BaseComponent {
     super(themeService);
   }
 
+  convertToTitleCase(text: string) {
+    return convertToTitleCase(text);
+  }
+
   convertTableType(type: string) {
     return `assets/images/${this.currentMode}/${type}.svg`;
-    // switch (type) {
-    //   case 'action_item':
-    //     return `assets/images/${this.currentMode}/clipboard-sm.svg`;
-    //   case 'claim':
-    //     return `assets/images/${this.currentMode}/annotation-sm.svg`;
-    //   default:
-    //     return 'Unknown';
-    // }
   }
 
   getClass(className: string) {
@@ -91,5 +89,9 @@ export class Table<T> extends BaseComponent {
     this.first = event.first;
     this.rows = event.rows;
     this.pageChange.emit(event.page);
+  }
+
+  onActionClick(actionKey: string, rowData: T) {
+    this.actionTriggered.emit({ actionKey, rowData });
   }
 }

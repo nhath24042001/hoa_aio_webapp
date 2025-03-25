@@ -4,6 +4,7 @@
   [rowsPerPageOptions]="rowsPerPageOptions"
   showGridlines
   [tableStyle]="{ 'min-width': '50rem' }"
+  [ngClass]="[currentMode === 'dark' ? '--dark' : '--light', className]"
 >
   <ng-template #header>
     <tr>
@@ -34,7 +35,7 @@
           @case ('status') {
             <td>
               <div class="--box" [ngClass]="getClass(row[header.field])">
-                {{ row[header.field] }}
+                {{ convertToTitleCase(row[header.field]) }}
               </div>
             </td>
           }
@@ -48,29 +49,52 @@
               </p-avatar-group>
             </td>
           }
+          @case ('image') {
+            <td class="d-flex justify-content-center">
+              <img class="--row-img" [src]="row[header.field]" alt="table_image" />
+            </td>
+          }
+
           @case ('created') {
+            <td>
+              <span> {{ row[header.field] | date: 'dd MMM, yyyy' }} </span>
+            </td>
+          }
+
+          @case ('due_date') {
             <td>
               <span> {{ row[header.field] | date: 'dd MMM, yyyy' }} </span>
             </td>
           }
           @case ('action') {
             <td>
-              <div [popover]="popoverContent" class="--pointer">
+              <div class="dot-icon --pointer" (click)="op.toggle($event)">
                 <img src="assets/images/common/dots-vertical.svg" alt="dot_icon" />
               </div>
 
-              <ng-template #popoverContent>
-                <div class="--action-wrapper">
-                  <div *ngFor="let action of actions" (click)="action.action(row)">
-                    <img [src]="action.icon" alt="action_icon" />
-                    <span>{{ action.label }}</span>
-                  </div>
+              <p-popover #op>
+                <div class="flex flex-col gap-4">
+                  @for (action of actions; track $index) {
+                    <div
+                      [className]="action.className"
+                      (click)="onActionClick(action.actionKey, row)"
+                    >
+                      <img
+                        [src]="'assets/images/' + currentMode + '/' + action.icon + '.svg'"
+                        class="me-2"
+                        alt="action_icon"
+                      />
+                      <span>{{ action.label }}</span>
+                    </div>
+                  }
                 </div>
-              </ng-template>
+              </p-popover>
             </td>
           }
           @default {
-            <td>{{ row[header.field] }}</td>
+            <td>
+              <span class="--truncate">{{ row[header.field] }}</span>
+            </td>
           }
         }
       }
@@ -89,10 +113,13 @@
         [totalRecords]="data.length"
       />
 
-      <div class="d-flex align-items-center">
-        <span class="me-2">Show</span>
-        <p-select [options]="rowsPerPageOptions" [(ngModel)]="rows" size="small" />
-      </div>
+      @if (showListPerPage) {
+        <div class="d-flex align-items-center">
+          <span class="me-2">Show</span>
+
+          <p-select [options]="rowsPerPageOptions" [(ngModel)]="rows" size="small" />
+        </div>
+      }
     </div>
   </div>
 }

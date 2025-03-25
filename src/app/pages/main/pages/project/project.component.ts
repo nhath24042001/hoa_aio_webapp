@@ -9,6 +9,7 @@ import { projectHeaders, projectsData } from '~/data/project';
 import { Table } from '~/pages/main/components/shared/table/table.component';
 import { CreateProject } from '~/pages/main/components/modules/project/create-project/create-project.component';
 import { ProjectDetail } from '~/pages/main/components/modules/project/project-detail/project-detail.component';
+import { ToastService } from '~/services/toast.service';
 
 @Component({
   selector: 'app-project',
@@ -22,7 +23,25 @@ export class ProjectComponent {
   projects = projectsData;
   headers = projectHeaders;
 
-  constructor(public dialogService: DialogService) {}
+  actions = [
+    {
+      label: 'Edit',
+      icon: 'edit',
+      actionKey: 'edit',
+      className: '--pointer mb-2'
+    },
+    {
+      label: 'Delete',
+      icon: 'trash',
+      actionKey: 'delete',
+      className: '--delete-action --pointer'
+    }
+  ];
+
+  constructor(
+    public dialogService: DialogService,
+    private toastService: ToastService
+  ) {}
 
   onSearch() {}
 
@@ -41,5 +60,33 @@ export class ProjectComponent {
       data: {}
     });
     this.ref.onClose.subscribe((task: any) => {});
+  }
+
+  handleTableAction(event: { actionKey: string; rowData: any }) {
+    switch (event.actionKey) {
+      case 'edit':
+        this.onOpenProjectDetail(event.rowData);
+        break;
+      case 'delete':
+        this.onOpenDeleteDialog();
+        break;
+      default:
+        console.warn('Unknown action:', event.actionKey);
+    }
+  }
+
+  async onOpenDeleteDialog(): Promise<void> {
+    const confirmed = await this.toastService.showConfirm({
+      icon: 'assets/images/common/calendar-x-lg.svg',
+      title: 'Delete Task',
+      description:
+        'Are you sure? Proceeding will delete the event from the system, and can not be undone.',
+      type: 'error',
+      buttonText: 'Delete task'
+    });
+
+    if (confirmed) {
+      console.log('run 1');
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -13,4 +13,9 @@ export class ButtonPrimary {
   @Input() icon: string = '';
   @Input() loading: boolean = false;
   @Input() isPrimaryActive: boolean = false;
+  @Output() onClick = new EventEmitter<void>();
+
+  onHandleClick() {
+    this.onClick.emit();
+  }
 }
