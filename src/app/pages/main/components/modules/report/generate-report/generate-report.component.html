@@ -1,0 +1,62 @@
+<div class="--dynamic-dialog p-4">
+  <div class="--dialog-header w-100 d-flex justify-content-between mb-4">
+    <div class="d-flex align-items-center">
+      <img class="me-3" [src]="'assets/images/' + currentMode + '/file.svg'" alt="dialog_icon" />
+      <h3 class="mb-0">Generate a Report</h3>
+    </div>
+
+    <div class="--right">
+      <div class="--image-wrapper d-flex align-items-center">
+        <img
+          [src]="'assets/images/' + currentMode + '/close.svg'"
+          class="me-3"
+          (click)="closeDialog()"
+          alt="close_icon"
+        />
+      </div>
+    </div>
+  </div>
+
+  <p-divider />
+
+  <div class="--content">
+    <p-select
+      [options]="report_type"
+      optionLabel="name"
+      placeholder="Select report type"
+      styleClass="--custom-select mb-3"
+    ></p-select>
+    <p-select
+      [options]="sub_report_type"
+      optionLabel="name"
+      placeholder="Select report sub-type"
+      styleClass="--custom-select mb-3"
+    ></p-select>
+
+    <div class="d-flex align-items-center">
+      <img
+        [src]="'assets/images/' + currentMode + '/calendar.svg'"
+        class="me-3"
+        alt="calendar_icon"
+      />
+      <p>Select month or date range</p>
+      <p-date-picker
+        placeholder="Set date"
+        styleClass="--custom-datepicker"
+        class="--custom-datepicker"
+      ></p-date-picker>
+    </div>
+  </div>
+
+  <div class="--dynamic-action mt-3 d-flex justify-content-between align-items-center">
+    <p>Task ID: 4567890</p>
+
+    <div class="d-flex align-items-center">
+      <button-primary
+        icon="assets/images/common/check.svg"
+        label="Generate"
+        [isPrimaryActive]="true"
+      ></button-primary>
+    </div>
+  </div>
+</div>

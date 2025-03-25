@@ -41,3 +41,9 @@ export interface DynamicField {
   disabled?: boolean;
   hidden?: boolean;
 }
+
+export interface ISelect {
+  name: string;
+  code: string;
+  icon?: string;
+}
