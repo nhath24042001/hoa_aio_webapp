@@ -5,6 +5,10 @@
   border-radius: 30px;
   border: 1px solid var(--border-color);
 
+  &.--primary {
+      background: var(--active-primary);
+      padding: 13px;
+    }
   .--upload-label {
     cursor: pointer;
 

@@ -3,13 +3,13 @@
   [class]="isPrimaryActive ? '--active-primary' : '--primary'"
   (click)="onHandleClick()"
 >
-  @if (iconPos == 'left') {
+  @if (iconPos == 'left' && icon) {
     <img [src]="icon" alt="button_icon" />
   }
 
   <span class="">{{ label }}</span>
 
-  @if (iconPos == 'right') {
+  @if (iconPos == 'right' && icon) {
     <img [src]="icon" alt="button_icon" />
   }
 </div>

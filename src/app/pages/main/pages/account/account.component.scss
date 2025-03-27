@@ -1,0 +1,24 @@
+.--account-wrapper {
+  p {
+    margin: 16px 0 !important;
+  }
+
+  .d-flex.align-items-center p {
+    width: 70%;
+  }
+
+  .--profile {
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+
+    .--image-container {
+      width: 180px;
+      height: 80px;
+      max-width: 180px;
+      max-height: 80px;
+      border: 1px solid #ECEFF3;
+      background: #F8FAFB;
+      border-radius: 10px;
+    }
+  }
+}

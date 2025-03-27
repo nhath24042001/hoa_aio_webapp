@@ -506,3 +506,31 @@ ul li {
     }
   }
 }
+
+// STYLE BUTTON DIRECTIVE
+.--btn-primary {
+  background-color: #6a00f4;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.--btn-danger {
+  background-color: #ffcccc;
+  color: #d60000;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.--btn-outline {
+  background-color: transparent;
+  color: #6a00f4;
+  border: 1px solid #6a00f4;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}

@@ -1,8 +1,162 @@
 <div class="--account-wrapper p-4">
-  <div class="--acount-info">
-    <div class="row">
-      <div class="col-3"></div>
-      <div class="col-9"></div>
+  <h5>Welcome to Palm Springs HOA!</h5>
+  <p>
+    Please dedicate a few moments to setting up your personal account. This will make it easier for
+    other members to identify and communicate with you.
+  </p>
+  <p>
+    For admin users - please review and set the
+    <a href="" class="--link">Settings Page</a> according to your preferences,
+  </p>
+  <div class="d-flex align-items-center">
+    <p class="me-4">
+      To add <strong>home owners</strong> from an existing list
+      <a href="" class="--link">Download this CSV Template</a>, update the details and upload.
+    </p>
+
+    <div class="flex-fill">
+      <app-input-file
+        icon="upload-cloud-03"
+        placeholder="Upload owners list (click or drag file here)"
+        type="primary"
+      ></app-input-file>
     </div>
   </div>
+
+  <div class="d-flex align-items-center">
+    <p class="me-4">
+      To add <strong>properties</strong> from an existing list
+      <a href="" class="--link">Download this CSV Template</a>, update the details and upload.
+    </p>
+
+    <div class="flex-fill">
+      <app-input-file
+        icon="upload-cloud-03"
+        placeholder="Upload properties list (click or drag file here)"
+        type="primary"
+      ></app-input-file>
+    </div>
+  </div>
+
+  <div class="d-flex align-items-center">
+    <p class="me-4">
+      To add <strong>vendors</strong> from an existing list
+      <a href="" class="--link">Download this CSV Template</a>, update the details and upload.
+    </p>
+
+    <div class="flex-fill">
+      <app-input-file
+        icon="upload-cloud-03"
+        placeholder="Upload vendors list (click or drag file here)"
+        type="primary"
+      ></app-input-file>
+    </div>
+  </div>
+
+  <form class="--profile p-4" [formGroup]="profileInfo">
+    <div class="row">
+      <div class="col-3">
+        <h2>Profile</h2>
+        <span>Your personal information and account security settings.</span>
+      </div>
+      <div class="col-9">
+        <div class="d-flex align-items-center">
+          <div class="me-4">
+            <span>Avatar</span>
+            <div class="d-flex align-items-center">
+              <img
+                [src]="'assets/images/' + currentMode + '/avatars.svg'"
+                class="me-3"
+                alt="avatar_icon"
+              />
+
+              <app-input-file
+                icon="upload-cloud-03"
+                placeholder="Upload file (click or drag file here)"
+                type="primary"
+              ></app-input-file>
+            </div>
+          </div>
+
+          <div class="flex-fill d-flex flex-column">
+            <span>Role</span>
+            <p-select
+              [options]="roles"
+              optionLabel="name"
+              optionValue="value"
+              formControlName="role"
+              styleClass="flex-fill"
+            ></p-select>
+          </div>
+        </div>
+
+        <div>
+          <span>Signature (will be added to letters you send through the system)</span>
+          <div class="d-flex align-items-center">
+            <div class="--image-container me-3"></div>
+
+            <div class="flex-fill">
+              <app-input-file
+                icon="upload-cloud-03"
+                placeholder="Upload scanned signature file (click or drag file here)"
+                type="primary"
+              ></app-input-file>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-100 d-flex align-items-center">
+          <div class="w-50 me-4 d-flex flex-column">
+            <span>Full name</span>
+            <app-custom-input
+              type="text"
+              [mode]="currentMode"
+              [icon]="'assets/images/' + currentMode + '/user-square.svg'"
+              placeholder="Full name"
+              formControlName="fullName"
+            ></app-custom-input>
+          </div>
+
+          <div class="w-50 d-flex flex-column">
+            <span>Email</span>
+            <app-custom-input
+              type="text"
+              [mode]="currentMode"
+              [icon]="'assets/images/' + currentMode + '/at-sign.svg'"
+              placeholder="Email"
+              formControlName="email"
+            ></app-custom-input>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column">
+          <span>Password</span>
+          <app-custom-input
+            type="text"
+            [mode]="currentMode"
+            [icon]="'assets/images/' + currentMode + '/lock.svg'"
+            placeholder="Enter new Password"
+            formControlName="password"
+          ></app-custom-input>
+        </div>
+      </div>
+    </div>
+
+    <p-divider />
+
+    <div class="row">
+      <div class="col-3">
+        <h2>Danger zone</h2>
+        <span>Proceed with caution.</span>
+      </div>
+      <div class="col-9">
+        <button appButton="outline" icon="log-out" [currentMode]="currentMode" class="me-4">Logout from account</button>
+        <button appButton="danger" icon="user-x" [currentMode]="currentMode">Delete Account</button>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <button-primary label="Save Changes" [isPrimaryActive]="true"></button-primary>
+    </div>
+  </form>
 </div>
