@@ -8,7 +8,7 @@
     For admin users - please review and set the
     <a href="" class="--link">Settings Page</a> according to your preferences,
   </p>
-  <div class="d-flex align-items-center">
+  <div class="mb-2 d-flex align-items-center">
     <p class="me-4">
       To add <strong>home owners</strong> from an existing list
       <a href="" class="--link">Download this CSV Template</a>, update the details and upload.
@@ -16,14 +16,14 @@
 
     <div class="flex-fill">
       <app-input-file
-        icon="upload-cloud-03"
+        icon="upload-cloud-04"
         placeholder="Upload owners list (click or drag file here)"
         type="primary"
       ></app-input-file>
     </div>
   </div>
 
-  <div class="d-flex align-items-center">
+  <div class="mb-2 d-flex align-items-center">
     <p class="me-4">
       To add <strong>properties</strong> from an existing list
       <a href="" class="--link">Download this CSV Template</a>, update the details and upload.
@@ -31,14 +31,14 @@
 
     <div class="flex-fill">
       <app-input-file
-        icon="upload-cloud-03"
+        icon="upload-cloud-04"
         placeholder="Upload properties list (click or drag file here)"
         type="primary"
       ></app-input-file>
     </div>
   </div>
 
-  <div class="d-flex align-items-center">
+  <div class="mb-2 d-flex align-items-center">
     <p class="me-4">
       To add <strong>vendors</strong> from an existing list
       <a href="" class="--link">Download this CSV Template</a>, update the details and upload.
@@ -46,7 +46,7 @@
 
     <div class="flex-fill">
       <app-input-file
-        icon="upload-cloud-03"
+        icon="upload-cloud-04"
         placeholder="Upload vendors list (click or drag file here)"
         type="primary"
       ></app-input-file>
@@ -60,8 +60,8 @@
         <span>Your personal information and account security settings.</span>
       </div>
       <div class="col-9">
-        <div class="d-flex align-items-center">
-          <div class="me-4">
+        <div class="w-100 mb-3 d-flex align-items-center">
+          <div class="w-50 me-4 d-flex flex-column">
             <span>Avatar</span>
             <div class="d-flex align-items-center">
               <img
@@ -70,15 +70,17 @@
                 alt="avatar_icon"
               />
 
-              <app-input-file
-                icon="upload-cloud-03"
-                placeholder="Upload file (click or drag file here)"
-                type="primary"
-              ></app-input-file>
+              <div class="flex-fill">
+                <app-input-file
+                  icon="upload-cloud-04"
+                  placeholder="Upload file (click or drag file here)"
+                  type="primary"
+                ></app-input-file>
+              </div>
             </div>
           </div>
 
-          <div class="flex-fill d-flex flex-column">
+          <div class="w-50 d-flex flex-column">
             <span>Role</span>
             <p-select
               [options]="roles"
@@ -86,18 +88,19 @@
               optionValue="value"
               formControlName="role"
               styleClass="flex-fill"
+              styleClass="--role-select"
             ></p-select>
           </div>
         </div>
 
         <div>
-          <span>Signature (will be added to letters you send through the system)</span>
-          <div class="d-flex align-items-center">
+          <span class="">Signature (will be added to letters you send through the system)</span>
+          <div class=" mt-2 d-flex align-items-center">
             <div class="--image-container me-3"></div>
 
             <div class="flex-fill">
               <app-input-file
-                icon="upload-cloud-03"
+                icon="upload-cloud-04"
                 placeholder="Upload scanned signature file (click or drag file here)"
                 type="primary"
               ></app-input-file>
@@ -105,8 +108,8 @@
           </div>
         </div>
 
-        <div class="w-100 d-flex align-items-center">
-          <div class="w-50 me-4 d-flex flex-column">
+        <div class="w-100 mt-3 d-flex align-items-center">
+          <div class="w-50 me-4 d-flex flex-column gap-2">
             <span>Full name</span>
             <app-custom-input
               type="text"
@@ -117,7 +120,7 @@
             ></app-custom-input>
           </div>
 
-          <div class="w-50 d-flex flex-column">
+          <div class="w-50 d-flex flex-column gap-2">
             <span>Email</span>
             <app-custom-input
               type="text"
@@ -129,10 +132,10 @@
           </div>
         </div>
 
-        <div class="d-flex flex-column">
+        <div class="mt-3 d-flex flex-column gap-2">
           <span>Password</span>
           <app-custom-input
-            type="text"
+            type="password"
             [mode]="currentMode"
             [icon]="'assets/images/' + currentMode + '/lock.svg'"
             placeholder="Enter new Password"
@@ -150,7 +153,9 @@
         <span>Proceed with caution.</span>
       </div>
       <div class="col-9">
-        <button appButton="outline" icon="log-out" [currentMode]="currentMode" class="me-4">Logout from account</button>
+        <button appButton="outline" icon="log-out" [currentMode]="currentMode" class="me-4">
+          Logout from account
+        </button>
         <button appButton="danger" icon="user-x" [currentMode]="currentMode">Delete Account</button>
       </div>
     </div>

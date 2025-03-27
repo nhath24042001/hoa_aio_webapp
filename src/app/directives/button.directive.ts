@@ -32,6 +32,7 @@ export class ButtonDirective implements AfterViewInit {
   }
 
   private applyStyles(button: HTMLElement) {
+    this.renderer.addClass(button, '--btn');
     this.renderer.addClass(button, `--btn-${this.appButton()}`);
 
     if (this.icon()) {

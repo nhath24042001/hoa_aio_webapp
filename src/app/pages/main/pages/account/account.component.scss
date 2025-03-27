@@ -22,3 +22,26 @@
     }
   }
 }
+
+::ng-deep .p-select-option-selected {
+  background: var(--active-primary) !important;
+}
+
+::ng-deep .p-select-option.p-select-option-selected.p-focus {
+  background: none;
+}
+
+::ng-deep .--role-select {
+  height: 48px;
+
+  span {
+    display: flex;
+    align-items: center;
+  }
+}
+
+::ng-deep .p-select {
+  background: var(--input-custom);
+  border-color: var(--border-color) !important;
+  border-radius: 10px !important;
+}

@@ -19,7 +19,7 @@ import { Table } from '~/pages/main/components/shared/table/table.component';
 
 @Component({
   selector: 'app-owner-detail',
-  imports: [DividerModule, TabsModule, FormField, ButtonPrimary, SelectModule, Table],
+  imports: [DividerModule, TabsModule, FormField, ButtonPrimary, SelectModule],
   templateUrl: './owner-detail.component.html',
   styleUrl: './owner-detail.component.scss'
 })
