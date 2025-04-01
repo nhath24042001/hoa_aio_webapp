@@ -2,7 +2,7 @@
   background: var(--background);
   width: 240px;
   padding: 16px;
-  border: 1px solid #DFE1E7;
+  border: 1px solid #dfe1e7;
   border-radius: 10px;
 
   h2 {
@@ -41,13 +41,13 @@
 
 ::ng-deep .p-tab {
   border-width: 0px !important;
-  color: #6F6F6F;
+  color: #6f6f6f;
   font-weight: 500;
   font-size: 15px;
 }
 
 ::ng-deep .p-tab-active {
-  color: #6938DA;
+  color: #6938da;
 }
 
 ::ng-deep .p-tablist-active-bar {

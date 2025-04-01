@@ -35,7 +35,6 @@
         font-size: 10px;
         color: var(--normal-text);
       }
-
     }
 
     img {
@@ -46,14 +45,13 @@
   .--action {
     cursor: pointer;
   }
-
 }
 
 .--delete-action {
   cursor: pointer;
 
   span {
-    color: #FF515F;
+    color: #ff515f;
   }
 }
 
@@ -61,7 +59,7 @@
   cursor: pointer;
 
   span {
-    color: #4E9700;
+    color: #4e9700;
   }
 }
 
@@ -74,7 +72,6 @@
 }
 
 ::ng-deep .p-tab {
-
   background: var(--background) !important;
 }
 

@@ -54,9 +54,6 @@ export class LoginComponent extends BaseComponent {
       this.loading = false
       this.isSubmitting = true
 
-      // CALL API
-      const { email, password } = this.loginForm.value
-
       // if (email === 'admin@gmail.com' && password === '123123') {
       //   this.isShowError = false;
       // } else {

@@ -67,7 +67,7 @@ export class VendorComponent {
     this.activeTab = tabIndex.toString()
   }
   onOpenCreate(): void {
-    this.ref = this.dialogService.open<any>(this.componentRender, {
+    this.ref = this.dialogService.open(this.componentRender, {
       modal: true,
       width: '1000px',
       data: {
@@ -78,8 +78,8 @@ export class VendorComponent {
     // this.ref.onClose.subscribe((task: any) => {});
   }
 
-  onOpenEditDialog(data: any): void {
-    this.ref = this.dialogService.open<any>(this.componentRender, {
+  onOpenEditDialog(): void {
+    this.ref = this.dialogService.open(this.componentRender, {
       modal: true,
       width: '1000px',
       data: {

@@ -30,8 +30,7 @@ export class ButtonDirective implements AfterViewInit {
     this.renderer.addClass(button, `--btn-${this.appButton()}`)
 
     if (this.icon()) {
-      let iconElement: HTMLImageElement
-      iconElement = this.renderer.createElement('img')
+      const iconElement: HTMLImageElement = this.renderer.createElement('img')
       this.renderer.setAttribute(iconElement, 'src', this.iconUrl())
       this.renderer.setAttribute(iconElement, 'alt', 'button_icon')
       this.renderer.addClass(iconElement, 'me-2')

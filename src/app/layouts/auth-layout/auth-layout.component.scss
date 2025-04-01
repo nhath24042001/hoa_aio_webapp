@@ -6,7 +6,7 @@
   overflow: hidden;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     bottom: 0;
     left: 0;
@@ -35,7 +35,7 @@
     bottom: 45px;
 
     p {
-      color: #FFF;
+      color: #fff;
       max-width: 360px;
       font-size: 15px;
       margin-top: 10px !important;

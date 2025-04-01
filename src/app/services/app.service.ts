@@ -14,7 +14,7 @@ export class AppService extends HttpClientModel {
     super(http)
   }
 
-  public getListCountries(): Observable<any> {
+  public getListCountries(): Observable<unknown> {
     const request: HttpRequestParamsInterface = {
       url: environment.REST_COUNTRIES_API
     }

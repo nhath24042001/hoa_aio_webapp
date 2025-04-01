@@ -153,10 +153,10 @@ export class TaskManagementComponent {
       width: '1000px'
     })
 
-    this.ref.onClose.subscribe((task: any) => {})
+    this.ref.onClose.subscribe(() => {})
   }
 
-  onOpenTaskDetail(task: any): void {
+  onOpenTaskDetail(): void {
     this.ref = this.dialogService.open(TaskDetail, {
       modal: true,
       width: '1000px'
@@ -172,21 +172,18 @@ export class TaskManagementComponent {
         this.onOpenDeleteDialog()
         break
       default:
-        console.warn('Unknown action:', event.actionKey)
+        break
     }
   }
 
   async onOpenDeleteDialog(): Promise<void> {
-    const confirmed = await this.toastService.showConfirm({
-      icon: 'assets/images/common/calendar-x-lg.svg',
-      title: 'Delete task',
-      description: 'Are you sure? Proceeding will delete the event from the system, and can not be undone.',
-      type: 'error',
-      buttonText: 'Delete task'
-    })
-
-    if (confirmed) {
-      console.log('run 1')
-    }
+    // const confirmed = await this.toastService.showConfirm({
+    //   icon: 'assets/images/common/calendar-x-lg.svg',
+    //   title: 'Delete task',
+    //   description:
+    //     'Are you sure? Proceeding will delete the event from the system, and can not be undone.',
+    //   type: 'error',
+    //   buttonText: 'Delete task'
+    // });
   }
 }

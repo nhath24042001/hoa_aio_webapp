@@ -34,7 +34,7 @@
 ::ng-deep .fc-icon-chevron-left,
 ::ng-deep .fc-icon-chevron-right {
   &::before {
-    color: #A4ACB9;
+    color: #a4acb9;
   }
 }
 
@@ -50,7 +50,7 @@
 ::ng-deep .fc-col-header-cell-cushion {
   font-weight: 500;
   font-size: 15px;
-  color: #6F6F6F;
+  color: #6f6f6f;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -59,7 +59,7 @@
   a {
     text-decoration: none;
     font-size: 20px;
-    color: #6F6F6F;
+    color: #6f6f6f;
   }
 }
 
@@ -88,18 +88,18 @@
   border: 0 !important;
 
   span {
-    color: #A4ACB9 !important;
+    color: #a4acb9 !important;
   }
 }
 
 ::ng-deep .fc-event {
-  background: #F3EEFF;
+  background: #f3eeff;
   border-radius: 8px;
   padding: 4px 12px;
   border-top: 0;
   border-right: 0;
   border-bottom: 0;
-  border-left: 2px solid #6938DA;
+  border-left: 2px solid #6938da;
 }
 
 ::ng-deep .fc-event-title {

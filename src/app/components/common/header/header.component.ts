@@ -53,7 +53,7 @@ export class HeaderComponent {
     })
   }
 
-  onOpenNotify(event: any) {}
+  onOpenNotify() {}
 
   toggleTheme() {
     this.themeService.toggleTheme()

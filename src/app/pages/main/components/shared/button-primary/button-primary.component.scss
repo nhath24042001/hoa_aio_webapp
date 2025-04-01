@@ -4,18 +4,18 @@
   cursor: pointer;
 
   &.--primary {
-    background: #F3EEFF;
+    background: #f3eeff;
 
     span {
-      color: #6938DA;
+      color: #6938da;
     }
   }
 
   &.--active-primary {
-    background: #6938DA;
+    background: #6938da;
 
     span {
-      color: #FFF
+      color: #fff;
     }
   }
 

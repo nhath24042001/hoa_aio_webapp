@@ -1,17 +1,17 @@
 <div class="--custom-select">
   <p-select
-  [options]="options"
-  [(ngModel)]="formControl"
-  optionLabel="name"
-  [styleClass]="classField()"
-  (onChange)="onStatusChange($event)"
->
-  <ng-template #selectedItem let-selectedOption>
-    <div>{{ formControl.name }}</div>
-  </ng-template>
+    [options]="options"
+    [(ngModel)]="formControl"
+    optionLabel="name"
+    [styleClass]="classField()"
+    (onChange)="onStatusChange($event)"
+  >
+    <ng-template #selectedItem let-selectedOption>
+      <div>{{ formControl.name }}</div>
+    </ng-template>
 
-  <ng-template let-country #item>
-    <!-- <div [classList]="`--custom-${country.code} d-flex align-items-center `">
+    <ng-template let-country #item>
+      <!-- <div [classList]="`--custom-${country.code} d-flex align-items-center `">
       <img
         [src]="'assets/images/' + currentMode + '/' + country.icon + '.svg'"
         class="me-2"
@@ -19,7 +19,6 @@
       />
       <div>{{ country.name }}</div>
     </div> -->
-  </ng-template>
-</p-select>
-
+    </ng-template>
+  </p-select>
 </div>

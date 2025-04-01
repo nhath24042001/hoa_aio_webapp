@@ -1,7 +1,7 @@
 .--filter-content {
   background: var(--background);
   width: 450px;
-  border: 1px solid #DFE1E7;
+  border: 1px solid #dfe1e7;
   border-radius: 10px;
 
   .--clear-all {
@@ -14,7 +14,7 @@
   .--text-date {
     font-weight: 400;
     font-size: 15px;
-    color: #666D80;
+    color: #666d80;
     display: flex;
     align-items: center;
   }
@@ -28,7 +28,7 @@
   }
 
   .--normal-text {
-    color: #666D80;
+    color: #666d80;
   }
 }
 ::ng-deep .p-tabpanels {
@@ -59,14 +59,14 @@
 
 ::ng-deep .p-tab {
   border-width: 0px !important;
-  color: #6F6F6F;
+  color: #6f6f6f;
   font-weight: 500;
   font-size: 15px;
   background: var(--background) !important;
 }
 
 ::ng-deep .p-tab-active {
-  color: #6938DA;
+  color: #6938da;
 }
 
 ::ng-deep .p-tablist-active-bar {

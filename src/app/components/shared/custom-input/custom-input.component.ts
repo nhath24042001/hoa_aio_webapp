@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CommonModule } from '@angular/common'
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { NG_VALUE_ACCESSOR } from '@angular/forms'
@@ -34,7 +35,7 @@ export class CustomInputComponent {
   onChange: any = () => {}
   onTouched: any = () => {}
 
-  onValueChange(event: any) {
+  onValueChange() {
     this.valueChange.emit(this.value)
   }
 
@@ -54,7 +55,7 @@ export class CustomInputComponent {
     this.onTouched = fn
   }
 
-  setDisabledState?(isDisabled: boolean): void {
+  setDisabledState?(): void {
     // Handle disabled state if needed
   }
 

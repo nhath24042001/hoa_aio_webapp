@@ -7,9 +7,14 @@
 
   @if (type === 'password') {
     <div class="flex-fill">
-      <p-password [(ngModel)]="value" [toggleMask]="true" [feedback]="false"[placeholder]="placeholder" />
+      <p-password
+        [(ngModel)]="value"
+        [toggleMask]="true"
+        [feedback]="false"
+        [placeholder]="placeholder"
+      />
     </div>
   } @else {
-    <input type="text" [(ngModel)]="value" [placeholder]="placeholder" pInputText/>
+    <input type="text" [(ngModel)]="value" [placeholder]="placeholder" pInputText />
   }
 </div>

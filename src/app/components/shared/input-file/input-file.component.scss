@@ -7,13 +7,13 @@
 
   &.--primary {
     background: var(--active-primary);
-      padding: 13px;
-    }
+    padding: 13px;
+  }
 
   .--upload-label {
     cursor: pointer;
 
-    input[type="file"] {
+    input[type='file'] {
       display: none;
     }
 
