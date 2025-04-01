@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { OverviewStasComponent } from './overview-stas.component';
+import { OverviewStasComponent } from './overview-stas.component'
 
 describe('OverviewStasComponent', () => {
-  let component: OverviewStasComponent;
-  let fixture: ComponentFixture<OverviewStasComponent>;
+  let component: OverviewStasComponent
+  let fixture: ComponentFixture<OverviewStasComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [OverviewStasComponent]
-    })
-    .compileComponents();
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(OverviewStasComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(OverviewStasComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

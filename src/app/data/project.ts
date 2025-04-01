@@ -1,5 +1,5 @@
-import { IHeaderTable, ITask } from '~/@types/task';
-import { Priority } from '~/enums';
+import { IHeaderTable, ITask } from '~/@types/task'
+import { Priority } from '~/enums'
 
 export const projectsData: ITask[] = [
   {
@@ -14,14 +14,12 @@ export const projectsData: ITask[] = [
       {
         id: 1,
         name: 'John Doe',
-        avatar:
-          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
         name: 'Jane Smith',
-        avatar:
-          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
       }
     ]
   },
@@ -37,14 +35,12 @@ export const projectsData: ITask[] = [
       {
         id: 1,
         name: 'John Doe',
-        avatar:
-          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
         name: 'Jane Smith',
-        avatar:
-          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
       }
     ]
   },
@@ -60,14 +56,12 @@ export const projectsData: ITask[] = [
       {
         id: 1,
         name: 'John Doe',
-        avatar:
-          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
         name: 'Jane Smith',
-        avatar:
-          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
       }
     ]
   },
@@ -83,14 +77,12 @@ export const projectsData: ITask[] = [
       {
         id: 1,
         name: 'John Doe',
-        avatar:
-          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
         name: 'Jane Smith',
-        avatar:
-          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
       }
     ]
   },
@@ -106,14 +98,12 @@ export const projectsData: ITask[] = [
       {
         id: 1,
         name: 'John Doe',
-        avatar:
-          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
         name: 'Jane Smith',
-        avatar:
-          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
       }
     ]
   },
@@ -129,18 +119,16 @@ export const projectsData: ITask[] = [
       {
         id: 1,
         name: 'John Doe',
-        avatar:
-          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
         name: 'Jane Smith',
-        avatar:
-          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
       }
     ]
   }
-];
+]
 
 export const projectHeaders: IHeaderTable[] = [
   {
@@ -177,7 +165,7 @@ export const projectHeaders: IHeaderTable[] = [
     name: '',
     width: '20px'
   }
-];
+]
 
 export const left_project_box = [
   {
@@ -284,7 +272,7 @@ export const left_project_box = [
       }
     ]
   }
-];
+]
 
 export const right_project_box = [
   {
@@ -308,4 +296,4 @@ export const right_project_box = [
     type: 'input',
     placeholder: 'Me (enter name to change)'
   }
-];
+]

@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core'
 
-import { ButtonPrimary } from '../../shared/button-primary/button-primary.component';
+import { ButtonPrimary } from '../../shared/button-primary/button-primary.component'
 
 @Component({
   selector: 'app-dialog-actions',
@@ -9,9 +9,9 @@ import { ButtonPrimary } from '../../shared/button-primary/button-primary.compon
   styleUrl: './dialog-actions.component.scss'
 })
 export class DialogActions {
-  @Input() moduleName = '';
-  @Input() formID = '';
-  @Input() isCreateMode = false;
-  @Input() buttonText = '';
-  @Input() buttonIcon = 'assets/images/common/white-file-plus.svg';
+  @Input() moduleName = ''
+  @Input() formID = ''
+  @Input() isCreateMode = false
+  @Input() buttonText = ''
+  @Input() buttonIcon = 'assets/images/common/white-file-plus.svg'
 }

@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { DynamicEvent } from './dynamic-event.component';
+import { DynamicEvent } from './dynamic-event.component'
 
 describe('DynamicEvent', () => {
-  let component: DynamicEvent;
-  let fixture: ComponentFixture<DynamicEvent>;
+  let component: DynamicEvent
+  let fixture: ComponentFixture<DynamicEvent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DynamicEvent]
-    })
-    .compileComponents();
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(DynamicEvent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(DynamicEvent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

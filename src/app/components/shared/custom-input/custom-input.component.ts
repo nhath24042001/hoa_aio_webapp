@@ -1,10 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { PasswordModule } from 'primeng/password';
-import { InputTextModule } from 'primeng/inputtext';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
-import { FormControl } from '@angular/forms';
+import { CommonModule } from '@angular/common'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { NG_VALUE_ACCESSOR } from '@angular/forms'
+import { FormsModule } from '@angular/forms'
+import { FormControl } from '@angular/forms'
+import { InputTextModule } from 'primeng/inputtext'
+import { PasswordModule } from 'primeng/password'
 
 @Component({
   selector: 'app-custom-input',
@@ -20,38 +20,38 @@ import { FormControl } from '@angular/forms';
   ]
 })
 export class CustomInputComponent {
-  @Input() type: 'text' | 'password' = 'text';
-  @Input() icon = '';
-  @Input() placeholder = '';
-  @Input() mode = '';
-  @Input() isError = false;
-  @Input() formControl!: FormControl;
-  @Input() value: string = '';
-  @Output() valueChange = new EventEmitter<string>();
+  @Input() type: 'text' | 'password' = 'text'
+  @Input() icon = ''
+  @Input() placeholder = ''
+  @Input() mode = ''
+  @Input() isError = false
+  @Input() formControl!: FormControl
+  @Input() value: string = ''
+  @Output() valueChange = new EventEmitter<string>()
 
-  isPasswordVisible = false;
+  isPasswordVisible = false
 
-  onChange: any = () => {};
-  onTouched: any = () => {};
+  onChange: any = () => {}
+  onTouched: any = () => {}
 
   onValueChange(event: any) {
-    this.valueChange.emit(this.value);
+    this.valueChange.emit(this.value)
   }
 
   togglePasswordVisibility() {
-    this.isPasswordVisible = !this.isPasswordVisible;
+    this.isPasswordVisible = !this.isPasswordVisible
   }
 
   writeValue(value: any): void {
-    this.value = value;
+    this.value = value
   }
 
   registerOnChange(fn: any): void {
-    this.onChange = fn;
+    this.onChange = fn
   }
 
   registerOnTouched(fn: any): void {
-    this.onTouched = fn;
+    this.onTouched = fn
   }
 
   setDisabledState?(isDisabled: boolean): void {
@@ -59,8 +59,8 @@ export class CustomInputComponent {
   }
 
   onInput(event: Event) {
-    const input = event.target as HTMLInputElement;
-    this.value = input.value;
-    this.onChange(this.value);
+    const input = event.target as HTMLInputElement
+    this.value = input.value
+    this.onChange(this.value)
   }
 }

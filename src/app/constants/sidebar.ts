@@ -1,11 +1,11 @@
-import { ISidebar } from "../@types";
+import { ISidebar } from '../@types'
 
 export const LIST_SIDEBAR: ISidebar = {
   listView: [
     {
       icon: 'overview',
       name: 'Overview',
-      routerLink: '/overview',
+      routerLink: '/overview'
     },
     {
       icon: 'announcements',
@@ -56,7 +56,7 @@ export const LIST_SIDEBAR: ISidebar = {
       icon: 'report',
       name: 'Reports',
       routerLink: '/reports'
-    },
+    }
   ],
   adminTool: [
     {

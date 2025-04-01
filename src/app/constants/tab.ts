@@ -14,7 +14,7 @@ export const vendorTabHeader = [
     img: 'assets/images/common/gray-help-hexagon.svg',
     activeImg: 'assets/images/common/help-hexagon.svg'
   }
-];
+]
 
 export const violationTabHeader = [
   {
@@ -27,7 +27,7 @@ export const violationTabHeader = [
     img: 'assets/images/common/violation-closed.svg',
     activeImg: 'assets/images/common/violation-closed-active.svg'
   }
-];
+]
 
 export const homeOwnerTabHeader = [
   {
@@ -40,7 +40,7 @@ export const homeOwnerTabHeader = [
     img: 'assets/images/common/home-owner.svg',
     activeImg: 'assets/images/common/active-home-owner.svg'
   }
-];
+]
 
 export const propertiesDetailTabHeader = [
   {
@@ -53,7 +53,7 @@ export const propertiesDetailTabHeader = [
     img: 'assets/images/common/bank-note.svg',
     activeImg: 'assets/images/common/bank-note-active.svg'
   }
-];
+]
 
 export const ownerDetailHeader = [
   {
@@ -71,7 +71,7 @@ export const ownerDetailHeader = [
     img: 'assets/images/common/bank-note.svg',
     activeImg: 'assets/images/common/bank-note-active.svg'
   }
-];
+]
 
 export const documentTabHeader = [
   {
@@ -84,7 +84,7 @@ export const documentTabHeader = [
     img: 'assets/images/light/mail-02.svg',
     activeImg: 'assets/images/light/mail.svg'
   }
-];
+]
 
 export const userTabHeader = [
   {
@@ -97,4 +97,4 @@ export const userTabHeader = [
     img: 'assets/images/common/user-x.svg',
     activeImg: 'assets/images/common/user-x-01.svg'
   }
-];
+]

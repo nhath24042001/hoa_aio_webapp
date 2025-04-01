@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common'
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -8,19 +8,19 @@ import {
   Output,
   signal,
   ViewChild
-} from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular';
-import { SelectModule } from 'primeng/select';
-import { Table } from '~/pages/main/components/shared/table/table.component';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import timeGridPlugin from '@fullcalendar/timegrid';
+} from '@angular/core'
+import { FormsModule } from '@angular/forms'
+import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular'
+import { CalendarOptions } from '@fullcalendar/core/index.js'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import interactionPlugin from '@fullcalendar/interaction'
+import timeGridPlugin from '@fullcalendar/timegrid'
+import { SelectModule } from 'primeng/select'
 
-import { calendarHeader, calendarData } from '~/data/calendar';
-import { CalendarOptions } from '@fullcalendar/core/index.js';
-import { BaseComponent } from '~/components/common/base/base.component';
-import { ThemeService } from '~/services/theme.service';
+import { BaseComponent } from '~/components/common/base/base.component'
+import { calendarData, calendarHeader } from '~/data/calendar'
+import { Table } from '~/pages/main/components/shared/table/table.component'
+import { ThemeService } from '~/services/theme.service'
 
 @Component({
   selector: 'app-general-calendar',
@@ -29,20 +29,20 @@ import { ThemeService } from '~/services/theme.service';
   styleUrl: './general-calendar.component.scss'
 })
 export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnInit {
-  @ViewChild('calendar') calendarComponent?: FullCalendarComponent;
-  @Output() actionEmitter = new EventEmitter<{ action: string; data: any }>();
+  @ViewChild('calendar') calendarComponent?: FullCalendarComponent
+  @Output() actionEmitter = new EventEmitter<{ action: string; data: any }>()
 
-  isListView = signal(false);
-  calendarTitle = '';
-  calendarHeader = calendarHeader;
-  calendarData = calendarData;
+  isListView = signal(false)
+  calendarTitle = ''
+  calendarHeader = calendarHeader
+  calendarData = calendarData
   viewOptions = [
     { name: 'Month', code: 'dayGridMonth' },
     { name: 'Week', code: 'timeGridWeek' },
     { name: 'Daily', code: 'timeGridDay' },
     { name: 'List', code: 'list' }
-  ];
-  selectedView = signal(this.viewOptions[0]);
+  ]
+  selectedView = signal(this.viewOptions[0])
   calendarOptions = signal<CalendarOptions>({
     plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin],
     headerToolbar: { left: 'today title prev,next', right: '' },
@@ -69,7 +69,7 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
       },
       { title: 'Event Title - Truncate', start: '2025-03-07', className: '--event --event-green' }
     ]
-  });
+  })
 
   actions = [
     {
@@ -84,46 +84,46 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
       actionKey: 'delete',
       className: '--delete-action --pointer'
     }
-  ];
+  ]
 
   constructor(
     themeService: ThemeService,
     private cdr: ChangeDetectorRef
   ) {
-    super(themeService);
+    super(themeService)
   }
 
   get calendarApi() {
-    return this.calendarComponent?.getApi();
+    return this.calendarComponent?.getApi()
   }
 
   ngAfterViewInit(): void {
-    this.updateCalendar();
-    this.onGetCalendarTitle();
+    this.updateCalendar()
+    this.onGetCalendarTitle()
   }
 
   onGetCalendarTitle(): void {
-    this.calendarTitle = this.calendarApi?.view.title || '';
-    this.cdr.detectChanges();
+    this.calendarTitle = this.calendarApi?.view.title || ''
+    this.cdr.detectChanges()
   }
 
   onNavigation(action: 'today' | 'prev' | 'next'): void {
-    this.calendarApi?.[action]();
+    this.calendarApi?.[action]()
   }
 
   onViewChange(view: { name: string; code: string }): void {
-    this.isListView.set(view.code === 'list');
-    this.selectedView.set(view);
-    this.updateCalendar();
+    this.isListView.set(view.code === 'list')
+    this.selectedView.set(view)
+    this.updateCalendar()
   }
 
   private updateCalendar(): void {
     if (!this.isListView() && this.calendarApi) {
-      this.calendarApi.changeView(this.selectedView().code);
+      this.calendarApi.changeView(this.selectedView().code)
     }
   }
 
   onAction(event: any): void {
-    this.actionEmitter.emit({ action: event.actionKey, data: event.rowData });
+    this.actionEmitter.emit({ action: event.actionKey, data: event.rowData })
   }
 }

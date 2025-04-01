@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { InputFileComponent } from './input-file.component';
+import { InputFileComponent } from './input-file.component'
 
 describe('InputFileComponent', () => {
-  let component: InputFileComponent;
-  let fixture: ComponentFixture<InputFileComponent>;
+  let component: InputFileComponent
+  let fixture: ComponentFixture<InputFileComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [InputFileComponent]
-    })
-    .compileComponents();
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(InputFileComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(InputFileComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

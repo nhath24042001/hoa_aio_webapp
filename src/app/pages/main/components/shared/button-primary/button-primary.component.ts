@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 
 @Component({
   selector: 'button-primary',
@@ -8,14 +8,14 @@ import { CommonModule } from '@angular/common';
   styleUrl: './button-primary.component.scss'
 })
 export class ButtonPrimary {
-  @Input() label: string = '';
-  @Input() iconPos: string = 'left';
-  @Input() icon: string = '';
-  @Input() loading: boolean = false;
-  @Input() isPrimaryActive: boolean = false;
-  @Output() onClick = new EventEmitter<void>();
+  @Input() label: string = ''
+  @Input() iconPos: string = 'left'
+  @Input() icon: string = ''
+  @Input() loading: boolean = false
+  @Input() isPrimaryActive: boolean = false
+  @Output() onClick = new EventEmitter<void>()
 
   onHandleClick() {
-    this.onClick.emit();
+    this.onClick.emit()
   }
 }

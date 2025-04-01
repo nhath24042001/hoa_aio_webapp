@@ -1,4 +1,4 @@
-import { EventType } from '~/enums';
+import { EventType } from '~/enums'
 
 export const calendarData = [
   {
@@ -36,7 +36,7 @@ export const calendarData = [
     startDate: '01/01/2023: 12:00 AM',
     createdDate: '01/01/2023'
   }
-];
+]
 
 export const calendarHeader = [
   { field: 'task_name', name: 'Task Name' },
@@ -45,7 +45,7 @@ export const calendarHeader = [
   { field: 'startDate', name: 'Start' },
   { field: 'createdDate', name: 'Created' },
   { field: 'action', name: '' }
-];
+]
 
 export const eventList = [
   {
@@ -64,4 +64,4 @@ export const eventList = [
     name: EventType.MAINTENANCE,
     code: 'maintenance'
   }
-];
+]

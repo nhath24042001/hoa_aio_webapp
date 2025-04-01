@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { DividerModule } from 'primeng/divider';
-import { InputTextModule } from 'primeng/inputtext';
-import { EditorModule } from 'primeng/editor';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core'
+import { FormsModule } from '@angular/forms'
+import { DividerModule } from 'primeng/divider'
+import { DynamicDialogRef } from 'primeng/dynamicdialog'
+import { EditorModule } from 'primeng/editor'
+import { InputTextModule } from 'primeng/inputtext'
 
-import { BaseComponent } from '~/components/common/base/base.component';
-import { ThemeService } from '~/services/theme.service';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
+import { BaseComponent } from '~/components/common/base/base.component'
+import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component'
+import { ThemeService } from '~/services/theme.service'
 
 @Component({
   selector: 'app-compose-letter',
@@ -16,16 +16,16 @@ import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/but
   styleUrl: './compose-letter.component.scss'
 })
 export class ComposeLetter extends BaseComponent {
-  editorContent = '';
+  editorContent = ''
 
   constructor(
     themeService: ThemeService,
     public ref: DynamicDialogRef
   ) {
-    super(themeService);
+    super(themeService)
   }
 
   closeDialog() {
-    this.ref.close();
+    this.ref.close()
   }
 }

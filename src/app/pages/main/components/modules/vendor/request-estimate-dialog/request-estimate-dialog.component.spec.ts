@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { RequestEstimateDialogComponent } from './request-estimate-dialog.component';
+import { RequestEstimateDialogComponent } from './request-estimate-dialog.component'
 
 describe('RequestEstimateDialogComponent', () => {
-  let component: RequestEstimateDialogComponent;
-  let fixture: ComponentFixture<RequestEstimateDialogComponent>;
+  let component: RequestEstimateDialogComponent
+  let fixture: ComponentFixture<RequestEstimateDialogComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RequestEstimateDialogComponent]
-    })
-    .compileComponents();
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(RequestEstimateDialogComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(RequestEstimateDialogComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

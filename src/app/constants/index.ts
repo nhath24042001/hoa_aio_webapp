@@ -1,16 +1,16 @@
-import { Priority } from '~/enums';
+import { Priority } from '~/enums'
 
 export const THEME = {
   LIGHT: 'light',
   DARK: 'dark'
-};
+}
 
 export const ACTIONS = {
   EDIT: 'Edit',
   APPROVE: 'Approve',
   PENDING: 'Make as pending',
   DELETE: 'Delete'
-} as const;
+} as const
 
 export const STATUS_LIST = {
   NEW: 'New',
@@ -25,7 +25,7 @@ export const STATUS_LIST = {
   REJECT: 'Reject',
   CANCELLED: 'Cancelled',
   CANCEL: 'Cancel'
-} as const;
+} as const
 
 export const TASK_STATUS = [
   {
@@ -52,7 +52,7 @@ export const TASK_STATUS = [
     icon: 'status-cancel',
     name: STATUS_LIST.CANCEL
   }
-];
+]
 
 export const PROJECT_TYPES = [
   { name: 'Maintenance', code: 'NY' },
@@ -60,7 +60,7 @@ export const PROJECT_TYPES = [
   { name: 'New construction', code: 'LDN' },
   { name: 'Inspection', code: 'IST' },
   { name: 'Other', code: 'PRS' }
-];
+]
 
 export const PRIORITY_LIST = [
   {
@@ -79,7 +79,7 @@ export const PRIORITY_LIST = [
     name: 'Critical',
     code: 'critical'
   }
-];
+]
 
 export const LIST_TASK_STATUS = [
   {
@@ -106,7 +106,7 @@ export const LIST_TASK_STATUS = [
     name: STATUS_LIST.CANCELLED,
     code: 'cancelled'
   }
-];
+]
 
 export const tasks = [
   {
@@ -121,14 +121,12 @@ export const tasks = [
       {
         id: 1,
         name: 'John Doe',
-        avatar:
-          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
         name: 'Jane Smith',
-        avatar:
-          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
       }
     ]
   },
@@ -144,14 +142,12 @@ export const tasks = [
       {
         id: 1,
         name: 'Urgon Tuya',
-        avatar:
-          'https://images.pexels.com/photos/7046685/pexels-photo-7046685.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/7046685/pexels-photo-7046685.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
         name: 'Jonathan Wick',
-        avatar:
-          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
       }
     ]
   },
@@ -167,14 +163,12 @@ export const tasks = [
       {
         id: 1,
         name: 'John Doe',
-        avatar:
-          'https://images.pexels.com/photos/8638618/pexels-photo-8638618.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/8638618/pexels-photo-8638618.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
         name: 'Jane Smith',
-        avatar:
-          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
       }
     ]
   },
@@ -190,14 +184,12 @@ export const tasks = [
       {
         id: 1,
         name: 'John Doe',
-        avatar:
-          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
         name: 'Jane Smith',
-        avatar:
-          'https://images.pexels.com/photos/7046685/pexels-photo-7046685.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/7046685/pexels-photo-7046685.jpeg?auto=compress&cs=tinysrgb&w=600'
       }
     ]
   },
@@ -213,15 +205,13 @@ export const tasks = [
       {
         id: 1,
         name: 'John Doe',
-        avatar:
-          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
         name: 'Jane Smith',
-        avatar:
-          'https://images.pexels.com/photos/7862484/pexels-photo-7862484.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar: 'https://images.pexels.com/photos/7862484/pexels-photo-7862484.jpeg?auto=compress&cs=tinysrgb&w=600'
       }
     ]
   }
-];
+]

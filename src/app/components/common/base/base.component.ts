@@ -1,6 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { ThemeService } from '../../../services/theme.service';
+import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Subscription } from 'rxjs'
+
+import { ThemeService } from '../../../services/theme.service'
 
 @Component({
   selector: 'app-base',
@@ -9,20 +10,20 @@ import { ThemeService } from '../../../services/theme.service';
   styleUrl: './base.component.scss'
 })
 export class BaseComponent implements OnInit, OnDestroy {
-  currentMode: string = '';
+  currentMode: string = ''
   private themeSubscription!: Subscription
 
   constructor(private themeService: ThemeService) {}
 
   ngOnInit() {
     this.themeSubscription = this.themeService.theme$.subscribe((theme) => {
-      this.currentMode = theme;
-    });
+      this.currentMode = theme
+    })
   }
 
   ngOnDestroy() {
     if (this.themeSubscription) {
-      this.themeSubscription.unsubscribe();
+      this.themeSubscription.unsubscribe()
     }
   }
 }

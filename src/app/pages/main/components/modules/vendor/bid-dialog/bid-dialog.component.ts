@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { DynamicField } from '~/@types';
-import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dynamic-dialog.component';
+import { Component } from '@angular/core'
+import { DynamicDialogConfig } from 'primeng/dynamicdialog'
+
+import { DynamicField } from '~/@types'
+import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dynamic-dialog.component'
 
 @Component({
   selector: 'app-bid-dialog',
@@ -10,8 +11,8 @@ import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dyn
   styleUrl: './bid-dialog.component.scss'
 })
 export class BidDialog {
-  data: any;
-  type = '';
+  data: any
+  type = ''
 
   list_columns: DynamicField[] = [
     {
@@ -131,7 +132,7 @@ export class BidDialog {
       placeholder:
         'Enter criteria e.g. price, capability, past performance, compliance requirements, separated by comma'
     }
-  ];
+  ]
 
   list_textarea = [
     {
@@ -139,18 +140,18 @@ export class BidDialog {
       placeholder: 'Enter instructions',
       value: ''
     }
-  ];
+  ]
 
   constructor(public config: DynamicDialogConfig) {
-    this.data = config.data;
-    this.type = this.data.type;
+    this.data = config.data
+    this.type = this.data.type
   }
 
   get title() {
-    return this.type === 'create' ? 'Create New Bid' : 'Bid Details';
+    return this.type === 'create' ? 'Create New Bid' : 'Bid Details'
   }
 
   get formData() {
-    return this.config.data;
+    return this.config.data
   }
 }

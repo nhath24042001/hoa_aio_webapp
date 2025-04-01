@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { IAnnouncementChild } from '~/@types/announcement';
-import { DatePipe } from '@angular/common';
-import { PopoverModule } from 'primeng/popover';
+import { DatePipe } from '@angular/common'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { PopoverModule } from 'primeng/popover'
 
-import { Action } from '~/enums/index';
-import { BaseComponent } from '~/components/common/base/base.component';
-import { ThemeService } from '~/services/theme.service';
+import { IAnnouncementChild } from '~/@types/announcement'
+import { BaseComponent } from '~/components/common/base/base.component'
+import { Action } from '~/enums/index'
+import { ThemeService } from '~/services/theme.service'
 
 @Component({
   selector: 'announcement-list',
@@ -14,10 +14,10 @@ import { ThemeService } from '~/services/theme.service';
   styleUrl: './announcement-list.component.scss'
 })
 export class AnnouncementListComponent extends BaseComponent {
-  @Input() announcements: IAnnouncementChild[] = [];
-  @Output() onEmitAction = new EventEmitter<{ announcement: IAnnouncementChild; type: string }>();
+  @Input() announcements: IAnnouncementChild[] = []
+  @Output() onEmitAction = new EventEmitter<{ announcement: IAnnouncementChild; type: string }>()
 
-  ACTIONS = Action;
+  ACTIONS = Action
   actions = [
     {
       label: this.ACTIONS.EDIT,
@@ -37,13 +37,13 @@ export class AnnouncementListComponent extends BaseComponent {
       actionKey: 'delete',
       className: '--delete-action --pointer'
     }
-  ];
+  ]
 
   constructor(themeService: ThemeService) {
-    super(themeService);
+    super(themeService)
   }
 
   onActionClick(actionKey: string, rowData: any) {
-    this.onEmitAction.emit({ announcement: rowData, type: actionKey });
+    this.onEmitAction.emit({ announcement: rowData, type: actionKey })
   }
 }

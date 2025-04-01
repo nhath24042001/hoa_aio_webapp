@@ -1,19 +1,18 @@
-import { Component } from '@angular/core';
-import { some } from 'lodash-es';
-import { TabsModule } from 'primeng/tabs';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { CheckboxModule } from 'primeng/checkbox';
-import { PopoverModule } from 'ngx-bootstrap/popover';
+import { Component } from '@angular/core'
+import { some } from 'lodash-es'
+import { PopoverModule } from 'ngx-bootstrap/popover'
+import { CheckboxModule } from 'primeng/checkbox'
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog'
+import { TabsModule } from 'primeng/tabs'
 
-import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
-import { AnnouncementListComponent } from '~/pages/main/components/modules/announcement/announcement-list/announcement-list.component';
-import { MainHeader } from '~/pages/main/components//shared/main-header/main-header.component';
-import { DynamicAnnouncement } from '~/pages/main/components/modules/announcement/dynamic-announcement/dynamic-announcement.component';
-import { AnnouncementDetail } from '~/pages/main/components/modules/announcement/announcement-detail/announcement-detail.component';
-
-import { IAnnouncement, IAnnouncementChild } from '~/@types/announcement';
-import { ToastService } from '~/services/toast.service';
+import { IAnnouncement, IAnnouncementChild } from '~/@types/announcement'
+import { MainHeader } from '~/pages/main/components//shared/main-header/main-header.component'
+import { AnnouncementDetail } from '~/pages/main/components/modules/announcement/announcement-detail/announcement-detail.component'
+import { AnnouncementListComponent } from '~/pages/main/components/modules/announcement/announcement-list/announcement-list.component'
+import { DynamicAnnouncement } from '~/pages/main/components/modules/announcement/dynamic-announcement/dynamic-announcement.component'
+import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component'
+import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component'
+import { ToastService } from '~/services/toast.service'
 @Component({
   selector: 'app-announcements',
   imports: [
@@ -29,7 +28,7 @@ import { ToastService } from '~/services/toast.service';
   styleUrl: './announcements.component.scss'
 })
 export class AnnouncementsComponent {
-  ref: DynamicDialogRef | undefined;
+  ref: DynamicDialogRef | undefined
 
   announcements: IAnnouncement = {
     active: [
@@ -67,7 +66,7 @@ export class AnnouncementsComponent {
         personSent: 'Larry Birch'
       }
     ]
-  };
+  }
 
   userTypes = [
     {
@@ -90,7 +89,7 @@ export class AnnouncementsComponent {
       value: 'vendors',
       isChecked: false
     }
-  ];
+  ]
 
   constructor(
     public dialogService: DialogService,
@@ -98,7 +97,7 @@ export class AnnouncementsComponent {
   ) {}
 
   checkAnnouncementExists(): boolean {
-    return some([...this.announcements.active, ...this.announcements.expired]);
+    return some([...this.announcements.active, ...this.announcements.expired])
   }
 
   onSearchAnnouncement(): void {}
@@ -111,9 +110,9 @@ export class AnnouncementsComponent {
       //   '960px': '75vw',
       //   '640px': '90vw'
       // }
-    });
+    })
 
-    this.ref.onClose.subscribe((product: any) => {});
+    this.ref.onClose.subscribe((product: any) => {})
   }
 
   onOpenAnnouncementDetail(): void {
@@ -124,24 +123,21 @@ export class AnnouncementsComponent {
       //   '960px': '75vw',
       //   '640px': '90vw'
       // }
-    });
-    this.ref.onClose.subscribe((product: any) => {});
+    })
+    this.ref.onClose.subscribe((product: any) => {})
   }
 
-  async onImplementAction(event: {
-    announcement: IAnnouncementChild;
-    type: string;
-  }): Promise<void> {
+  async onImplementAction(event: { announcement: IAnnouncementChild; type: string }): Promise<void> {
     switch (event.type) {
       case 'edit':
-        this.onOpenAnnouncementDetail();
-        break;
+        this.onOpenAnnouncementDetail()
+        break
       case 'publish':
-        this.onOpenPublishDialog();
-        break;
+        this.onOpenPublishDialog()
+        break
       case 'delete':
-        this.onOpenDeleteDialog();
-        break;
+        this.onOpenDeleteDialog()
+        break
     }
   }
 
@@ -149,14 +145,13 @@ export class AnnouncementsComponent {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/red-trash-md.svg',
       title: 'Delete Item',
-      description:
-        'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
+      description: 'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
       type: 'error',
       buttonText: 'Delete'
-    });
+    })
 
     if (confirmed) {
-      console.log('run 1');
+      console.log('run 1')
     }
   }
 
@@ -164,14 +159,13 @@ export class AnnouncementsComponent {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/check-circle-broken-lg.svg',
       title: 'Announcement Posted',
-      description:
-        'The announcement has been posted, and will be available to its recipients shortly.',
+      description: 'The announcement has been posted, and will be available to its recipients shortly.',
       type: 'success',
       buttonText: 'Ok'
-    });
+    })
 
     if (confirmed) {
-      console.log('run 1');
+      console.log('run 1')
     }
   }
 }

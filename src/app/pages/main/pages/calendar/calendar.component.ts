@@ -1,41 +1,33 @@
-import { Component } from '@angular/core';
-import { TabsModule } from 'primeng/tabs';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { FullCalendarModule } from '@fullcalendar/angular';
-import { SelectModule } from 'primeng/select';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core'
+import { FormsModule } from '@angular/forms'
+import { FullCalendarModule } from '@fullcalendar/angular'
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog'
+import { SelectModule } from 'primeng/select'
+import { TabsModule } from 'primeng/tabs'
 
-import { MainHeader } from '../../components/shared/main-header/main-header.component';
-import { DynamicEvent } from '~/pages/main/components/modules/calendar/dynamic-event/dynamic-event.component';
-import { GeneralCalendar } from '~/pages/main/components/modules/calendar/general-calendar/general-calendar.component';
-import { ClubCalendar } from '~/pages/main/components/modules/calendar/club-calendar/club-calendar.component';
-import { C } from 'node_modules/@fullcalendar/core/internal-common';
-import { ToastService } from '~/services/toast.service';
+import { ClubCalendar } from '~/pages/main/components/modules/calendar/club-calendar/club-calendar.component'
+import { DynamicEvent } from '~/pages/main/components/modules/calendar/dynamic-event/dynamic-event.component'
+import { GeneralCalendar } from '~/pages/main/components/modules/calendar/general-calendar/general-calendar.component'
+import { ToastService } from '~/services/toast.service'
+
+import { MainHeader } from '../../components/shared/main-header/main-header.component'
 
 @Component({
   selector: 'app-calendar',
-  imports: [
-    FullCalendarModule,
-    TabsModule,
-    FormsModule,
-    SelectModule,
-    MainHeader,
-    GeneralCalendar,
-    ClubCalendar
-  ],
+  imports: [FullCalendarModule, TabsModule, FormsModule, SelectModule, MainHeader, GeneralCalendar, ClubCalendar],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss'
 })
 export class CalendarComponent {
-  ref: DynamicDialogRef | undefined;
+  ref: DynamicDialogRef | undefined
 
-  isActiveEvent = false;
+  isActiveEvent = false
   userTypes = [
     { label: 'Residents', value: 'residents', isChecked: false },
     { label: 'Managers', value: 'managers', isChecked: false },
     { label: 'Board members', value: 'boardMembers', isChecked: false },
     { label: 'Vendors', value: 'vendors', isChecked: false }
-  ];
+  ]
 
   constructor(
     public dialogService: DialogService,
@@ -51,9 +43,9 @@ export class CalendarComponent {
       data: {
         type: 'create'
       }
-    });
+    })
 
-    this.ref.onClose.subscribe((task: any) => {});
+    this.ref.onClose.subscribe((task: any) => {})
   }
 
   onOpenTaskDetail(): void {
@@ -83,19 +75,19 @@ export class CalendarComponent {
           ]
         }
       }
-    });
+    })
   }
 
   handleTableAction(event: any) {
     switch (event.action) {
       case 'edit':
-        this.onOpenTaskDetail();
-        break;
+        this.onOpenTaskDetail()
+        break
       case 'delete':
-        this.onOpenDeleteDialog();
-        break;
+        this.onOpenDeleteDialog()
+        break
       default:
-        console.warn('Unknown action:', event.actionKey);
+        console.warn('Unknown action:', event.actionKey)
     }
   }
 
@@ -103,14 +95,13 @@ export class CalendarComponent {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/calendar-x-lg.svg',
       title: 'Cancel Event',
-      description:
-        'Are you sure? Proceeding will delete the event from the system, and can not be undone.',
+      description: 'Are you sure? Proceeding will delete the event from the system, and can not be undone.',
       type: 'error',
       buttonText: 'Cancel event'
-    });
+    })
 
     if (confirmed) {
-      console.log('run 1');
+      console.log('run 1')
     }
   }
 }

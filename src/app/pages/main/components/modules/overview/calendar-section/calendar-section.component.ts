@@ -1,19 +1,13 @@
-import {
-  AfterViewInit,
-  Component,
-  OnInit,
-  signal,
-  ViewChild,
-  ChangeDetectorRef
-} from '@angular/core';
-import { CalendarOptions } from '@fullcalendar/core';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
-import { BaseComponent } from '~/components/common/base/base.component';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ThemeService } from '~/services/theme.service';
-import { DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common'
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, signal, ViewChild } from '@angular/core'
+import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular'
+import { CalendarOptions } from '@fullcalendar/core'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog'
+
+import { BaseComponent } from '~/components/common/base/base.component'
+import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component'
+import { ThemeService } from '~/services/theme.service'
 
 @Component({
   selector: 'app-calendar-section',
@@ -22,9 +16,9 @@ import { DatePipe } from '@angular/common';
   styleUrl: './calendar-section.component.scss'
 })
 export class CalendarSectionComponent extends BaseComponent implements AfterViewInit, OnInit {
-  @ViewChild('calendar') calendarComponent?: FullCalendarComponent;
-  ref: DynamicDialogRef | undefined;
-  calendarTitle = '';
+  @ViewChild('calendar') calendarComponent?: FullCalendarComponent
+  ref: DynamicDialogRef | undefined
+  calendarTitle = ''
   calendarOptions = signal<CalendarOptions>({
     plugins: [dayGridPlugin],
     headerToolbar: { left: '', right: '' },
@@ -34,26 +28,26 @@ export class CalendarSectionComponent extends BaseComponent implements AfterView
       { title: 'Community', start: '2025-03-07', className: 'custom-event-2' }
     ],
     height: '700px'
-  });
+  })
 
   constructor(
     themeService: ThemeService,
     private cdr: ChangeDetectorRef,
     public dialogService: DialogService
   ) {
-    super(themeService);
+    super(themeService)
   }
 
   get calendarApi() {
-    return this.calendarComponent?.getApi();
+    return this.calendarComponent?.getApi()
   }
 
   ngAfterViewInit(): void {
-    this.calendarTitle = this.calendarApi?.view.title || '';
-    this.cdr.detectChanges();
+    this.calendarTitle = this.calendarApi?.view.title || ''
+    this.cdr.detectChanges()
   }
 
   onNavigation(action: 'today' | 'prev' | 'next'): void {
-    this.calendarApi?.[action]();
+    this.calendarApi?.[action]()
   }
 }

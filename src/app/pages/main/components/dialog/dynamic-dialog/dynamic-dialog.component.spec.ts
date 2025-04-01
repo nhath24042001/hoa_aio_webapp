@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { DynamicDialogComponent } from './dynamic-dialog.component';
+import { DynamicDialogComponent } from './dynamic-dialog.component'
 
 describe('DynamicDialogComponent', () => {
-  let component: DynamicDialogComponent;
-  let fixture: ComponentFixture<DynamicDialogComponent>;
+  let component: DynamicDialogComponent
+  let fixture: ComponentFixture<DynamicDialogComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DynamicDialogComponent]
-    })
-    .compileComponents();
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(DynamicDialogComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(DynamicDialogComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

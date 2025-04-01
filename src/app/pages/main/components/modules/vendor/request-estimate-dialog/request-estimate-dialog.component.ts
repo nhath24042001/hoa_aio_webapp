@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { DynamicField } from '~/@types';
-import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dynamic-dialog.component';
+import { Component } from '@angular/core'
+import { DynamicDialogConfig } from 'primeng/dynamicdialog'
+
+import { DynamicField } from '~/@types'
+import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dynamic-dialog.component'
 
 @Component({
   selector: 'app-request-estimate-dialog',
@@ -10,8 +11,8 @@ import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dyn
   styleUrl: './request-estimate-dialog.component.scss'
 })
 export class RequestEstimateDialog {
-  data: any;
-  type = '';
+  data: any
+  type = ''
 
   list_columns: DynamicField[] = [
     {
@@ -86,7 +87,7 @@ export class RequestEstimateDialog {
       position: 'right',
       placeholder: 'Set end date'
     }
-  ];
+  ]
 
   list_textarea = [
     {
@@ -94,18 +95,18 @@ export class RequestEstimateDialog {
       placeholder: 'Enter instructions',
       value: ''
     }
-  ];
+  ]
 
   constructor(public config: DynamicDialogConfig) {
-    this.data = config.data;
-    this.type = this.data.type;
+    this.data = config.data
+    this.type = this.data.type
   }
 
   get title() {
-    return this.type === 'create' ? 'Request an Estimate' : 'Estimate Details';
+    return this.type === 'create' ? 'Request an Estimate' : 'Estimate Details'
   }
 
   get formData() {
-    return this.config.data;
+    return this.config.data
   }
 }

@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core'
 
 interface Attachment {
-  file_name: string;
-  file_size: string;
+  file_name: string
+  file_size: string
 }
 
 @Component({
@@ -11,7 +11,6 @@ interface Attachment {
   templateUrl: './form-attachment.component.html',
   styleUrl: './form-attachment.component.scss'
 })
-
 export class FormAttachment {
-  @Input() attachments: Attachment[] = [];
+  @Input() attachments: Attachment[] = []
 }

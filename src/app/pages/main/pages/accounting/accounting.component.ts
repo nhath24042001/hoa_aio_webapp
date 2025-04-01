@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-import { SelectModule } from 'primeng/select';
-import { FormsModule } from '@angular/forms';
-import { Divider } from 'primeng/divider';
+import { Component } from '@angular/core'
+import { FormsModule } from '@angular/forms'
+import { Divider } from 'primeng/divider'
+import { SelectModule } from 'primeng/select'
 
-import { BaseComponent } from '~/components/common/base/base.component';
-import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
-import { ThemeService } from '~/services/theme.service';
-import { Table } from '../../components/shared/table/table.component';
-import { accountHeader, accountList } from '~/data/account';
+import { BaseComponent } from '~/components/common/base/base.component'
+import { accountHeader, accountList } from '~/data/account'
+import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component'
+import { ThemeService } from '~/services/theme.service'
+
+import { Table } from '../../components/shared/table/table.component'
 
 @Component({
   selector: 'app-accounting',
@@ -16,12 +17,12 @@ import { accountHeader, accountList } from '~/data/account';
   styleUrl: './accounting.component.scss'
 })
 export class AccountingComponent extends BaseComponent {
-  isActive: boolean = true;
+  isActive: boolean = true
 
-  selectedCity: any;
+  selectedCity: any
 
-  header = accountHeader;
-  data = accountList;
+  header = accountHeader
+  data = accountList
 
   cities = [
     { name: 'Current year', code: 'CY' },
@@ -31,9 +32,9 @@ export class AccountingComponent extends BaseComponent {
     { name: 'October 2024', code: 'O24' },
     { name: 'September 2024', code: 'S24' },
     { name: 'August 2024', code: 'S24' }
-  ];
+  ]
 
   constructor(themeService: ThemeService) {
-    super(themeService);
+    super(themeService)
   }
 }

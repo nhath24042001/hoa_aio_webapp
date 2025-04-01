@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
-import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
-import { Table } from '~/pages/main/components/shared/table/table.component';
-import { IHeaderTable } from '~/@types/task';
-import { Action } from '~/enums';
+import { Component, Input } from '@angular/core'
+
+import { IHeaderTable } from '~/@types/task'
+import { Action } from '~/enums'
+import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component'
+import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component'
+import { Table } from '~/pages/main/components/shared/table/table.component'
 
 @Component({
   selector: 'task-section',
@@ -12,8 +13,8 @@ import { Action } from '~/enums';
   styleUrl: './task-section.component.scss'
 })
 export class TaskSectionComponent<T> {
-  @Input() tasks: T[] = [];
-  ACTIONS = Action;
+  @Input() tasks: T[] = []
+  ACTIONS = Action
 
   headers: IHeaderTable[] = [
     {
@@ -50,7 +51,7 @@ export class TaskSectionComponent<T> {
       name: '',
       width: '20px'
     }
-  ];
+  ]
 
   actions = [
     {
@@ -65,5 +66,5 @@ export class TaskSectionComponent<T> {
       actionKey: 'delete',
       className: '--delete-action --pointer'
     }
-  ];
+  ]
 }
