@@ -85,3 +85,16 @@ export const documentTabHeader = [
     activeImg: 'assets/images/light/mail.svg'
   }
 ];
+
+export const userTabHeader = [
+  {
+    name: 'Active',
+    img: 'assets/images/common/user-group.svg',
+    activeImg: 'assets/images/light/user-group.svg'
+  },
+  {
+    name: 'Inactive',
+    img: 'assets/images/common/user-x.svg',
+    activeImg: 'assets/images/common/user-x-01.svg'
+  }
+];

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, input, Input, output, Output } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { CommonModule, DatePipe } from '@angular/common';
 import { AvatarModule } from 'primeng/avatar';
@@ -39,19 +39,24 @@ interface TableAction {
   styleUrl: './table.component.scss'
 })
 export class Table<T> extends BaseComponent {
-  @Input() data!: T[];
-  @Input() headers!: IHeaderTable[];
-  @Input() showPagination: boolean = false;
-  @Input() showListPerPage: boolean = true;
-  @Input() actions: TableAction[] = [];
-  @Input() className: string = '';
-  @Input() rowsPerPageOptions = [5, 10, 20];
-  @Output() pageChange = new EventEmitter<number>();
-  @Output() actionTriggered = new EventEmitter<{ actionKey: string; rowData: T }>();
+  data = input.required<T[]>();
+  readonly headers = input.required<IHeaderTable[]>();
+  readonly showPagination = input<boolean>(false);
+  readonly showListPerPage = input<boolean>(true);
+  readonly showCheckbox = input<boolean>(false);
+  readonly actions = input<TableAction[]>([]);
+  readonly className = input<string>('');
+  readonly rowsPerPageOptions = input([5, 10, 20]);
+
+  pageChange = output<number>();
+  actionTriggered = output<{ actionKey: string; rowData: T }>();
+  rowSelected = output<T[]>();
 
   first: number = 0;
 
   rows: number = 10;
+
+  selectedRows: T[] = [];
 
   pageOptions = [
     {

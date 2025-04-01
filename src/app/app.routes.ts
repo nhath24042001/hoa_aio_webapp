@@ -114,9 +114,13 @@ export const mainRoutes: Routes = [
       },
       {
         path: 'my-account',
-        loadComponent: () => import('./pages/main/pages/account/account.component').then(
-          (m) => m.AccountComponent
-        )
+        loadComponent: () =>
+          import('./pages/main/pages/account/account.component').then((m) => m.AccountComponent)
+      },
+      {
+        path: 'users',
+        loadComponent: () =>
+          import('./pages/main/pages/user/user.component').then((m) => m.UserComponent)
       }
     ]
   },
