@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Divider } from 'primeng/divider';
@@ -17,6 +18,7 @@ import { Table } from '../../components/shared/table/table.component';
   styleUrl: './accounting.component.scss'
 })
 export class AccountingComponent extends BaseComponent {
+  // TODO: Fix type any
   isActive: boolean = true;
 
   selectedCity: any;

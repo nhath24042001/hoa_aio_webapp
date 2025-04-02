@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DatePicker } from 'primeng/datepicker';
@@ -71,6 +72,7 @@ export class ViolationComponent {
   }
 
   onAction(event: { actionKey: string; rowData: any }): void {
+    // TODO: Fix type any
     switch (event.actionKey) {
       case Action.EDIT:
         break;

@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { PopoverModule } from 'ngx-bootstrap/popover';
-import { PopoverDirective } from 'ngx-bootstrap/popover';
+import { PopoverDirective, PopoverModule } from 'ngx-bootstrap/popover';
 import { CheckboxModule } from 'primeng/checkbox';
 
 import { ButtonPrimary } from '../button-primary/button-primary.component';
@@ -12,6 +12,7 @@ import { ButtonPrimary } from '../button-primary/button-primary.component';
   styleUrl: './main-header.component.scss'
 })
 export class MainHeader {
+  // TODO: Fix type any
   @ViewChild('popover', { static: false }) popover?: PopoverDirective;
   @Input() labelButton: string = '';
   @Input() isShowFilter: boolean = true;

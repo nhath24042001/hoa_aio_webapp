@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
@@ -11,6 +12,7 @@ import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dyn
   styleUrl: './vendor-dialog.component.scss'
 })
 export class VendorDialog {
+  // TODO: Fix type any
   data: any;
   type = '';
 

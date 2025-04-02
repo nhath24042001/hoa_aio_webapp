@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DatePipe } from '@angular/common';
 import {
   AfterViewInit,
@@ -29,6 +30,7 @@ import { ThemeService } from '~/services/theme.service';
   styleUrl: './general-calendar.component.scss'
 })
 export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnInit {
+  // TODO: Fix type any
   @ViewChild('calendar') calendarComponent?: FullCalendarComponent;
   @Output() actionEmitter = new EventEmitter<{ action: string; data: any }>();
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, signal } from '@angular/core';
 import { DividerModule } from 'primeng/divider';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -18,6 +19,7 @@ import { ThemeService } from '~/services/theme.service';
   styleUrl: './owner-detail.component.scss'
 })
 export class OwnerDetail extends BaseComponent implements OnInit {
+  // TODO: Fix type any
   activeTab = signal('0');
   formFields = homeOwnerInputFields;
   tabs = ownerDetailHeader;
@@ -46,8 +48,9 @@ export class OwnerDetail extends BaseComponent implements OnInit {
   }
 
   mapValuesToFields() {
+    // TODO: Recheck func Object.hasOwn
     this.formFields = this.formFields
-      .filter((field) => this.data.hasOwnProperty(field.field))
+      .filter((field) => Object.hasOwn(this.data, field.field))
       .map((field) => ({
         ...field,
         value: this.data[field.field]

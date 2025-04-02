@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { orderBy } from 'lodash-es';
@@ -13,6 +14,7 @@ import { AppService } from '~/services/app.service';
   styleUrl: './input-phone.component.scss'
 })
 export class InputPhone implements OnInit {
+  // TODO: Fix type any (Eslint)
   placeholder = input('');
 
   constructor(private appService: AppService) {}

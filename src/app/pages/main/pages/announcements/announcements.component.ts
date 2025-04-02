@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Component } from '@angular/core';
 import { some } from 'lodash-es';
 import { PopoverModule } from 'ngx-bootstrap/popover';
@@ -112,7 +113,7 @@ export class AnnouncementsComponent {
       // }
     });
 
-    this.ref.onClose.subscribe((product: any) => {});
+    this.ref.onClose.subscribe(() => {});
   }
 
   onOpenAnnouncementDetail(): void {
@@ -124,7 +125,7 @@ export class AnnouncementsComponent {
       //   '640px': '90vw'
       // }
     });
-    this.ref.onClose.subscribe((product: any) => {});
+    this.ref.onClose.subscribe(() => {});
   }
 
   async onImplementAction(event: { announcement: IAnnouncementChild; type: string }): Promise<void> {

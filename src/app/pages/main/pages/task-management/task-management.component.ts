@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
@@ -152,19 +153,18 @@ export class TaskManagementComponent {
     this.ref.onClose.subscribe(() => {});
   }
 
-  onOpenTaskDetail(rowData: any): void {
+  onOpenTaskDetail(): void {
     this.ref = this.dialogService.open(TaskDetail, {
       modal: true,
       width: '1000px'
     });
-
-    console.log('rowData', rowData);
   }
 
   handleTableAction(event: { actionKey: string; rowData: any }) {
+    // TODO: Fix type any
     switch (event.actionKey) {
       case 'edit':
-        this.onOpenTaskDetail(event.rowData);
+        this.onOpenTaskDetail();
         break;
       case 'delete':
         this.onOpenDeleteDialog();

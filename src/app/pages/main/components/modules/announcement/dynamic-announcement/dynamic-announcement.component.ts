@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
@@ -26,6 +27,7 @@ import { ThemeService } from '~/services/theme.service';
   styleUrl: './dynamic-announcement.component.scss'
 })
 export class DynamicAnnouncement extends BaseComponent {
+  // TODO: Fix type any
   data: any;
   userTypes: any[] = [
     { name: 'Residents', code: 're' },

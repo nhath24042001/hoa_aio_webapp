@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-console */
 import { Component } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TabsModule } from 'primeng/tabs';
@@ -50,22 +52,23 @@ export class ProjectComponent {
       modal: true,
       width: '1000px'
     });
-    this.ref.onClose.subscribe((task: any) => {});
+    this.ref.onClose.subscribe(() => {});
   }
 
-  onOpenProjectDetail(project: any): void {
+  onOpenProjectDetail(): void {
     this.ref = this.dialogService.open(ProjectDetail, {
       modal: true,
       width: '1000px',
       data: {}
     });
-    this.ref.onClose.subscribe((task: any) => {});
+    this.ref.onClose.subscribe(() => {});
   }
 
   handleTableAction(event: { actionKey: string; rowData: any }) {
+    // TODO: Fix type any
     switch (event.actionKey) {
       case 'edit':
-        this.onOpenProjectDetail(event.rowData);
+        this.onOpenProjectDetail();
         break;
       case 'delete':
         this.onOpenDeleteDialog();

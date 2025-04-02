@@ -2,31 +2,31 @@ export const MENU_DROPDOWN = [
   {
     icon: 'account-menu',
     name: 'My Account',
-    routeLink: 'my-account'
+    routerLink: 'my-account'
   },
   {
     icon: 'notification-menu',
     name: 'Notification settings',
-    routeLink: '/notification-settings'
+    routerLink: '/notification-settings'
   },
   {
     icon: 'change-password',
     name: 'Change Password',
-    RouterLink: '/change-password'
+    routerLink: '/change-password'
   },
   {
     icon: 'term-menu',
     name: 'Terms & Conditions',
-    routeLink: '/terms-conditions'
+    routerLink: '/terms-conditions'
   },
   {
     icon: 'about-us',
     name: 'About Us',
-    routeLink: '/about-us'
+    routerLink: '/about-us'
   },
   {
     icon: 'contact-us',
     name: 'Contact Us',
-    routeLink: '/contact-us'
+    routerLink: '/contact-us'
   }
 ];

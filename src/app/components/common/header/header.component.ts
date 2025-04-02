@@ -1,10 +1,9 @@
-import { DatePipe } from '@angular/common';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { PopoverModule } from 'ngx-bootstrap/popover';
-import { PopoverDirective } from 'ngx-bootstrap/popover';
+import { PopoverDirective, PopoverModule } from 'ngx-bootstrap/popover';
 
+import { IListView } from '~/@types';
 import { TitleCasePipe } from '~/pipes/title-case.pipe';
 
 import { THEME } from '../../../constants';
@@ -64,8 +63,8 @@ export class HeaderComponent {
     this.router.navigate(['/auth/login']);
   }
 
-  onMenuClick(menu: any) {
-    this.router.navigate(['/main/' + menu.routeLink]);
+  onMenuClick(menu: IListView) {
+    this.router.navigate(['/main/' + menu.routerLink]);
   }
 
   onRouteChange(route: string) {

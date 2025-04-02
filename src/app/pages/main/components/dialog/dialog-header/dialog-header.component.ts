@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
@@ -8,6 +9,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './dialog-header.component.scss'
 })
 export class DialogHeader {
+  // TODO: Fix type any (Eslint)
   @Input() iconCreate: string = '';
   @Input() iconEdit: string = '';
   @Input() formHeader: any;

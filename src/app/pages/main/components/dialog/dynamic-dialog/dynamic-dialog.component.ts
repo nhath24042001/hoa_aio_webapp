@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Divider } from 'primeng/divider';
@@ -19,6 +20,7 @@ import { FormField } from '../form-field/form-field.component';
   styleUrl: './dynamic-dialog.component.scss'
 })
 export class DynamicDialog extends BaseComponent implements OnInit {
+  // TODO: Fix type any (Eslint)
   @Input() dialogTitle = '';
   @Input() iconCreate = '';
   @Input() iconEdit = '';

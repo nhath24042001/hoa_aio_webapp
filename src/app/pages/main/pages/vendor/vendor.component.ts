@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TabsModule } from 'primeng/tabs';
@@ -21,6 +22,7 @@ import { ToastService } from '~/services/toast.service';
   styleUrl: './vendor.component.scss'
 })
 export class VendorComponent {
+  // TODO: Fix type any
   ref: DynamicDialogRef | undefined;
   isActive: boolean = true;
   role = 'vendor';
@@ -78,7 +80,7 @@ export class VendorComponent {
     // this.ref.onClose.subscribe((task: any) => {});
   }
 
-  onOpenEditDialog(rowData: any): void {
+  onOpenEditDialog(): void {
     this.ref = this.dialogService.open(this.componentRender as any, {
       modal: true,
       width: '1000px',
@@ -104,14 +106,12 @@ export class VendorComponent {
         }
       }
     });
-
-    console.log('rowData', rowData);
   }
 
   onAction(event: { actionKey: string; rowData: any }): void {
     switch (event.actionKey) {
       case Action.EDIT:
-        this.onOpenEditDialog(event.rowData);
+        this.onOpenEditDialog();
         break;
       case 'approve':
         // this.toastService.showSuccess('Approved successfully');

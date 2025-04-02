@@ -1,10 +1,10 @@
-import js from '@eslint/js'
-import { defineConfig } from 'eslint/config'
-import prettier from 'eslint-plugin-prettier'
-import simpleImport from 'eslint-plugin-simple-import-sort'
-import unusedImports from 'eslint-plugin-unused-imports'
-import globals from 'globals'
-import tseslint from 'typescript-eslint'
+import js from '@eslint/js';
+import { defineConfig } from 'eslint/config';
+import prettier from 'eslint-plugin-prettier';
+import simpleImport from 'eslint-plugin-simple-import-sort';
+import unusedImports from 'eslint-plugin-unused-imports';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 export default defineConfig([
   {
@@ -21,7 +21,7 @@ export default defineConfig([
       'no-unused-vars': 'off',
       'simpleImport/imports': 'warn',
       'simpleImport/exports': 'warn',
-      'tseslint/no-unused-vars': 'off',
+      // 'tseslint/no-unused-vars': 'off',
       'unusedImports/no-unused-imports': 'warn',
       'unusedImports/no-unused-vars': [
         'warn',

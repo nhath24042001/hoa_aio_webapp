@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -39,6 +40,7 @@ interface TableAction {
   styleUrl: './table.component.scss'
 })
 export class Table<T> extends BaseComponent {
+  // TODO: Fix type any
   data = input.required<T[]>();
   readonly headers = input.required<IHeaderTable[]>();
   readonly showPagination = input<boolean>(false);

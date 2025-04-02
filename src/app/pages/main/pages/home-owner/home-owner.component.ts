@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, computed, signal } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TabsModule } from 'primeng/tabs';
@@ -116,6 +117,7 @@ export class HomeOwnerComponent {
   }
 
   onAction(event: { actionKey: string; rowData: any }): void {
+    // TODO: Fix type any
     switch (event.actionKey) {
       case Action.EDIT:
         this.onEditItem();

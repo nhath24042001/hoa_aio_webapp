@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-console */
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -19,6 +21,7 @@ import { MainHeader } from '../../components/shared/main-header/main-header.comp
   styleUrl: './calendar.component.scss'
 })
 export class CalendarComponent {
+  // TODO: Fix type any
   ref: DynamicDialogRef | undefined;
 
   isActiveEvent = false;
@@ -45,7 +48,7 @@ export class CalendarComponent {
       }
     });
 
-    this.ref.onClose.subscribe((task: any) => {});
+    this.ref.onClose.subscribe(() => {});
   }
 
   onOpenTaskDetail(): void {

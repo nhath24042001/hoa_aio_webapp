@@ -13,16 +13,7 @@ import { InputPhone } from '~/components/shared/input-phone/input-phone.componen
 
 @Component({
   selector: 'app-form-field',
-  imports: [
-    SelectModule,
-    InputTextModule,
-    DatePicker,
-    DatePipe,
-    FormsModule,
-    InputFile,
-    CustomSelect,
-    InputPhone
-  ],
+  imports: [SelectModule, InputTextModule, DatePicker, DatePipe, FormsModule, InputFile, CustomSelect, InputPhone],
   templateUrl: './form-field.component.html',
   styleUrl: './form-field.component.scss',
   providers: [

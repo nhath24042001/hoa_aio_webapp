@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, Input, input, OnInit, signal } from '@angular/core';
-import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SelectModule } from 'primeng/select';
 
 import { BaseComponent } from '~/components/common/base/base.component';
@@ -20,6 +20,7 @@ import { ThemeService } from '~/services/theme.service';
   ]
 })
 export class CustomSelect extends BaseComponent implements OnInit {
+  // TODO: Fix type any (Eslint)
   @Input({ required: true }) options: any[] | undefined = [];
   @Input() formControl!: FormControl | any;
   dialogType = input('');
