@@ -1,50 +1,42 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
-import { FormControl } from '@angular/forms';
+import { Component, forwardRef, input, output } from '@angular/core';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 
 @Component({
   selector: 'app-custom-input',
-  imports: [CommonModule, PasswordModule, InputTextModule, FormsModule],
+  standalone: true,
+  imports: [CommonModule, PasswordModule, InputTextModule, FormsModule, ReactiveFormsModule],
   templateUrl: './custom-input.component.html',
   styleUrl: './custom-input.component.scss',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: CustomInputComponent,
+      useExisting: forwardRef(() => CustomInputComponent),
       multi: true
     }
   ]
 })
-export class CustomInputComponent {
-  @Input() type: 'text' | 'password' = 'text';
-  @Input() icon = '';
-  @Input() placeholder = '';
-  @Input() mode = '';
-  @Input() isError = false;
-  @Input() formControl!: FormControl;
-  @Input() value: string = '';
-  @Output() valueChange = new EventEmitter<string>();
+export class CustomInputComponent implements ControlValueAccessor {
+  readonly type = input<'text' | 'password'>('text');
+  readonly icon = input('');
+  readonly placeholder = input('');
+  readonly mode = input('');
+  readonly isError = input(false);
+  valueChange = output<string>();
 
+  value: string = '';
   isPasswordVisible = false;
+  disabled = false;
 
-  onChange: any = () => {};
-  onTouched: any = () => {};
-
-  onValueChange() {
-    this.valueChange.emit(this.value);
-  }
-
-  togglePasswordVisibility() {
-    this.isPasswordVisible = !this.isPasswordVisible;
-  }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  private onChange = (_value: string) => {};
+  private onTouched = () => {};
 
   writeValue(value: any): void {
-    this.value = value;
+    this.value = value || '';
   }
 
   registerOnChange(fn: any): void {
@@ -55,13 +47,17 @@ export class CustomInputComponent {
     this.onTouched = fn;
   }
 
-  setDisabledState?(): void {
-    // Handle disabled state if needed
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 
-  onInput(event: Event) {
-    const input = event.target as HTMLInputElement;
-    this.value = input.value;
+  onInput(event: Event | string) {
+    this.value = typeof event === 'string' ? event : (event.target as HTMLInputElement).value;
     this.onChange(this.value);
+    this.valueChange.emit(this.value);
+  }
+
+  togglePasswordVisibility() {
+    this.isPasswordVisible = !this.isPasswordVisible;
   }
 }
