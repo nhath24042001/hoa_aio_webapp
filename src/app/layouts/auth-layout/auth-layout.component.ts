@@ -1,5 +1,5 @@
-import { Component } from '@angular/core'
-import { RouterModule, RouterOutlet } from '@angular/router'
+import { Component } from '@angular/core';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-auth-layout',
@@ -9,6 +9,6 @@ import { RouterModule, RouterOutlet } from '@angular/router'
 })
 export class AuthLayoutComponent {
   prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation']
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 }

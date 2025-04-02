@@ -1,5 +1,5 @@
-import { IHeaderTable, ITask } from '~/@types/task'
-import { Priority } from '~/enums'
+import { IHeaderTable, ITask } from '~/@types/task';
+import { Priority } from '~/enums';
 
 export const projectsData: ITask[] = [
   {
@@ -128,7 +128,7 @@ export const projectsData: ITask[] = [
       }
     ]
   }
-]
+];
 
 export const projectHeaders: IHeaderTable[] = [
   {
@@ -165,7 +165,7 @@ export const projectHeaders: IHeaderTable[] = [
     name: '',
     width: '20px'
   }
-]
+];
 
 export const left_project_box = [
   {
@@ -272,7 +272,7 @@ export const left_project_box = [
       }
     ]
   }
-]
+];
 
 export const right_project_box = [
   {
@@ -296,4 +296,4 @@ export const right_project_box = [
     type: 'input',
     placeholder: 'Me (enter name to change)'
   }
-]
+];

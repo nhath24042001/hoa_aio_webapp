@@ -1,8 +1,8 @@
-import { Component } from '@angular/core'
-import { DynamicDialogConfig } from 'primeng/dynamicdialog'
+import { Component } from '@angular/core';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
-import { DynamicField } from '~/@types'
-import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dynamic-dialog.component'
+import { DynamicField } from '~/@types';
+import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dynamic-dialog.component';
 
 @Component({
   selector: 'app-violation-dialog',
@@ -11,8 +11,8 @@ import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dyn
   styleUrl: './violation-dialog.component.scss'
 })
 export class ViolationDialog {
-  data: any
-  type = ''
+  data: any;
+  type = '';
 
   list_columns: DynamicField[] = [
     {
@@ -148,7 +148,7 @@ export class ViolationDialog {
       position: 'right',
       placeholder: 'Enter address or link to meeting'
     }
-  ]
+  ];
 
   list_textarea = [
     {
@@ -156,18 +156,18 @@ export class ViolationDialog {
       placeholder: 'Enter description',
       value: ''
     }
-  ]
+  ];
 
   constructor(public config: DynamicDialogConfig) {
-    this.data = config.data
-    this.type = this.data.type
+    this.data = config.data;
+    this.type = this.data.type;
   }
 
   get title() {
-    return this.type === 'create' ? 'Create New Violation Report' : 'Violation Report Details'
+    return this.type === 'create' ? 'Create New Violation Report' : 'Violation Report Details';
   }
 
   get formData() {
-    return this.config.data
+    return this.config.data;
   }
 }

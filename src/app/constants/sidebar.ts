@@ -1,4 +1,4 @@
-import { ISidebar } from '../@types'
+import { ISidebar } from '../@types';
 
 export const LIST_SIDEBAR: ISidebar = {
   listView: [
@@ -70,4 +70,4 @@ export const LIST_SIDEBAR: ISidebar = {
       routerLink: '/settings'
     }
   ]
-}
+};

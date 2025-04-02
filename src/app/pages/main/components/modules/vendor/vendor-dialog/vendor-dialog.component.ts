@@ -1,8 +1,8 @@
-import { Component } from '@angular/core'
-import { DynamicDialogConfig } from 'primeng/dynamicdialog'
+import { Component } from '@angular/core';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
-import { DynamicField } from '~/@types'
-import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dynamic-dialog.component'
+import { DynamicField } from '~/@types';
+import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dynamic-dialog.component';
 
 @Component({
   selector: 'app-vendor-dialog',
@@ -11,8 +11,8 @@ import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dyn
   styleUrl: './vendor-dialog.component.scss'
 })
 export class VendorDialog {
-  data: any
-  type = ''
+  data: any;
+  type = '';
 
   list_columns: DynamicField[] = [
     {
@@ -119,7 +119,7 @@ export class VendorDialog {
       position: 'extra',
       placeholder: 'Enter title of the vendor business type'
     }
-  ]
+  ];
 
   list_textarea = [
     {
@@ -132,14 +132,14 @@ export class VendorDialog {
       placeholder: 'Enter comments',
       value: ''
     }
-  ]
+  ];
 
   constructor(public config: DynamicDialogConfig) {
-    this.data = config.data
-    this.type = this.data.type
+    this.data = config.data;
+    this.type = this.data.type;
 
     if (this.type !== 'create') {
-      this.list_columns = this.list_columns.filter((col) => col.field !== 'document')
+      this.list_columns = this.list_columns.filter((col) => col.field !== 'document');
       this.list_columns.unshift({
         icon: 'loading',
         field: 'status',
@@ -157,22 +157,22 @@ export class VendorDialog {
           }
         ],
         placeholder: 'Select'
-      })
+      });
 
       this.list_columns = this.list_columns.map((column) => {
         return {
           ...column,
           value: this.data.data.formData[column.field]
-        }
-      })
+        };
+      });
     }
   }
 
   get title() {
-    return this.type === 'create' ? 'Create New Vendor' : 'Vendor Details'
+    return this.type === 'create' ? 'Create New Vendor' : 'Vendor Details';
   }
 
   get formData() {
-    return this.config.data
+    return this.config.data;
   }
 }

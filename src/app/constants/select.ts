@@ -1,5 +1,5 @@
-import { ISelect } from '~/@types'
-import { REPORT_TYPE, SUB_REPORT_TYPE } from '~/enums/types'
+import { ISelect } from '~/@types';
+import { REPORT_TYPE, SUB_REPORT_TYPE } from '~/enums/types';
 
 export const report_types: ISelect[] = [
   {
@@ -26,7 +26,7 @@ export const report_types: ISelect[] = [
     name: REPORT_TYPE.RESIDENT_REPORT,
     code: 'resident_report'
   }
-]
+];
 
 export const sub_report_types: ISelect[] = [
   {
@@ -41,4 +41,4 @@ export const sub_report_types: ISelect[] = [
     name: SUB_REPORT_TYPE.VENDOR_PAYMENT_ANALYSIS,
     code: 'vendor_payment_analysis'
   }
-]
+];

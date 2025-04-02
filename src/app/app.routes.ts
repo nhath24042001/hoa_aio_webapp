@@ -1,8 +1,8 @@
-import { Routes } from '@angular/router'
+import { Routes } from '@angular/router';
 
-import { authLoggedInGuard } from './core/guards/auth.guard'
-import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component'
-import { MainLayoutComponent } from './layouts/main-layout/main-layout.component'
+import { authLoggedInGuard } from './core/guards/auth.guard';
+import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 
 export const authRoutes: Routes = [
   {
@@ -40,7 +40,7 @@ export const authRoutes: Routes = [
       }
     ]
   }
-]
+];
 
 export const mainRoutes: Routes = [
   {
@@ -110,7 +110,7 @@ export const mainRoutes: Routes = [
     path: '**',
     redirectTo: 'overview'
   }
-]
+];
 
 export const routes: Routes = [
   {
@@ -122,4 +122,4 @@ export const routes: Routes = [
     children: mainRoutes
   },
   { path: '**', redirectTo: '/auth/login' }
-]
+];

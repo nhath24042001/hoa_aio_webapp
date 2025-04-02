@@ -1,15 +1,15 @@
-import { Component } from '@angular/core'
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog'
-import { TabsModule } from 'primeng/tabs'
+import { Component } from '@angular/core';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { TabsModule } from 'primeng/tabs';
 
-import { projectHeaders, projectsData } from '~/data/project'
-import { CreateProject } from '~/pages/main/components/modules/project/create-project/create-project.component'
-import { ProjectDetail } from '~/pages/main/components/modules/project/project-detail/project-detail.component'
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component'
-import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component'
-import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component'
-import { Table } from '~/pages/main/components/shared/table/table.component'
-import { ToastService } from '~/services/toast.service'
+import { projectHeaders, projectsData } from '~/data/project';
+import { CreateProject } from '~/pages/main/components/modules/project/create-project/create-project.component';
+import { ProjectDetail } from '~/pages/main/components/modules/project/project-detail/project-detail.component';
+import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
+import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
+import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
+import { Table } from '~/pages/main/components/shared/table/table.component';
+import { ToastService } from '~/services/toast.service';
 
 @Component({
   selector: 'app-project',
@@ -18,10 +18,10 @@ import { ToastService } from '~/services/toast.service'
   styleUrl: './project.component.scss'
 })
 export class ProjectComponent {
-  ref: DynamicDialogRef | undefined
-  isActive: boolean = true
-  projects = projectsData
-  headers = projectHeaders
+  ref: DynamicDialogRef | undefined;
+  isActive: boolean = true;
+  projects = projectsData;
+  headers = projectHeaders;
 
   actions = [
     {
@@ -36,7 +36,7 @@ export class ProjectComponent {
       actionKey: 'delete',
       className: '--delete-action --pointer'
     }
-  ]
+  ];
 
   constructor(
     public dialogService: DialogService,
@@ -49,8 +49,8 @@ export class ProjectComponent {
     this.ref = this.dialogService.open(CreateProject, {
       modal: true,
       width: '1000px'
-    })
-    this.ref.onClose.subscribe((task: any) => {})
+    });
+    this.ref.onClose.subscribe((task: any) => {});
   }
 
   onOpenProjectDetail(project: any): void {
@@ -58,20 +58,20 @@ export class ProjectComponent {
       modal: true,
       width: '1000px',
       data: {}
-    })
-    this.ref.onClose.subscribe((task: any) => {})
+    });
+    this.ref.onClose.subscribe((task: any) => {});
   }
 
   handleTableAction(event: { actionKey: string; rowData: any }) {
     switch (event.actionKey) {
       case 'edit':
-        this.onOpenProjectDetail(event.rowData)
-        break
+        this.onOpenProjectDetail(event.rowData);
+        break;
       case 'delete':
-        this.onOpenDeleteDialog()
-        break
+        this.onOpenDeleteDialog();
+        break;
       default:
-        console.warn('Unknown action:', event.actionKey)
+        console.warn('Unknown action:', event.actionKey);
     }
   }
 
@@ -82,10 +82,10 @@ export class ProjectComponent {
       description: 'Are you sure? Proceeding will delete the event from the system, and can not be undone.',
       type: 'error',
       buttonText: 'Delete task'
-    })
+    });
 
     if (confirmed) {
-      console.log('run 1')
+      console.log('run 1');
     }
   }
 }

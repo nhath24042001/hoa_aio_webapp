@@ -7,7 +7,7 @@
 
 // !TODO: Modify type any
 export interface HttpRequestParamsInterface<> {
-  url: string
-  body?: any
-  responseType?: string
+  url: string;
+  body?: any;
+  responseType?: string;
 }

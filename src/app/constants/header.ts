@@ -29,4 +29,4 @@ export const MENU_DROPDOWN = [
     name: 'Contact Us',
     routeLink: '/contact-us'
   }
-]
+];

@@ -1,14 +1,14 @@
-import { Component } from '@angular/core'
-import { AvatarModule } from 'primeng/avatar'
-import { AvatarGroupModule } from 'primeng/avatargroup'
-import { DividerModule } from 'primeng/divider'
-import { DynamicDialogRef } from 'primeng/dynamicdialog'
-import { SelectModule } from 'primeng/select'
+import { Component } from '@angular/core';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
+import { DividerModule } from 'primeng/divider';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { SelectModule } from 'primeng/select';
 
-import { BaseComponent } from '~/components/common/base/base.component'
-import { LIST_TASK_STATUS } from '~/constants'
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component'
-import { ThemeService } from '~/services/theme.service'
+import { BaseComponent } from '~/components/common/base/base.component';
+import { LIST_TASK_STATUS } from '~/constants';
+import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
+import { ThemeService } from '~/services/theme.service';
 
 @Component({
   selector: 'task-detail',
@@ -17,7 +17,7 @@ import { ThemeService } from '~/services/theme.service'
   styleUrl: './task-detail.component.scss'
 })
 export class TaskDetail extends BaseComponent {
-  status_list = LIST_TASK_STATUS
+  status_list = LIST_TASK_STATUS;
 
   comments = [
     {
@@ -26,7 +26,7 @@ export class TaskDetail extends BaseComponent {
       content:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac felis ut libero posuere ultricies. Nullam nec sapien nec libero ultricies ultricies. Nullam nec sapien nec libero ultricies ultricies.'
     }
-  ]
+  ];
 
   attachments = [
     {
@@ -37,16 +37,16 @@ export class TaskDetail extends BaseComponent {
       file_nme: 'Home Front 2.jpg',
       file_size: '2 MB'
     }
-  ]
+  ];
 
   constructor(
     public ref: DynamicDialogRef,
     themeService: ThemeService
   ) {
-    super(themeService)
+    super(themeService);
   }
 
   closeDialog() {
-    this.ref.close()
+    this.ref.close();
   }
 }

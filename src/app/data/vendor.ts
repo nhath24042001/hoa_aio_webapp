@@ -1,4 +1,4 @@
-import { IHeaderTable } from '~/@types/task'
+import { IHeaderTable } from '~/@types/task';
 
 export const companyHeaders: IHeaderTable[] = [
   {
@@ -27,7 +27,7 @@ export const companyHeaders: IHeaderTable[] = [
     name: '',
     width: '20px'
   }
-] as const
+] as const;
 
 export const bidHeaders: IHeaderTable[] = [
   {
@@ -58,7 +58,7 @@ export const bidHeaders: IHeaderTable[] = [
     name: '',
     width: '20px'
   }
-] as const
+] as const;
 
 export const companyList = [
   {
@@ -92,7 +92,7 @@ export const companyList = [
     industry: 'Maintenance',
     status: 'approved'
   }
-]
+];
 
 export const bidList = [
   {
@@ -137,7 +137,7 @@ export const bidList = [
     expected_start: '02/05/2025',
     status: 'awarded'
   }
-]
+];
 
 export const estimateList = [
   {
@@ -154,7 +154,7 @@ export const estimateList = [
     expected_start: '02/05/2025',
     status: 'open'
   }
-]
+];
 
 export const vendorActions = [
   {
@@ -181,7 +181,7 @@ export const vendorActions = [
     actionKey: 'delete',
     className: '--delete-action --pointer'
   }
-]
+];
 
 export const violationActions = [
   {
@@ -208,7 +208,7 @@ export const violationActions = [
     actionKey: 'delete',
     className: '--delete-action --pointer'
   }
-]
+];
 
 export const violationType = [
   {
@@ -239,4 +239,4 @@ export const violationType = [
     name: 'Design Change',
     code: 'design_change'
   }
-]
+];

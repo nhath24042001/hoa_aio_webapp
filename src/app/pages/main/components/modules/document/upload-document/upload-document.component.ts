@@ -1,14 +1,14 @@
-import { Component } from '@angular/core'
-import { DatePicker } from 'primeng/datepicker'
-import { DividerModule } from 'primeng/divider'
-import { DynamicDialogRef } from 'primeng/dynamicdialog'
-import { SelectModule } from 'primeng/select'
-import { TextareaModule } from 'primeng/textarea'
+import { Component } from '@angular/core';
+import { DatePicker } from 'primeng/datepicker';
+import { DividerModule } from 'primeng/divider';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { SelectModule } from 'primeng/select';
+import { TextareaModule } from 'primeng/textarea';
 
-import { BaseComponent } from '~/components/common/base/base.component'
-import { InputFile } from '~/components/shared/input-file/input-file.component'
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component'
-import { ThemeService } from '~/services/theme.service'
+import { BaseComponent } from '~/components/common/base/base.component';
+import { InputFile } from '~/components/shared/input-file/input-file.component';
+import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
+import { ThemeService } from '~/services/theme.service';
 
 @Component({
   selector: 'app-upload-document',
@@ -25,21 +25,21 @@ export class UploadDocument extends BaseComponent {
     { name: 'Architectural Modification Request/Approval', code: '' },
     { name: 'Signed HOA Documents/Agreements', code: '' },
     { name: 'Other', code: '' }
-  ]
+  ];
 
   owner_list = [
     { name: 'Owner 1', code: '' },
     { name: 'Owner 2', code: '' }
-  ]
+  ];
 
   constructor(
     themeService: ThemeService,
     public ref: DynamicDialogRef
   ) {
-    super(themeService)
+    super(themeService);
   }
 
   closeDialog() {
-    this.ref.close()
+    this.ref.close();
   }
 }

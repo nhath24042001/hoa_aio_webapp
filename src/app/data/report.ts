@@ -1,4 +1,4 @@
-import { IHeaderTable } from '~/@types/task'
+import { IHeaderTable } from '~/@types/task';
 
 export const reportHeader: IHeaderTable[] = [
   {
@@ -23,7 +23,7 @@ export const reportHeader: IHeaderTable[] = [
     name: '',
     width: '20px'
   }
-]
+];
 
 export const reportList = [
   {
@@ -32,7 +32,7 @@ export const reportList = [
     report_date: '2/2/2021',
     created_date: '2/2/2021'
   }
-]
+];
 
 export const reportActions = [
   {
@@ -47,4 +47,4 @@ export const reportActions = [
     actionKey: 'delete',
     className: '--delete-action --pointer'
   }
-]
+];

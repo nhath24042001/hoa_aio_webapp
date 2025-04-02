@@ -1,19 +1,19 @@
-import { AfterViewInit, computed, Directive, ElementRef, input, Renderer2 } from '@angular/core'
+import { AfterViewInit, computed, Directive, ElementRef, input, Renderer2 } from '@angular/core';
 
-import { ButtonType } from '~/@types'
+import { ButtonType } from '~/@types';
 
 @Directive({
   selector: '[appButton]'
 })
 export class ButtonDirective implements AfterViewInit {
-  appButton = input.required<ButtonType>()
-  icon = input<string>('')
-  iconPos = input<'left' | 'right'>('left')
-  currentMode = input('')
+  appButton = input.required<ButtonType>();
+  icon = input<string>('');
+  iconPos = input<'left' | 'right'>('left');
+  currentMode = input('');
 
   iconUrl = computed(() => {
-    return `assets/images/${this.currentMode()}/${this.icon()}.svg`
-  })
+    return `assets/images/${this.currentMode()}/${this.icon()}.svg`;
+  });
 
   constructor(
     private el: ElementRef,
@@ -21,24 +21,24 @@ export class ButtonDirective implements AfterViewInit {
   ) {}
 
   ngAfterViewInit() {
-    const button = this.el.nativeElement as HTMLElement
-    this.applyStyles(button)
+    const button = this.el.nativeElement as HTMLElement;
+    this.applyStyles(button);
   }
 
   private applyStyles(button: HTMLElement) {
-    this.renderer.addClass(button, '--btn')
-    this.renderer.addClass(button, `--btn-${this.appButton()}`)
+    this.renderer.addClass(button, '--btn');
+    this.renderer.addClass(button, `--btn-${this.appButton()}`);
 
     if (this.icon()) {
-      const iconElement: HTMLImageElement = this.renderer.createElement('img')
-      this.renderer.setAttribute(iconElement, 'src', this.iconUrl())
-      this.renderer.setAttribute(iconElement, 'alt', 'button_icon')
-      this.renderer.addClass(iconElement, 'me-2')
+      const iconElement: HTMLImageElement = this.renderer.createElement('img');
+      this.renderer.setAttribute(iconElement, 'src', this.iconUrl());
+      this.renderer.setAttribute(iconElement, 'alt', 'button_icon');
+      this.renderer.addClass(iconElement, 'me-2');
 
       if (this.iconPos() === 'left') {
-        this.renderer.insertBefore(button, iconElement, button.firstChild)
+        this.renderer.insertBefore(button, iconElement, button.firstChild);
       } else {
-        this.renderer.appendChild(button, iconElement)
+        this.renderer.appendChild(button, iconElement);
       }
     }
   }

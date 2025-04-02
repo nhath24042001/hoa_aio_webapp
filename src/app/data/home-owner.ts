@@ -1,4 +1,4 @@
-import { IHeaderTable } from '~/@types/task'
+import { IHeaderTable } from '~/@types/task';
 
 export const propertiesHeader: IHeaderTable[] = [
   {
@@ -40,7 +40,7 @@ export const propertiesHeader: IHeaderTable[] = [
     name: '',
     width: '20px'
   }
-]
+];
 
 export const propertiesList = [
   {
@@ -70,7 +70,7 @@ export const propertiesList = [
     occupancy_status: 'Occupied',
     tenant_names: '-'
   }
-]
+];
 
 export const propertiesActions = [
   {
@@ -97,7 +97,7 @@ export const propertiesActions = [
     actionKey: 'delete',
     className: '--delete-action --pointer'
   }
-]
+];
 
 export const homeOwnerHeader: IHeaderTable[] = [
   {
@@ -139,7 +139,7 @@ export const homeOwnerHeader: IHeaderTable[] = [
     name: '',
     width: '20px'
   }
-]
+];
 
 export const homeOwnerList = [
   {
@@ -169,7 +169,7 @@ export const homeOwnerList = [
     properties: '4567890',
     registration_date: '2/2/2021'
   }
-]
+];
 
 export const propertiesInputFields = [
   {
@@ -440,7 +440,7 @@ export const propertiesInputFields = [
     width: '270px',
     value: ''
   }
-]
+];
 
 export const homeOwnerInputFields = [
   {
@@ -641,13 +641,13 @@ export const homeOwnerInputFields = [
     placeholder: 'For each car - Make/Model, Year, License Plate Number, Parking Permit Number, Parking Space',
     value: ''
   }
-]
+];
 
 export const accountingHeader = [
   { field: 'month', name: 'Month' },
   { field: 'payment_type', name: 'Payment Type' },
   { field: 'amount', name: 'Amount' }
-]
+];
 
 export const accountingList = [
   {
@@ -670,4 +670,4 @@ export const accountingList = [
     payment_type: 'Monthly',
     amount: 124
   }
-]
+];

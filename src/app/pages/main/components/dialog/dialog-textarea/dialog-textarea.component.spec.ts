@@ -1,22 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DialogTextareaComponent } from './dialog-textarea.component'
+import { DialogTextareaComponent } from './dialog-textarea.component';
 
 describe('DialogTextareaComponent', () => {
-  let component: DialogTextareaComponent
-  let fixture: ComponentFixture<DialogTextareaComponent>
+  let component: DialogTextareaComponent;
+  let fixture: ComponentFixture<DialogTextareaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DialogTextareaComponent]
-    }).compileComponents()
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(DialogTextareaComponent)
-    component = fixture.componentInstance
-    fixture.detectChanges()
-  })
+    fixture = TestBed.createComponent(DialogTextareaComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   it('should create', () => {
-    expect(component).toBeTruthy()
-  })
-})
+    expect(component).toBeTruthy();
+  });
+});

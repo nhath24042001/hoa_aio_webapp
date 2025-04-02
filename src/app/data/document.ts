@@ -1,4 +1,4 @@
-import { IHeaderTable } from '~/@types/task'
+import { IHeaderTable } from '~/@types/task';
 
 export const documentHeader: IHeaderTable[] = [
   {
@@ -32,7 +32,7 @@ export const documentHeader: IHeaderTable[] = [
     name: '',
     width: '20px'
   }
-]
+];
 
 export const documentList = [
   {
@@ -56,7 +56,7 @@ export const documentList = [
     owner: 'Alfonso Vetrovs',
     comment: 'Comment 3'
   }
-]
+];
 
 export const documentActions = [
   {
@@ -71,7 +71,7 @@ export const documentActions = [
     actionKey: 'delete',
     className: '--delete-action --pointer'
   }
-]
+];
 
 export const letterActions = [
   {
@@ -92,7 +92,7 @@ export const letterActions = [
     actionKey: 'delete',
     className: '--delete-action --pointer'
   }
-]
+];
 
 export const letterHeader: IHeaderTable[] = [
   {
@@ -125,7 +125,7 @@ export const letterHeader: IHeaderTable[] = [
     name: '',
     width: '20px'
   }
-]
+];
 
 export const letterList = [
   {
@@ -149,4 +149,4 @@ export const letterList = [
     status: 'draft',
     content: 'Content 3'
   }
-]
+];

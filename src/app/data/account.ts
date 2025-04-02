@@ -1,4 +1,4 @@
-import { IHeaderTable } from '~/@types/task'
+import { IHeaderTable } from '~/@types/task';
 
 export const accountHeader: IHeaderTable[] = [
   {
@@ -32,7 +32,7 @@ export const accountHeader: IHeaderTable[] = [
     name: '',
     width: '20px'
   }
-]
+];
 
 export const accountList = [
   {
@@ -59,4 +59,4 @@ export const accountList = [
     due_date: '2/2/2021',
     status: 'hearing'
   }
-]
+];

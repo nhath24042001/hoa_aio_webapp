@@ -1,22 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ButtonPrimaryComponent } from './button-primary.component'
+import { ButtonPrimaryComponent } from './button-primary.component';
 
 describe('ButtonPrimaryComponent', () => {
-  let component: ButtonPrimaryComponent
-  let fixture: ComponentFixture<ButtonPrimaryComponent>
+  let component: ButtonPrimaryComponent;
+  let fixture: ComponentFixture<ButtonPrimaryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ButtonPrimaryComponent]
-    }).compileComponents()
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(ButtonPrimaryComponent)
-    component = fixture.componentInstance
-    fixture.detectChanges()
-  })
+    fixture = TestBed.createComponent(ButtonPrimaryComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   it('should create', () => {
-    expect(component).toBeTruthy()
-  })
-})
+    expect(component).toBeTruthy();
+  });
+});

@@ -1,7 +1,7 @@
-import { Component } from '@angular/core'
+import { Component } from '@angular/core';
 
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component'
-import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component'
+import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
+import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 
 @Component({
   selector: 'app-bid-section',
@@ -10,5 +10,5 @@ import { EmptyContentComponent } from '~/pages/main/components/shared/empty-cont
   styleUrl: './bid-section.component.scss'
 })
 export class BidSectionComponent {
-  bids = []
+  bids = [];
 }

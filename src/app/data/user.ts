@@ -1,4 +1,4 @@
-import { IHeaderTable } from '~/@types/task'
+import { IHeaderTable } from '~/@types/task';
 
 export const userHeader: IHeaderTable[] = [
   {
@@ -42,7 +42,7 @@ export const userHeader: IHeaderTable[] = [
     name: '',
     width: '20px'
   }
-]
+];
 
 export const activeUserList = [
   {
@@ -65,7 +65,7 @@ export const activeUserList = [
     updated_date: '2/2/2021',
     vendor_id: '-'
   }
-]
+];
 
 export const inactiveUserList = [
   {
@@ -88,7 +88,7 @@ export const inactiveUserList = [
     updated_date: '2/2/2021',
     vendor_id: '5456789'
   }
-]
+];
 
 export const activeAction = [
   {
@@ -103,7 +103,7 @@ export const activeAction = [
     actionKey: 'deactivate',
     className: '--pointer mb-3'
   }
-]
+];
 
 export const inactiveAction = [
   {
@@ -124,4 +124,4 @@ export const inactiveAction = [
     actionKey: 'delete',
     className: '--delete-action --pointer'
   }
-]
+];

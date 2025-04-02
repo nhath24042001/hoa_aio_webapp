@@ -1,12 +1,12 @@
-import { DatePipe } from '@angular/common'
-import { Component } from '@angular/core'
+import { DatePipe } from '@angular/common';
+import { Component } from '@angular/core';
 
-import { IAnnouncementChild } from '~/@types/announcement'
-import { BaseComponent } from '~/components/common/base/base.component'
-import { ThemeService } from '~/services/theme.service'
+import { IAnnouncementChild } from '~/@types/announcement';
+import { BaseComponent } from '~/components/common/base/base.component';
+import { ThemeService } from '~/services/theme.service';
 
-import { ButtonPrimary } from '../../../shared/button-primary/button-primary.component'
-import { EmptyContentComponent } from '../../../shared/empty-content/empty-content.component'
+import { ButtonPrimary } from '../../../shared/button-primary/button-primary.component';
+import { EmptyContentComponent } from '../../../shared/empty-content/empty-content.component';
 
 @Component({
   selector: 'app-announcement-section',
@@ -37,9 +37,9 @@ export class AnnouncementSectionComponent extends BaseComponent {
       created: '2025-02-24: 08:46:00',
       personSent: 'Larry Birch'
     }
-  ]
+  ];
 
   constructor(themeService: ThemeService) {
-    super(themeService)
+    super(themeService);
   }
 }

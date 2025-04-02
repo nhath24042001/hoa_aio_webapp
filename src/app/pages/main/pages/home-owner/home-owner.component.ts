@@ -1,17 +1,17 @@
-import { Component, computed, signal } from '@angular/core'
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog'
-import { TabsModule } from 'primeng/tabs'
+import { Component, computed, signal } from '@angular/core';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { TabsModule } from 'primeng/tabs';
 
-import { homeOwnerTabHeader } from '~/constants/tab'
-import { homeOwnerHeader, homeOwnerList, propertiesActions, propertiesHeader, propertiesList } from '~/data/home-owner'
-import { Action } from '~/enums'
-import { NewOwner } from '~/pages/main/components/modules/home-owner/new-owner/new-owner.component'
-import { NewProperty } from '~/pages/main/components/modules/home-owner/new-property/new-property.component'
-import { OwnerDetail } from '~/pages/main/components/modules/home-owner/owner-detail/owner-detail.component'
-import { PropertyDetail } from '~/pages/main/components/modules/home-owner/property-detail/property-detail.component'
-import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component'
-import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component'
-import { Table } from '~/pages/main/components/shared/table/table.component'
+import { homeOwnerTabHeader } from '~/constants/tab';
+import { homeOwnerHeader, homeOwnerList, propertiesActions, propertiesHeader, propertiesList } from '~/data/home-owner';
+import { Action } from '~/enums';
+import { NewOwner } from '~/pages/main/components/modules/home-owner/new-owner/new-owner.component';
+import { NewProperty } from '~/pages/main/components/modules/home-owner/new-property/new-property.component';
+import { OwnerDetail } from '~/pages/main/components/modules/home-owner/owner-detail/owner-detail.component';
+import { PropertyDetail } from '~/pages/main/components/modules/home-owner/property-detail/property-detail.component';
+import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
+import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
+import { Table } from '~/pages/main/components/shared/table/table.component';
 
 @Component({
   selector: 'app-home-owner',
@@ -20,23 +20,23 @@ import { Table } from '~/pages/main/components/shared/table/table.component'
   styleUrl: './home-owner.component.scss'
 })
 export class HomeOwnerComponent {
-  ref: DynamicDialogRef | undefined
-  activeTab = signal('0')
-  tabs = homeOwnerTabHeader
-  headers = propertiesHeader
-  data = propertiesList
-  actions = propertiesActions
-  homeOwnerHeader = homeOwnerHeader
-  homeOwnerList = homeOwnerList
+  ref: DynamicDialogRef | undefined;
+  activeTab = signal('0');
+  tabs = homeOwnerTabHeader;
+  headers = propertiesHeader;
+  data = propertiesList;
+  actions = propertiesActions;
+  homeOwnerHeader = homeOwnerHeader;
+  homeOwnerList = homeOwnerList;
 
   labelButton = computed(() => {
-    return this.activeTab() === '0' ? 'New Property' : 'New Home Owner'
-  })
+    return this.activeTab() === '0' ? 'New Property' : 'New Home Owner';
+  });
 
   constructor(public dialogService: DialogService) {}
 
   onTabChange(tabIndex: number | string) {
-    this.activeTab.set(tabIndex.toString())
+    this.activeTab.set(tabIndex.toString());
   }
 
   onAddSection() {
@@ -44,12 +44,12 @@ export class HomeOwnerComponent {
       this.ref = this.dialogService.open(NewProperty, {
         modal: true,
         width: '1100px'
-      })
+      });
     } else {
       this.ref = this.dialogService.open(NewOwner, {
         modal: true,
         width: '1100px'
-      })
+      });
     }
   }
 
@@ -71,12 +71,12 @@ export class HomeOwnerComponent {
         number_of_bedrooms: '5/2',
         parking_space: 'no',
         storage_unit: 'no'
-      }
+      };
       this.ref = this.dialogService.open(PropertyDetail, {
         modal: true,
         width: '1100px',
         data: propertyDetail
-      })
+      });
     } else {
       const ownerDetail = {
         first_name: 'Marilyn',
@@ -105,21 +105,21 @@ export class HomeOwnerComponent {
             link: '#'
           }
         ]
-      }
+      };
 
       this.ref = this.dialogService.open(OwnerDetail, {
         modal: true,
         width: '1100px',
         data: ownerDetail
-      })
+      });
     }
   }
 
   onAction(event: { actionKey: string; rowData: any }): void {
     switch (event.actionKey) {
       case Action.EDIT:
-        this.onEditItem()
-        break
+        this.onEditItem();
+        break;
     }
   }
 }

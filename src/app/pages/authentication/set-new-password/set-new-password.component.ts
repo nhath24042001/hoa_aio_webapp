@@ -1,16 +1,16 @@
-import { Component } from '@angular/core'
-import { ReactiveFormsModule } from '@angular/forms'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
-import { ButtonModule } from 'primeng/button'
-import { CheckboxModule } from 'primeng/checkbox'
-import { InputGroupModule } from 'primeng/inputgroup'
-import { InputGroupAddonModule } from 'primeng/inputgroupaddon'
+import { Component } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
+import { CheckboxModule } from 'primeng/checkbox';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 
-import { BaseComponent } from '../../../components/common/base/base.component'
-import { CustomInputComponent } from '../../../components/shared/custom-input/custom-input.component'
-import { ThemeService } from '../../../services/theme.service'
-import { ToastService } from '../../../services/toast.service'
+import { BaseComponent } from '../../../components/common/base/base.component';
+import { CustomInputComponent } from '../../../components/shared/custom-input/custom-input.component';
+import { ThemeService } from '../../../services/theme.service';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-set-new-password',
@@ -26,9 +26,9 @@ import { ToastService } from '../../../services/toast.service'
   styleUrl: './set-new-password.component.scss'
 })
 export class SetNewPasswordComponent extends BaseComponent {
-  newPasswordForm: FormGroup
-  isSubmitting = false
-  loading = false
+  newPasswordForm: FormGroup;
+  isSubmitting = false;
+  loading = false;
 
   constructor(
     themeService: ThemeService,
@@ -36,29 +36,29 @@ export class SetNewPasswordComponent extends BaseComponent {
     private router: Router,
     private toastService: ToastService
   ) {
-    super(themeService)
+    super(themeService);
     this.newPasswordForm = this.fb.group({
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
-    })
+    });
   }
 
   isMatchingPasswords() {
     if (!this.newPasswordForm.value.newPassword || !this.newPasswordForm.value.confirmPassword) {
-      return false
+      return false;
     }
-    const { password, confirmPassword } = this.newPasswordForm.value
-    return password === confirmPassword
+    const { password, confirmPassword } = this.newPasswordForm.value;
+    return password === confirmPassword;
   }
 
   passwordsMatch(): boolean {
-    const newPassword = this.newPasswordForm.get('newPassword')?.value
-    const confirmPassword = this.newPasswordForm.get('confirmPassword')?.value
-    return newPassword === confirmPassword
+    const newPassword = this.newPasswordForm.get('newPassword')?.value;
+    const confirmPassword = this.newPasswordForm.get('confirmPassword')?.value;
+    return newPassword === confirmPassword;
   }
 
   onBackPreviousStep() {
-    this.router.navigate(['/auth/reset-password'])
+    this.router.navigate(['/auth/reset-password']);
   }
 
   async onSubmit() {
@@ -68,10 +68,10 @@ export class SetNewPasswordComponent extends BaseComponent {
       description: 'Your password has been successfully updated, please log in first',
       type: 'primary',
       buttonText: 'Login now'
-    })
+    });
 
     if (confirmed) {
-      this.router.navigate(['/auth/login'])
+      this.router.navigate(['/auth/login']);
     }
   }
 }

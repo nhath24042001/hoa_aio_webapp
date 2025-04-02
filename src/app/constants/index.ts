@@ -1,16 +1,16 @@
-import { Priority } from '~/enums'
+import { Priority } from '~/enums';
 
 export const THEME = {
   LIGHT: 'light',
   DARK: 'dark'
-}
+};
 
 export const ACTIONS = {
   EDIT: 'Edit',
   APPROVE: 'Approve',
   PENDING: 'Make as pending',
   DELETE: 'Delete'
-} as const
+} as const;
 
 export const STATUS_LIST = {
   NEW: 'New',
@@ -25,7 +25,7 @@ export const STATUS_LIST = {
   REJECT: 'Reject',
   CANCELLED: 'Cancelled',
   CANCEL: 'Cancel'
-} as const
+} as const;
 
 export const TASK_STATUS = [
   {
@@ -52,7 +52,7 @@ export const TASK_STATUS = [
     icon: 'status-cancel',
     name: STATUS_LIST.CANCEL
   }
-]
+];
 
 export const PROJECT_TYPES = [
   { name: 'Maintenance', code: 'NY' },
@@ -60,7 +60,7 @@ export const PROJECT_TYPES = [
   { name: 'New construction', code: 'LDN' },
   { name: 'Inspection', code: 'IST' },
   { name: 'Other', code: 'PRS' }
-]
+];
 
 export const PRIORITY_LIST = [
   {
@@ -79,7 +79,7 @@ export const PRIORITY_LIST = [
     name: 'Critical',
     code: 'critical'
   }
-]
+];
 
 export const LIST_TASK_STATUS = [
   {
@@ -106,7 +106,7 @@ export const LIST_TASK_STATUS = [
     name: STATUS_LIST.CANCELLED,
     code: 'cancelled'
   }
-]
+];
 
 export const tasks = [
   {
@@ -214,4 +214,4 @@ export const tasks = [
       }
     ]
   }
-]
+];

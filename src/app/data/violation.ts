@@ -1,4 +1,4 @@
-import { IHeaderTable } from '~/@types/task'
+import { IHeaderTable } from '~/@types/task';
 
 export const violationHeader: IHeaderTable[] = [
   {
@@ -35,7 +35,7 @@ export const violationHeader: IHeaderTable[] = [
     name: '',
     width: '20px'
   }
-]
+];
 
 export const openViolationList = [
   {
@@ -70,7 +70,7 @@ export const openViolationList = [
     due_date: '2/2/2021',
     status: 'first_notice'
   }
-]
+];
 
 export const closedViolationList = [
   {
@@ -97,4 +97,4 @@ export const closedViolationList = [
     due_date: '2/2/2021',
     status: 'closed'
   }
-]
+];

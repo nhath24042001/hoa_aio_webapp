@@ -1,8 +1,8 @@
-import { Component } from '@angular/core'
-import { RouterOutlet } from '@angular/router'
-import { DialogService } from 'primeng/dynamicdialog'
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { DialogService } from 'primeng/dynamicdialog';
 
-import { ToastComponent } from './components/shared/toast/toast.component'
+import { ToastComponent } from './components/shared/toast/toast.component';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +13,10 @@ import { ToastComponent } from './components/shared/toast/toast.component'
 })
 export class AppComponent {
   toggleDarkMode() {
-    const htmlElement = document.querySelector('html')
+    const htmlElement = document.querySelector('html');
 
     if (htmlElement !== null) {
-      htmlElement.classList.toggle('my-app-dark')
+      htmlElement.classList.toggle('my-app-dark');
     }
   }
 }

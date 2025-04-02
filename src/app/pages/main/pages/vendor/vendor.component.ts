@@ -1,18 +1,18 @@
-import { Component } from '@angular/core'
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog'
-import { TabsModule } from 'primeng/tabs'
+import { Component } from '@angular/core';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { TabsModule } from 'primeng/tabs';
 
-import { vendorTabHeader } from '~/constants/tab'
-import { bidHeaders, bidList, companyHeaders, companyList, estimateList, vendorActions } from '~/data/vendor'
-import { Action } from '~/enums'
-import { BidDialog } from '~/pages/main/components/modules/vendor/bid-dialog/bid-dialog.component'
-import { RequestEstimateDialog } from '~/pages/main/components/modules/vendor/request-estimate-dialog/request-estimate-dialog.component'
-import { VendorDialog } from '~/pages/main/components/modules/vendor/vendor-dialog/vendor-dialog.component'
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component'
-import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component'
-import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component'
-import { Table } from '~/pages/main/components/shared/table/table.component'
-import { ToastService } from '~/services/toast.service'
+import { vendorTabHeader } from '~/constants/tab';
+import { bidHeaders, bidList, companyHeaders, companyList, estimateList, vendorActions } from '~/data/vendor';
+import { Action } from '~/enums';
+import { BidDialog } from '~/pages/main/components/modules/vendor/bid-dialog/bid-dialog.component';
+import { RequestEstimateDialog } from '~/pages/main/components/modules/vendor/request-estimate-dialog/request-estimate-dialog.component';
+import { VendorDialog } from '~/pages/main/components/modules/vendor/vendor-dialog/vendor-dialog.component';
+import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
+import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
+import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
+import { Table } from '~/pages/main/components/shared/table/table.component';
+import { ToastService } from '~/services/toast.service';
 
 @Component({
   selector: 'app-vendor',
@@ -21,18 +21,18 @@ import { ToastService } from '~/services/toast.service'
   styleUrl: './vendor.component.scss'
 })
 export class VendorComponent {
-  ref: DynamicDialogRef | undefined
-  isActive: boolean = true
-  role = 'vendor'
-  activeTab = '0'
+  ref: DynamicDialogRef | undefined;
+  isActive: boolean = true;
+  role = 'vendor';
+  activeTab = '0';
 
-  tabs = vendorTabHeader
-  companyList = companyList
-  companyHeader = companyHeaders
-  bidHeader = bidHeaders
-  bidList = bidList
-  estimateList = estimateList
-  actions = vendorActions
+  tabs = vendorTabHeader;
+  companyList = companyList;
+  companyHeader = companyHeaders;
+  bidHeader = bidHeaders;
+  bidList = bidList;
+  estimateList = estimateList;
+  actions = vendorActions;
 
   constructor(
     public dialogService: DialogService,
@@ -42,44 +42,44 @@ export class VendorComponent {
   get buttonText(): string {
     switch (this.activeTab) {
       case '0':
-        return 'New Vendor'
+        return 'New Vendor';
       case '1':
-        return 'New Bid'
+        return 'New Bid';
       default:
-        return 'Request an Estimate'
+        return 'Request an Estimate';
     }
   }
 
   get componentRender() {
     switch (this.activeTab) {
       case '0':
-        return VendorDialog
+        return VendorDialog;
       case '1':
-        return BidDialog
+        return BidDialog;
       default:
-        return RequestEstimateDialog
+        return RequestEstimateDialog;
     }
   }
 
   onSearch() {}
 
   onTabChange(tabIndex: number | string) {
-    this.activeTab = tabIndex.toString()
+    this.activeTab = tabIndex.toString();
   }
   onOpenCreate(): void {
-    this.ref = this.dialogService.open(this.componentRender, {
+    this.ref = this.dialogService.open(this.componentRender as any, {
       modal: true,
       width: '1000px',
       data: {
         type: 'create'
       }
-    })
+    });
 
     // this.ref.onClose.subscribe((task: any) => {});
   }
 
-  onOpenEditDialog(): void {
-    this.ref = this.dialogService.open(this.componentRender, {
+  onOpenEditDialog(rowData: any): void {
+    this.ref = this.dialogService.open(this.componentRender as any, {
       modal: true,
       width: '1000px',
       data: {
@@ -103,25 +103,27 @@ export class VendorComponent {
           }
         }
       }
-    })
+    });
+
+    console.log('rowData', rowData);
   }
 
   onAction(event: { actionKey: string; rowData: any }): void {
     switch (event.actionKey) {
       case Action.EDIT:
-        this.onOpenEditDialog(event.rowData)
-        break
+        this.onOpenEditDialog(event.rowData);
+        break;
       case 'approve':
         // this.toastService.showSuccess('Approved successfully');
-        break
+        break;
       case 'pending':
         // this.toastService.showWarning('Marked as pending');
-        break
+        break;
       case 'delete':
         // this.toastService.showDanger('Deleted successfully');
-        break
+        break;
       default:
-        break
+        break;
     }
   }
 }

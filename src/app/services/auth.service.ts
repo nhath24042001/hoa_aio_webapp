@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http'
-import { Injectable } from '@angular/core'
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
-import { environment } from '~/environments/environment'
+import { environment } from '~/environments/environment';
 
-import { HttpClientModel } from '../models/http/http-client.model'
-import { HttpRequestParamsInterface } from '../models/http/http-request-params.interface'
-import { CryptoService } from './crypto.service'
+import { HttpClientModel } from '../models/http/http-client.model';
+import { HttpRequestParamsInterface } from '../models/http/http-request-params.interface';
+import { CryptoService } from './crypto.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class AuthService extends HttpClientModel {
     http: HttpClient,
     private cryptoService: CryptoService
   ) {
-    super(http)
+    super(http);
   }
 
   public registerWithPhone(payload: RegisterWithPhonePayload) {
@@ -25,9 +25,9 @@ export class AuthService extends HttpClientModel {
         '#request': 'register_with_phone',
         ...payload
       }
-    }
+    };
 
-    return this.post(request)
+    return this.post(request);
   }
 
   public loginWithPhone(auth_key: string) {
@@ -37,8 +37,8 @@ export class AuthService extends HttpClientModel {
         '#request': 'login_with_phone',
         auth_key: auth_key
       }
-    }
-    return this.post(request)
+    };
+    return this.post(request);
   }
 
   public sendSMSCode(phone: string) {
@@ -48,8 +48,8 @@ export class AuthService extends HttpClientModel {
         '#request': 'send_sms_code',
         phone_num: phone
       }
-    }
-    return this.post(request)
+    };
+    return this.post(request);
   }
 
   public verifySMSCode(phone: string, code: string) {
@@ -60,7 +60,7 @@ export class AuthService extends HttpClientModel {
         phone_num: phone,
         verification_code: code
       }
-    }
-    return this.post(request)
+    };
+    return this.post(request);
   }
 }

@@ -1,9 +1,9 @@
-import { Component } from '@angular/core'
-import { DynamicDialogConfig } from 'primeng/dynamicdialog'
+import { Component } from '@angular/core';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
-import { DynamicField } from '~/@types'
-import { eventList } from '~/data/calendar'
-import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dynamic-dialog.component'
+import { DynamicField } from '~/@types';
+import { eventList } from '~/data/calendar';
+import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dynamic-dialog.component';
 
 @Component({
   selector: 'dynamic-event',
@@ -12,12 +12,12 @@ import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dyn
   styleUrl: './dynamic-event.component.scss'
 })
 export class DynamicEvent {
-  data: any
-  type = ''
+  data: any;
+  type = '';
 
-  eventList = eventList
-  tags: string[] = []
-  inputValue: string = ''
+  eventList = eventList;
+  tags: string[] = [];
+  inputValue: string = '';
 
   list_columns: DynamicField[] = [
     {
@@ -75,7 +75,7 @@ export class DynamicEvent {
       placeholder: 'Leave empty for free events',
       position: 'right'
     }
-  ]
+  ];
 
   list_textarea = [
     {
@@ -83,19 +83,19 @@ export class DynamicEvent {
       placeholder: 'Enter description',
       value: ''
     }
-  ]
+  ];
 
   constructor(public config: DynamicDialogConfig) {
-    this.data = config.data
-    this.type = this.data.type
+    this.data = config.data;
+    this.type = this.data.type;
   }
 
   get title() {
-    return this.type === 'create' ? 'Create New Event' : 'Event Detail'
+    return this.type === 'create' ? 'Create New Event' : 'Event Detail';
   }
 
   get formData() {
-    return this.config.data
+    return this.config.data;
   }
 
   // addTag(event: any) {

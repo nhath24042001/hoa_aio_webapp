@@ -1,5 +1,5 @@
-import { definePreset } from '@primeng/themes'
-import Aura from '@primeng/themes/aura'
+import { definePreset } from '@primeng/themes';
+import Aura from '@primeng/themes/aura';
 
 export const MyPreset = definePreset(Aura, {
   semantic: {
@@ -102,4 +102,4 @@ export const MyPreset = definePreset(Aura, {
       }
     }
   }
-})
+});

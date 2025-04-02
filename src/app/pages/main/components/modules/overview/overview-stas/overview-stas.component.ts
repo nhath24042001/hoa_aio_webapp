@@ -1,10 +1,10 @@
-import { Component } from '@angular/core'
-import { Router } from '@angular/router'
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { ShortNumberPipe } from '~/pipes/short-number.pipe'
+import { ShortNumberPipe } from '~/pipes/short-number.pipe';
 
-import { BaseComponent } from '../../../../../../components/common/base/base.component'
-import { ThemeService } from '../../../../../../services/theme.service'
+import { BaseComponent } from '../../../../../../components/common/base/base.component';
+import { ThemeService } from '../../../../../../services/theme.service';
 
 @Component({
   selector: 'app-overview-stas',
@@ -42,16 +42,16 @@ export class OverviewStasComponent extends BaseComponent {
       isPrefix: true,
       routeLink: '/accounting'
     }
-  ]
+  ];
 
   constructor(
     themeService: ThemeService,
     private router: Router
   ) {
-    super(themeService)
+    super(themeService);
   }
 
   navigateTo(routeLink: string) {
-    this.router.navigate([`main/${routeLink}`])
+    this.router.navigate([`main/${routeLink}`]);
   }
 }

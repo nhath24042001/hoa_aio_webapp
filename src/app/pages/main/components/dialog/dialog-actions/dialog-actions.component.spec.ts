@@ -1,22 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DialogActions } from './dialog-actions.component'
+import { DialogActions } from './dialog-actions.component';
 
 describe('DialogActionsComponent', () => {
-  let component: DialogActions
-  let fixture: ComponentFixture<DialogActions>
+  let component: DialogActions;
+  let fixture: ComponentFixture<DialogActions>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DialogActions]
-    }).compileComponents()
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(DialogActions)
-    component = fixture.componentInstance
-    fixture.detectChanges()
-  })
+    fixture = TestBed.createComponent(DialogActions);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   it('should create', () => {
-    expect(component).toBeTruthy()
-  })
-})
+    expect(component).toBeTruthy();
+  });
+});
