@@ -12,7 +12,7 @@ import { ThemeService } from '../../../services/theme.service';
   selector: 'app-reset-password',
   imports: [ButtonModule, InputOtpModule, FormsModule, NgxOtpInputComponent],
   templateUrl: './reset-password.component.html',
-  styleUrl: './reset-password.component.scss'
+  styleUrl: '../../../../assets/scss/_authentication.scss'
 })
 export class ResetPasswordComponent extends BaseComponent {
   isSubmitting = false;

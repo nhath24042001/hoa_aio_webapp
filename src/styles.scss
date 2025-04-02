@@ -1,4 +1,4 @@
-@import 'primeicons/primeicons.css';
+@use 'primeicons/primeicons.css';
 
 /* RESET CSS */
 * {
@@ -528,4 +528,12 @@ ul li {
   background-color: var(--background);
   color: #6a00f4;
   border: 1px solid #6a00f4;
+}
+
+::ng-deep .p-button {
+  width: 100%;
+
+  span {
+    color: #fff !important;
+  }
 }

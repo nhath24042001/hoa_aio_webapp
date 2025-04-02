@@ -12,7 +12,7 @@ import { CustomInputComponent } from './../../../components/shared/custom-input/
   selector: 'app-forgot-password',
   imports: [ReactiveFormsModule, CustomInputComponent, ButtonModule, MessageModule],
   templateUrl: './forgot-password.component.html',
-  styleUrl: './forgot-password.component.scss'
+  styleUrl: '../../../../assets/scss/_authentication.scss'
 })
 export class ForgotPasswordComponent extends BaseComponent {
   forgotPswForm: FormGroup;
@@ -39,16 +39,16 @@ export class ForgotPasswordComponent extends BaseComponent {
     setTimeout(() => {
       this.loading = false;
 
-      const { email } = this.forgotPswForm.value;
+      // const { email } = this.forgotPswForm.value;
 
-      if (email !== 'admin@gmail.com') {
-        this.isShowError = true;
-        this.messageError = 'Your email is incorrect';
-      } else {
-        this.isShowError = false;
-        this.messageError = '';
-        this.router.navigate(['/auth/reset-password']);
-      }
+      // if (email !== 'admin@gmail.com') {
+      //   this.isShowError = true;
+      //   this.messageError = 'Your email is incorrect';
+      // } else {
+      //   this.isShowError = false;
+      //   this.messageError = '';
+      // }
+      this.router.navigate(['/auth/reset-password']);
     }, 2000);
   }
 

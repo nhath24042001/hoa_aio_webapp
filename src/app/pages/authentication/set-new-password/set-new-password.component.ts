@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -23,7 +22,7 @@ import { ToastService } from '../../../services/toast.service';
     CustomInputComponent
   ],
   templateUrl: './set-new-password.component.html',
-  styleUrl: './set-new-password.component.scss'
+  styleUrl: '../../../../assets/scss/_authentication.scss'
 })
 export class SetNewPasswordComponent extends BaseComponent {
   newPasswordForm: FormGroup;

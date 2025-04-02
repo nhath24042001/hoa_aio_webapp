@@ -1,4 +1,6 @@
-.--form-login-wrapper {
+@use './lib';
+
+.--form-wrapper {
   background: var(--background);
   padding: 30px 90px 50px 90px;
   border-radius: 10px;
@@ -39,27 +41,29 @@
       opacity: 0.6;
     }
   }
-}
 
-::ng-deep .p-button {
-  width: 100%;
-
-  span {
-    color: #fff;
+  .--back-forgot-wrapper {
+    width: 50px;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    border: 1px solid #6938da;
+    cursor: pointer;
   }
-}
 
-::ng-deep .p-message-content {
-  background: var(--message-bg);
-  color: var(--const-color);
-  height: 34px !important;
-  border-radius: 10px;
+  .--otp-wrapper {
+    &.--dark {
+      ::ng-deep .ngx-otp-input-box {
+        background-color: #f8fafb;
+        color: #000;
+      }
 
-  span {
-    font-size: 14px;
+      ::ng-deep .ngx-otp-input-filled {
+        background-color: var(--background);
+        color: #fff;
+      }
+    }
   }
-}
-
-::ng-deep .p-button-loading-icon {
-  color: var(--background);
 }
