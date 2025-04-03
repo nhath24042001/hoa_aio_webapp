@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { PaginatorModule } from 'primeng/paginator';
 import { PopoverModule } from 'primeng/popover';
 import { SelectModule } from 'primeng/select';
+import { SkeletonModule } from 'primeng/skeleton';
 import { TableModule } from 'primeng/table';
 
 import { IHeaderTable } from '~/@types/task';
@@ -34,7 +35,8 @@ interface TableAction {
     SelectModule,
     FormsModule,
     PopoverModule,
-    ButtonModule
+    ButtonModule,
+    SkeletonModule
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
@@ -49,17 +51,17 @@ export class Table<T> extends BaseComponent {
   readonly actions = input<TableAction[]>([]);
   readonly className = input<string>('');
   readonly rowsPerPageOptions = input([5, 10, 20]);
+  readonly isLoading = input<boolean>(false);
 
   pageChange = output<number>();
   actionTriggered = output<{ actionKey: string; rowData: T }>();
   rowSelected = output<T[]>();
 
+  placeholderData = new Array(3).fill({});
   first: number = 0;
-
   rows: number = 10;
-
   selectedRows: T[] = [];
-
+  selectedPageOption: number = 10;
   pageOptions = [
     {
       name: '10',
@@ -74,7 +76,6 @@ export class Table<T> extends BaseComponent {
       value: 50
     }
   ];
-  selectedPageOption: number = 10;
 
   constructor(themeService: ThemeService) {
     super(themeService);
