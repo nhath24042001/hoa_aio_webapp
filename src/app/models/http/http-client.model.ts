@@ -2,6 +2,8 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
 
+import { environment } from '~/environments/environment';
+
 import { HttpClientInterface } from './http-client.interface';
 import { HttpRequestParamsInterface } from './http-request-params.interface';
 
@@ -9,9 +11,21 @@ import { HttpRequestParamsInterface } from './http-request-params.interface';
 export class HttpClientModel implements HttpClientInterface {
   private DEFAULT_CONTENT_TYPE = 'application/json';
   private _customizeHeaders = new HttpHeaders();
+  protected token = environment.TOKEN;
 
   constructor(private http: HttpClient) {
     this._customizeHeaders.append('Content-Type', this.DEFAULT_CONTENT_TYPE);
+  }
+
+  protected createRequest(moduleName: string, action: string, additionalBody: object = {}) {
+    return {
+      url: environment.API_URL,
+      body: {
+        '#request': `${moduleName}/${action}`,
+        '#token': this.token,
+        ...additionalBody
+      }
+    };
   }
 
   public get<T>(parameters: HttpRequestParamsInterface): Observable<T> {
