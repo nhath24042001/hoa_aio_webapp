@@ -24,6 +24,7 @@
     "@popperjs/core": "^2.11.8",
     "@primeng/themes": "^19.0.6",
     "bootstrap": "^5.3.3",
+    "countup.js": "^2.8.0",
     "crypto-js": "^4.2.0",
     "lodash-es": "^4.17.21",
     "ngx-bootstrap": "^19.0.2",
