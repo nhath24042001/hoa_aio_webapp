@@ -6,12 +6,12 @@ import { SelectModule } from 'primeng/select';
 
 import { BaseComponent } from '~/components/common/base/base.component';
 import { report_types, sub_report_types } from '~/constants/select';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
+import { ButtonDirective } from '~/directives/button.directive';
 import { ThemeService } from '~/services/theme.service';
 
 @Component({
   selector: 'app-generate-report',
-  imports: [DividerModule, SelectModule, DatePickerModule, ButtonPrimary],
+  imports: [DividerModule, SelectModule, DatePickerModule, ButtonDirective],
   templateUrl: './generate-report.component.html',
   styleUrl: './generate-report.component.scss'
 })

@@ -12,7 +12,11 @@ export class ButtonDirective implements AfterViewInit {
   currentMode = input('');
 
   iconUrl = computed(() => {
-    return `assets/images/${this.currentMode()}/${this.icon()}.svg`;
+    if (this.currentMode()) {
+      return `assets/images/${this.currentMode()}/${this.icon()}.svg`;
+    } else {
+      return `assets/images/common/${this.icon()}.svg`;
+    }
   });
 
   constructor(
@@ -33,12 +37,13 @@ export class ButtonDirective implements AfterViewInit {
       const iconElement: HTMLImageElement = this.renderer.createElement('img');
       this.renderer.setAttribute(iconElement, 'src', this.iconUrl());
       this.renderer.setAttribute(iconElement, 'alt', 'button_icon');
-      this.renderer.addClass(iconElement, 'me-2');
 
       if (this.iconPos() === 'left') {
         this.renderer.insertBefore(button, iconElement, button.firstChild);
+        this.renderer.addClass(iconElement, 'me-2');
       } else {
         this.renderer.appendChild(button, iconElement);
+        this.renderer.addClass(iconElement, 'ms-2');
       }
     }
   }

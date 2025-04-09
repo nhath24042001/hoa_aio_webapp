@@ -48,4 +48,4 @@ export interface ISelect {
   icon?: string;
 }
 
-export type ButtonType = 'primary' | 'danger' | 'outline';
+export type ButtonType = 'primary' | 'secondary' | 'danger' | 'outline';

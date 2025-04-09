@@ -66,11 +66,7 @@
 } @else {
   <div class="--content-section p-4 d-flex flex-column">
     <div class="d-flex justify-content-end">
-      <button-primary
-        icon="assets/images/common/white-plus-solid.svg"
-        label="New Project"
-        [isPrimaryActive]="true"
-      ></button-primary>
+      <button appButton="primary" icon="white-plus-solid">New Project</button>
     </div>
     <div class="flex-fill d-flex justify-content-center align-items-center">
       <app-empty-content

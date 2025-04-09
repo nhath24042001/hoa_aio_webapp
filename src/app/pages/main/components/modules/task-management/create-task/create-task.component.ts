@@ -9,7 +9,7 @@ import { TextareaModule } from 'primeng/textarea';
 
 import { BaseComponent } from '~/components/common/base/base.component';
 import { LIST_TASK_STATUS, PRIORITY_LIST, PROJECT_TYPES } from '~/constants';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
+import { ButtonDirective } from '~/directives/button.directive';
 import { ThemeService } from '~/services/theme.service';
 
 @Component({
@@ -21,7 +21,7 @@ import { ThemeService } from '~/services/theme.service';
     InputTextModule,
     DatePickerModule,
     TextareaModule,
-    ButtonPrimary
+    ButtonDirective
   ],
   templateUrl: './create-task.component.html',
   styleUrl: './create-task.component.scss'

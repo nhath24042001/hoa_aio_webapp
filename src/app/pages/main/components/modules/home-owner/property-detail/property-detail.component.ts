@@ -8,14 +8,14 @@ import { TabsModule } from 'primeng/tabs';
 import { BaseComponent } from '~/components/common/base/base.component';
 import { propertiesDetailTabHeader } from '~/constants/tab';
 import { accountingHeader, accountingList, propertiesInputFields } from '~/data/home-owner';
+import { ButtonDirective } from '~/directives/button.directive';
 import { FormField } from '~/pages/main/components/dialog/form-field/form-field.component';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';
 import { ThemeService } from '~/services/theme.service';
 
 @Component({
   selector: 'app-property-detail',
-  imports: [DividerModule, TabsModule, FormField, ButtonPrimary, SelectModule, Table],
+  imports: [DividerModule, TabsModule, FormField, ButtonDirective, SelectModule, Table],
   templateUrl: './property-detail.component.html',
   styleUrl: './property-detail.component.scss'
 })

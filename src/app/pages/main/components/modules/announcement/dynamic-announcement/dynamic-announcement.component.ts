@@ -9,7 +9,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { TextareaModule } from 'primeng/textarea';
 
 import { BaseComponent } from '~/components/common/base/base.component';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
+import { ButtonDirective } from '~/directives/button.directive';
 import { ThemeService } from '~/services/theme.service';
 
 @Component({
@@ -21,7 +21,7 @@ import { ThemeService } from '~/services/theme.service';
     DatePickerModule,
     TextareaModule,
     InputTextModule,
-    ButtonPrimary
+    ButtonDirective
   ],
   templateUrl: './dynamic-announcement.component.html',
   styleUrl: './dynamic-announcement.component.scss'

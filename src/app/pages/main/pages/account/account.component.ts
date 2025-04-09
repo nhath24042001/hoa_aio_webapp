@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DividerModule } from 'primeng/divider';
 import { SelectModule } from 'primeng/select';
 
@@ -9,7 +7,6 @@ import { BaseComponent } from '~/components/common/base/base.component';
 import { CustomInputComponent } from '~/components/shared/custom-input/custom-input.component';
 import { InputFile } from '~/components/shared/input-file/input-file.component';
 import { ButtonDirective } from '~/directives/button.directive';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
 import { ThemeService } from '~/services/theme.service';
 
 @Component({
@@ -21,7 +18,6 @@ import { ThemeService } from '~/services/theme.service';
     SelectModule,
     InputFile,
     CustomInputComponent,
-    ButtonPrimary,
     ButtonDirective
   ],
   templateUrl: './account.component.html',

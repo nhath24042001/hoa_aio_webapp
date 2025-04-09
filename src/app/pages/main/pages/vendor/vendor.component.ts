@@ -5,11 +5,11 @@ import { TabsModule } from 'primeng/tabs';
 
 import { vendorTabHeader } from '~/constants/tab';
 import { bidHeaders, bidList, companyHeaders, companyList, estimateList, vendorActions } from '~/data/vendor';
+import { ButtonDirective } from '~/directives/button.directive';
 import { Action } from '~/enums';
 import { BidDialog } from '~/pages/main/components/modules/vendor/bid-dialog/bid-dialog.component';
 import { RequestEstimateDialog } from '~/pages/main/components/modules/vendor/request-estimate-dialog/request-estimate-dialog.component';
 import { VendorDialog } from '~/pages/main/components/modules/vendor/vendor-dialog/vendor-dialog.component';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';
@@ -17,7 +17,7 @@ import { ToastService } from '~/services/toast.service';
 
 @Component({
   selector: 'app-vendor',
-  imports: [TabsModule, EmptyContentComponent, ButtonPrimary, MainHeader, Table],
+  imports: [TabsModule, EmptyContentComponent, ButtonDirective, MainHeader, Table],
   templateUrl: './vendor.component.html',
   styleUrl: './vendor.component.scss'
 })

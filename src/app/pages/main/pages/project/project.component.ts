@@ -5,9 +5,9 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TabsModule } from 'primeng/tabs';
 
 import { projectHeaders, projectsData } from '~/data/project';
+import { ButtonDirective } from '~/directives/button.directive';
 import { CreateProject } from '~/pages/main/components/modules/project/create-project/create-project.component';
 import { ProjectDetail } from '~/pages/main/components/modules/project/project-detail/project-detail.component';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';
@@ -15,7 +15,7 @@ import { ToastService } from '~/services/toast.service';
 
 @Component({
   selector: 'app-project',
-  imports: [TabsModule, MainHeader, EmptyContentComponent, ButtonPrimary, Table],
+  imports: [TabsModule, MainHeader, EmptyContentComponent, ButtonDirective, Table],
   templateUrl: './project.component.html',
   styleUrl: './project.component.scss'
 })
@@ -82,7 +82,8 @@ export class ProjectComponent {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/calendar-x-lg.svg',
       title: 'Delete Task',
-      description: 'Are you sure? Proceeding will delete the event from the system, and can not be undone.',
+      description:
+        'Are you sure? Proceeding will delete the event from the system, and can not be undone.',
       type: 'error',
       buttonText: 'Delete task'
     });

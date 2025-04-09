@@ -8,13 +8,13 @@ import { TabsModule } from 'primeng/tabs';
 import { BaseComponent } from '~/components/common/base/base.component';
 import { ownerDetailHeader } from '~/constants/tab';
 import { homeOwnerInputFields } from '~/data/home-owner';
+import { ButtonDirective } from '~/directives/button.directive';
 import { FormField } from '~/pages/main/components/dialog/form-field/form-field.component';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
 import { ThemeService } from '~/services/theme.service';
 
 @Component({
   selector: 'app-owner-detail',
-  imports: [DividerModule, TabsModule, FormField, ButtonPrimary, SelectModule],
+  imports: [DividerModule, TabsModule, FormField, ButtonDirective, SelectModule],
   templateUrl: './owner-detail.component.html',
   styleUrl: './owner-detail.component.scss'
 })

@@ -510,6 +510,7 @@ ul li {
 .--btn {
   padding: 8px 16px;
   border-radius: 20px;
+  font-size: 12px;
   cursor: pointer;
 }
 
@@ -530,6 +531,10 @@ ul li {
   border: 1px solid #6a00f4;
 }
 
+.--btn-secondary {
+  background-color: #f3eeff;
+  color: #6938da;
+}
 ::ng-deep .p-button {
   width: 100%;
 

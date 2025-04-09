@@ -8,10 +8,10 @@ import { TabsModule } from 'primeng/tabs';
 
 import { IHeaderTable, ITaskManagement } from '~/@types/task';
 import { TASK_STATUS } from '~/constants';
+import { ButtonDirective } from '~/directives/button.directive';
 import { Priority } from '~/enums';
 import { CreateTask } from '~/pages/main/components/modules/task-management/create-task/create-task.component';
 import { TaskDetail } from '~/pages/main/components/modules/task-management/task-detail/task-detail.component';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';
@@ -24,7 +24,7 @@ import { Table } from '~/pages/main/components/shared/table/table.component';
     FormsModule,
     DatePickerModule,
     EmptyContentComponent,
-    ButtonPrimary,
+    ButtonDirective,
     MainHeader,
     Table
   ],
@@ -48,12 +48,14 @@ export class TaskManagementComponent {
           {
             id: 1,
             name: 'John Doe',
-            avatar: 'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+            avatar:
+              'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
           },
           {
             id: 2,
             name: 'Jane Smith',
-            avatar: 'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+            avatar:
+              'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
           }
         ]
       },
@@ -69,12 +71,14 @@ export class TaskManagementComponent {
           {
             id: 1,
             name: 'John Doe',
-            avatar: 'https://images.pexels.com/photos/7561957/pexels-photo-7561957.jpeg?auto=compress&cs=tinysrgb&w=600'
+            avatar:
+              'https://images.pexels.com/photos/7561957/pexels-photo-7561957.jpeg?auto=compress&cs=tinysrgb&w=600'
           },
           {
             id: 2,
             name: 'Jane Smith',
-            avatar: 'https://images.pexels.com/photos/7562349/pexels-photo-7562349.jpeg?auto=compress&cs=tinysrgb&w=600'
+            avatar:
+              'https://images.pexels.com/photos/7562349/pexels-photo-7562349.jpeg?auto=compress&cs=tinysrgb&w=600'
           }
         ]
       }

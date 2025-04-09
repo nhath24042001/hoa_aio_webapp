@@ -7,12 +7,12 @@ import { SelectModule } from 'primeng/select';
 
 import { BaseComponent } from '~/components/common/base/base.component';
 import { LIST_TASK_STATUS } from '~/constants';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
+import { ButtonDirective } from '~/directives/button.directive';
 import { ThemeService } from '~/services/theme.service';
 
 @Component({
   selector: 'task-detail',
-  imports: [DividerModule, SelectModule, AvatarModule, AvatarGroupModule, ButtonPrimary],
+  imports: [DividerModule, SelectModule, AvatarModule, AvatarGroupModule, ButtonDirective],
   templateUrl: './task-detail.component.html',
   styleUrl: './task-detail.component.scss'
 })

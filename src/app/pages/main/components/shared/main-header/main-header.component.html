@@ -20,10 +20,7 @@
     <ng-content select="[filter-content]"></ng-content>
   </ng-template>
 
-  <button-primary
-    icon="assets/images/common/white-plus-solid.svg"
-    [label]="labelButton"
-    [isPrimaryActive]="true"
-    (click)="onAddSection()"
-  ></button-primary>
+  <button appButton="primary" icon="white-plus-solid" (click)="onAddSection()">
+    {{ labelButton }}
+  </button>
 </div>

@@ -3,11 +3,11 @@ import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core
 import { PopoverDirective, PopoverModule } from 'ngx-bootstrap/popover';
 import { CheckboxModule } from 'primeng/checkbox';
 
-import { ButtonPrimary } from '../button-primary/button-primary.component';
+import { ButtonDirective } from '~/directives/button.directive';
 
 @Component({
   selector: 'main-header',
-  imports: [ButtonPrimary, PopoverModule, CheckboxModule],
+  imports: [ButtonDirective, PopoverModule, CheckboxModule],
   templateUrl: './main-header.component.html',
   styleUrl: './main-header.component.scss'
 })

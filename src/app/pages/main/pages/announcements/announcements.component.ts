@@ -7,11 +7,11 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TabsModule } from 'primeng/tabs';
 
 import { IAnnouncement, IAnnouncementChild } from '~/@types/announcement';
+import { ButtonDirective } from '~/directives/button.directive';
 import { MainHeader } from '~/pages/main/components//shared/main-header/main-header.component';
 import { AnnouncementDetail } from '~/pages/main/components/modules/announcement/announcement-detail/announcement-detail.component';
 import { AnnouncementListComponent } from '~/pages/main/components/modules/announcement/announcement-list/announcement-list.component';
 import { DynamicAnnouncement } from '~/pages/main/components/modules/announcement/dynamic-announcement/dynamic-announcement.component';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { ToastService } from '~/services/toast.service';
 @Component({
@@ -19,7 +19,7 @@ import { ToastService } from '~/services/toast.service';
   imports: [
     TabsModule,
     EmptyContentComponent,
-    ButtonPrimary,
+    ButtonDirective,
     AnnouncementListComponent,
     MainHeader,
     CheckboxModule,
@@ -128,7 +128,10 @@ export class AnnouncementsComponent {
     this.ref.onClose.subscribe(() => {});
   }
 
-  async onImplementAction(event: { announcement: IAnnouncementChild; type: string }): Promise<void> {
+  async onImplementAction(event: {
+    announcement: IAnnouncementChild;
+    type: string;
+  }): Promise<void> {
     switch (event.type) {
       case 'edit':
         this.onOpenAnnouncementDetail();
@@ -146,7 +149,8 @@ export class AnnouncementsComponent {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/red-trash-md.svg',
       title: 'Delete Item',
-      description: 'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
+      description:
+        'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
       type: 'error',
       buttonText: 'Delete'
     });
@@ -160,7 +164,8 @@ export class AnnouncementsComponent {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/check-circle-broken-lg.svg',
       title: 'Announcement Posted',
-      description: 'The announcement has been posted, and will be available to its recipients shortly.',
+      description:
+        'The announcement has been posted, and will be available to its recipients shortly.',
       type: 'success',
       buttonText: 'Ok'
     });

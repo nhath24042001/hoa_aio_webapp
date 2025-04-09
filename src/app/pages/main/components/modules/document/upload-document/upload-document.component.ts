@@ -7,12 +7,12 @@ import { TextareaModule } from 'primeng/textarea';
 
 import { BaseComponent } from '~/components/common/base/base.component';
 import { InputFile } from '~/components/shared/input-file/input-file.component';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
+import { ButtonDirective } from '~/directives/button.directive';
 import { ThemeService } from '~/services/theme.service';
 
 @Component({
   selector: 'app-upload-document',
-  imports: [DividerModule, SelectModule, InputFile, DatePicker, TextareaModule, ButtonPrimary],
+  imports: [DividerModule, SelectModule, InputFile, DatePicker, TextareaModule, ButtonDirective],
   templateUrl: './upload-document.component.html',
   styleUrl: './upload-document.component.scss'
 })

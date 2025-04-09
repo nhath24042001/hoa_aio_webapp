@@ -6,12 +6,12 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { BaseComponent } from '~/components/common/base/base.component';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
+import { ButtonDirective } from '~/directives/button.directive';
 import { ThemeService } from '~/services/theme.service';
 
 @Component({
   selector: 'app-calendar-section',
-  imports: [FullCalendarModule, ButtonPrimary, DatePipe],
+  imports: [FullCalendarModule, ButtonDirective, DatePipe],
   templateUrl: './calendar-section.component.html',
   styleUrl: './calendar-section.component.scss'
 })
