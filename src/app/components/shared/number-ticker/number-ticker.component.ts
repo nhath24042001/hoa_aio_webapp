@@ -12,6 +12,7 @@ export class NumberTicker implements OnInit {
   suffix = input<string>('');
   duration = input<number>(2);
   decimal = input<number>(0);
+  fontSize = input<string>('40px');
 
   @ViewChild('counterEl', { static: true }) counterEl!: ElementRef;
 
