@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { TextareaModule } from 'primeng/textarea';
 
 @Component({
@@ -8,9 +8,10 @@ import { TextareaModule } from 'primeng/textarea';
   styleUrl: './dialog-textarea.component.scss'
 })
 export class DialogTextarea {
-  @Input() title: string = '';
-  @Input() value: string = '';
-  @Input() placeholder: string = 'Enter description';
-  @Input() rows: number = 3;
-  @Input() disabled: boolean = false;
+  readonly title = input.required<string>();
+  readonly placeholder = input.required<string>();
+  readonly value = input<string>('');
+  readonly rows = input<number>(3);
+  readonly disabled = input<boolean>(false);
+  type = signal<string>('');
 }

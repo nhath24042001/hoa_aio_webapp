@@ -74,11 +74,19 @@
         [field]="field"
         [dialogType]="dialogType"
       ></app-custom-select>
-      <!-- [(ngModel)]="formControl" -->
     } @else if (field === 'image' && value) {
       <img class="--image-wrapper" [src]="value" alt="image" />
+    } @else if (field === 'assigned_to') {
+      <p-avatar-group>
+        @for (avatar of value.slice(0, 2); track $index) {
+          <p-avatar [image]="avatar.image" size="large" shape="circle" />
+        }
+        @if (value.length > 2) {
+          <p-avatar [label]="'+' + (value.length - 2)" shape="circle" size="large"></p-avatar>
+        }
+      </p-avatar-group>
     } @else {
-      <span>{{ value }}</span>
+      <span>{{ value ? value : '-' }}</span>
     }
   }
 </div>

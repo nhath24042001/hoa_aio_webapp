@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { DatePipe } from '@angular/common';
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
-import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
 import { DatePicker } from 'primeng/datepicker';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
@@ -13,7 +14,18 @@ import { InputPhone } from '~/components/shared/input-phone/input-phone.componen
 
 @Component({
   selector: 'app-form-field',
-  imports: [SelectModule, InputTextModule, DatePicker, DatePipe, FormsModule, InputFile, CustomSelect, InputPhone],
+  imports: [
+    SelectModule,
+    InputTextModule,
+    DatePicker,
+    DatePipe,
+    FormsModule,
+    AvatarModule,
+    AvatarGroupModule,
+    InputFile,
+    CustomSelect,
+    InputPhone
+  ],
   templateUrl: './form-field.component.html',
   styleUrl: './form-field.component.scss',
   providers: [

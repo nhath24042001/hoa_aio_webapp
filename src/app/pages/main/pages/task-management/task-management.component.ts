@@ -10,8 +10,7 @@ import { IHeaderTable, ITaskManagement } from '~/@types/task';
 import { TASK_STATUS } from '~/constants';
 import { ButtonDirective } from '~/directives/button.directive';
 import { Priority } from '~/enums';
-import { CreateTask } from '~/pages/main/components/modules/task-management/create-task/create-task.component';
-import { TaskDetail } from '~/pages/main/components/modules/task-management/task-detail/task-detail.component';
+import { TaskDialog } from '~/pages/main/components/modules/task-management/task-dialog/task-dialog.component';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';
@@ -149,18 +148,55 @@ export class TaskManagementComponent {
   onSearch() {}
 
   onOpenCreateTask(): void {
-    this.ref = this.dialogService.open(CreateTask, {
+    this.ref = this.dialogService.open(TaskDialog, {
       modal: true,
-      width: '1000px'
+      width: '1000px',
+      data: {
+        type: 'create'
+      }
     });
 
     this.ref.onClose.subscribe(() => {});
   }
 
   onOpenTaskDetail(): void {
-    this.ref = this.dialogService.open(TaskDetail, {
+    this.ref = this.dialogService.open(TaskDialog, {
       modal: true,
-      width: '1000px'
+      width: '1000px',
+      data: {
+        type: 'detail',
+        data: {
+          title: 'Sign contract with plumbing vendor',
+          created_date: '2/2/2021',
+          update_date: '2/2/2022',
+          status: 'new',
+          formData: {
+            type: 'Maintenance',
+            priority: 'critical',
+            eta: '2023-08-01',
+            assigned_to: [
+              {
+                id: 1,
+                name: 'John Doe',
+                image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png'
+              },
+              {
+                id: 2,
+                name: 'Jane Smith',
+                image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/asiyajavayant.png'
+              },
+              {
+                id: 3,
+                name: 'Jane Smith',
+                image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png'
+              }
+            ],
+            project: 'Palm Springs Vendor List',
+            resident_name: '',
+            property_address: '42 Main Drive, Palm Springs'
+          }
+        }
+      }
     });
   }
 
