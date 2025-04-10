@@ -101,7 +101,9 @@ export class AnnouncementsComponent {
     return some([...this.announcements.active, ...this.announcements.expired]);
   }
 
-  onSearchAnnouncement(): void {}
+  onSearchAnnouncement(search_text: string): void {
+    console.log('search', search_text);
+  }
 
   onOpenAnnouncement(): void {
     this.ref = this.dialogService.open(DynamicAnnouncement, {

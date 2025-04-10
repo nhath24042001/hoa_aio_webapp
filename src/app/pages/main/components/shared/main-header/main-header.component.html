@@ -5,7 +5,7 @@
     <input type="text" placeholder="Search" (input)="onSearchChange($event)" />
   </div>
 
-  @if (isShowFilter) {
+  @if (isShowFilter()) {
     <div
       class="--filter-box me-4 d-flex justify-content-center align-items-center"
       [popover]="popoverContent"
@@ -21,6 +21,6 @@
   </ng-template>
 
   <button appButton="primary" icon="white-plus-solid" (click)="onAddSection()">
-    {{ labelButton }}
+    {{ labelButton() }}
   </button>
 </div>

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { PopoverModule } from 'primeng/popover';
 
 import { IAnnouncementChild } from '~/@types/announcement';
@@ -16,8 +16,8 @@ import { ThemeService } from '~/services/theme.service';
 })
 export class AnnouncementListComponent extends BaseComponent {
   // TODO: Fix type any
-  @Input() announcements: IAnnouncementChild[] = [];
-  @Output() onEmitAction = new EventEmitter<{ announcement: IAnnouncementChild; type: string }>();
+  readonly announcements = input<IAnnouncementChild[]>([]);
+  onEmitAction = output<{ announcement: IAnnouncementChild; type: string }>();
 
   ACTIONS = Action;
   actions = [
