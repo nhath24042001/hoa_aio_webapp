@@ -15,6 +15,27 @@
     color: var(--title-text);
   }
 
+  .--text-subtitle {
+    font-size: 15px;
+    color: var(--title-subtext);
+
+    strong {
+      color: var(--const-color) !important;
+    }
+  }
+
+  .--text {
+    font-size: 12px;
+    line-height: 18px;
+    color: var(--title-subtext);
+
+    span {
+      color: #6938da !important;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  }
+
   .--form-container {
     label {
       font-weight: 500 !important;
