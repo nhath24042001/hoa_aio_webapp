@@ -187,7 +187,7 @@ ul li {
 .--clarification_requested,
 .--first_notice {
   background: #ffb9bf;
-  color: #ff515f;
+  color: #ff515f !important;
   border: 1px solid #ff515f;
 }
 
@@ -437,7 +437,7 @@ ul li {
     h4 {
       font-weight: 600;
       font-size: 20px;
-      color: #000000;
+      color: var(--const-color);
     }
 
     .--comment-box {
@@ -535,6 +535,7 @@ ul li {
   background-color: #f3eeff;
   color: #6938da;
 }
+
 ::ng-deep .p-button {
   width: 100%;
 

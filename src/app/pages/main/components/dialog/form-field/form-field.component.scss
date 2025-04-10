@@ -4,6 +4,12 @@
   object-fit: cover;
 }
 
+.--priority {
+  padding: 0 5px;
+  border-radius: 6px;
+  font-size: 12px !important;
+  text-transform: capitalize;
+}
 ::ng-deep .p-select,
 ::ng-deep .p-inputtext {
   background: var(--input-custom) !important;

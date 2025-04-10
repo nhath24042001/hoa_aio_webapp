@@ -83,7 +83,7 @@ export class FormField implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.dialogType !== 'create' && this.field === 'status') {
+    if (this.dialogType !== 'create' && this.field === 'custom-status') {
       if (this.options && this.options.length > 0) {
         this.formControl = this.options[0];
         this.classField = `--${this.options[0].code}`;

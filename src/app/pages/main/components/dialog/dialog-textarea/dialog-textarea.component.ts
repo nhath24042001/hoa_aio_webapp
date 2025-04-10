@@ -1,17 +1,26 @@
-import { Component, input, signal } from '@angular/core';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Component, input } from '@angular/core';
 import { TextareaModule } from 'primeng/textarea';
 
+import { BaseComponent } from '~/components/common/base/base.component';
+import { ThemeService } from '~/services/theme.service';
 @Component({
   selector: 'app-dialog-textarea',
   imports: [TextareaModule],
   templateUrl: './dialog-textarea.component.html',
   styleUrl: './dialog-textarea.component.scss'
 })
-export class DialogTextarea {
+export class DialogTextarea extends BaseComponent {
   readonly title = input.required<string>();
-  readonly placeholder = input.required<string>();
-  readonly value = input<string>('');
+  readonly placeholder = input<string>();
+  // TODO: Fix type any
+  readonly value = input<string | any>('');
   readonly rows = input<number>(3);
   readonly disabled = input<boolean>(false);
-  type = signal<string>('');
+  field = input<string>('description');
+  isCreateMode = input<boolean>(false);
+
+  constructor(themeService: ThemeService) {
+    super(themeService);
+  }
 }

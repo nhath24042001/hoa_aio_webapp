@@ -6,8 +6,7 @@ import { TabsModule } from 'primeng/tabs';
 
 import { projectHeaders, projectsData } from '~/data/project';
 import { ButtonDirective } from '~/directives/button.directive';
-import { CreateProject } from '~/pages/main/components/modules/project/create-project/create-project.component';
-import { ProjectDetail } from '~/pages/main/components/modules/project/project-detail/project-detail.component';
+import { ProjectDialog } from '~/pages/main/components/modules/project/project-dialog/project-dialog.component';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';
@@ -48,18 +47,61 @@ export class ProjectComponent {
   onSearch() {}
 
   onOpenCreateProject(): void {
-    this.ref = this.dialogService.open(CreateProject, {
+    this.ref = this.dialogService.open(ProjectDialog, {
       modal: true,
-      width: '1000px'
+      width: '1000px',
+      data: {
+        type: 'create'
+      }
     });
     this.ref.onClose.subscribe(() => {});
   }
 
   onOpenProjectDetail(): void {
-    this.ref = this.dialogService.open(ProjectDetail, {
+    this.ref = this.dialogService.open(ProjectDialog, {
       modal: true,
       width: '1000px',
-      data: {}
+      data: {
+        type: 'detail',
+        data: {
+          title: 'Fix main entrance watering system',
+          created_date: '2/2/2021',
+          update_date: '2/2/2022',
+          status: 'new',
+          formData: {
+            project_type: 'maintenance',
+            priority: 'urgent',
+            eta_time: '2023-10-01',
+            vendor_name: 'AB Services Co., HardHatters, Monkey Biz & Co.',
+            action_items:
+              'Sign contract with plumbing vendor, Sign contract for watering system project',
+            project_manager: [
+              {
+                id: '1',
+                name: 'John Doe',
+                image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png'
+              }
+            ],
+            cost: '$2,500-$3,000',
+            resident_name: '',
+            bid: 'Palm Springs Main Entrance Bid',
+            detail:
+              'Negotiate terms and finalize the service agreement with the selected plumbing vendor for the office renovation project. Ensure all requirements are clearly outlined to avoid any service disruptions.',
+            attachments: [
+              {
+                file_name: 'Video Capture 1.MP4',
+                file_type: 'video/mp4',
+                file_size: '2.5 MB'
+              },
+              {
+                file_name: 'Video Capture 1.MP4',
+                file_type: 'video/mp4',
+                file_size: '2.5 MB'
+              }
+            ]
+          }
+        }
+      }
     });
     this.ref.onClose.subscribe(() => {});
   }

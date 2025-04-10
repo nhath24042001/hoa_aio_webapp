@@ -11,22 +11,22 @@
   @if (isCreateMode) {
     @switch (type) {
       @case ('select') {
-        @if (field === 'status') {
-          <app-custom-select
-            [options]="options"
-            [field]="field"
-            [dialogType]="dialogType"
-          ></app-custom-select>
-        } @else {
-          <p-select
-            [options]="options"
-            variant="filled"
-            optionLabel="name"
-            [placeholder]="placeholder"
-            styleClass="flex-fill"
-            [(ngModel)]="formControl"
-          />
-        }
+        <p-select
+          [options]="options"
+          variant="filled"
+          optionLabel="name"
+          [placeholder]="placeholder"
+          styleClass="flex-fill"
+          [(ngModel)]="formControl"
+        />
+      }
+
+      @case ('custom-select') {
+        <app-custom-select
+          [options]="options"
+          [field]="field"
+          [dialogType]="dialogType"
+        ></app-custom-select>
       }
       @case ('date') {
         <p-datepicker
@@ -76,7 +76,7 @@
       ></app-custom-select>
     } @else if (field === 'image' && value) {
       <img class="--image-wrapper" [src]="value" alt="image" />
-    } @else if (field === 'assigned_to') {
+    } @else if (field === 'assigned_to' || field === 'project_manager') {
       <p-avatar-group>
         @for (avatar of value.slice(0, 2); track $index) {
           <p-avatar [image]="avatar.image" size="large" shape="circle" />
@@ -85,6 +85,8 @@
           <p-avatar [label]="'+' + (value.length - 2)" shape="circle" size="large"></p-avatar>
         }
       </p-avatar-group>
+    } @else if (field === 'priority') {
+      <span class="--priority" [class]="'--' + value">{{ value }}</span>
     } @else {
       <span>{{ value ? value : '-' }}</span>
     }
