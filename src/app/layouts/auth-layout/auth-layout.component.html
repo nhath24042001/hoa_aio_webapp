@@ -1,9 +1,9 @@
-<div class="--auth-layout">
+<div class="--auth-layout" [style.backgroundImage]="'url(' + backgroundImg + ')'">
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
         <div class="row --form-wrapper">
-          <div class="col-md-12 col-lg-5"></div>
+          <div class="d-md-none d-lg-block col-lg-5"></div>
           <div class="col-md-12 col-lg-7">
             <div class="--form-container">
               <router-outlet></router-outlet>
