@@ -9,8 +9,7 @@ describe('GeneralCalendarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [GeneralCalendarComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(GeneralCalendarComponent);
     component = fixture.componentInstance;

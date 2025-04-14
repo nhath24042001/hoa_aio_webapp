@@ -4,11 +4,11 @@ export enum REPORT_TYPE {
   VIOLATION_TRACKING = 'Violation Tracking',
   ARCHITECTURAL_REVIEW = 'Architectural Review Report',
   FACILITIES_BOOKING = 'Facilities Booking Report',
-  RESIDENT_REPORT = 'ResidentS Report',
+  RESIDENT_REPORT = 'ResidentS Report'
 }
 
 export enum SUB_REPORT_TYPE {
   MONTHLY_FINANCIAL = 'Monthly Financial Summary',
   DUES_COLLECTION = 'Dues Collection Report',
-  VENDOR_PAYMENT_ANALYSIS = 'Vendor Payment Analysis',
+  VENDOR_PAYMENT_ANALYSIS = 'Vendor Payment Analysis'
 }

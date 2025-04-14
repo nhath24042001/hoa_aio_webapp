@@ -11,7 +11,6 @@ interface Attachment {
   templateUrl: './form-attachment.component.html',
   styleUrl: './form-attachment.component.scss'
 })
-
 export class FormAttachment {
   @Input() attachments: Attachment[] = [];
 }

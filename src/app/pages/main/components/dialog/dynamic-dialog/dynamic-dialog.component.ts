@@ -1,15 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, Input, OnInit } from '@angular/core';
-import { DialogHeader } from '../dialog-header/dialog-header.component';
-import { ThemeService } from '~/services/theme.service';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Divider } from 'primeng/divider';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Divider } from 'primeng/divider';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { DynamicField } from '~/@types';
 import { BaseComponent } from '~/components/common/base/base.component';
-import { FormField } from '../form-field/form-field.component';
-import { DialogTextarea } from '../dialog-textarea/dialog-textarea.component';
+import { ThemeService } from '~/services/theme.service';
+
 import { DialogActions } from '../dialog-actions/dialog-actions.component';
+import { DialogHeader } from '../dialog-header/dialog-header.component';
+import { DialogTextarea } from '../dialog-textarea/dialog-textarea.component';
+import { FormField } from '../form-field/form-field.component';
 
 @Component({
   selector: 'app-dynamic-dialog',
@@ -18,6 +20,7 @@ import { DialogActions } from '../dialog-actions/dialog-actions.component';
   styleUrl: './dynamic-dialog.component.scss'
 })
 export class DynamicDialog extends BaseComponent implements OnInit {
+  // TODO: Fix type any (Eslint)
   @Input() dialogTitle = '';
   @Input() iconCreate = '';
   @Input() iconEdit = '';
@@ -51,7 +54,7 @@ export class DynamicDialog extends BaseComponent implements OnInit {
   }
 
   initDynamicForm() {
-    let formControls: { [key: string]: any } = {};
+    const formControls: { [key: string]: any } = {};
     this.formFields.forEach((field) => {
       formControls[field.field] = field.type === 'file' ? [null] : ['', Validators.required];
     });

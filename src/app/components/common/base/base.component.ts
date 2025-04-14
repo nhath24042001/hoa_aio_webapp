@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+
 import { ThemeService } from '../../../services/theme.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { ThemeService } from '../../../services/theme.service';
 })
 export class BaseComponent implements OnInit, OnDestroy {
   currentMode: string = '';
-  private themeSubscription!: Subscription
+  private themeSubscription!: Subscription;
 
   constructor(private themeService: ThemeService) {}
 

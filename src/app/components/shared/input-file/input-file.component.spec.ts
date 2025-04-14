@@ -9,8 +9,7 @@ describe('InputFileComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [InputFileComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(InputFileComponent);
     component = fixture.componentInstance;

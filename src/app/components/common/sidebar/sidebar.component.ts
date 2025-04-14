@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
-import { DividerModule } from 'primeng/divider';
 import { CommonModule } from '@angular/common';
-import { LIST_SIDEBAR } from '../../../constants/sidebar';
+import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { DividerModule } from 'primeng/divider';
+
 import { THEME } from '../../../constants';
+import { LIST_SIDEBAR } from '../../../constants/sidebar';
 import { ThemeService } from '../../../services/theme.service';
 
 @Component({

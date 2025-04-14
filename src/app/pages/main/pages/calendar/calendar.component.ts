@@ -1,32 +1,27 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-console */
 import { Component } from '@angular/core';
-import { TabsModule } from 'primeng/tabs';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { FullCalendarModule } from '@fullcalendar/angular';
-import { SelectModule } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { SelectModule } from 'primeng/select';
+import { TabsModule } from 'primeng/tabs';
 
-import { MainHeader } from '../../components/shared/main-header/main-header.component';
+import { ClubCalendar } from '~/pages/main/components/modules/calendar/club-calendar/club-calendar.component';
 import { DynamicEvent } from '~/pages/main/components/modules/calendar/dynamic-event/dynamic-event.component';
 import { GeneralCalendar } from '~/pages/main/components/modules/calendar/general-calendar/general-calendar.component';
-import { ClubCalendar } from '~/pages/main/components/modules/calendar/club-calendar/club-calendar.component';
-import { C } from 'node_modules/@fullcalendar/core/internal-common';
 import { ToastService } from '~/services/toast.service';
+
+import { MainHeader } from '../../components/shared/main-header/main-header.component';
 
 @Component({
   selector: 'app-calendar',
-  imports: [
-    FullCalendarModule,
-    TabsModule,
-    FormsModule,
-    SelectModule,
-    MainHeader,
-    GeneralCalendar,
-    ClubCalendar
-  ],
+  imports: [FullCalendarModule, TabsModule, FormsModule, SelectModule, MainHeader, GeneralCalendar, ClubCalendar],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss'
 })
 export class CalendarComponent {
+  // TODO: Fix type any
   ref: DynamicDialogRef | undefined;
 
   isActiveEvent = false;
@@ -53,7 +48,7 @@ export class CalendarComponent {
       }
     });
 
-    this.ref.onClose.subscribe((task: any) => {});
+    this.ref.onClose.subscribe(() => {});
   }
 
   onOpenTaskDetail(): void {
@@ -103,8 +98,7 @@ export class CalendarComponent {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/calendar-x-lg.svg',
       title: 'Cancel Event',
-      description:
-        'Are you sure? Proceeding will delete the event from the system, and can not be undone.',
+      description: 'Are you sure? Proceeding will delete the event from the system, and can not be undone.',
       type: 'error',
       buttonText: 'Cancel event'
     });

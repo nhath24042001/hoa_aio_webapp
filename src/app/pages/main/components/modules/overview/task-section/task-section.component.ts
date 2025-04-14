@@ -1,13 +1,14 @@
 import { Component, Input } from '@angular/core';
-import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
-import { Table } from '~/pages/main/components/shared/table/table.component';
+
 import { IHeaderTable } from '~/@types/task';
+import { ButtonDirective } from '~/directives/button.directive';
 import { Action } from '~/enums';
+import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
+import { Table } from '~/pages/main/components/shared/table/table.component';
 
 @Component({
   selector: 'task-section',
-  imports: [EmptyContentComponent, ButtonPrimary, Table],
+  imports: [EmptyContentComponent, ButtonDirective, Table],
   templateUrl: './task-section.component.html',
   styleUrl: './task-section.component.scss'
 })

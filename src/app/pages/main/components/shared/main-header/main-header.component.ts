@@ -1,24 +1,36 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { ButtonPrimary } from '../button-primary/button-primary.component';
-import { PopoverModule } from 'ngx-bootstrap/popover';
-import { PopoverDirective } from 'ngx-bootstrap/popover';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Component, input, output, ViewChild } from '@angular/core';
+import { debounce } from 'lodash';
+import { PopoverDirective, PopoverModule } from 'ngx-bootstrap/popover';
 import { CheckboxModule } from 'primeng/checkbox';
+
+import { ButtonDirective } from '~/directives/button.directive';
 
 @Component({
   selector: 'main-header',
-  imports: [ButtonPrimary, PopoverModule, CheckboxModule],
+  imports: [ButtonDirective, PopoverModule, CheckboxModule],
   templateUrl: './main-header.component.html',
   styleUrl: './main-header.component.scss'
 })
 export class MainHeader {
+  // TODO: Fix type any
   @ViewChild('popover', { static: false }) popover?: PopoverDirective;
-  @Input() labelButton: string = '';
-  @Input() isShowFilter: boolean = true;
-  @Output() searchChanged = new EventEmitter<string>();
-  @Output() addSection = new EventEmitter<void>();
+  readonly labelButton = input<string>('');
+  readonly isShowFilter = input<boolean>(true);
+
+  private debouncedEmit: (value: string) => void;
+  searchChanged = output<string>();
+  addSection = output<void>();
+
+  constructor() {
+    this.debouncedEmit = debounce((value: string) => {
+      this.searchChanged.emit(value);
+    }, 300);
+  }
 
   onSearchChange(event: any) {
-    this.searchChanged.emit(event.target.value);
+    const value = event.target.value;
+    this.debouncedEmit(value);
   }
 
   onAddSection() {

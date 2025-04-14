@@ -9,8 +9,7 @@ describe('BidSectionComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BidSectionComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BidSectionComponent);
     component = fixture.componentInstance;

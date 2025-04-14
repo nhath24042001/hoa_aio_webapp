@@ -1,23 +1,16 @@
 import { DatePipe } from '@angular/common';
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-  signal,
-  ViewChild
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, signal, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular';
-import { SelectModule } from 'primeng/select';
-import { Table } from '~/pages/main/components/shared/table/table.component';
+import { CalendarOptions } from '@fullcalendar/core/index.js';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import { SelectModule } from 'primeng/select';
 
-import { calendarHeader, calendarData } from '~/data/calendar';
-import { CalendarOptions } from '@fullcalendar/core/index.js';
 import { BaseComponent } from '~/components/common/base/base.component';
+import { calendarData, calendarHeader } from '~/data/calendar';
+import { Table } from '~/pages/main/components/shared/table/table.component';
 import { ThemeService } from '~/services/theme.service';
 
 @Component({

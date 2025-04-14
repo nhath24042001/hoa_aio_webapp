@@ -9,8 +9,7 @@ describe('RequestEstimateDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RequestEstimateDialogComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(RequestEstimateDialogComponent);
     component = fixture.componentInstance;

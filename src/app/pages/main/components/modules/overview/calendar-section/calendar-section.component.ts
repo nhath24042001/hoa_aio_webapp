@@ -1,23 +1,17 @@
-import {
-  AfterViewInit,
-  Component,
-  OnInit,
-  signal,
-  ViewChild,
-  ChangeDetectorRef
-} from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, signal, ViewChild } from '@angular/core';
+import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
-import { BaseComponent } from '~/components/common/base/base.component';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+
+import { BaseComponent } from '~/components/common/base/base.component';
+import { ButtonDirective } from '~/directives/button.directive';
 import { ThemeService } from '~/services/theme.service';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-calendar-section',
-  imports: [FullCalendarModule, ButtonPrimary, DatePipe],
+  imports: [FullCalendarModule, ButtonDirective, DatePipe],
   templateUrl: './calendar-section.component.html',
   styleUrl: './calendar-section.component.scss'
 })

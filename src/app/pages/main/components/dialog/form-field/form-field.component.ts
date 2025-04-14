@@ -1,13 +1,15 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
-import { SelectModule } from 'primeng/select';
-import { InputTextModule } from 'primeng/inputtext';
-import { DatePicker } from 'primeng/datepicker';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DatePipe } from '@angular/common';
-import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { FormControl, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
+import { DatePicker } from 'primeng/datepicker';
+import { InputTextModule } from 'primeng/inputtext';
+import { SelectModule } from 'primeng/select';
 
-import { InputFile } from '~/components/shared/input-file/input-file.component';
 import { CustomSelect } from '~/components/shared/custom-select/custom-select.component';
+import { InputFile } from '~/components/shared/input-file/input-file.component';
 import { InputPhone } from '~/components/shared/input-phone/input-phone.component';
 
 @Component({
@@ -18,6 +20,8 @@ import { InputPhone } from '~/components/shared/input-phone/input-phone.componen
     DatePicker,
     DatePipe,
     FormsModule,
+    AvatarModule,
+    AvatarGroupModule,
     InputFile,
     CustomSelect,
     InputPhone
@@ -48,6 +52,8 @@ export class FormField implements OnInit {
   @Input() isCreateMode = false;
   @Input() formControl!: FormControl | any;
 
+  // TODO: FIX TYPE ANY
+
   classField = '';
 
   onChange: any = () => {};
@@ -65,7 +71,7 @@ export class FormField implements OnInit {
     this.onTouched = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {}
+  setDisabledState?(): void {}
 
   updateValue(event: any) {
     this.value = event;
@@ -77,7 +83,7 @@ export class FormField implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.dialogType !== 'create' && this.field === 'status') {
+    if (this.dialogType !== 'create' && this.field === 'custom-status') {
       if (this.options && this.options.length > 0) {
         this.formControl = this.options[0];
         this.classField = `--${this.options[0].code}`;

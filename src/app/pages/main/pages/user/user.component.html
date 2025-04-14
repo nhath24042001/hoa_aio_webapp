@@ -1,0 +1,64 @@
+<div class="p-4">
+  <p-tabs [value]="activeTab()" (valueChange)="onTabChange($event)">
+    <div class="d-flex justify-content-between align-items-center">
+      <p-tablist>
+        @for (tab of tabs; track $index) {
+          <p-tab value="{{ $index }}">
+            <img
+              [src]="activeTab() === $index.toString() ? tab.activeImg : tab.img"
+              alt="tab_img"
+            />
+            <div>{{ tab.name }}</div>
+          </p-tab>
+        }
+      </p-tablist>
+
+      <main-header labelButton="New User"> </main-header>
+    </div>
+
+    <p-tabpanels>
+      <p-tabpanel value="0">
+        <p-tabpanel value="0">
+          @if (activeUserList.length) {
+            <app-table
+              [headers]="headers"
+              [data]="activeUserList"
+              [actions]="activeAction"
+              [showPagination]="true"
+              [showCheckbox]="true"
+            ></app-table>
+          } @else {
+            <div class="--empty-content">
+              <app-empty-content
+                icon="assets/images/light/file-lg.svg"
+                iconDark="assets/images/dark/file-lg.svg"
+                title="There are no users yet."
+                createText="Create a new user"
+              ></app-empty-content>
+            </div>
+          }
+        </p-tabpanel>
+      </p-tabpanel>
+      <p-tabpanel value="1">
+        @if (inactiveUserList.length) {
+          <app-table
+            [headers]="headers"
+            [data]="inactiveUserList"
+            [actions]="inactiveAction"
+            [showPagination]="true"
+            [showCheckbox]="true"
+          ></app-table>
+        } @else {
+          <div class="--empty-content">
+            <app-empty-content
+              icon="assets/images/light/file-lg.svg"
+              iconDark="assets/images/dark/file-lg.svg"
+              title="There are no users yet."
+              createText="Create a new user"
+            ></app-empty-content>
+          </div>
+        }
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
+</div>

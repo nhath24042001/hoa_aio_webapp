@@ -9,8 +9,7 @@ describe('DynamicEvent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DynamicEvent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DynamicEvent);
     component = fixture.componentInstance;

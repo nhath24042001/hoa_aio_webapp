@@ -9,8 +9,7 @@ describe('NewOwnerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NewOwnerComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NewOwnerComponent);
     component = fixture.componentInstance;

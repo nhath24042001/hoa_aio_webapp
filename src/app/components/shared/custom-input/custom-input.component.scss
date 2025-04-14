@@ -1,6 +1,6 @@
 .--custom-input {
-  border: 1px solid #BEA2FF;
-  padding: 10px;
+  border: 1px solid #bea2ff;
+  padding: 4px 10px;
   border-radius: 15px;
   background: var(--input-bg);
 
@@ -17,8 +17,8 @@
   }
 
   &.--error {
-    border: 1px solid #EC778D;
-    box-shadow: 0px 0px 5px #EC778D;
+    border: 1px solid #ec778d;
+    box-shadow: 0px 0px 5px #ec778d;
   }
 }
 
@@ -40,7 +40,7 @@
   height: 24px !important;
 
   svg {
-      width: 24px;
-      height: 24px;
-    }
+    width: 24px;
+    height: 24px;
+  }
 }

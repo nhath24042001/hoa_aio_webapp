@@ -9,8 +9,7 @@ describe('AccountingComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AccountingComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AccountingComponent);
     component = fixture.componentInstance;

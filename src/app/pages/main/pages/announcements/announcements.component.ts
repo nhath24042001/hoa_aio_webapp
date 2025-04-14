@@ -1,25 +1,25 @@
+/* eslint-disable no-console */
 import { Component } from '@angular/core';
 import { some } from 'lodash-es';
-import { TabsModule } from 'primeng/tabs';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { CheckboxModule } from 'primeng/checkbox';
 import { PopoverModule } from 'ngx-bootstrap/popover';
-
-import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
-import { AnnouncementListComponent } from '~/pages/main/components/modules/announcement/announcement-list/announcement-list.component';
-import { MainHeader } from '~/pages/main/components//shared/main-header/main-header.component';
-import { DynamicAnnouncement } from '~/pages/main/components/modules/announcement/dynamic-announcement/dynamic-announcement.component';
-import { AnnouncementDetail } from '~/pages/main/components/modules/announcement/announcement-detail/announcement-detail.component';
+import { CheckboxModule } from 'primeng/checkbox';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { TabsModule } from 'primeng/tabs';
 
 import { IAnnouncement, IAnnouncementChild } from '~/@types/announcement';
+import { ButtonDirective } from '~/directives/button.directive';
+import { MainHeader } from '~/pages/main/components//shared/main-header/main-header.component';
+import { AnnouncementDetail } from '~/pages/main/components/modules/announcement/announcement-detail/announcement-detail.component';
+import { AnnouncementListComponent } from '~/pages/main/components/modules/announcement/announcement-list/announcement-list.component';
+import { DynamicAnnouncement } from '~/pages/main/components/modules/announcement/dynamic-announcement/dynamic-announcement.component';
+import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { ToastService } from '~/services/toast.service';
 @Component({
   selector: 'app-announcements',
   imports: [
     TabsModule,
     EmptyContentComponent,
-    ButtonPrimary,
+    ButtonDirective,
     AnnouncementListComponent,
     MainHeader,
     CheckboxModule,
@@ -101,7 +101,9 @@ export class AnnouncementsComponent {
     return some([...this.announcements.active, ...this.announcements.expired]);
   }
 
-  onSearchAnnouncement(): void {}
+  onSearchAnnouncement(search_text: string): void {
+    console.log('search', search_text);
+  }
 
   onOpenAnnouncement(): void {
     this.ref = this.dialogService.open(DynamicAnnouncement, {
@@ -113,7 +115,7 @@ export class AnnouncementsComponent {
       // }
     });
 
-    this.ref.onClose.subscribe((product: any) => {});
+    this.ref.onClose.subscribe(() => {});
   }
 
   onOpenAnnouncementDetail(): void {
@@ -125,7 +127,7 @@ export class AnnouncementsComponent {
       //   '640px': '90vw'
       // }
     });
-    this.ref.onClose.subscribe((product: any) => {});
+    this.ref.onClose.subscribe(() => {});
   }
 
   async onImplementAction(event: {

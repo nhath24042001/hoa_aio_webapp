@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { DividerModule } from 'primeng/divider';
-import { SelectModule } from 'primeng/select';
 import { DatePicker } from 'primeng/datepicker';
+import { DividerModule } from 'primeng/divider';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { SelectModule } from 'primeng/select';
 import { TextareaModule } from 'primeng/textarea';
 
 import { BaseComponent } from '~/components/common/base/base.component';
-import { ThemeService } from '~/services/theme.service';
 import { InputFile } from '~/components/shared/input-file/input-file.component';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
+import { ButtonDirective } from '~/directives/button.directive';
+import { ThemeService } from '~/services/theme.service';
 
 @Component({
   selector: 'app-upload-document',
-  imports: [DividerModule, SelectModule, InputFile, DatePicker, TextareaModule, ButtonPrimary],
+  imports: [DividerModule, SelectModule, InputFile, DatePicker, TextareaModule, ButtonDirective],
   templateUrl: './upload-document.component.html',
   styleUrl: './upload-document.component.scss'
 })

@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { DividerModule } from 'primeng/divider';
-import { InputTextModule } from 'primeng/inputtext';
-import { EditorModule } from 'primeng/editor';
 import { FormsModule } from '@angular/forms';
+import { DividerModule } from 'primeng/divider';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { EditorModule } from 'primeng/editor';
+import { InputTextModule } from 'primeng/inputtext';
 
 import { BaseComponent } from '~/components/common/base/base.component';
+import { ButtonDirective } from '~/directives/button.directive';
 import { ThemeService } from '~/services/theme.service';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
 
 @Component({
   selector: 'app-compose-letter',
-  imports: [DividerModule, InputTextModule, EditorModule, FormsModule, ButtonPrimary],
+  imports: [DividerModule, InputTextModule, EditorModule, FormsModule, ButtonDirective],
   templateUrl: './compose-letter.component.html',
   styleUrl: './compose-letter.component.scss'
 })

@@ -9,8 +9,7 @@ describe('VendorDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [VendorDialogComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(VendorDialogComponent);
     component = fixture.componentInstance;

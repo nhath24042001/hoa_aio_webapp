@@ -1,17 +1,18 @@
-import { CustomInputComponent } from './../../../components/shared/custom-input/custom-input.component';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+import { MessageModule } from 'primeng/message';
+
 import { BaseComponent } from '../../../components/common/base/base.component';
 import { ThemeService } from '../../../services/theme.service';
-import { MessageModule } from 'primeng/message';
+import { CustomInputComponent } from './../../../components/shared/custom-input/custom-input.component';
 
 @Component({
   selector: 'app-forgot-password',
   imports: [ReactiveFormsModule, CustomInputComponent, ButtonModule, MessageModule],
   templateUrl: './forgot-password.component.html',
-  styleUrl: './forgot-password.component.scss'
+  styleUrl: '../../../../assets/scss/_authentication.scss'
 })
 export class ForgotPasswordComponent extends BaseComponent {
   forgotPswForm: FormGroup;
@@ -38,16 +39,16 @@ export class ForgotPasswordComponent extends BaseComponent {
     setTimeout(() => {
       this.loading = false;
 
-      const { email } = this.forgotPswForm.value;
+      // const { email } = this.forgotPswForm.value;
 
-      if ( email !== 'admin@gmail.com' ) {
-        this.isShowError = true;
-        this.messageError = 'Your email is incorrect';
-      } else {
-        this.isShowError = false;
-        this.messageError = '';
-        this.router.navigate(['/auth/reset-password']);
-      }
+      // if (email !== 'admin@gmail.com') {
+      //   this.isShowError = true;
+      //   this.messageError = 'Your email is incorrect';
+      // } else {
+      //   this.isShowError = false;
+      //   this.messageError = '';
+      // }
+      this.router.navigate(['/auth/reset-password']);
     }, 2000);
   }
 

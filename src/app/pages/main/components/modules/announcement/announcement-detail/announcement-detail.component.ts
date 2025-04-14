@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { DividerModule } from 'primeng/divider';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { DatePipe } from '@angular/common';
 
 import { BaseComponent } from '~/components/common/base/base.component';
 import { ThemeService } from '~/services/theme.service';
@@ -13,6 +14,7 @@ import { ThemeService } from '~/services/theme.service';
   styleUrl: './announcement-detail.component.scss'
 })
 export class AnnouncementDetail extends BaseComponent {
+  // TODO: Fix type any (Eslint)
   data: any;
   userTypes: any[] = [
     { name: 'Residents', code: 're' },

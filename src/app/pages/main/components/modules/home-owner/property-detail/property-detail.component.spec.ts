@@ -9,8 +9,7 @@ describe('PropertyDetailComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PropertyDetailComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PropertyDetailComponent);
     component = fixture.componentInstance;

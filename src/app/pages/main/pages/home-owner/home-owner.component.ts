@@ -1,23 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, computed, signal } from '@angular/core';
-import { TabsModule } from 'primeng/tabs';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { TabsModule } from 'primeng/tabs';
 
 import { homeOwnerTabHeader } from '~/constants/tab';
-import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
-import {
-  homeOwnerHeader,
-  homeOwnerList,
-  propertiesActions,
-  propertiesHeader,
-  propertiesList
-} from '~/data/home-owner';
-import { Table } from '~/pages/main/components/shared/table/table.component';
+import { homeOwnerHeader, homeOwnerList, propertiesActions, propertiesHeader, propertiesList } from '~/data/home-owner';
 import { Action } from '~/enums';
-import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
-import { NewProperty } from '~/pages/main/components/modules/home-owner/new-property/new-property.component';
 import { NewOwner } from '~/pages/main/components/modules/home-owner/new-owner/new-owner.component';
-import { PropertyDetail } from '~/pages/main/components/modules/home-owner/property-detail/property-detail.component';
+import { NewProperty } from '~/pages/main/components/modules/home-owner/new-property/new-property.component';
 import { OwnerDetail } from '~/pages/main/components/modules/home-owner/owner-detail/owner-detail.component';
+import { PropertyDetail } from '~/pages/main/components/modules/home-owner/property-detail/property-detail.component';
+import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
+import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
+import { Table } from '~/pages/main/components/shared/table/table.component';
 
 @Component({
   selector: 'app-home-owner',
@@ -122,6 +117,7 @@ export class HomeOwnerComponent {
   }
 
   onAction(event: { actionKey: string; rowData: any }): void {
+    // TODO: Fix type any
     switch (event.actionKey) {
       case Action.EDIT:
         this.onEditItem();

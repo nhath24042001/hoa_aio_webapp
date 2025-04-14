@@ -2,7 +2,7 @@
   padding: 4px 8px;
   border: 1px solid var(--border-color);
   border-radius: 5px;
-  background: #F8FAFB;
+  background: #f8fafb;
   width: 100%;
   min-height: 82px;
   max-height: fit-content;
@@ -14,12 +14,12 @@
     flex: 1;
     min-height: 30px;
     resize: none;
-    background: #F8FAFB;
+    background: #f8fafb;
     outline: none;
   }
 
   .--chip {
-    background: #ABFF52;
+    background: #abff52;
     color: white;
     padding: 5px 10px;
     border-radius: 15px;
@@ -66,7 +66,7 @@
 
 ::ng-deep .p-chip {
   padding: 4px 12px !important;
-  background: #ABFF52 !important;
+  background: #abff52 !important;
 }
 
 ::ng-deep .p-chip-label {

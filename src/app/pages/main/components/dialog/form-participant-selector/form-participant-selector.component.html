@@ -18,11 +18,7 @@
             </span>
           </div>
         }
-        <input
-          #chipInput
-          [(ngModel)]="inputValue"
-          (keydown.enter)="addTag($event)"
-        />
+        <input #chipInput [(ngModel)]="inputValue" (keydown.enter)="addTag($event)" />
         <!-- [placeholder]="
             participants.length === 0 ? 'Enter names or groups, separated by comma' : ''
           " -->

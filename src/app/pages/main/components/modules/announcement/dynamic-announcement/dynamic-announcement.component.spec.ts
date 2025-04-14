@@ -9,8 +9,7 @@ describe('DynamicAnnouncementComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DynamicAnnouncement]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DynamicAnnouncement);
     component = fixture.componentInstance;

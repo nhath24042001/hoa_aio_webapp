@@ -1,0 +1,47 @@
+.--account-wrapper {
+  p {
+    margin: 16px 0 !important;
+  }
+
+  .d-flex.align-items-center p {
+    width: 70%;
+  }
+
+  .--profile {
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+
+    .--image-container {
+      width: 180px;
+      height: 80px;
+      max-width: 180px;
+      max-height: 80px;
+      border: 1px solid #eceff3;
+      background: #f8fafb;
+      border-radius: 10px;
+    }
+  }
+}
+
+::ng-deep .p-select-option-selected {
+  background: var(--active-primary) !important;
+}
+
+::ng-deep .p-select-option.p-select-option-selected.p-focus {
+  background: none;
+}
+
+::ng-deep .--role-select {
+  height: 48px;
+
+  span {
+    display: flex;
+    align-items: center;
+  }
+}
+
+::ng-deep .p-select {
+  background: var(--input-custom);
+  border-color: var(--border-color) !important;
+  border-radius: 10px !important;
+}

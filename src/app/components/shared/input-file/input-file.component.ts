@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+
 import { BaseComponent } from '~/components/common/base/base.component';
 import { ThemeService } from '~/services/theme.service';
 
@@ -17,10 +18,11 @@ import { ThemeService } from '~/services/theme.service';
   ]
 })
 export class InputFile extends BaseComponent {
-  @Input() disabled = false;
-  @Input() placeholder = '';
-  @Input() icon: string | undefined = '';
-  @Output() fileSelected = new EventEmitter<File | null>();
+  disabled = input(false);
+  placeholder = input('');
+  icon = input<string | undefined>('');
+  fileSelected = output<File | null>();
+  type = input<'normal' | 'primary'>('normal');
 
   fileName: string | null = null;
 

@@ -47,3 +47,5 @@ export interface ISelect {
   code: string;
   icon?: string;
 }
+
+export type ButtonType = 'primary' | 'secondary' | 'danger' | 'outline';

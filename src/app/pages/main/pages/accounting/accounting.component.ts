@@ -1,21 +1,25 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component } from '@angular/core';
-import { SelectModule } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
 import { Divider } from 'primeng/divider';
+import { SelectModule } from 'primeng/select';
 
 import { BaseComponent } from '~/components/common/base/base.component';
+import { NumberTicker } from '~/components/shared/number-ticker/number-ticker.component';
+import { accountHeader, accountList } from '~/data/account';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { ThemeService } from '~/services/theme.service';
+
 import { Table } from '../../components/shared/table/table.component';
-import { accountHeader, accountList } from '~/data/account';
 
 @Component({
   selector: 'app-accounting',
-  imports: [EmptyContentComponent, SelectModule, FormsModule, Divider, Table],
+  imports: [EmptyContentComponent, SelectModule, FormsModule, Divider, Table, NumberTicker],
   templateUrl: './accounting.component.html',
   styleUrl: './accounting.component.scss'
 })
 export class AccountingComponent extends BaseComponent {
+  // TODO: Fix type any
   isActive: boolean = true;
 
   selectedCity: any;

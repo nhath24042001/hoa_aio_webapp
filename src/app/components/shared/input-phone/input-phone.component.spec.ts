@@ -9,8 +9,7 @@ describe('InputPhoneComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [InputPhoneComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(InputPhoneComponent);
     component = fixture.componentInstance;

@@ -9,8 +9,7 @@ describe('ViolationDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ViolationDialogComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ViolationDialogComponent);
     component = fixture.componentInstance;

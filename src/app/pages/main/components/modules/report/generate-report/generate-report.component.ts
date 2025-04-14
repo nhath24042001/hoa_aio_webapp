@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { DividerModule } from 'primeng/divider';
-import { SelectModule } from 'primeng/select';
 import { DatePickerModule } from 'primeng/datepicker';
+import { DividerModule } from 'primeng/divider';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { SelectModule } from 'primeng/select';
 
 import { BaseComponent } from '~/components/common/base/base.component';
-import { ThemeService } from '~/services/theme.service';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
 import { report_types, sub_report_types } from '~/constants/select';
+import { ButtonDirective } from '~/directives/button.directive';
+import { ThemeService } from '~/services/theme.service';
 
 @Component({
   selector: 'app-generate-report',
-  imports: [DividerModule, SelectModule, DatePickerModule, ButtonPrimary],
+  imports: [DividerModule, SelectModule, DatePickerModule, ButtonDirective],
   templateUrl: './generate-report.component.html',
   styleUrl: './generate-report.component.scss'
 })

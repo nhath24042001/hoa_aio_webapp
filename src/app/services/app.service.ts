@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { environment } from '~/environments/environment';
 import { HttpClientModel } from '~/models/http/http-client.model';
 import { HttpRequestParamsInterface } from '~/models/http/http-request-params.interface';
@@ -13,7 +14,7 @@ export class AppService extends HttpClientModel {
     super(http);
   }
 
-  public getListCountries(): Observable<any> {
+  public getListCountries(): Observable<unknown> {
     const request: HttpRequestParamsInterface = {
       url: environment.REST_COUNTRIES_API
     };

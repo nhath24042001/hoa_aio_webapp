@@ -1,5 +1,6 @@
-import { HttpRequestParamsInterface } from './http-request-params.interface';
 import { Observable } from 'rxjs';
+
+import { HttpRequestParamsInterface } from './http-request-params.interface';
 
 /**
  * @Name HttpClientInterface

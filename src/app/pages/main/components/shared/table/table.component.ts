@@ -1,13 +1,15 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { TableModule } from 'primeng/table';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CommonModule, DatePipe } from '@angular/common';
+import { Component, input, output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
-import { PaginatorModule } from 'primeng/paginator';
-import { SelectModule } from 'primeng/select';
-import { FormsModule } from '@angular/forms';
-import { PopoverModule } from 'primeng/popover';
 import { ButtonModule } from 'primeng/button';
+import { PaginatorModule } from 'primeng/paginator';
+import { PopoverModule } from 'primeng/popover';
+import { SelectModule } from 'primeng/select';
+import { SkeletonModule } from 'primeng/skeleton';
+import { TableModule } from 'primeng/table';
 
 import { IHeaderTable } from '~/@types/task';
 import { BaseComponent } from '~/components/common/base/base.component';
@@ -33,26 +35,33 @@ interface TableAction {
     SelectModule,
     FormsModule,
     PopoverModule,
-    ButtonModule
+    ButtonModule,
+    SkeletonModule
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })
 export class Table<T> extends BaseComponent {
-  @Input() data!: T[];
-  @Input() headers!: IHeaderTable[];
-  @Input() showPagination: boolean = false;
-  @Input() showListPerPage: boolean = true;
-  @Input() actions: TableAction[] = [];
-  @Input() className: string = '';
-  @Input() rowsPerPageOptions = [5, 10, 20];
-  @Output() pageChange = new EventEmitter<number>();
-  @Output() actionTriggered = new EventEmitter<{ actionKey: string; rowData: T }>();
+  // TODO: Fix type any
+  data = input.required<T[]>();
+  readonly headers = input.required<IHeaderTable[]>();
+  readonly showPagination = input<boolean>(false);
+  readonly showListPerPage = input<boolean>(true);
+  readonly showCheckbox = input<boolean>(false);
+  readonly actions = input<TableAction[]>([]);
+  readonly className = input<string>('');
+  readonly rowsPerPageOptions = input([5, 10, 20]);
+  readonly isLoading = input<boolean>(false);
 
+  pageChange = output<number>();
+  actionTriggered = output<{ actionKey: string; rowData: T }>();
+  rowSelected = output<T[]>();
+
+  placeholderData = new Array(3).fill({});
   first: number = 0;
-
   rows: number = 10;
-
+  selectedRows: T[] = [];
+  selectedPageOption: number = 10;
   pageOptions = [
     {
       name: '10',
@@ -67,7 +76,6 @@ export class Table<T> extends BaseComponent {
       value: 50
     }
   ];
-  selectedPageOption: number = 10;
 
   constructor(themeService: ThemeService) {
     super(themeService);

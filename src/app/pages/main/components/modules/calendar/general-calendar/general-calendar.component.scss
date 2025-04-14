@@ -3,7 +3,7 @@
 
   .--today {
     background: var(--background);
-    border: 1px solid #DFE1E7;
+    border: 1px solid #dfe1e7;
     padding: 6px 16px;
     border-radius: 10px;
   }
@@ -26,28 +26,28 @@
 }
 
 ::ng-deep .--event-red {
-  background: #FFEDEF;
-  border-left: 3px solid #FF515F;
+  background: #ffedef;
+  border-left: 3px solid #ff515f;
 }
 
 ::ng-deep .--event-purple {
-  background: #F3EEFF;
-  border-left: 3px solid #6938DA;
+  background: #f3eeff;
+  border-left: 3px solid #6938da;
 }
 
 ::ng-deep .--event-orange {
-  background: #FFF6E6;
-  border-left: 3px solid #EFA00B;
+  background: #fff6e6;
+  border-left: 3px solid #efa00b;
 }
 
 ::ng-deep .--event-green-light {
-  background: #F6FFFA;
-  border-left: 3px solid #A4FFD1;
+  background: #f6fffa;
+  border-left: 3px solid #a4ffd1;
 }
 
 ::ng-deep .--event-green {
-  background: #F3FFE6;
-  border-left: 3px solid #2B5300;
+  background: #f3ffe6;
+  border-left: 3px solid #2b5300;
 }
 
 ::ng-deep .fc-event-title-container {
@@ -64,7 +64,7 @@
 ::ng-deep .fc-col-header-cell-cushion {
   font-weight: 500;
   font-size: 15px;
-  color: #6F6F6F;
+  color: #6f6f6f;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -73,7 +73,7 @@
   a {
     text-decoration: none;
     font-size: 20px;
-    color: #6F6F6F;
+    color: #6f6f6f;
   }
 }
 
@@ -102,7 +102,7 @@
   border: 0 !important;
 
   span {
-    color: #A4ACB9 !important;
+    color: #a4acb9 !important;
   }
 }
 
@@ -111,10 +111,10 @@
 }
 
 ::ng-deep .p-select-option-selected {
-  background: #6938DA !important;
+  background: #6938da !important;
 
   span {
-    color: #FFF;
+    color: #fff;
   }
 }
 

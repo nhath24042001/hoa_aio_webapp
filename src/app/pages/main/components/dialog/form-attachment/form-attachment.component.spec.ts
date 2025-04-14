@@ -9,8 +9,7 @@ describe('FormAttachmentComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FormAttachmentComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FormAttachmentComponent);
     component = fixture.componentInstance;

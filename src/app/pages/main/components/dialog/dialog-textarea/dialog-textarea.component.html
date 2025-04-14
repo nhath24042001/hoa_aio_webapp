@@ -1,11 +1,37 @@
-<h5 class="mb-2 mt-3">{{ title }}</h5>
+@if (isCreateMode()) {
+  <h5 class="mb-2 mt-3">{{ title() }}</h5>
 
-<textarea
-  pTextarea
-  pSize="large"
-  variant="filled"
-  [placeholder]="placeholder"
-  [rows]="rows"
-  [disabled]="disabled"
-  class="w-100"
-></textarea>
+  <textarea
+    pTextarea
+    pSize="large"
+    variant="filled"
+    [placeholder]="placeholder()"
+    [rows]="rows()"
+    [disabled]="disabled()"
+    class="w-100"
+  ></textarea>
+} @else {
+  @if (field() === 'detail') {
+    <h4>Detail</h4>
+    <p>{{ value() }}</p>
+  } @else if (field() === 'attachments') {
+    <div class="mt-4">
+      <h4>Attachments</h4>
+      <div class="d-flex gap-3">
+        @for (attach of value(); track $index) {
+          <div class="--attachment-box d-flex align-items-center justify-content-center">
+            <img
+              [src]="'assets/images/' + currentMode + '/video-recorder.svg'"
+              class="me-2"
+              alt="video_record"
+            />
+            <div>
+              <p class="--file-name">{{ attach.file_name }}</p>
+              <p class="--file-size">{{ attach.file_size }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+}

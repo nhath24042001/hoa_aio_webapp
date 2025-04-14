@@ -3,17 +3,6 @@
   border-radius: 10px;
   height: 100%;
 
-
-  .--stat-heading {
-    font-weight: 600;
-    font-size: 40px;
-  }
-
-  h1,
-  h5 {
-    color: var(--const-color);
-  }
-
   span {
     font-weight: 500;
     font-size: 12px;
@@ -22,14 +11,14 @@
 }
 
 .--search-box {
-  background: var(--input-color);
+  background: var(--input-color) !important;
   border-radius: 10px;
   padding: 8px 16px;
   width: 260px;
   border: 1px solid var(--border-color);
 
   input {
-    background: var(--background);
+    background: var(--input-color) !important;
     outline: none;
   }
 
@@ -60,6 +49,6 @@
   border: 1px solid var(--border-color) !important;
 }
 
-::ng-deep .p-select-option-selected {
+::ng-deep .--role-select {
   background: var(--active-primary) !important;
 }

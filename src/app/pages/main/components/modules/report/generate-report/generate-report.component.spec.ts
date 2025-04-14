@@ -9,8 +9,7 @@ describe('GenerateReportComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [GenerateReportComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(GenerateReportComponent);
     component = fixture.componentInstance;

@@ -9,8 +9,7 @@ describe('DialogTextareaComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DialogTextareaComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DialogTextareaComponent);
     component = fixture.componentInstance;

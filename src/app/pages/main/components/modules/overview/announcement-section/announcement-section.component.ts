@@ -1,14 +1,16 @@
+import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { EmptyContentComponent } from '../../../shared/empty-content/empty-content.component';
-import { ButtonPrimary } from '../../../shared/button-primary/button-primary.component';
+
 import { IAnnouncementChild } from '~/@types/announcement';
 import { BaseComponent } from '~/components/common/base/base.component';
+import { ButtonDirective } from '~/directives/button.directive';
 import { ThemeService } from '~/services/theme.service';
-import { DatePipe } from '@angular/common';
+
+import { EmptyContentComponent } from '../../../shared/empty-content/empty-content.component';
 
 @Component({
   selector: 'app-announcement-section',
-  imports: [EmptyContentComponent, ButtonPrimary, DatePipe],
+  imports: [EmptyContentComponent, ButtonDirective, DatePipe],
   templateUrl: './announcement-section.component.html',
   styleUrl: './announcement-section.component.scss'
 })

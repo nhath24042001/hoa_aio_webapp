@@ -5,15 +5,20 @@
   border-radius: 30px;
   border: 1px solid var(--border-color);
 
+  &.--primary {
+    background: var(--active-primary);
+    padding: 13px;
+  }
+
   .--upload-label {
     cursor: pointer;
 
-    input[type="file"] {
+    input[type='file'] {
       display: none;
     }
 
     .--placeholder {
-      color: #666D80;
+      color: var(--title-subtext);
     }
   }
 }

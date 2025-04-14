@@ -1,0 +1,90 @@
+@use './lib';
+
+.--form-wrapper {
+  background: var(--background);
+  padding: 30px 90px 50px 90px;
+  border-radius: 10px;
+  width: 750px;
+  height: 600px;
+
+  .--error-container {
+    height: 52px;
+  }
+
+  h4 {
+    color: var(--title-text);
+  }
+
+  .--text-subtitle {
+    font-size: 15px;
+    color: var(--title-subtext);
+
+    strong {
+      color: var(--const-color) !important;
+    }
+  }
+
+  .--text {
+    font-size: 12px;
+    line-height: 18px;
+    color: var(--title-subtext);
+
+    span {
+      color: #6938da !important;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  }
+
+  .--form-container {
+    label {
+      font-weight: 500 !important;
+      font-size: 12px;
+      color: var(--title-text);
+    }
+  }
+
+  .--bottom-container {
+    label {
+      font-size: 12px;
+      color: var(--title-text);
+      margin-top: 5px;
+    }
+
+    p {
+      font-size: 12px;
+      line-height: 18px;
+      color: var(--title-subtext);
+      cursor: pointer;
+    }
+
+    .--forgot-password {
+      opacity: 0.6;
+    }
+  }
+
+  .--back-forgot-wrapper {
+    width: 50px;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    border: 1px solid #6938da;
+    cursor: pointer;
+  }
+
+  .--otp-wrapper {
+    &.--dark {
+      ::ng-deep .ngx-otp-input-box {
+        background-color: #f8fafb;
+        color: #000;
+      }
+
+      ::ng-deep .ngx-otp-input-filled {
+        background-color: var(--background);
+        color: #fff;
+      }
+    }
+  }
+}

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DatePipe } from '@angular/common';
 import {
   AfterViewInit,
@@ -11,15 +12,15 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular';
-import { SelectModule } from 'primeng/select';
-import { Table } from '~/pages/main/components/shared/table/table.component';
+import { CalendarOptions } from '@fullcalendar/core/index.js';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import { SelectModule } from 'primeng/select';
 
-import { calendarHeader, calendarData } from '~/data/calendar';
-import { CalendarOptions } from '@fullcalendar/core/index.js';
 import { BaseComponent } from '~/components/common/base/base.component';
+import { calendarData, calendarHeader } from '~/data/calendar';
+import { Table } from '~/pages/main/components/shared/table/table.component';
 import { ThemeService } from '~/services/theme.service';
 
 @Component({
@@ -29,6 +30,7 @@ import { ThemeService } from '~/services/theme.service';
   styleUrl: './general-calendar.component.scss'
 })
 export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnInit {
+  // TODO: Fix type any
   @ViewChild('calendar') calendarComponent?: FullCalendarComponent;
   @Output() actionEmitter = new EventEmitter<{ action: string; data: any }>();
 

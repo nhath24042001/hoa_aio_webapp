@@ -1,0 +1,64 @@
+.--empty-content {
+  margin-top: 170px;
+}
+
+::ng-deep .p-tabpanels {
+  padding: 12px 0 !important;
+}
+
+::ng-deep .p-datatable-thead th {
+  background: var(--active-primary) !important;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--const-color);
+}
+
+::ng-deep td {
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--const-color);
+}
+
+::ng-deep .popover {
+  border-width: 0 !important;
+  max-width: 500px !important;
+}
+
+::ng-deep .p-tablist-tab-list {
+  border-width: 0;
+}
+
+::ng-deep .p-tab {
+  border-width: 0px !important;
+  color: #6f6f6f;
+  font-weight: 500;
+  font-size: 15px;
+  background: var(--background) !important;
+}
+
+::ng-deep .p-tab-active {
+  color: #6938da;
+}
+
+::ng-deep .p-tablist-active-bar {
+  height: 2px;
+}
+
+::ng-deep .p-tabpanels,
+::ng-deep .p-paginator {
+  background: var(--background) !important;
+}
+
+::ng-deep .p-tab,
+::ng-deep .p-select {
+  transition: all 1s step-start !important;
+}
+
+::ng-deep .p-multiselect,
+::ng-deep .p-datepicker-input {
+  border: 1px solid var(--border-color);
+}
+
+::ng-deep .p-tablist-next-button {
+  display: none !important;
+}

@@ -1,9 +1,8 @@
 .--custom-select {
-
   ::ng-deep .p-select.--new,
   ::ng-deep .p-select.--first_notice,
   ::ng-deep .p-select.--draft {
-    background: #FF515F !important;
+    background: #ff515f !important;
     border-radius: 10px;
     border: 0;
 
@@ -18,13 +17,13 @@
   }
 
   ::ng-deep .p-select.--accepted {
-    background: #55C68D !important;
+    background: #55c68d !important;
     border-radius: 10px;
     border: 0;
 
     span,
     svg {
-      color: #FFF !important;
+      color: #fff !important;
     }
 
     .p-select-label {
@@ -34,7 +33,7 @@
 
   ::ng-deep .p-select.--pending,
   ::ng-deep .p-select.--open {
-    background: #EFA00B !important;
+    background: #efa00b !important;
     border-radius: 10px;
     border: 0;
 
@@ -49,7 +48,7 @@
   }
 
   ::ng-deep .p-select.--approved {
-    background: #4E9700 !important;
+    background: #4e9700 !important;
     border-radius: 10px;
     border: 0;
 
@@ -65,7 +64,7 @@
 
   ::ng-deep .p-select.--awarded,
   ::ng-deep .p-select.--closed {
-    background: #74DB07 !important;
+    background: #74db07 !important;
     border-radius: 10px;
     border: 0;
 
@@ -80,7 +79,7 @@
   }
 
   ::ng-deep .p-select.--hearing {
-    background: #33CFFF !important;
+    background: #33cfff !important;
     border-radius: 10px;
     border: 0;
 
@@ -95,7 +94,7 @@
   }
 
   ::ng-deep .p-select.--second_notice {
-    background: #CC2936 !important;
+    background: #cc2936 !important;
     border-radius: 10px;
     border: 0;
 
@@ -129,7 +128,5 @@
 
   ::ng-deep .p-select {
     width: 160px;
-
   }
-
 }

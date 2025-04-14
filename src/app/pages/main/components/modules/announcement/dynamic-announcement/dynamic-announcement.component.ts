@@ -1,14 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component } from '@angular/core';
-import { DividerModule } from 'primeng/divider';
-import { MultiSelectModule } from 'primeng/multiselect';
 import { FormsModule } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
-import { TextareaModule } from 'primeng/textarea';
-import { InputTextModule } from 'primeng/inputtext';
+import { DividerModule } from 'primeng/divider';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { TextareaModule } from 'primeng/textarea';
 
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
 import { BaseComponent } from '~/components/common/base/base.component';
+import { ButtonDirective } from '~/directives/button.directive';
 import { ThemeService } from '~/services/theme.service';
 
 @Component({
@@ -20,18 +21,19 @@ import { ThemeService } from '~/services/theme.service';
     DatePickerModule,
     TextareaModule,
     InputTextModule,
-    ButtonPrimary
+    ButtonDirective
   ],
   templateUrl: './dynamic-announcement.component.html',
   styleUrl: './dynamic-announcement.component.scss'
 })
 export class DynamicAnnouncement extends BaseComponent {
+  // TODO: Fix type any
   data: any;
   userTypes: any[] = [
     { name: 'Residents', code: 're' },
     { name: 'Manager', code: 'ma' },
     { name: 'Board members', code: 'board' },
-    { name: 'Vendors', code: 'ven' },
+    { name: 'Vendors', code: 'ven' }
   ];
   selectedCities!: any[];
   expiredDate: string = '';

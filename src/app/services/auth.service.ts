@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject, takeUntil, timer } from 'rxjs';
+import { Injectable } from '@angular/core';
 
-import { CryptoService } from './crypto.service';
+import { environment } from '~/environments/environment';
+
 import { HttpClientModel } from '../models/http/http-client.model';
 import { HttpRequestParamsInterface } from '../models/http/http-request-params.interface';
-import { environment } from '~/environments/environment';
+import { CryptoService } from './crypto.service';
 
 @Injectable({
   providedIn: 'root'

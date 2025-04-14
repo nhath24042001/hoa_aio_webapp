@@ -1,24 +1,18 @@
 @if (reports.length) {
   <div class="p-4">
     <div class="mb-2 d-flex w-100 justify-content-end">
-      <button-primary
-        icon="assets/images/common/white-plus-solid.svg"
-        label="New Report"
-        [isPrimaryActive]="true"
-        (onClick)="onOpenGenerateReport()"
-      ></button-primary>
+      <button appButton="primary" icon="white-plus-solid" (onClick)="onOpenGenerateReport()">
+        New Report
+      </button>
     </div>
     <app-table [headers]="headers" [data]="reports" [actions]="actions"></app-table>
   </div>
 } @else {
   <div class="--content-section p-4 d-flex flex-column">
     <div class="d-flex justify-content-end">
-      <button-primary
-        icon="assets/images/common/white-plus-solid.svg"
-        label="New Report"
-        [isPrimaryActive]="true"
-        (onClick)="onOpenGenerateReport()"
-      ></button-primary>
+      <button appButton="primary" icon="white-plus-solid" (onClick)="onOpenGenerateReport()">
+        New Report
+      </button>
     </div>
     <div class="flex-fill d-flex justify-content-center align-items-center">
       <app-empty-content

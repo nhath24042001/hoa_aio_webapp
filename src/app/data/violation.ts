@@ -65,8 +65,7 @@ export const openViolationList = [
   {
     property_address: '23 Rose St., Unit 1',
     violation_type: 'Vehicles',
-    subject:
-      'Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    subject: 'Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     date: '2/2/2021 2:00 PM',
     due_date: '2/2/2021',
     status: 'first_notice'
@@ -77,8 +76,7 @@ export const closedViolationList = [
   {
     property_address: '23 Rose St., Unit 1',
     violation_type: 'Vehicles',
-    subject:
-      'Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    subject: 'Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     date: '2/2/2021 2:00 PM',
     due_date: '2/2/2021',
     status: 'closed'
@@ -94,8 +92,7 @@ export const closedViolationList = [
   {
     property_address: '23 Rose St., Unit 1',
     violation_type: 'Vehicles',
-    subject:
-      'Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    subject: 'Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     date: '2/2/2021 2:00 PM',
     due_date: '2/2/2021',
     status: 'closed'

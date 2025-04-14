@@ -51,32 +51,31 @@
     p {
       font-size: 12px;
       color: var(--normal-text);
-
     }
 
     ::ng-deep .--btn-success {
       .p-button {
-        background: #74DB07;
-          border: 1px solid #74DB07;
-        
-          span {
-            color: #FFF;
-          }
+        background: #74db07;
+        border: 1px solid #74db07;
+
+        span {
+          color: #fff;
+        }
       }
 
       span {
-        color: #0D0D12;
+        color: #0d0d12;
       }
     }
 
     ::ng-deep .--btn-error {
       .p-button {
-        background: #FF515F !important;
+        background: #ff515f !important;
         border: 0;
       }
 
       span {
-        color: #FFF;
+        color: #fff;
       }
     }
 
@@ -87,7 +86,7 @@
       }
 
       span {
-        color: #6F6F6F;
+        color: #6f6f6f;
       }
     }
   }
@@ -103,9 +102,4 @@
     opacity: 1;
     transform: scale(1);
   }
-}
-
-::ng-deep .p-button {
-  width: 100%;
-  color: var(--const-color) !important;
 }

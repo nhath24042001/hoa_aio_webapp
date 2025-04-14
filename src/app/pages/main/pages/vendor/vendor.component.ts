@@ -1,34 +1,28 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component } from '@angular/core';
-import { TabsModule } from 'primeng/tabs';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { TabsModule } from 'primeng/tabs';
 
-import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
-import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
-import { Table } from '~/pages/main/components/shared/table/table.component';
-import { VendorDialog } from '~/pages/main/components/modules/vendor/vendor-dialog/vendor-dialog.component';
+import { vendorTabHeader } from '~/constants/tab';
+import { bidHeaders, bidList, companyHeaders, companyList, estimateList, vendorActions } from '~/data/vendor';
+import { ButtonDirective } from '~/directives/button.directive';
+import { Action } from '~/enums';
 import { BidDialog } from '~/pages/main/components/modules/vendor/bid-dialog/bid-dialog.component';
 import { RequestEstimateDialog } from '~/pages/main/components/modules/vendor/request-estimate-dialog/request-estimate-dialog.component';
-
+import { VendorDialog } from '~/pages/main/components/modules/vendor/vendor-dialog/vendor-dialog.component';
+import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
+import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
+import { Table } from '~/pages/main/components/shared/table/table.component';
 import { ToastService } from '~/services/toast.service';
-import { vendorTabHeader } from '~/constants/tab';
-import {
-  bidHeaders,
-  bidList,
-  companyHeaders,
-  companyList,
-  estimateList,
-  vendorActions
-} from '~/data/vendor';
-import { Action } from '~/enums';
 
 @Component({
   selector: 'app-vendor',
-  imports: [TabsModule, EmptyContentComponent, ButtonPrimary, MainHeader, Table],
+  imports: [TabsModule, EmptyContentComponent, ButtonDirective, MainHeader, Table],
   templateUrl: './vendor.component.html',
   styleUrl: './vendor.component.scss'
 })
 export class VendorComponent {
+  // TODO: Fix type any
   ref: DynamicDialogRef | undefined;
   isActive: boolean = true;
   role = 'vendor';
@@ -75,7 +69,7 @@ export class VendorComponent {
     this.activeTab = tabIndex.toString();
   }
   onOpenCreate(): void {
-    this.ref = this.dialogService.open<any>(this.componentRender, {
+    this.ref = this.dialogService.open(this.componentRender as any, {
       modal: true,
       width: '1000px',
       data: {
@@ -86,8 +80,8 @@ export class VendorComponent {
     // this.ref.onClose.subscribe((task: any) => {});
   }
 
-  onOpenEditDialog(data: any): void {
-    this.ref = this.dialogService.open<any>(this.componentRender, {
+  onOpenEditDialog(): void {
+    this.ref = this.dialogService.open(this.componentRender as any, {
       modal: true,
       width: '1000px',
       data: {
@@ -117,7 +111,7 @@ export class VendorComponent {
   onAction(event: { actionKey: string; rowData: any }): void {
     switch (event.actionKey) {
       case Action.EDIT:
-        this.onOpenEditDialog(event.rowData);
+        this.onOpenEditDialog();
         break;
       case 'approve':
         // this.toastService.showSuccess('Approved successfully');

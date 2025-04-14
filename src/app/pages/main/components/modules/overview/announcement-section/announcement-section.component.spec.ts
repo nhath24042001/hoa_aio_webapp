@@ -9,8 +9,7 @@ describe('AnnouncementSectionComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AnnouncementSectionComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AnnouncementSectionComponent);
     component = fixture.componentInstance;

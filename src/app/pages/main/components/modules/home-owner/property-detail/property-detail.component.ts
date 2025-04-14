@@ -1,24 +1,26 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, signal } from '@angular/core';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { TabsModule } from 'primeng/tabs';
 import { DividerModule } from 'primeng/divider';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { SelectModule } from 'primeng/select';
+import { TabsModule } from 'primeng/tabs';
 
 import { BaseComponent } from '~/components/common/base/base.component';
-import { ThemeService } from '~/services/theme.service';
 import { propertiesDetailTabHeader } from '~/constants/tab';
 import { accountingHeader, accountingList, propertiesInputFields } from '~/data/home-owner';
+import { ButtonDirective } from '~/directives/button.directive';
 import { FormField } from '~/pages/main/components/dialog/form-field/form-field.component';
-import { ButtonPrimary } from '~/pages/main/components/shared/button-primary/button-primary.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';
+import { ThemeService } from '~/services/theme.service';
 
 @Component({
   selector: 'app-property-detail',
-  imports: [DividerModule, TabsModule, FormField, ButtonPrimary, SelectModule, Table],
+  imports: [DividerModule, TabsModule, FormField, ButtonDirective, SelectModule, Table],
   templateUrl: './property-detail.component.html',
   styleUrl: './property-detail.component.scss'
 })
 export class PropertyDetail extends BaseComponent implements OnInit {
+  // TODO: Fix type any
   activeTab = signal('0');
   formFields = propertiesInputFields;
   tabs = propertiesDetailTabHeader;
@@ -56,8 +58,9 @@ export class PropertyDetail extends BaseComponent implements OnInit {
   }
 
   mapValuesToFields() {
+    // TODO: Recheck this logic
     this.formFields = this.formFields
-      .filter((field) => this.data.hasOwnProperty(field.field))
+      .filter((field) => Object.prototype.hasOwnProperty.call(this.data, field.field))
       .map((field) => ({
         ...field,
         value: this.data[field.field]

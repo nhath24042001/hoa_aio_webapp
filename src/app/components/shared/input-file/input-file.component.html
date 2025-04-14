@@ -1,15 +1,15 @@
 <div
-  class="--file-upload-container w-100 d-flex flex-column align-items-center"
-  [class]="{ '--disabled': disabled }"
+  class="--file-upload-container flex-fill w-100 d-flex flex-column align-items-center"
+  [class.--primary]="type() === 'primary'"
 >
   <label class="--upload-label d-flex align-items-center gap-2">
     @if (fileName) {
       <span>{{ fileName }}</span>
     } @else {
       <div class="d-flex align-items-center">
-        @if (icon) {
+        @if (icon()) {
           <img
-            [src]="'assets/images/' + currentMode + '/' + icon + '.svg'"
+            [src]="'assets/images/' + currentMode + '/' + icon() + '.svg'"
             class="me-2"
             alt="upload_file"
           />
@@ -20,7 +20,7 @@
             alt="upload_file"
           />
         }
-        <span class="--placeholder">{{ placeholder }}</span>
+        <span class="--placeholder">{{ placeholder() }}</span>
       </div>
     }
     <input type="file" (change)="onFileSelected($event)" />
