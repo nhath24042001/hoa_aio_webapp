@@ -67,7 +67,7 @@ export const LIST_SIDEBAR: ISidebar = {
     {
       icon: 'setting',
       name: 'Settings',
-      routerLink: '/settings'
+      routerLink: '/setting'
     }
   ]
 };

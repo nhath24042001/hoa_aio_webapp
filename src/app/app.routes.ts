@@ -103,6 +103,10 @@ export const mainRoutes: Routes = [
       {
         path: 'users',
         loadComponent: () => import('./pages/main/pages/user/user.component').then((m) => m.UserComponent)
+      },
+      {
+        path: 'setting',
+        loadComponent: () => import('./pages/main/pages/setting/setting.component').then((m) => m.SettingComponent)
       }
     ]
   },
