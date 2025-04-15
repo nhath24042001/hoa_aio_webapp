@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
 import { DividerModule } from 'primeng/divider';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -35,17 +35,27 @@ export class DynamicAnnouncement extends BaseComponent {
     { name: 'Board members', code: 'board' },
     { name: 'Vendors', code: 'ven' }
   ];
+  announcementForm: FormGroup;
   selectedCities!: any[];
   expiredDate: string = '';
   content = '';
   link = '';
+
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
-    themeService: ThemeService
+    themeService: ThemeService,
+    private FormBuilder: FormBuilder
   ) {
     super(themeService);
     this.data = config.data;
+    this.announcementForm = this.FormBuilder.group({
+      title: ['title'],
+      description: [''],
+      link: [''],
+      expiration_date: [''],
+      announcement_date: ['']
+    });
   }
 
   closeDialog() {

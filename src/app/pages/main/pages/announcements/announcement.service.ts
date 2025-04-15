@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { IAnnouncementPayload } from '~/@types/announcement';
+import { IAnnouncementPayload, IAnnouncementResponse } from '~/@types/announcement';
 import { HttpClientModel } from '~/models/http/http-client.model';
 
 @Injectable({
@@ -26,14 +27,16 @@ export class AnnouncementService extends HttpClientModel {
   }
 
   public deleteAnnouncement(announcement_id: string) {
-    return this.post(this.createRequest('Announcement', 'Announcement/delete_announcement', { announcement_id }));
+    return this.post(
+      this.createRequest('Announcement', 'delete_announcement', { announcement_id })
+    );
   }
 
-  public getAllAnnouncements() {
-    return this.post(this.createRequest('Announcement', 'Announcement/get_all_announcements'));
+  public getAllAnnouncements(): Observable<IAnnouncementResponse> {
+    return this.post(this.createRequest('Announcement', 'get_all_announcements'));
   }
 
   public getRecentAnnouncements() {
-    return this.post(this.createRequest('Announcement', 'Announcement/get_recent_announcements'));
+    return this.post(this.createRequest('Announcement', 'get_recent_announcements'));
   }
 }
