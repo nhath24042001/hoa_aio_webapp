@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import dayjs from 'dayjs';
 import { DatePickerModule } from 'primeng/datepicker';
 import { DividerModule } from 'primeng/divider';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -10,18 +11,19 @@ import { TextareaModule } from 'primeng/textarea';
 
 import { BaseComponent } from '~/components/common/base/base.component';
 import { ButtonDirective } from '~/directives/button.directive';
+import { AnnouncementService } from '~/pages/main/pages/announcements/announcement.service';
 import { ThemeService } from '~/services/theme.service';
 
 @Component({
   selector: 'dynamic-announcement',
   imports: [
-    FormsModule,
     DividerModule,
     MultiSelectModule,
     DatePickerModule,
     TextareaModule,
     InputTextModule,
-    ButtonDirective
+    ButtonDirective,
+    FormsModule
   ],
   templateUrl: './dynamic-announcement.component.html',
   styleUrl: './dynamic-announcement.component.scss'
@@ -36,13 +38,20 @@ export class DynamicAnnouncement extends BaseComponent {
     { name: 'Vendors', code: 'ven' }
   ];
   selectedCities!: any[];
-  expiredDate: string = '';
-  content = '';
-  link = '';
+
+  announcementData = {
+    title: 'title',
+    description: '',
+    link: '',
+    expiration_date: '',
+    announcement_date: ''
+  };
+
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
-    themeService: ThemeService
+    themeService: ThemeService,
+    private announcementService: AnnouncementService
   ) {
     super(themeService);
     this.data = config.data;
@@ -50,5 +59,23 @@ export class DynamicAnnouncement extends BaseComponent {
 
   closeDialog() {
     this.ref.close();
+  }
+
+  onSubmit() {
+    if (
+      !this.announcementData.expiration_date ||
+      !this.announcementData.description ||
+      !this.announcementData.link
+    ) {
+      return;
+    }
+
+    this.announcementData.expiration_date = dayjs().format('YYYY-MM-DD HH:mm:ss');
+
+    this.announcementService.addAnnouncement(this.announcementData).subscribe((res) => {
+      if (res.rc === 0) {
+        this.ref.close(res);
+      }
+    });
   }
 }
