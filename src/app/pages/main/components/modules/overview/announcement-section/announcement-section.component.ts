@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 
 import { BaseComponent } from '~/components/common/base/base.component';
@@ -9,7 +8,7 @@ import { EmptyContentComponent } from '../../../shared/empty-content/empty-conte
 
 @Component({
   selector: 'app-announcement-section',
-  imports: [EmptyContentComponent, ButtonDirective, DatePipe],
+  imports: [EmptyContentComponent, ButtonDirective],
   templateUrl: './announcement-section.component.html',
   styleUrl: './announcement-section.component.scss'
 })
