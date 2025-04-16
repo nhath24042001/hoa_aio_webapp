@@ -37,6 +37,7 @@ export class DynamicAnnouncement extends BaseComponent {
     { name: 'Board members', code: 'board' },
     { name: 'Vendors', code: 'ven' }
   ];
+  announcementForm: FormGroup;
   selectedCities!: any[];
 
   announcementData = {
@@ -55,6 +56,13 @@ export class DynamicAnnouncement extends BaseComponent {
   ) {
     super(themeService);
     this.data = config.data;
+    this.announcementForm = this.FormBuilder.group({
+      title: ['title'],
+      description: [''],
+      link: [''],
+      expiration_date: [''],
+      announcement_date: ['']
+    });
   }
 
   closeDialog() {
