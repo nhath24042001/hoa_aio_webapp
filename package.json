@@ -26,6 +26,7 @@
     "bootstrap": "^5.3.3",
     "countup.js": "^2.8.0",
     "crypto-js": "^4.2.0",
+    "dayjs": "^1.11.13",
     "lodash-es": "^4.17.21",
     "ngx-bootstrap": "^19.0.2",
     "primeicons": "^7.0.0",

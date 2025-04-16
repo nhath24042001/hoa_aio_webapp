@@ -49,3 +49,8 @@ export interface ISelect {
 }
 
 export type ButtonType = 'primary' | 'secondary' | 'danger' | 'outline';
+
+export interface ICommonResponse {
+  message: string;
+  rc: number;
+}

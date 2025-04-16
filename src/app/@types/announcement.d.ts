@@ -1,3 +1,5 @@
+import { ICommonResponse } from '.';
+
 export interface IAnnouncement {
   active: IAnnouncementChild[];
   expired: IAnnouncementChild[];
@@ -16,4 +18,12 @@ export interface IAnnouncementPayload {
   link: string;
   expiration_date: string;
   announcement_date: string;
+}
+
+export interface IAnnouncementResponse extends ICommonResponse {
+  announcements: IAnnouncement[];
+}
+
+export interface ICreateAnnouncementResponse extends ICommonResponse {
+  announcement_id: number;
 }

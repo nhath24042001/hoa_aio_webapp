@@ -36,12 +36,12 @@
         <p-tabpanels>
           <p-tabpanel value="0">
             <announcement-list
-              [announcements]="announcements.active"
+              [announcements]="announcements"
               (onEmitAction)="onImplementAction($event)"
             ></announcement-list>
           </p-tabpanel>
           <p-tabpanel value="1">
-            <announcement-list [announcements]="announcements.expired"></announcement-list>
+            <!-- <announcement-list [announcements]="announcements.expired"></announcement-list> -->
           </p-tabpanel>
         </p-tabpanels>
       </p-tabs>
@@ -50,13 +50,15 @@
 } @else {
   <div class="--content-section p-4 d-flex flex-column">
     <div class="d-flex justify-content-end">
-      <button appButton="primary" icon="white-plus-solid">New Announcement</button>
+      <button appButton="primary" icon="white-plus-solid" (click)="onOpenAnnouncement()">New Announcement</button>
     </div>
     <div class="flex-fill d-flex justify-content-center align-items-center">
       <app-empty-content
-        icon="assets/images/common/announcement-med.svg"
+        icon="assets/images/light/announcement-lg.svg"
+        iconDark="assets/images/dark/announcement-lg.svg"
         title="There are no announcements to show yet."
         createText="Create a new announcement"
+        (actionEmitter)="onOpenAnnouncement()"
       ></app-empty-content>
     </div>
   </div>
