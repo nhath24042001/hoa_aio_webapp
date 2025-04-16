@@ -23,7 +23,9 @@ export class DialogHeader {
 
   get icon() {
     const basePath = `assets/images/${this.currentMode}/`;
-    return this.dialogType === 'create' ? `${basePath}${this.iconCreate}.svg` : `${basePath}${this.iconEdit}.svg`;
+    return this.dialogType === 'create'
+      ? `${basePath}${this.iconCreate}.svg`
+      : `${basePath}${this.iconEdit}.svg`;
   }
 
   closeDialogEmitter() {

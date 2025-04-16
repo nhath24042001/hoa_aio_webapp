@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 
 import { BaseComponent } from '~/components/common/base/base.component';
+import { ButtonDirective } from '~/directives/button.directive';
 import { ThemeService } from '~/services/theme.service';
 
 import { ToastService } from './../../../services/toast.service';
 
 @Component({
   selector: 'app-toast',
-  imports: [ButtonModule],
+  imports: [ButtonModule, ButtonDirective],
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss'
 })

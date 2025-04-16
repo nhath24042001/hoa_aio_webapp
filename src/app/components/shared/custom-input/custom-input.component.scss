@@ -22,22 +22,40 @@
   }
 
   &.--filled {
-    background: #0D0D12;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    background: #0d0d12;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
 
-    input, ::ng-deep .p-password-input {
-      background: #0D0D12 !important;
-      color: #FFF !important;
-      transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    input,
+    ::ng-deep .p-password-input {
+      background: #0d0d12 !important;
+      color: #fff !important;
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
     }
   }
 
   &.--empty {
     background: var(--input-bg) !important;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
 
-    input, ::ng-deep .p-password-input {
-      transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    input,
+    ::ng-deep .p-password-input {
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
     }
   }
 }

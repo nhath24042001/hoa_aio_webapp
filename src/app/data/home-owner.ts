@@ -638,7 +638,8 @@ export const homeOwnerInputFields = [
     label: 'Vehicles Info',
     type: 'input',
     position: 'extra',
-    placeholder: 'For each car - Make/Model, Year, License Plate Number, Parking Permit Number, Parking Space',
+    placeholder:
+      'For each car - Make/Model, Year, License Plate Number, Parking Permit Number, Parking Space',
     value: ''
   }
 ];

@@ -1,4 +1,4 @@
-@if (checkAnnouncementExists()) {
+@if (checkAnnouncementExists() && !isLoading) {
   <div class="--announcement-wrapper p-4">
     <div class="--announcement-header">
       <p-tabs value="0">
@@ -11,7 +11,7 @@
           <main-header
             labelButton="New Announcement"
             (searchChanged)="onSearchAnnouncement($event)"
-            (addSection)="onOpenAnnouncement()"
+            (addSection)="onOpenAnnouncement(ACTION_DIALOG.CREATE, null)"
           >
             <div filter-content>
               <div class="--filter-content">
@@ -35,13 +35,24 @@
 
         <p-tabpanels>
           <p-tabpanel value="0">
-            <announcement-list
-              [announcements]="announcements"
-              (onEmitAction)="onImplementAction($event)"
-            ></announcement-list>
+            @if (isLoading) {
+              <app-skeleton-list></app-skeleton-list>
+            } @else {
+              <announcement-list
+                [announcements]="announcements"
+                (onEmitAction)="onImplementAction($event)"
+              ></announcement-list>
+            }
           </p-tabpanel>
           <p-tabpanel value="1">
-            <!-- <announcement-list [announcements]="announcements.expired"></announcement-list> -->
+            @if (isLoading) {
+              <app-skeleton-list></app-skeleton-list>
+            } @else {
+              <announcement-list
+                [announcements]="announcements"
+                (onEmitAction)="onImplementAction($event)"
+              ></announcement-list>
+            }
           </p-tabpanel>
         </p-tabpanels>
       </p-tabs>
@@ -50,7 +61,13 @@
 } @else {
   <div class="--content-section p-4 d-flex flex-column">
     <div class="d-flex justify-content-end">
-      <button appButton="primary" icon="white-plus-solid" (click)="onOpenAnnouncement()">New Announcement</button>
+      <button
+        appButton="primary"
+        icon="white-plus-solid"
+        (click)="onOpenAnnouncement(ACTION_DIALOG.CREATE, null)"
+      >
+        New Announcement
+      </button>
     </div>
     <div class="flex-fill d-flex justify-content-center align-items-center">
       <app-empty-content
@@ -58,7 +75,7 @@
         iconDark="assets/images/dark/announcement-lg.svg"
         title="There are no announcements to show yet."
         createText="Create a new announcement"
-        (actionEmitter)="onOpenAnnouncement()"
+        (actionEmitter)="onOpenAnnouncement(ACTION_DIALOG.CREATE, null)"
       ></app-empty-content>
     </div>
   </div>

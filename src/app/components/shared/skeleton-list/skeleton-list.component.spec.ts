@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProjectDialogComponent } from './project-dialog.component';
+import { SkeletonListComponent } from './skeleton-list.component';
 
-describe('ProjectDialogComponent', () => {
-  let component: ProjectDialogComponent;
-  let fixture: ComponentFixture<ProjectDialogComponent>;
+describe('SkeletonListComponent', () => {
+  let component: SkeletonListComponent;
+  let fixture: ComponentFixture<SkeletonListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProjectDialogComponent]
+      imports: [SkeletonListComponent]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ProjectDialogComponent);
+    fixture = TestBed.createComponent(SkeletonListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

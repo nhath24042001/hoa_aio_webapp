@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { ICommonResponse } from '~/@types';
 import {
   IAnnouncementPayload,
   IAnnouncementResponse,
@@ -30,7 +31,7 @@ export class AnnouncementService extends HttpClientModel {
     );
   }
 
-  public deleteAnnouncement(announcement_id: string) {
+  public deleteAnnouncement(announcement_id: number): Observable<ICommonResponse> {
     return this.post(
       this.createRequest('Announcement', 'delete_announcement', { announcement_id })
     );

@@ -33,7 +33,11 @@ export class InputPhone implements OnInit {
         flag: country.flags.png,
         code: country.cca2
       }));
-      this.countries = orderBy(countryList, (country) => parseInt(country.dialCode.replace('+', ''), 10), 'asc');
+      this.countries = orderBy(
+        countryList,
+        (country) => parseInt(country.dialCode.replace('+', ''), 10),
+        'asc'
+      );
 
       if (this.countries.length) {
         this.selectedCountry = this.countries[0];

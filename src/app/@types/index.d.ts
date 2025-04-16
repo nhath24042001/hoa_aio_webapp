@@ -48,7 +48,7 @@ export interface ISelect {
   icon?: string;
 }
 
-export type ButtonType = 'primary' | 'secondary' | 'danger' | 'outline';
+export type ButtonType = 'primary' | 'secondary' | 'danger' | 'outline' | 'delete';
 
 export interface ICommonResponse {
   message: string;

@@ -14,12 +14,14 @@ export const projectsData: ITask[] = [
       {
         id: 1,
         name: 'John Doe',
-        avatar: 'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar:
+          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
         name: 'Jane Smith',
-        avatar: 'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar:
+          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
       }
     ]
   },
@@ -35,12 +37,14 @@ export const projectsData: ITask[] = [
       {
         id: 1,
         name: 'John Doe',
-        avatar: 'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar:
+          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
         name: 'Jane Smith',
-        avatar: 'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar:
+          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
       }
     ]
   },
@@ -56,12 +60,14 @@ export const projectsData: ITask[] = [
       {
         id: 1,
         name: 'John Doe',
-        avatar: 'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar:
+          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
         name: 'Jane Smith',
-        avatar: 'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar:
+          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
       }
     ]
   },
@@ -77,12 +83,14 @@ export const projectsData: ITask[] = [
       {
         id: 1,
         name: 'John Doe',
-        avatar: 'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar:
+          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
         name: 'Jane Smith',
-        avatar: 'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar:
+          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
       }
     ]
   },
@@ -98,12 +106,14 @@ export const projectsData: ITask[] = [
       {
         id: 1,
         name: 'John Doe',
-        avatar: 'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar:
+          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
         name: 'Jane Smith',
-        avatar: 'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar:
+          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
       }
     ]
   },
@@ -119,12 +129,14 @@ export const projectsData: ITask[] = [
       {
         id: 1,
         name: 'John Doe',
-        avatar: 'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar:
+          'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
       },
       {
         id: 2,
         name: 'Jane Smith',
-        avatar: 'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
+        avatar:
+          'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
       }
     ]
   }

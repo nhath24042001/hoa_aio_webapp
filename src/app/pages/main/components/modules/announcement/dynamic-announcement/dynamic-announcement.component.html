@@ -58,11 +58,26 @@
 
   <div class="--dynamic-content mt-3">
     <h5>Announcement Content</h5>
-    <textarea [(ngModel)]="announcementData.description" name="description" pTextarea pSize="large" placeholder="Enter content" rows="3" class="w-100"></textarea>
+    <textarea
+      [(ngModel)]="announcementData.description"
+      name="description"
+      pTextarea
+      pSize="large"
+      placeholder="Enter content"
+      rows="3"
+      class="w-100"
+    ></textarea>
     <div class="mt-3 d-flex align-items-center">
       <img src="assets/images/common/attachment-link.svg" class="me-2" alt="attachment_icon" />
       <p class="me-3">Link</p>
-      <input [(ngModel)]="announcementData.link" name="link" pInputText type="text" class="flex-fill" placeholder="Enter URL of relevant link" />
+      <input
+        [(ngModel)]="announcementData.link"
+        name="link"
+        pInputText
+        type="text"
+        class="flex-fill"
+        placeholder="Enter URL of relevant link"
+      />
     </div>
   </div>
 
@@ -79,7 +94,9 @@
         <p>Save Draft</p>
       </div>
 
-      <button type="submit" appButton="primary" icon="white-annotation-plus">Create Announcement</button>
+      <button type="submit" appButton="primary" icon="white-annotation-plus">
+        Create Announcement
+      </button>
     </div>
   </div>
 </form>

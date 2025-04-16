@@ -3,49 +3,47 @@
     <div class="--announcement-item">
       <div class="py-3 d-flex justify-content-between align-items-center">
         <div class="--content">
-          <h4 class="mb-2">{{ announce.title }}</h4>
+          <h4 class="mb-2" (click)="onActionClick('detail', announce)">{{ announce.title }}</h4>
           <div class="d-flex">
-            @if (announce.type === 'Draft') {
+            <!-- @if (announce.type === 'Draft') {
               <div class="--tag d-flex justify-content-center align-items-center me-2">Draft</div>
-            }
-            <span class="me-2">{{ announce.created | date: 'MMM. dd, hh:mm a' }}</span>
+            } -->
+            <span class="me-2">{{ announce.created_on | date: 'MMM. dd, hh:mm a' }}</span>
             <div class="d-flex jusityfy-content-center align-items-center">
               <div class="--dot"></div>
             </div>
-            <span>{{ announce.personSent }}</span>
+            <!-- <span>{{ announce.personSent }}</span> -->
           </div>
         </div>
-        @if (announce.type === 'Draft') {
-          <p-popover #op>
-            <div class="flex flex-col gap-4">
-              @for (action of actions; track $index) {
-                <div
-                  [className]="action.className"
-                  (click)="onActionClick(action.actionKey, announce)"
-                >
-                  <img
-                    [src]="'assets/images/' + currentMode + '/' + action.icon + '.svg'"
-                    class="me-2"
-                    alt="action_icon"
-                  />
-                  <span>{{ action.label }}</span>
-                </div>
-              }
-            </div>
-          </p-popover>
-
-          <div class="dot-icon --pointer" (click)="op.toggle($event)">
-            <img src="assets/images/common/dots-vertical.svg" class="me-3" alt="dot_icon" />
+        <!-- @if (announce.type === 'Draft') { -->
+        <p-popover #op>
+          <div class="flex flex-col gap-4">
+            @for (action of actions; track $index) {
+              <div
+                [className]="action.className"
+                (click)="onActionClick(action.actionKey, announce)"
+              >
+                <img
+                  [src]="'assets/images/' + currentMode + '/' + action.icon + '.svg'"
+                  class="me-2"
+                  alt="action_icon"
+                />
+                <span>{{ action.label }}</span>
+              </div>
+            }
           </div>
-        } @else {
-          <img
+        </p-popover>
+
+        <div class="dot-icon --pointer" (click)="op.toggle($event)">
+          <img src="assets/images/common/dots-vertical.svg" class="me-3" alt="dot_icon" />
+        </div>
+        <!-- <img
             src="assets/images/common/trash.svg"
             class="--pointer"
             (click)="onActionClick('delete', announce)"
             class="me-3"
             alt="trash_icon"
-          />
-        }
+          /> -->
       </div>
     </div>
   }

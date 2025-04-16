@@ -11,7 +11,8 @@ export const authRoutes: Routes = [
     children: [
       {
         path: 'login',
-        loadComponent: () => import('./pages/authentication/login/login.component').then((m) => m.LoginComponent),
+        loadComponent: () =>
+          import('./pages/authentication/login/login.component').then((m) => m.LoginComponent),
         canActivate: [authLoggedInGuard]
       },
       {
@@ -49,64 +50,83 @@ export const mainRoutes: Routes = [
     children: [
       {
         path: 'overview',
-        loadComponent: () => import('./pages/main/pages/overview/overview.component').then((m) => m.OverviewComponent)
+        loadComponent: () =>
+          import('./pages/main/pages/overview/overview.component').then((m) => m.OverviewComponent)
       },
       {
         path: 'announcements',
         loadComponent: () =>
-          import('./pages/main/pages/announcements/announcements.component').then((m) => m.AnnouncementsComponent)
+          import('./pages/main/pages/announcements/announcements.component').then(
+            (m) => m.AnnouncementsComponent
+          )
       },
       {
         path: 'calendar',
-        loadComponent: () => import('./pages/main/pages/calendar/calendar.component').then((m) => m.CalendarComponent)
+        loadComponent: () =>
+          import('./pages/main/pages/calendar/calendar.component').then((m) => m.CalendarComponent)
       },
       {
         path: 'task-management',
         loadComponent: () =>
-          import('./pages/main/pages/task-management/task-management.component').then((m) => m.TaskManagementComponent)
+          import('./pages/main/pages/task-management/task-management.component').then(
+            (m) => m.TaskManagementComponent
+          )
       },
       {
         path: 'projects',
-        loadComponent: () => import('./pages/main/pages/project/project.component').then((m) => m.ProjectComponent)
+        loadComponent: () =>
+          import('./pages/main/pages/project/project.component').then((m) => m.ProjectComponent)
       },
       {
         path: 'vendors',
-        loadComponent: () => import('./pages/main/pages/vendor/vendor.component').then((m) => m.VendorComponent)
+        loadComponent: () =>
+          import('./pages/main/pages/vendor/vendor.component').then((m) => m.VendorComponent)
       },
       {
         path: 'violation-reports',
         loadComponent: () =>
-          import('./pages/main/pages/violation/violation.component').then((m) => m.ViolationComponent)
+          import('./pages/main/pages/violation/violation.component').then(
+            (m) => m.ViolationComponent
+          )
       },
       {
         path: 'accounting',
         loadComponent: () =>
-          import('./pages/main/pages/accounting/accounting.component').then((m) => m.AccountingComponent)
+          import('./pages/main/pages/accounting/accounting.component').then(
+            (m) => m.AccountingComponent
+          )
       },
       {
         path: 'home-owners',
         loadComponent: () =>
-          import('./pages/main/pages/home-owner/home-owner.component').then((m) => m.HomeOwnerComponent)
+          import('./pages/main/pages/home-owner/home-owner.component').then(
+            (m) => m.HomeOwnerComponent
+          )
       },
       {
         path: 'documents',
-        loadComponent: () => import('./pages/main/pages/document/document.component').then((m) => m.DocumentComponent)
+        loadComponent: () =>
+          import('./pages/main/pages/document/document.component').then((m) => m.DocumentComponent)
       },
       {
         path: 'reports',
-        loadComponent: () => import('./pages/main/pages/report/report.component').then((m) => m.ReportComponent)
+        loadComponent: () =>
+          import('./pages/main/pages/report/report.component').then((m) => m.ReportComponent)
       },
       {
         path: 'my-account',
-        loadComponent: () => import('./pages/main/pages/account/account.component').then((m) => m.AccountComponent)
+        loadComponent: () =>
+          import('./pages/main/pages/account/account.component').then((m) => m.AccountComponent)
       },
       {
         path: 'users',
-        loadComponent: () => import('./pages/main/pages/user/user.component').then((m) => m.UserComponent)
+        loadComponent: () =>
+          import('./pages/main/pages/user/user.component').then((m) => m.UserComponent)
       },
       {
         path: 'setting',
-        loadComponent: () => import('./pages/main/pages/setting/setting.component').then((m) => m.SettingComponent)
+        loadComponent: () =>
+          import('./pages/main/pages/setting/setting.component').then((m) => m.SettingComponent)
       }
     ]
   },

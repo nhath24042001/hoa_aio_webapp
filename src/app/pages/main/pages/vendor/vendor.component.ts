@@ -4,7 +4,14 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TabsModule } from 'primeng/tabs';
 
 import { vendorTabHeader } from '~/constants/tab';
-import { bidHeaders, bidList, companyHeaders, companyList, estimateList, vendorActions } from '~/data/vendor';
+import {
+  bidHeaders,
+  bidList,
+  companyHeaders,
+  companyList,
+  estimateList,
+  vendorActions
+} from '~/data/vendor';
 import { ButtonDirective } from '~/directives/button.directive';
 import { Action } from '~/enums';
 import { BidDialog } from '~/pages/main/components/modules/vendor/bid-dialog/bid-dialog.component';

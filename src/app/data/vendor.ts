@@ -88,7 +88,8 @@ export const companyList = [
   {
     company_name: 'AB Services Co.',
     title: 'General Maintenance Service Providers',
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1sj430b2akyDaCLv14AsLMhMweXBQ8om7kg&s',
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1sj430b2akyDaCLv14AsLMhMweXBQ8om7kg&s',
     industry: 'Maintenance',
     status: 'approved'
   }

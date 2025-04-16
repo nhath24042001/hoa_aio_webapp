@@ -291,10 +291,10 @@ span {
   border-radius: 20px;
 
   .--dialog-text-header {
-      font-weight: 500;
-      font-size: 15px;
-      color: #6f6f6f;
-    }
+    font-weight: 500;
+    font-size: 15px;
+    color: #6f6f6f;
+  }
 
   h3 {
     font-weight: 600;
@@ -307,13 +307,13 @@ span {
     justify-content: end;
 
     .--image-wrapper {
-        border-left: 1px solid #dfe1e7;
-        padding-left: 20px;
+      border-left: 1px solid #dfe1e7;
+      padding-left: 20px;
 
       img {
-          cursor: pointer;
-        }
+        cursor: pointer;
       }
+    }
 
     p {
       font-weight: 400;
@@ -340,9 +340,9 @@ span {
       color: var(--dialog-title);
 
       &.--detail {
-          color: #000000;
-        }
+        color: #000000;
       }
+    }
 
     .--text-box {
       font-weight: 500;
@@ -353,9 +353,9 @@ span {
       width: 150px;
 
       &.--detail {
-          width: 150px;
-        }
+        width: 150px;
       }
+    }
 
     span {
       font-weight: 500;
@@ -375,11 +375,11 @@ span {
       margin-right: 10px;
 
       p {
-          width: fit-content;
-          color: var(--const-color);
-        }
+        width: fit-content;
+        color: var(--const-color);
       }
     }
+  }
 
   .--dynamic-content {
     h5 {
@@ -403,8 +403,8 @@ span {
       border-radius: 10px;
 
       &.--dark {
-          background: #1a1b25;
-        }
+        background: #1a1b25;
+      }
 
       img {
         width: 24px;
@@ -419,9 +419,9 @@ span {
       border: 1px solid #dfe1e7;
 
       p,
-        span {
-          font-size: 12px;
-        }
+      span {
+        font-size: 12px;
+      }
 
       .--file-name {
         color: var(--const-color);
@@ -456,13 +456,13 @@ span {
       cursor: pointer;
 
       p {
-          font-weight: 500;
-          font-size: 15px;
-          color: #6938da;
-        }
+        font-weight: 500;
+        font-size: 15px;
+        color: #6938da;
       }
     }
   }
+}
 
 // STYLE BUTTON DIRECTIVE
 .--btn {
@@ -492,4 +492,12 @@ span {
 .--btn-secondary {
   background-color: #f3eeff;
   color: #6938da;
+}
+
+.--btn-delete {
+  background-color: #ff515f;
+  color: #fff;
+  border: none;
+  width: 100%;
+  font-size: 18px;
 }

@@ -11,7 +11,10 @@
     <h5 class="mt-2 text-center">{{ title() }}</h5>
 
     @if (isShowBtn()) {
-      <div class="--create-container mt-3 d-flex align-items-center justify-content-center gap-1" (click)="onCreate()">
+      <div
+        class="--create-container mt-3 d-flex align-items-center justify-content-center gap-1"
+        (click)="onCreate()"
+      >
         <img src="assets/images/common/plus.svg" alt="task_icon" />
         <h6>{{ createText() }}</h6>
       </div>

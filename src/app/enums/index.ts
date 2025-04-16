@@ -22,5 +22,7 @@ export enum EventType {
 
 export enum ACTION_DIALOG {
   CREATE = 'create',
-  DETAIL = 'detail'
+  DETAIL = 'detail',
+  EDIT = 'edit',
+  DELETE = 'delete'
 }
