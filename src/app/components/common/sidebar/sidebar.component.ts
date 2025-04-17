@@ -1,5 +1,7 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
-import { Component, Input, output, signal } from '@angular/core';
+import { Component, inject, Input, output, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { DividerModule } from 'primeng/divider';
 
@@ -13,6 +15,7 @@ import { ThemeService } from '../../../services/theme.service';
 
 @Component({
   selector: 'app-sidebar',
+  standalone: true,
   imports: [CommonModule, DividerModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
@@ -28,16 +31,18 @@ export class SidebarComponent {
   currentMode: string = '';
   showAdminTool = signal(true);
 
-  constructor(
-    private router: Router,
-    private themeService: ThemeService,
-    private permissionService: PermissionService
-  ) {
-    this.themeService.theme$.subscribe((theme) => {
+  private breakpointObserver = inject(BreakpointObserver);
+  private router = inject(Router);
+  private themeService = inject(ThemeService);
+  private permissionService = inject(PermissionService);
+
+  constructor() {
+    this.themeService.theme$.pipe(takeUntilDestroyed()).subscribe((theme) => {
       this.currentMode = theme;
     });
 
     this.modulesToShow = this.permissionService.getAccessibleModules(this.userRole);
+
     this.listSidebar.listView = this.listSidebar.listView.filter((item) =>
       this.modulesToShow.includes(item.name as AppModule)
     );
@@ -45,6 +50,17 @@ export class SidebarComponent {
     this.listSidebar.adminTool = this.listSidebar.adminTool.filter((item) =>
       this.modulesToShow.includes(item.name as AppModule)
     );
+
+    this.breakpointObserver
+      .observe(['(max-width: 1200px)'])
+      .pipe(takeUntilDestroyed())
+      .subscribe((result) => {
+        const shouldBeOpen = !result.matches;
+        if (this.isOpen !== shouldBeOpen) {
+          this.isOpen = shouldBeOpen;
+          this.toggle.emit(this.isOpen);
+        }
+      });
   }
 
   toggleSidebar() {
