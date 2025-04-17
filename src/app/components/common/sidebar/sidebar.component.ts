@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { Component, Input, output, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { DividerModule } from 'primeng/divider';
 
@@ -15,7 +15,7 @@ import { ThemeService } from '../../../services/theme.service';
 })
 export class SidebarComponent {
   @Input() isOpen = true;
-  @Output() toggle = new EventEmitter<boolean>();
+  toggle = output<boolean>();
 
   THEME = THEME;
   listSidebar = LIST_SIDEBAR;
@@ -50,5 +50,9 @@ export class SidebarComponent {
 
   toggleTheme() {
     this.themeService.toggleTheme();
+  }
+
+  onBackHome() {
+    this.router.navigate(['main/overview']);
   }
 }

@@ -1,9 +1,9 @@
 <nav class="--sidebar-wrapper" [class.closed]="!isOpen">
   <div class="w-100 d-flex justify-content-between align-items-center">
     @if (isOpen) {
-      <img [src]="'assets/images/' + currentMode + '/hoa-logo.svg'" alt="hoa_logo" />
+      <img [src]="'assets/images/' + currentMode + '/hoa-logo.svg'" class="--logo-img" (click)="onBackHome()" alt="hoa_logo" />
     } @else {
-      <img src="assets/images/common/hoa-icon.svg" class="--logo-img" alt="hoa_logo" />
+      <img src="assets/images/common/hoa-icon.svg"  class="--logo-img" (click)="onBackHome()" alt="hoa_logo" />
     }
 
     <div

@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { authLoggedInGuard } from './core/guards/auth.guard';
+import { RouteName, RoutePath } from './enums/route';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 
@@ -10,34 +10,31 @@ export const authRoutes: Routes = [
     component: AuthLayoutComponent,
     children: [
       {
-        path: 'login',
-        loadComponent: () =>
-          import('./pages/authentication/login/login.component').then((m) => m.LoginComponent),
-        canActivate: [authLoggedInGuard]
+        title: RouteName.LoginView,
+        path: RoutePath.Login,
+        loadComponent: () => import('./pages/authentication/login/login.component').then((m) => m.LoginComponent)
       },
       {
-        path: 'forgot-password',
+        title: RouteName.ForgotPasswordView,
+        path: RoutePath.ForgotPassword,
         loadComponent: () =>
           import('./pages/authentication/forgot-password/forgot-password.component').then(
             (m) => m.ForgotPasswordComponent
-          ),
-        canActivate: [authLoggedInGuard]
+          )
       },
       {
-        path: 'reset-password',
+        title: RouteName.ResetPasswordView,
+        path: RoutePath.ResetPassword,
         loadComponent: () =>
-          import('./pages/authentication/reset-password/reset-password.component').then(
-            (m) => m.ResetPasswordComponent
-          ),
-        canActivate: [authLoggedInGuard]
+          import('./pages/authentication/reset-password/reset-password.component').then((m) => m.ResetPasswordComponent)
       },
       {
-        path: 'set-new-password',
+        title: RouteName.SetNewPasswordView,
+        path: RoutePath.SetNewPassword,
         loadComponent: () =>
           import('./pages/authentication/set-new-password/set-new-password.component').then(
             (m) => m.SetNewPasswordComponent
-          ),
-        canActivate: [authLoggedInGuard]
+          )
       }
     ]
   }
@@ -49,84 +46,79 @@ export const mainRoutes: Routes = [
     component: MainLayoutComponent,
     children: [
       {
-        path: 'overview',
-        loadComponent: () =>
-          import('./pages/main/pages/overview/overview.component').then((m) => m.OverviewComponent)
+        title: RouteName.OverviewView,
+        path: RoutePath.Overview,
+        loadComponent: () => import('./pages/main/pages/overview/overview.component').then((m) => m.OverviewComponent)
       },
       {
-        path: 'announcements',
+        title: RouteName.AnnouncementView,
+        path: RoutePath.Announcement,
         loadComponent: () =>
-          import('./pages/main/pages/announcements/announcements.component').then(
-            (m) => m.AnnouncementsComponent
-          )
+          import('./pages/main/pages/announcements/announcements.component').then((m) => m.AnnouncementsComponent)
       },
       {
-        path: 'calendar',
-        loadComponent: () =>
-          import('./pages/main/pages/calendar/calendar.component').then((m) => m.CalendarComponent)
+        title: RouteName.CalendarView,
+        path: RoutePath.Calendar,
+        loadComponent: () => import('./pages/main/pages/calendar/calendar.component').then((m) => m.CalendarComponent)
       },
       {
-        path: 'task-management',
+        title: RouteName.TaskManagementView,
+        path: RoutePath.TaskManagement,
         loadComponent: () =>
-          import('./pages/main/pages/task-management/task-management.component').then(
-            (m) => m.TaskManagementComponent
-          )
+          import('./pages/main/pages/task-management/task-management.component').then((m) => m.TaskManagementComponent)
       },
       {
-        path: 'projects',
-        loadComponent: () =>
-          import('./pages/main/pages/project/project.component').then((m) => m.ProjectComponent)
+        title: RouteName.ProjectView,
+        path: RoutePath.Project,
+        loadComponent: () => import('./pages/main/pages/project/project.component').then((m) => m.ProjectComponent)
       },
       {
-        path: 'vendors',
-        loadComponent: () =>
-          import('./pages/main/pages/vendor/vendor.component').then((m) => m.VendorComponent)
+        title: RouteName.VendorView,
+        path: RoutePath.Vendor,
+        loadComponent: () => import('./pages/main/pages/vendor/vendor.component').then((m) => m.VendorComponent)
       },
       {
-        path: 'violation-reports',
+        title: RouteName.ViolationReportView,
+        path: RoutePath.ViolationReport,
         loadComponent: () =>
-          import('./pages/main/pages/violation/violation.component').then(
-            (m) => m.ViolationComponent
-          )
+          import('./pages/main/pages/violation/violation.component').then((m) => m.ViolationComponent)
       },
       {
-        path: 'accounting',
+        title: RouteName.AccountingView,
+        path: RoutePath.Accounting,
         loadComponent: () =>
-          import('./pages/main/pages/accounting/accounting.component').then(
-            (m) => m.AccountingComponent
-          )
+          import('./pages/main/pages/accounting/accounting.component').then((m) => m.AccountingComponent)
       },
       {
-        path: 'home-owners',
+        title: RouteName.HomeOwnerView,
+        path: RoutePath.HomeOwner,
         loadComponent: () =>
-          import('./pages/main/pages/home-owner/home-owner.component').then(
-            (m) => m.HomeOwnerComponent
-          )
+          import('./pages/main/pages/home-owner/home-owner.component').then((m) => m.HomeOwnerComponent)
       },
       {
-        path: 'documents',
-        loadComponent: () =>
-          import('./pages/main/pages/document/document.component').then((m) => m.DocumentComponent)
+        title: RouteName.DocumentView,
+        path: RoutePath.Document,
+        loadComponent: () => import('./pages/main/pages/document/document.component').then((m) => m.DocumentComponent)
       },
       {
-        path: 'reports',
-        loadComponent: () =>
-          import('./pages/main/pages/report/report.component').then((m) => m.ReportComponent)
+        title: RouteName.ReportView,
+        path: RoutePath.Report,
+        loadComponent: () => import('./pages/main/pages/report/report.component').then((m) => m.ReportComponent)
       },
       {
-        path: 'my-account',
-        loadComponent: () =>
-          import('./pages/main/pages/account/account.component').then((m) => m.AccountComponent)
+        title: RouteName.AccountView,
+        path: RoutePath.Account,
+        loadComponent: () => import('./pages/main/pages/account/account.component').then((m) => m.AccountComponent)
       },
       {
-        path: 'users',
-        loadComponent: () =>
-          import('./pages/main/pages/user/user.component').then((m) => m.UserComponent)
+        title: RouteName.UserView,
+        path: RoutePath.User,
+        loadComponent: () => import('./pages/main/pages/user/user.component').then((m) => m.UserComponent)
       },
       {
-        path: 'setting',
-        loadComponent: () =>
-          import('./pages/main/pages/setting/setting.component').then((m) => m.SettingComponent)
+        title: RouteName.SettingsView,
+        path: RoutePath.Settings,
+        loadComponent: () => import('./pages/main/pages/setting/setting.component').then((m) => m.SettingComponent)
       }
     ]
   },
