@@ -11,6 +11,7 @@
       [popover]="notificationPopover"
       placement="bottom"
       triggers="click"
+      [outsideClick]="true"
     >
       <img [src]="'assets/images/' + currentMode + '/notification.svg'" alt="notification_icon" />
       <div class="--notification-badge d-flex justify-content-center align-items-center">
@@ -44,6 +45,7 @@
       [popover]="menuPopover"
       placement="bottom"
       triggers="click"
+      [outsideClick]="true"
     >
       <img src="assets/images/common/sample-avatar.svg" alt="avatar_image" />
 

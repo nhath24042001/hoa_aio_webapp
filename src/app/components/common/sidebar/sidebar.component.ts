@@ -3,6 +3,10 @@ import { Component, Input, output, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { DividerModule } from 'primeng/divider';
 
+import { AppModule } from '~/core/permissions/module.enum';
+import { PermissionService } from '~/core/permissions/permissions.service';
+import { UserRole } from '~/core/permissions/role.enum';
+
 import { THEME } from '../../../constants';
 import { LIST_SIDEBAR } from '../../../constants/sidebar';
 import { ThemeService } from '../../../services/theme.service';
@@ -17,6 +21,8 @@ export class SidebarComponent {
   @Input() isOpen = true;
   toggle = output<boolean>();
 
+  userRole = UserRole.MANAGER;
+  modulesToShow: AppModule[] = [];
   THEME = THEME;
   listSidebar = LIST_SIDEBAR;
   currentMode: string = '';
@@ -24,11 +30,21 @@ export class SidebarComponent {
 
   constructor(
     private router: Router,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private permissionService: PermissionService
   ) {
     this.themeService.theme$.subscribe((theme) => {
       this.currentMode = theme;
     });
+
+    this.modulesToShow = this.permissionService.getAccessibleModules(this.userRole);
+    this.listSidebar.listView = this.listSidebar.listView.filter((item) =>
+      this.modulesToShow.includes(item.name as AppModule)
+    );
+
+    this.listSidebar.adminTool = this.listSidebar.adminTool.filter((item) =>
+      this.modulesToShow.includes(item.name as AppModule)
+    );
   }
 
   toggleSidebar() {

@@ -1,9 +1,19 @@
 <nav class="--sidebar-wrapper" [class.closed]="!isOpen">
   <div class="w-100 d-flex justify-content-between align-items-center">
     @if (isOpen) {
-      <img [src]="'assets/images/' + currentMode + '/hoa-logo.svg'" class="--logo-img" (click)="onBackHome()" alt="hoa_logo" />
+      <img
+        [src]="'assets/images/' + currentMode + '/hoa-logo.svg'"
+        class="--logo-img"
+        (click)="onBackHome()"
+        alt="hoa_logo"
+      />
     } @else {
-      <img src="assets/images/common/hoa-icon.svg"  class="--logo-img" (click)="onBackHome()" alt="hoa_logo" />
+      <img
+        src="assets/images/common/hoa-icon.svg"
+        class="--logo-img"
+        (click)="onBackHome()"
+        alt="hoa_logo"
+      />
     }
 
     <div
@@ -32,34 +42,36 @@
 
   <p-divider />
 
-  <div class="--admin-tool-header d-flex justify-content-between align-items-center">
-    @if (isOpen) {
-      <p>Admin Tools</p>
-    }
-    <img
-      src="assets/images/common/purple-down.svg"
-      [class.rotated]="showAdminTool()"
-      (click)="toggleAdminTools()"
-      alt="down-icon"
-    />
-  </div>
-
-  @if (showAdminTool()) {
-    <div class="--admin-tools-wrapper" [class.expanded]="showAdminTool()">
-      @for (tool of listSidebar.adminTool; track $index) {
-        <div
-          class="--sidebar-item"
-          [class.active]="isActiveRoute(tool.routerLink)"
-          [class.isOpen]="!isOpen"
-          (click)="navigateTo(tool.routerLink)"
-        >
-          <img [src]="'assets/images/common/' + tool.icon + '-icon.svg'" alt="icon" />
-          @if (isOpen) {
-            <p>{{ tool.name }}</p>
-          }
-        </div>
+  @if (listSidebar.adminTool.length) {
+    <div class="--admin-tool-header d-flex justify-content-between align-items-center">
+      @if (isOpen) {
+        <p>Admin Tools</p>
       }
+      <img
+        src="assets/images/common/purple-down.svg"
+        [class.rotated]="showAdminTool()"
+        (click)="toggleAdminTools()"
+        alt="down-icon"
+      />
     </div>
+
+    @if (showAdminTool()) {
+      <div class="--admin-tools-wrapper" [class.expanded]="showAdminTool()">
+        @for (tool of listSidebar.adminTool; track $index) {
+          <div
+            class="--sidebar-item"
+            [class.active]="isActiveRoute(tool.routerLink)"
+            [class.isOpen]="!isOpen"
+            (click)="navigateTo(tool.routerLink)"
+          >
+            <img [src]="'assets/images/common/' + tool.icon + '-icon.svg'" alt="icon" />
+            @if (isOpen) {
+              <p>{{ tool.name }}</p>
+            }
+          </div>
+        }
+      </div>
+    }
   }
 
   @if (isOpen) {

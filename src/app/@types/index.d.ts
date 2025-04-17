@@ -54,3 +54,4 @@ export interface ICommonResponse {
   message: string;
   rc: number;
 }
+
