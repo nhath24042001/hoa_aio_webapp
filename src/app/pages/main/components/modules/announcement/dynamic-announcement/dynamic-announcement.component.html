@@ -2,7 +2,7 @@
   <div class="mb-4 d-flex justify-content-between align-items-center">
     <div class="d-flex align-items-center">
       <img src="assets/images/common/annotation-plus.svg" class="me-3" alt="annotation_icon" />
-      <h3 class="mb-0">Create New Announcement</h3>
+      <h3 class="mb-0">{{ announcementTitle() }}</h3>
     </div>
 
     <div class="--right">
@@ -83,7 +83,10 @@
 
   <div class="--dynamic-action mt-3 d-flex justify-content-between align-items-center">
     @if (data.id) {
-      <p>Announcement ID: {{ data.id }}</p>
+      <div class="--footer-id d-flex align-items-center">
+        <span class="me-1">Announcement ID: </span>
+        <p> {{  data.id }}</p>
+      </div>
     }
 
     <div class="d-flex align-items-center justify-content-end w-100">

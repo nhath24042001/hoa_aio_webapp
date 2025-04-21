@@ -2,14 +2,10 @@
   <p>{{ moduleName }} {{ formID }}</p>
 
   <div class="d-flex align-items-center">
-    <div class="--attachment me-3 d-flex justify-content-center align-items-center">
-      <img src="assets/images/common/attachment.svg" alt="attachment_icon" />
-    </div>
+    <button appButton="secondary" icon="attachment"></button>
 
-    <div class="--save-draft mx-3 d-flex algin-items-center">
-      <img src="assets/images/common/save-draft.svg" class="me-2" alt="save_draft_icon" />
-      <p>Save Draft</p>
-    </div>
+    <button appButton="secondary" icon="save-draft" class="mx-2">Save Draft</button>
+
     <button appButton="primary" [icon]="buttonIcon">{{ buttonText }}</button>
   </div>
 </div>

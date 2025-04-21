@@ -4,6 +4,7 @@ import { PermissionStrategy } from './permissions.strategy';
 export class ManagerPermissionStrategy implements PermissionStrategy {
   private readonly allowedModules: AppModule[] = [
     AppModule.OVERVIEW,
+    AppModule.ANNOUNCEMENT,
     AppModule.CALENDAR,
     AppModule.TASK,
     AppModule.VIOLATION_REPORT,

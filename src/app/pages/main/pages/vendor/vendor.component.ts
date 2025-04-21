@@ -32,7 +32,7 @@ export class VendorComponent {
   // TODO: Fix type any
   ref: DynamicDialogRef | undefined;
   isActive: boolean = true;
-  role = 'vendor';
+  role = 'Manager';
   activeTab = '0';
 
   tabs = vendorTabHeader;

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, computed } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import dayjs from 'dayjs';
 import { DatePickerModule } from 'primeng/datepicker';
@@ -48,6 +48,10 @@ export class DynamicAnnouncement extends BaseComponent implements AfterViewInit 
     expiration_date: '',
     announcement_date: ''
   };
+
+  announcementTitle = computed(() => {
+    return this.type === ACTION_DIALOG.EDIT ? 'Edit Announcement' : 'Create Announcement';
+  });
 
   constructor(
     public ref: DynamicDialogRef,
