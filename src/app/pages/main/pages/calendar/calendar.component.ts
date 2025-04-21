@@ -16,7 +16,15 @@ import { MainHeader } from '../../components/shared/main-header/main-header.comp
 
 @Component({
   selector: 'app-calendar',
-  imports: [FullCalendarModule, TabsModule, FormsModule, SelectModule, MainHeader, GeneralCalendar, ClubCalendar],
+  imports: [
+    FullCalendarModule,
+    TabsModule,
+    FormsModule,
+    SelectModule,
+    MainHeader,
+    GeneralCalendar,
+    ClubCalendar
+  ],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss'
 })
@@ -98,7 +106,8 @@ export class CalendarComponent {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/calendar-x-lg.svg',
       title: 'Cancel Event',
-      description: 'Are you sure? Proceeding will delete the event from the system, and can not be undone.',
+      description:
+        'Are you sure? Proceeding will delete the event from the system, and can not be undone.',
       type: 'error',
       buttonText: 'Cancel event'
     });

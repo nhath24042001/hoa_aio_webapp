@@ -1,6 +1,9 @@
 <div
   class="--custom-input d-flex align-items-center"
-  [ngClass]="mode() ? '--dark-mode' : '--light-mode'"
+  [ngClass]="[
+    mode() ? '--dark-mode' : '--light-mode',
+    value && currentMode === 'dark' ? '--filled' : '--empty'
+  ]"
   [class.--error]="isError()"
 >
   <img class="--input-icon" [src]="icon()" alt="icon_img" />

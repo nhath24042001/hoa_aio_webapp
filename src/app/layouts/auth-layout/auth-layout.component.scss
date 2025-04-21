@@ -1,6 +1,6 @@
 .--auth-layout {
   position: relative;
-  background: url('../../../assets/images/common/bg-auth.svg') no-repeat center center fixed;
+  background: no-repeat center center fixed;
   min-height: 100vh;
   background-size: cover;
   overflow: hidden;
@@ -17,7 +17,7 @@
   }
 
   .--form-wrapper {
-    height: calc(100vh - 84px);
+    height: calc(100vh - 150px);
 
     .--form-container {
       display: flex;
@@ -29,16 +29,25 @@
   }
 
   .--banner-wrapper {
-    position: absolute;
+    position: relative;
     z-index: 20;
-    left: 60px;
-    bottom: 45px;
+    margin: 36px 0px 0 48px;
 
-    p {
-      color: #fff;
-      max-width: 360px;
-      font-size: 15px;
-      margin-top: 10px !important;
+    .--banner-content {
+      p {
+        color: #fff !important;
+        max-width: 360px;
+        font-size: 15px;
+        margin-top: 10px !important;
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .--banner-wrapper {
+      display: flex;
+      justify-content: center;
+      margin: 0;
     }
   }
 }

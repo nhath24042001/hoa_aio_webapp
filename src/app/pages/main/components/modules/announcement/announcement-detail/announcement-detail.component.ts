@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { DividerModule } from 'primeng/divider';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
+import { IAnnouncement } from '~/@types/announcement';
 import { BaseComponent } from '~/components/common/base/base.component';
 import { ThemeService } from '~/services/theme.service';
 
@@ -14,29 +14,23 @@ import { ThemeService } from '~/services/theme.service';
   styleUrl: './announcement-detail.component.scss'
 })
 export class AnnouncementDetail extends BaseComponent {
-  // TODO: Fix type any (Eslint)
-  data: any;
-  userTypes: any[] = [
+  data: IAnnouncement;
+  userTypes = [
     { name: 'Residents', code: 're' },
     { name: 'Manager', code: 'ma' },
     { name: 'Board members', code: 'board' },
     { name: 'Vendors', code: 'ven' }
   ];
-  selectedCities!: any[];
+  selectedCities = [];
   expiredDate: string = '';
   content = '';
   link = '';
 
   announce_detail = {
-    id: '3567890',
-    title: 'Announcement with Some Content',
     user_types: [
       { name: 'Residents', code: 're' },
       { name: 'Manager', code: 'ma' }
-    ],
-    expired_date: '2023-08-01',
-    content: 'This is an announcement. It has some text in it.',
-    link: 'https://example.com'
+    ]
   };
 
   constructor(

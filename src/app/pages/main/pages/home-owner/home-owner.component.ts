@@ -4,7 +4,13 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TabsModule } from 'primeng/tabs';
 
 import { homeOwnerTabHeader } from '~/constants/tab';
-import { homeOwnerHeader, homeOwnerList, propertiesActions, propertiesHeader, propertiesList } from '~/data/home-owner';
+import {
+  homeOwnerHeader,
+  homeOwnerList,
+  propertiesActions,
+  propertiesHeader,
+  propertiesList
+} from '~/data/home-owner';
 import { Action } from '~/enums';
 import { NewOwner } from '~/pages/main/components/modules/home-owner/new-owner/new-owner.component';
 import { NewProperty } from '~/pages/main/components/modules/home-owner/new-property/new-property.component';

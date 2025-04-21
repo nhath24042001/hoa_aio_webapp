@@ -1,9 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CommonModule } from '@angular/common';
 import { Component, forwardRef, input, output } from '@angular/core';
-import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  FormsModule,
+  NG_VALUE_ACCESSOR,
+  ReactiveFormsModule
+} from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+
+import { BaseComponent } from '~/components/common/base/base.component';
+import { ThemeService } from '~/services/theme.service';
 
 @Component({
   selector: 'app-custom-input',
@@ -19,7 +28,7 @@ import { PasswordModule } from 'primeng/password';
     }
   ]
 })
-export class CustomInputComponent implements ControlValueAccessor {
+export class CustomInputComponent extends BaseComponent implements ControlValueAccessor {
   readonly type = input<'text' | 'password'>('text');
   readonly icon = input('');
   readonly placeholder = input('');
@@ -27,11 +36,14 @@ export class CustomInputComponent implements ControlValueAccessor {
   readonly isError = input(false);
   valueChange = output<string>();
 
+  constructor(themeService: ThemeService) {
+    super(themeService);
+  }
+
   value: string = '';
   isPasswordVisible = false;
   disabled = false;
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private onChange = (_value: string) => {};
   private onTouched = () => {};
 

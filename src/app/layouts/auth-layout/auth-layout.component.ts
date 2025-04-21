@@ -8,6 +8,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   styleUrl: './auth-layout.component.scss'
 })
 export class AuthLayoutComponent {
+  backgroundImg = '../../../assets/images/common/bg-auth.svg';
   prepareRoute(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }

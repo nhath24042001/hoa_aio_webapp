@@ -17,7 +17,7 @@
         <p-button class="--btn-success d-block mt-3" [label]="buttonText" (onClick)="confirm()" />
       } @else if (type === 'error') {
         <div class="--error-icon">
-          <p-button class="--btn-error d-block mt-3" [label]="buttonText" (onClick)="confirm()" />
+          <button appButton="delete" class="mt-3" (click)="confirm()">{{ buttonText }}</button>
           <p-button class="--btn-cancel d-block mt-3" label="Cancel" (onClick)="cancel()" />
         </div>
       } @else {

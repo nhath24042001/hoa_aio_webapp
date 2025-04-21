@@ -3,7 +3,13 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TabsModule } from 'primeng/tabs';
 
 import { userTabHeader } from '~/constants/tab';
-import { activeAction, activeUserList, inactiveAction, inactiveUserList, userHeader } from '~/data/user';
+import {
+  activeAction,
+  activeUserList,
+  inactiveAction,
+  inactiveUserList,
+  userHeader
+} from '~/data/user';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';

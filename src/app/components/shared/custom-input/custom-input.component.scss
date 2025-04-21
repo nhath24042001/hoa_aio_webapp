@@ -20,6 +20,44 @@
     border: 1px solid #ec778d;
     box-shadow: 0px 0px 5px #ec778d;
   }
+
+  &.--filled {
+    background: #0d0d12;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+
+    input,
+    ::ng-deep .p-password-input {
+      background: #0d0d12 !important;
+      color: #fff !important;
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+  }
+
+  &.--empty {
+    background: var(--input-bg) !important;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+
+    input,
+    ::ng-deep .p-password-input {
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+  }
 }
 
 ::ng-deep .p-password {
@@ -42,5 +80,6 @@
   svg {
     width: 24px;
     height: 24px;
+    margin-bottom: 7px;
   }
 }

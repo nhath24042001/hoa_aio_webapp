@@ -174,7 +174,10 @@ export class ProjectDialog {
       this.list_columns = this.list_columns.filter((col) => col.field !== 'document');
       this.list_columns = this.list_columns.filter(
         (col) =>
-          col.field !== 'status' && col.field !== 'bid' && col.field !== 'eta_time' && col.field !== 'project_manager'
+          col.field !== 'status' &&
+          col.field !== 'bid' &&
+          col.field !== 'eta_time' &&
+          col.field !== 'project_manager'
       );
       this.list_columns.push(
         {

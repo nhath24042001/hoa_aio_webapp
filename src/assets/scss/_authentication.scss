@@ -17,7 +17,7 @@
 
   .--text-subtitle {
     font-size: 15px;
-    color: var(--title-subtext);
+    color: var(--title-subtext) !important;
 
     strong {
       color: var(--const-color) !important;
@@ -63,7 +63,7 @@
     }
   }
 
-  .--back-forgot-wrapper {
+  .--back-wrapper {
     width: 50px;
     height: 38px;
     display: flex;
