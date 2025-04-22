@@ -1,11 +1,17 @@
-<div class="--dynamic-action mt-3 d-flex justify-content-between align-items-center">
-  <p>{{ moduleName }} {{ formID }}</p>
+@if (this.isCreateMode()) {
+  <div class="--dynamic-action mt-3 d-flex justify-content-between align-items-center">
+    <p>{{ moduleName() }} {{ formID() }}</p>
 
-  <div class="d-flex align-items-center">
-    <button appButton="secondary" icon="attachment"></button>
+    <div class="d-flex align-items-center">
+      <button appButton="secondary" icon="attachment"></button>
 
-    <button appButton="secondary" icon="save-draft" class="mx-2">Save Draft</button>
+      <button appButton="secondary" icon="save-draft" class="mx-2">Save Draft</button>
 
-    <button appButton="primary" [icon]="buttonIcon">{{ buttonText }}</button>
+      <button appButton="primary" [icon]="buttonIcon()">{{ buttonText() }}</button>
+    </div>
   </div>
-</div>
+} @else {
+  <div class="d-flex justify-content-end">
+    <button appButton="primary" icon="check">Done</button>
+  </div>
+}

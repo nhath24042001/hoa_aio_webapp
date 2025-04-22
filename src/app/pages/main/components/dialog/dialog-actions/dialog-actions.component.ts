@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { ButtonDirective } from '~/directives/button.directive';
 @Component({
@@ -8,9 +8,9 @@ import { ButtonDirective } from '~/directives/button.directive';
   styleUrl: './dialog-actions.component.scss'
 })
 export class DialogActions {
-  @Input() moduleName = '';
-  @Input() formID = '';
-  @Input() isCreateMode = false;
-  @Input() buttonText = '';
-  @Input() buttonIcon = 'file-plus';
+  readonly moduleName = input('');
+  readonly formID = input('');
+  readonly isCreateMode = input(false);
+  readonly buttonText = input('');
+  readonly buttonIcon = input('file-plus');
 }

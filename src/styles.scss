@@ -144,7 +144,8 @@ span {
 .--new,
 .--draft,
 .--clarification_requested,
-.--first_notice {
+.--first_notice,
+.--critical {
   background: #ffb9bf;
   color: #ff515f !important;
   border: 1px solid #ff515f;

@@ -1,4 +1,4 @@
-import { ISelect } from '~/@types';
+import { DynamicField, ISelect } from '~/@types';
 import { REPORT_TYPE, SUB_REPORT_TYPE } from '~/enums/types';
 
 export const report_types: ISelect[] = [
@@ -42,3 +42,85 @@ export const sub_report_types: ISelect[] = [
     code: 'vendor_payment_analysis'
   }
 ];
+
+export const TASK_CUSTOM_SELECT: DynamicField = {
+  icon: 'loading',
+  field: 'status',
+  label: 'Status',
+  type: 'custom-select',
+  position: 'left',
+  list: [
+    {
+      name: 'New',
+      code: 'new',
+      icon: 'red-thunder'
+    },
+    {
+      name: 'assigned',
+      code: 'assigned',
+      icon: 'user-up-01'
+    },
+    {
+      name: 'Accept',
+      code: 'accept',
+      icon: 'user-check-01'
+    },
+    {
+      name: 'Resolve',
+      code: 'resolve',
+      icon: 'check-circle-broken-01'
+    },
+    {
+      name: 'Reject',
+      code: 'reject',
+      icon: 'slash-octagon'
+    },
+    {
+      name: 'Cancel',
+      code: 'cancel',
+      icon: 'x-circle'
+    }
+  ],
+  placeholder: 'Select'
+};
+
+export const PROJECT_CUSTOM_SELECT: DynamicField = {
+  icon: 'loading',
+  field: 'status',
+  label: 'Status',
+  type: 'custom-select',
+  position: 'left',
+  list: [
+    {
+      name: 'New',
+      code: 'new',
+      icon: 'red-thunder'
+    },
+    {
+      name: 'Planning',
+      code: 'planning',
+      icon: 'compass'
+    },
+    {
+      name: 'In Progress',
+      code: 'in_progress',
+      icon: 'loading-01'
+    },
+    {
+      name: 'On Hold',
+      code: 'on_hold',
+      icon: 'hand'
+    },
+    {
+      name: 'Completed',
+      code: 'completed',
+      icon: 'check-circle-broken-01'
+    },
+    {
+      name: 'Cancelled',
+      code: 'canceled',
+      icon: 'x-circle'
+    }
+  ],
+  placeholder: 'Select'
+};

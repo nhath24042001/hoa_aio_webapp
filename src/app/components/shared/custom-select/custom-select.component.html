@@ -7,18 +7,18 @@
     (onChange)="onStatusChange($event)"
   >
     <ng-template #selectedItem let-selectedOption>
-      <div>{{ formControl.name }}</div>
+      <div class="--capitalize">{{ formControl.name }}</div>
     </ng-template>
 
     <ng-template let-country #item>
-      <!-- <div [classList]="`--custom-${country.code} d-flex align-items-center `">
-      <img
-        [src]="'assets/images/' + currentMode + '/' + country.icon + '.svg'"
-        class="me-2"
-        alt="list_icon"
-      />
-      <div>{{ country.name }}</div>
-    </div> -->
+      <div [classList]="`--custom-${country.code} d-flex align-items-center`">
+        <img
+          [src]="'assets/images/' + currentMode + '/' + country.icon + '.svg'"
+          class="me-2 d-flex justify-content-center align-items-center"
+          alt="list_icon"
+        />
+        <div>{{ country.name }}</div>
+      </div>
     </ng-template>
   </p-select>
 </div>

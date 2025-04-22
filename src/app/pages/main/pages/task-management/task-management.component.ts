@@ -95,7 +95,8 @@ export class TaskManagementComponent {
     },
     {
       field: 'task_name',
-      name: 'Task Name'
+      name: 'Task Name',
+      sortable: true
     },
     {
       field: 'task_type',
@@ -197,7 +198,28 @@ export class TaskManagementComponent {
             ],
             project: 'Palm Springs Vendor List',
             resident_name: '',
-            property_address: '42 Main Drive, Palm Springs'
+            property_address: '42 Main Drive, Palm Springs',
+            description:
+              'Negotiate terms and finalize the service agreement with the selected plumbing vendor for the office renovation project. Ensure all requirements are clearly outlined to avoid any service disruptions.',
+            comments: [
+              {
+                avatar: '',
+                name: 'Parker Williams',
+                content: 'The quest has begun'
+              }
+            ],
+            attachments: [
+              {
+                file_name: 'Video Capture 1.MP4',
+                file_type: 'video/mp4',
+                file_size: '2.5 MB'
+              },
+              {
+                file_name: 'Video Capture 1.MP4',
+                file_type: 'video/mp4',
+                file_size: '2.5 MB'
+              }
+            ]
           }
         }
       }

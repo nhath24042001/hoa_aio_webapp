@@ -11,7 +11,7 @@
     class="w-100"
   ></textarea>
 } @else {
-  @if (field() === 'detail') {
+  @if (field() === 'detail' || field() === 'description') {
     <h4>Detail</h4>
     <p>{{ value() }}</p>
   } @else if (field() === 'attachments') {
