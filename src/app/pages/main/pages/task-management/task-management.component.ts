@@ -203,7 +203,7 @@ export class TaskManagementComponent {
               'Negotiate terms and finalize the service agreement with the selected plumbing vendor for the office renovation project. Ensure all requirements are clearly outlined to avoid any service disruptions.',
             comments: [
               {
-                avatar: '',
+                avatar: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png',
                 name: 'Parker Williams',
                 content: 'The quest has begun'
               }
