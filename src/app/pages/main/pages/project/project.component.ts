@@ -116,12 +116,12 @@ export class ProjectComponent {
 
   async onOpenDeleteDialog(): Promise<void> {
     const confirmed = await this.toastService.showConfirm({
-      icon: 'assets/images/common/calendar-x-lg.svg',
-      title: 'Delete Task',
+      icon: 'assets/images/common/red-trash-md.svg',
+      title: 'Delete Item',
       description:
-        'Are you sure? Proceeding will delete the event from the system, and can not be undone.',
+        'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
       type: 'error',
-      buttonText: 'Delete task'
+      buttonText: 'Delete'
     });
 
     if (confirmed) {

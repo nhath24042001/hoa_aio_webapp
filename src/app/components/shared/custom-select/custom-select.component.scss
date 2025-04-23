@@ -19,39 +19,41 @@
   background: #ff515f !important;
 
   span,
-    svg {
-      color: hsl(0, 0%, 100%) !important;
-    }
+  svg {
+    color: hsl(0, 0%, 100%) !important;
+  }
 }
 
 ::ng-deep .p-select.--accepted,
-::ng-deep .p-select.--accept {
+::ng-deep .p-select.--accept,
+::ng-deep .p-select.--in_progress {
   background: #55c68d !important;
 
   span,
-    svg {
-      color: #fff !important;
-    }
+  svg {
+    color: #fff !important;
+  }
 
 }
 
 ::ng-deep .p-select.--pending,
-::ng-deep .p-select.--open {
+::ng-deep .p-select.--open,
+::ng-deep .p-select.--on_hold {
   background: #efa00b !important;
 
   span,
-    svg {
-      color: hsl(0, 0%, 100%) !important;
-    }
+  svg {
+    color: hsl(0, 0%, 100%) !important;
+  }
 }
 
 ::ng-deep .p-select.--approved {
   background: #4e9700 !important;
 
   span,
-    svg {
-      color: hsl(0, 0%, 100%) !important;
-    }
+  svg {
+    color: hsl(0, 0%, 100%) !important;
+  }
 }
 
 ::ng-deep .p-select.--awarded,
@@ -59,27 +61,27 @@
   background: #74db07 !important;
 
   span,
-    svg {
+  svg {
     color: hsl(0, 23%, 51%) !important;
-    }
-    }
+  }
+}
 
 ::ng-deep .p-select.--hearing {
   background: #33cfff !important;
 
   span,
-    svg {
-      color: hsl(0, 0%, 100%) !important;
-    }
+  svg {
+    color: hsl(0, 0%, 100%) !important;
+  }
 }
 
 ::ng-deep .p-select.--second_notice {
   background: #cc2936 !important;
 
   span,
-    svg {
-      color: hsl(0, 0%, 100%) !important;
-    }
+  svg {
+    color: hsl(0, 0%, 100%) !important;
+  }
 }
 
 ::ng-deep .p-select.--assigned {
@@ -91,7 +93,8 @@
   }
 }
 
-::ng-deep .p-select.--resolve {
+::ng-deep .p-select.--resolve,
+::ng-deep .p-select.--completed {
   background: #cfff9c !important;
 
   span,
@@ -100,7 +103,9 @@
   }
 }
 
-::ng-deep .p-select.--reject, ::ng-deep .p-select.--cancel {
+::ng-deep .p-select.--reject,
+::ng-deep .p-select.--cancel,
+::ng-deep .p-select.--canceled {
   background: #eceff3 !important;
 
   span,
@@ -109,13 +114,23 @@
   }
 }
 
+::ng-deep .p-select.--reject,
+::ng-deep .p-select.--planning {
+  background: #fff6e6 !important;
+
+  span,
+  svg {
+    color: #efa00b !important;
+  }
+}
+
 ::ng-deep .p-select-option-selected {
   background: var(--background) !important;
 
   div {
-      color: var(--const-color);
-    }
+    color: var(--const-color);
   }
+}
 
 
 ::ng-deep .p-select-label {
