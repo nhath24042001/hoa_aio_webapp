@@ -1,7 +1,7 @@
 import { IHeaderTable, ITask } from '~/@types/task';
 import { Priority } from '~/enums';
 
-export const projectsData: ITask[] = [
+export const PROJECT_DATA: ITask[] = [
   {
     task_id: '12321',
     type_icon: 'thunder',
@@ -142,7 +142,7 @@ export const projectsData: ITask[] = [
   }
 ];
 
-export const projectHeaders: IHeaderTable[] = [
+export const PROJECT_HEADER: IHeaderTable[] = [
   {
     field: 'type_icon',
     name: '',
@@ -179,133 +179,17 @@ export const projectHeaders: IHeaderTable[] = [
   }
 ];
 
-export const left_project_box = [
+export const PROJECT_ACTIONS = [
   {
-    icon: 'list-sm',
-    field: 'project_type',
-    label: 'Type',
-    type: 'select',
-    placeholder: 'Select',
-    list: [
-      {
-        name: 'Renovation',
-        code: 'renovation'
-      },
-      {
-        name: 'Maintenance',
-        code: 'maintenance'
-      },
-      {
-        name: 'New construction',
-        code: 'new_construction'
-      },
-      {
-        name: 'Inspection',
-        code: 'inspection'
-      },
-      {
-        name: 'Other',
-        code: 'other'
-      }
-    ]
+    label: 'Edit',
+    icon: 'edit',
+    actionKey: 'edit',
+    className: '--pointer mb-2'
   },
   {
-    icon: 'flag',
-    field: 'priority',
-    label: 'Priority',
-    type: 'select',
-    placeholder: 'Low',
-    list: [
-      {
-        name: 'Low',
-        code: 'low'
-      },
-      {
-        name: 'Medium',
-        code: 'medium'
-      },
-      {
-        name: 'High',
-        code: 'high'
-      },
-      {
-        name: 'Critical',
-        code: 'critical'
-      }
-    ]
-  },
-  {
-    icon: 'sticker-circle',
-    field: 'status',
-    label: 'Status',
-    type: 'select',
-    placeholder: 'Select',
-    list: [
-      {
-        name: 'New',
-        code: 'new'
-      },
-      {
-        name: 'Planning',
-        code: 'planning'
-      },
-      {
-        name: 'In Progress',
-        code: 'in_progress'
-      },
-      {
-        name: 'On Hold',
-        code: 'on_hold'
-      },
-      {
-        name: 'Completed',
-        code: 'completed'
-      },
-      {
-        name: 'Cancelled',
-        code: 'canceled'
-      }
-    ]
-  },
-  {
-    icon: 'finger',
-    field: 'bid',
-    label: 'Bid',
-    type: 'select',
-    placeholder: 'Select',
-    list: [
-      {
-        name: 'Yes',
-        code: 'yes'
-      },
-      {
-        name: 'No',
-        code: 'no'
-      }
-    ]
-  }
-];
-
-export const right_project_box = [
-  {
-    icon: 'hourglass',
-    field: 'eta_time',
-    label: 'ETA',
-    type: 'date',
-    placeholder: 'Set ETA date'
-  },
-  {
-    icon: 'receipt',
-    field: 'cost',
-    label: 'Estimated Cost',
-    type: 'input',
-    placeholder: 'Enter estimate'
-  },
-  {
-    icon: 'perspective',
-    field: 'project_manager',
-    label: 'Project Manager',
-    type: 'input',
-    placeholder: 'Me (enter name to change)'
+    label: 'Delete',
+    icon: 'trash',
+    actionKey: 'delete',
+    className: '--delete-action --pointer'
   }
 ];

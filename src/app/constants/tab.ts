@@ -1,3 +1,44 @@
+export const taskTabHeader = [
+  {
+    name: 'All Tasks',
+    img: 'assets/images/common/rows-01.svg',
+    activeImg: 'assets/images/common/rows-01.svg'
+  },
+  {
+    name: 'Claims',
+    img: 'assets/images/common/violation-alert.svg',
+    activeImg: 'assets/images/common/violation-alert.svg'
+  },
+  {
+    name: 'Action Items',
+    img: 'assets/images/common/clipboard-check.svg',
+    activeImg: 'assets/images/light/clipboard-check-sm.svg'
+  }
+];
+
+export const PROJECT_TABS = [
+  {
+    name: 'Open Projects',
+    img: 'assets/images/common/perspective-01.svg',
+    activeImg: 'assets/images/common/perspective.svg'
+  },
+  {
+    name: 'On Hold',
+    img: 'assets/images/common/hand.svg',
+    activeImg: 'assets/images/common/hand.svg'
+  },
+  {
+    name: 'Completed',
+    img: 'assets/images/common/check-circle-broken.svg',
+    activeImg: 'assets/images/common/check-circle-broken.svg'
+  },
+  {
+    name: 'Canceled',
+    img: 'assets/images/common/x-circle.svg',
+    activeImg: 'assets/images/common/x-circle.svg'
+  }
+];
+
 export const vendorTabHeader = [
   {
     name: 'Companies',

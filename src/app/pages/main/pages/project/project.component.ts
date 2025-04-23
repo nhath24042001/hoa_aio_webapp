@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TabsModule } from 'primeng/tabs';
 
-import { projectHeaders, projectsData } from '~/data/project';
+import { PROJECT_TABS } from '~/constants/tab';
+import { PROJECT_ACTIONS, PROJECT_DATA, PROJECT_HEADER } from '~/data/project';
 import { ButtonDirective } from '~/directives/button.directive';
 import { ProjectDialog } from '~/pages/main/components/modules/project/project-dialog/project-dialog.component';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
@@ -21,23 +22,12 @@ import { ToastService } from '~/services/toast.service';
 export class ProjectComponent {
   ref: DynamicDialogRef | undefined;
   isActive: boolean = true;
-  projects = projectsData;
-  headers = projectHeaders;
+  activeTab = signal('0');
+  projects = PROJECT_DATA;
+  headers = PROJECT_HEADER;
+  tabs = PROJECT_TABS;
 
-  actions = [
-    {
-      label: 'Edit',
-      icon: 'edit',
-      actionKey: 'edit',
-      className: '--pointer mb-2'
-    },
-    {
-      label: 'Delete',
-      icon: 'trash',
-      actionKey: 'delete',
-      className: '--delete-action --pointer'
-    }
-  ];
+  actions = PROJECT_ACTIONS;
 
   constructor(
     public dialogService: DialogService,
@@ -45,6 +35,10 @@ export class ProjectComponent {
   ) {}
 
   onSearch() {}
+
+  onTabChange(tabIndex: number | string) {
+    this.activeTab.set(tabIndex.toString());
+  }
 
   onOpenCreateProject(): void {
     this.ref = this.dialogService.open(ProjectDialog, {
