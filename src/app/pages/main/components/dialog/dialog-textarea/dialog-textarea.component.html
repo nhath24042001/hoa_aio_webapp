@@ -22,25 +22,9 @@
       <p>{{ value() }}</p>
     }
 
-    @case ('attachments') {
-      <div class="mt-4">
-        <h4>Attachments</h4>
-        <div class="d-flex gap-3">
-          @for (attach of value(); track $index) {
-            <div class="--attachment-box d-flex align-items-center justify-content-center">
-              <img
-                [src]="'assets/images/' + currentMode + '/video-recorder.svg'"
-                class="me-2"
-                alt="video_record"
-              />
-              <div>
-                <p class="--file-name">{{ attach.file_name }}</p>
-                <p class="--file-size">{{ attach.file_size }}</p>
-              </div>
-            </div>
-          }
-        </div>
-      </div>
+    @case ('comment') {
+      <h5 class="mb-2 mt-3">{{ title() }}</h5>
+      <p>{{ value() }}</p>
     }
 
     @case ('comments') {
@@ -61,6 +45,27 @@
             <p class="mt-3">{{ item.content }}</p>
           </div>
         }
+      </div>
+    }
+
+    @default {
+      <div class="mt-4">
+        <h4>{{ title() }}</h4>
+        <div class="d-flex gap-3">
+          @for (attach of value(); track $index) {
+            <div class="--attachment-box d-flex align-items-center justify-content-center">
+              <img
+                [src]="'assets/images/' + currentMode + '/video-recorder.svg'"
+                class="me-2"
+                alt="video_record"
+              />
+              <div>
+                <p class="--file-name">{{ attach.file_name }}</p>
+                <p class="--file-size">{{ attach.file_size }}</p>
+              </div>
+            </div>
+          }
+        </div>
       </div>
     }
   }

@@ -124,3 +124,24 @@ export const PROJECT_CUSTOM_SELECT: DynamicField = {
   ],
   placeholder: 'Select'
 };
+
+export const VENDOR_CUSTOM_SELECT: DynamicField = {
+  icon: 'loading',
+  field: 'status',
+  label: 'Status',
+  type: 'custom-select',
+  position: 'left',
+  list: [
+    {
+      name: 'Approved',
+      code: 'approved',
+      icon: 'check-circle-broken-01'
+    },
+    {
+      name: 'Pending',
+      code: 'pending',
+      icon: 'hand'
+    }
+  ],
+  placeholder: 'Select'
+};
