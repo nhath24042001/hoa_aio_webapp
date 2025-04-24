@@ -36,10 +36,20 @@
           ></app-table>
         </p-tabpanel>
         <p-tabpanel value="1">
-          <app-table [headers]="bidHeader" [data]="bidList" [actions]="actions"></app-table>
+          <app-table
+            [headers]="bidHeader"
+            [data]="bidList"
+            [actions]="actions"
+            (actionTriggered)="onAction($event)"
+          ></app-table>
         </p-tabpanel>
         <p-tabpanel value="2">
-          <app-table [headers]="bidHeader" [data]="estimateList" [actions]="actions"></app-table
+          <app-table
+            [headers]="bidHeader"
+            [data]="estimateList"
+            [actions]="actions"
+            (actionTriggered)="onAction($event)"
+          ></app-table
         ></p-tabpanel>
       </p-tabpanels>
     </p-tabs>

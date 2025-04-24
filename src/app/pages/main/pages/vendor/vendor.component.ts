@@ -132,6 +132,21 @@ export class VendorComponent {
     });
   }
 
+  async onOpenDeleteDialog(): Promise<void> {
+    const confirmed = await this.toastService.showConfirm({
+      icon: 'assets/images/common/red-trash-md.svg',
+      title: 'Delete Item',
+      description:
+        'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
+      type: 'error',
+      buttonText: 'Delete'
+    });
+
+    if (confirmed) {
+      console.log('run 1');
+    }
+  }
+
   onAction(event: { actionKey: string; rowData: any }): void {
     switch (event.actionKey) {
       case Action.EDIT:
@@ -144,7 +159,7 @@ export class VendorComponent {
         // this.toastService.showWarning('Marked as pending');
         break;
       case 'delete':
-        // this.toastService.showDanger('Deleted successfully');
+        this.onOpenDeleteDialog();
         break;
       default:
         break;

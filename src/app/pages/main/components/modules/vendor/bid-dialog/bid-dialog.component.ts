@@ -21,20 +21,43 @@ export class BidDialog {
       icon: 'loading',
       field: 'status',
       label: 'Status',
-      type: 'select',
+      type: 'custom-select',
       position: 'left',
       list: [
         {
           name: 'Draft',
-          code: 'draft'
+          code: 'draft',
+          icon: 'red-thunder'
         },
         {
           name: 'Open',
-          code: 'open'
+          code: 'open',
+          icon: 'announcement-01'
+        },
+        {
+          name: 'Under Review',
+          code: 'under_review',
+          icon: 'microscope-01'
+        },
+        {
+          name: 'Clarification Requested',
+          code: 'clarification_requested',
+          icon: 'hand-03'
+        },
+        {
+          name: 'Evaluated',
+          code: 'evaluated',
+          icon: 'loading-01'
         },
         {
           name: 'Awarded',
-          code: 'awarded'
+          code: 'awarded',
+          icon: 'check-circle-broken-01'
+        },
+        {
+          name: 'Canceled',
+          code: 'canceled',
+          icon: 'x-circle'
         }
       ],
       placeholder: 'Select'
@@ -110,7 +133,7 @@ export class BidDialog {
       placeholder: 'Set responses due date'
     },
     {
-      icon: 'thunder',
+      icon: 'thunder-01',
       field: 'expected_start_date',
       label: 'Expected start date',
       type: 'date',
