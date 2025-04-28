@@ -38,6 +38,7 @@
 ::-webkit-scrollbar-track {
   background: #f0f0f0;
 }
+
 html,
 body,
 div,
@@ -143,7 +144,8 @@ span {
 .--new,
 .--draft,
 .--clarification_requested,
-.--first_notice {
+.--first_notice,
+.--critical {
   background: #ffb9bf;
   color: #ff515f !important;
   border: 1px solid #ff515f;
@@ -340,7 +342,7 @@ span {
       color: var(--dialog-title);
 
       &.--detail {
-        color: #000000;
+        color: var(--const-color);
       }
     }
 
@@ -401,6 +403,7 @@ span {
     .--comment-box {
       background: #f6f8fa;
       border-radius: 10px;
+      padding: 16px;
 
       &.--dark {
         background: #1a1b25;
@@ -461,6 +464,10 @@ span {
         color: #6938da;
       }
     }
+
+    .--footer-id {
+      width: 20%;
+    }
   }
 }
 
@@ -496,6 +503,14 @@ span {
 
 .--btn-delete {
   background-color: #ff515f;
+  color: #fff;
+  border: none;
+  width: 100%;
+  font-size: 18px;
+}
+
+.--btn-success {
+  background: #74DB07;
   color: #fff;
   border: none;
   width: 100%;

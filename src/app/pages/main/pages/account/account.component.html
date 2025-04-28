@@ -156,7 +156,7 @@
         <button appButton="outline" icon="log-out" [currentMode]="currentMode" class="me-4">
           Logout from account
         </button>
-        <button appButton="danger" icon="user-x" [currentMode]="currentMode">Delete Account</button>
+        <button appButton="danger" icon="user-x" [currentMode]="currentMode" (click)="openDeleteAccountDialog()">Delete Account</button>
       </div>
     </div>
 

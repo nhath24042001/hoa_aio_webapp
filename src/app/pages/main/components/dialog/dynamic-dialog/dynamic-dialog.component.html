@@ -91,6 +91,7 @@
     </div>
 
     <app-dialog-actions
+      [isCreateMode]="dialogType === 'create'"
       [formID]="formID"
       [buttonText]="buttonText"
       [moduleName]="moduleName"

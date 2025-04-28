@@ -1,132 +1,152 @@
-.--custom-select {
-  ::ng-deep .p-select.--new,
-  ::ng-deep .p-select.--first_notice,
-  ::ng-deep .p-select.--draft {
-    background: #ff515f !important;
-    border-radius: 10px;
-    border: 0;
+.--capitalize {
+  text-transform: capitalize;
+}
 
-    span,
-    svg {
-      color: hsl(0, 0%, 100%) !important;
-    }
+::ng-deep .p-select {
+  // border-radius: 10px !important;
+    // border: 0 !important;
+    // width: 160px;
 
-    .p-select-label {
-      padding: 4px 12px !important;
-    }
-  }
-
-  ::ng-deep .p-select.--accepted {
-    background: #55c68d !important;
-    border-radius: 10px;
-    border: 0;
-
-    span,
-    svg {
-      color: #fff !important;
-    }
-
-    .p-select-label {
-      padding: 4px 12px !important;
-    }
-  }
-
-  ::ng-deep .p-select.--pending,
-  ::ng-deep .p-select.--open {
-    background: #efa00b !important;
-    border-radius: 10px;
-    border: 0;
-
-    span,
-    svg {
-      color: hsl(0, 0%, 100%) !important;
-    }
-
-    .p-select-label {
-      padding: 4px 12px !important;
-    }
-  }
-
-  ::ng-deep .p-select.--approved {
-    background: #4e9700 !important;
-    border-radius: 10px;
-    border: 0;
-
-    span,
-    svg {
-      color: hsl(0, 0%, 100%) !important;
-    }
-
-    .p-select-label {
-      padding: 4px 12px !important;
-    }
-  }
-
-  ::ng-deep .p-select.--awarded,
-  ::ng-deep .p-select.--closed {
-    background: #74db07 !important;
-    border-radius: 10px;
-    border: 0;
-
-    span,
-    svg {
-      color: hsl(0, 0%, 100%) !important;
-    }
-
-    .p-select-label {
-      padding: 4px 12px !important;
-    }
-  }
-
-  ::ng-deep .p-select.--hearing {
-    background: #33cfff !important;
-    border-radius: 10px;
-    border: 0;
-
-    span,
-    svg {
-      color: hsl(0, 0%, 100%) !important;
-    }
-
-    .p-select-label {
-      padding: 4px 12px !important;
-    }
-  }
-
-  ::ng-deep .p-select.--second_notice {
-    background: #cc2936 !important;
-    border-radius: 10px;
-    border: 0;
-
-    span,
-    svg {
-      color: hsl(0, 0%, 100%) !important;
-    }
-
-    .p-select-label {
-      padding: 4px 12px !important;
-    }
-  }
-
-  // ::ng-deep .p-select-option-selected:hover,
-  // ::ng-deep .p-select-option
-  ::ng-deep .p-select-option-selected {
-    background: var(--background) !important;
-
-    div {
-      color: var(--const-color);
-    }
-  }
-
-  ::ng-deep .p-select-label {
+  .p-select-label {
     padding: 4px 12px !important;
   }
+}
 
-  ::ng-deep .p-select-list {
-    padding: 0;
+
+::ng-deep .p-select.--new,
+::ng-deep .p-select.--first_notice,
+::ng-deep .p-select.--draft,
+::ng-deep .p-select.--clarification_requested {
+  background: #ff515f !important;
+
+  span,
+  svg {
+    color: hsl(0, 0%, 100%) !important;
+  }
+}
+
+::ng-deep .p-select.--accepted,
+::ng-deep .p-select.--accept,
+::ng-deep .p-select.--in_progress {
+  background: #55c68d !important;
+
+  span,
+  svg {
+    color: #fff !important;
   }
 
-  ::ng-deep .p-select {
-    width: 160px;
+}
+
+::ng-deep .p-select.--pending,
+::ng-deep .p-select.--open,
+::ng-deep .p-select.--on_hold {
+  background: #efa00b !important;
+
+  span,
+  svg {
+    color: hsl(0, 0%, 100%) !important;
   }
+}
+
+::ng-deep .p-select.--approved {
+  background: #4e9700 !important;
+
+  span,
+  svg {
+    color: hsl(0, 0%, 100%) !important;
+  }
+}
+
+::ng-deep .p-select.--awarded,
+::ng-deep .p-select.--closed {
+  background: #CFFF9C !important;
+
+  span,
+  svg {
+    color: #4E9700 !important;
+  }
+}
+
+::ng-deep .p-select.--hearing {
+  background: #33cfff !important;
+
+  span,
+  svg {
+    color: #116B97 !important;
+  }
+}
+
+::ng-deep .p-select.--second_notice {
+  background: #cc2936 !important;
+
+  span,
+  svg {
+    color: hsl(0, 0%, 100%) !important;
+  }
+}
+
+::ng-deep .p-select.--assigned,
+::ng-deep .p-select.--under_review {
+  background: #d1f0fa !important;
+
+  span,
+  svg {
+    color: #116b97 !important;
+  }
+}
+
+::ng-deep .p-select.--resolve,
+::ng-deep .p-select.--completed {
+  background: #cfff9c !important;
+
+  span,
+  svg {
+    color: #4e9700 !important;
+  }
+}
+
+::ng-deep .p-select.--reject,
+::ng-deep .p-select.--cancel,
+::ng-deep .p-select.--canceled {
+  background: #eceff3 !important;
+
+  span,
+  svg {
+    color: #818898 !important;
+  }
+}
+
+::ng-deep .p-select.--reject,
+::ng-deep .p-select.--planning {
+  background: #fff6e6 !important;
+
+  span,
+  svg {
+    color: #efa00b !important;
+  }
+}
+
+::ng-deep .p-select.--evaluated {
+  background: #DAFFED !important;
+
+  span,
+  svg {
+    color: #1C824F !important;
+  }
+}
+::ng-deep .p-select-option-selected {
+  background: var(--background) !important;
+
+  div {
+    color: var(--const-color);
+  }
+}
+
+
+::ng-deep .p-select-label {
+  padding: 4px 12px !important;
+}
+
+::ng-deep .p-select-list {
+  padding: 0;
 }

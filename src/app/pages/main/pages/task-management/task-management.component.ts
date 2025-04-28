@@ -1,19 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TabsModule } from 'primeng/tabs';
 
-import { IHeaderTable, ITaskManagement } from '~/@types/task';
 import { TASK_STATUS } from '~/constants';
+import { taskTabHeader } from '~/constants/tab';
+import { TASK_ACTIONS, TASK_HEADER, TASK_LIST } from '~/data/task';
 import { ButtonDirective } from '~/directives/button.directive';
-import { Priority } from '~/enums';
 import { TaskDialog } from '~/pages/main/components/modules/task-management/task-dialog/task-dialog.component';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';
+import { ToastService } from '~/services/toast.service';
 
 @Component({
   selector: 'app-task-management',
@@ -32,120 +33,30 @@ import { Table } from '~/pages/main/components/shared/table/table.component';
 })
 export class TaskManagementComponent {
   ref: DynamicDialogRef | undefined;
+  activeTab = signal('0');
   isActive: boolean = true;
-  tasks: ITaskManagement = {
-    all_tasks: [
-      {
-        task_id: '12321',
-        type_icon: 'clipboard-sm',
-        task_name: 'Sign contract with plumbing vendor',
-        task_type: 'Maintenance',
-        priority: Priority.URGENT,
-        created: '2023-08-01',
-        status: 'new',
-        assigned_to: [
-          {
-            id: 1,
-            name: 'John Doe',
-            avatar:
-              'https://images.pexels.com/photos/8721322/pexels-photo-8721322.jpeg?auto=compress&cs=tinysrgb&w=600'
-          },
-          {
-            id: 2,
-            name: 'Jane Smith',
-            avatar:
-              'https://images.pexels.com/photos/7849511/pexels-photo-7849511.jpeg?auto=compress&cs=tinysrgb&w=600'
-          }
-        ]
-      },
-      {
-        task_id: '12322',
-        type_icon: 'claim',
-        task_name: 'Trim entrance area trees',
-        task_type: 'Landscape',
-        priority: Priority.IMPORTANT,
-        created: '2023-08-01',
-        status: 'accepted',
-        assigned_to: [
-          {
-            id: 1,
-            name: 'John Doe',
-            avatar:
-              'https://images.pexels.com/photos/7561957/pexels-photo-7561957.jpeg?auto=compress&cs=tinysrgb&w=600'
-          },
-          {
-            id: 2,
-            name: 'Jane Smith',
-            avatar:
-              'https://images.pexels.com/photos/7562349/pexels-photo-7562349.jpeg?auto=compress&cs=tinysrgb&w=600'
-          }
-        ]
-      }
-    ],
-    claims: [],
-    action_items: []
-  };
+  tasks = TASK_LIST;
+  tabs = taskTabHeader;
 
-  headers: IHeaderTable[] = [
-    {
-      field: 'type_icon',
-      name: '',
-      width: '20px'
-    },
-    {
-      field: 'task_name',
-      name: 'Task Name'
-    },
-    {
-      field: 'task_type',
-      name: 'Type'
-    },
-    {
-      field: 'priority',
-      name: 'Priority'
-    },
-    {
-      field: 'created',
-      name: 'Created'
-    },
-    {
-      field: 'assigned_to',
-      name: 'Assigned To'
-    },
-    {
-      field: 'status',
-      name: 'Status'
-    },
-    {
-      field: 'action',
-      name: '',
-      width: '20px'
-    }
-  ];
+  headers = TASK_HEADER;
 
-  actions = [
-    {
-      label: 'Edit',
-      icon: 'edit',
-      actionKey: 'edit',
-      className: '--pointer mb-2'
-    },
-    {
-      label: 'Delete',
-      icon: 'trash',
-      actionKey: 'delete',
-      className: '--delete-action --pointer'
-    }
-  ];
+  actions = TASK_ACTIONS;
 
   task_status = TASK_STATUS;
   selectedStatus: string = '';
   startDate = '';
   endDate = '';
 
-  constructor(public dialogService: DialogService) {}
+  constructor(
+    public dialogService: DialogService,
+    private toastService: ToastService
+  ) {}
 
   onSearch() {}
+
+  onTabChange(tabIndex: number | string) {
+    this.activeTab.set(tabIndex.toString());
+  }
 
   onOpenCreateTask(): void {
     this.ref = this.dialogService.open(TaskDialog, {
@@ -193,7 +104,28 @@ export class TaskManagementComponent {
             ],
             project: 'Palm Springs Vendor List',
             resident_name: '',
-            property_address: '42 Main Drive, Palm Springs'
+            property_address: '42 Main Drive, Palm Springs',
+            description:
+              'Negotiate terms and finalize the service agreement with the selected plumbing vendor for the office renovation project. Ensure all requirements are clearly outlined to avoid any service disruptions.',
+            comments: [
+              {
+                avatar: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png',
+                name: 'Parker Williams',
+                content: 'The quest has begun'
+              }
+            ],
+            attachments: [
+              {
+                file_name: 'Video Capture 1.MP4',
+                file_type: 'video/mp4',
+                file_size: '2.5 MB'
+              },
+              {
+                file_name: 'Video Capture 1.MP4',
+                file_type: 'video/mp4',
+                file_size: '2.5 MB'
+              }
+            ]
           }
         }
       }
@@ -215,13 +147,16 @@ export class TaskManagementComponent {
   }
 
   async onOpenDeleteDialog(): Promise<void> {
-    // const confirmed = await this.toastService.showConfirm({
-    //   icon: 'assets/images/common/calendar-x-lg.svg',
-    //   title: 'Delete task',
-    //   description:
-    //     'Are you sure? Proceeding will delete the event from the system, and can not be undone.',
-    //   type: 'error',
-    //   buttonText: 'Delete task'
-    // });
+    const confirmed = await this.toastService.showConfirm({
+      icon: 'assets/images/common/red-trash-md.svg',
+      title: 'Delete task',
+      description:
+        'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
+      type: 'error',
+      buttonText: 'Delete task'
+    });
+
+    if (confirmed) {
+    }
   }
 }

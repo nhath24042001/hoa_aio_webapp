@@ -37,3 +37,8 @@
 ::ng-deep .p-dialog {
   max-height: 100%;
 }
+
+::ng-deep .p-placeholder,
+::ng-deep .p-select-label.p-placeholder {
+  color: var(--title-subtext) !important;
+}

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
 import { DynamicField } from '~/@types';
+import { PROJECT_CUSTOM_SELECT } from '~/constants/select';
 import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dynamic-dialog.component';
 
 @Component({
@@ -156,7 +157,6 @@ export class ProjectDialog {
       position: 'extra'
     }
   ];
-
   list_textarea = [
     {
       title: 'Project Description',
@@ -165,6 +165,7 @@ export class ProjectDialog {
       field: 'detail'
     }
   ];
+  project_custom_select = PROJECT_CUSTOM_SELECT;
 
   constructor(public config: DynamicDialogConfig) {
     this.data = config.data;
@@ -205,34 +206,14 @@ export class ProjectDialog {
           position: 'right'
         }
       );
-      this.list_columns.unshift(
-        {
-          icon: 'loading',
-          field: 'status',
-          label: 'Status',
-          type: 'custom-select',
-          position: 'left',
-          list: [
-            {
-              name: 'Pending',
-              code: 'pending'
-            },
-            {
-              name: 'Approved',
-              code: 'approved'
-            }
-          ],
-          placeholder: 'Select'
-        },
-        {
-          icon: 'perspective',
-          field: 'project_manager',
-          label: 'Project Manager',
-          type: 'input',
-          placeholder: 'Me (enter name to change)',
-          position: 'right'
-        }
-      );
+      this.list_columns.unshift(this.project_custom_select, {
+        icon: 'perspective',
+        field: 'project_manager',
+        label: 'Project Manager',
+        type: 'input',
+        placeholder: 'Me (enter name to change)',
+        position: 'right'
+      });
 
       this.list_columns = this.list_columns.map((column) => {
         return {

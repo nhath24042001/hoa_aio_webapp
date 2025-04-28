@@ -8,6 +8,7 @@ import { CustomInputComponent } from '~/components/shared/custom-input/custom-in
 import { InputFile } from '~/components/shared/input-file/input-file.component';
 import { ButtonDirective } from '~/directives/button.directive';
 import { ThemeService } from '~/services/theme.service';
+import { ToastService } from '~/services/toast.service';
 
 @Component({
   selector: 'app-account',
@@ -37,7 +38,8 @@ export class AccountComponent extends BaseComponent {
   ];
   constructor(
     themeService: ThemeService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastService: ToastService
   ) {
     super(themeService);
     this.profileInfo = this.fb.group({
@@ -47,5 +49,19 @@ export class AccountComponent extends BaseComponent {
       email: ['rgraph123@gmail.com'],
       password: ['']
     });
+  }
+
+  async openDeleteAccountDialog() {
+    const confirmed = await this.toastService.showConfirm({
+      icon: 'assets/images/common/user-x-lg.svg',
+      title: 'Delete Account',
+      buttonText: 'Delete',
+      type: 'error',
+      description: 'Are you sure? Proceeding will delete the account from the system, and can not be undone.'
+    });
+
+    if (confirmed) {
+      console.log('Account deleted');
+    }
   }
 }

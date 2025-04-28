@@ -38,6 +38,7 @@ export class AnnouncementsComponent implements OnInit {
   isLoading = true;
 
   announcements: IAnnouncement[] = [];
+  expiredAnnouncements: IAnnouncement[] = [];
 
   userTypes = [
     {

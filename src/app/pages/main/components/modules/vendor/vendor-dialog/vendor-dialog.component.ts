@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
 import { DynamicField } from '~/@types';
+import { VENDOR_CUSTOM_SELECT } from '~/constants/select';
 import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dynamic-dialog.component';
 
 @Component({
@@ -127,14 +128,18 @@ export class VendorDialog {
     {
       title: 'Vendor Description',
       placeholder: 'Enter description',
-      value: ''
+      value: '',
+      field: 'description'
     },
     {
       title: 'Comments',
       placeholder: 'Enter comments',
-      value: ''
+      value: '',
+      field: 'comment'
     }
   ];
+
+  vendor_custom_select = VENDOR_CUSTOM_SELECT;
 
   constructor(public config: DynamicDialogConfig) {
     this.data = config.data;
@@ -142,26 +147,31 @@ export class VendorDialog {
 
     if (this.type !== 'create') {
       this.list_columns = this.list_columns.filter((col) => col.field !== 'document');
-      this.list_columns.unshift({
-        icon: 'loading',
-        field: 'status',
-        label: 'Status',
-        type: 'select',
-        position: 'left',
-        list: [
-          {
-            name: 'Pending',
-            code: 'pending'
-          },
-          {
-            name: 'Approved',
-            code: 'approved'
-          }
-        ],
-        placeholder: 'Select'
-      });
+      this.list_columns.unshift(this.vendor_custom_select);
 
       this.list_columns = this.list_columns.map((column) => {
+        return {
+          ...column,
+          value: this.data.data.formData[column.field]
+        };
+      });
+
+      this.list_textarea.push(
+        {
+          title: 'Documents',
+          field: 'documents',
+          placeholder: '',
+          value: ''
+        },
+        {
+          title: 'Contracts',
+          field: 'contracts',
+          placeholder: '',
+          value: ''
+        }
+      );
+
+      this.list_textarea = this.list_textarea.map((column) => {
         return {
           ...column,
           value: this.data.data.formData[column.field]
@@ -170,11 +180,11 @@ export class VendorDialog {
     }
   }
 
-  get title() {
+  dialogTitle = computed(() => {
     return this.type === 'create' ? 'Create New Vendor' : 'Vendor Details';
-  }
+  });
 
-  get formData() {
+  formData = computed(() => {
     return this.config.data;
-  }
+  });
 }
