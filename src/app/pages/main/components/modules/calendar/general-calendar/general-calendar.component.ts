@@ -16,11 +16,13 @@ import { CalendarOptions } from '@fullcalendar/core/index.js';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import dayjs from 'dayjs';
 import { SelectModule } from 'primeng/select';
 
 import { BaseComponent } from '~/components/common/base/base.component';
 import { calendarData, calendarHeader } from '~/data/calendar';
 import { Table } from '~/pages/main/components/shared/table/table.component';
+import { CalendarService } from '~/pages/main/pages/calendar/calendar.service';
 import { ThemeService } from '~/services/theme.service';
 
 @Component({
@@ -49,28 +51,7 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
     plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin],
     headerToolbar: { left: 'today title prev,next', right: '' },
     initialView: 'dayGridMonth',
-    events: [
-      { title: 'Booking Request', start: '2025-03-03', className: '--event --event-red' },
-      { title: 'Event Title - Truncate', start: '2025-03-03', className: '--event --event-purple' },
-      { title: 'Event Title - Truncate', start: '2025-03-04', className: '--event --event-orange' },
-      { title: 'Event Title - Truncate', start: '2025-03-05', className: '--event --event-purple' },
-      { title: 'Event Title - Truncate', start: '2025-03-05', className: '--event --event-orange' },
-      {
-        title: 'Event Title - Truncate',
-        start: '2025-03-06',
-        className: '--event --event-green-light'
-      },
-      { title: 'Event Title - Truncate', start: '2025-03-06', className: '--event --event-green' },
-      { title: 'Event Title - Truncate', start: '2025-03-07', className: '--event --event-green' },
-      { title: 'Event Title - Truncate', start: '2025-03-07', className: '--event --event-orange' },
-      { title: 'Event Title - Truncate', start: '2025-03-10', className: '--event --event-purple' },
-      {
-        title: 'Event Title - Truncate',
-        start: '2025-03-10',
-        className: '--event --event-green-light'
-      },
-      { title: 'Event Title - Truncate', start: '2025-03-07', className: '--event --event-green' }
-    ]
+    events: []
   });
 
   actions = [
@@ -90,7 +71,8 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
 
   constructor(
     themeService: ThemeService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private calendarService: CalendarService
   ) {
     super(themeService);
   }
@@ -102,6 +84,12 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
   ngAfterViewInit(): void {
     this.updateCalendar();
     this.onGetCalendarTitle();
+    const date = this.calendarApi?.getDate();
+    if (date) {
+      const currentMonth = date.getMonth() + 1;
+      const currentYear = date.getFullYear();
+      this.onGetEvents(currentMonth, currentYear);
+    }
   }
 
   onGetCalendarTitle(): void {
@@ -109,8 +97,32 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
     this.cdr.detectChanges();
   }
 
+  onGetEvents(month: number, year: number): void {
+    // --event-orange
+    // --event-purple
+    // --event-green
+    // --event-green-light
+    // --event-red
+    this.calendarService.getEventByDate(month, year).subscribe((res) => {
+      this.calendarOptions.set({
+        events: res.events.map((event) => ({
+          ...event,
+          start: dayjs(event.created_at).format('YYYY-MM-DD'),
+          className: '--event --event-green'
+        }))
+      });
+    });
+  }
+
   onNavigation(action: 'today' | 'prev' | 'next'): void {
     this.calendarApi?.[action]();
+    this.calendarTitle = this.calendarApi?.view.title || '';
+    const date = this.calendarApi?.getDate();
+    if (date) {
+      const currentMonth = date.getMonth() + 1;
+      const currentYear = date.getFullYear();
+      this.onGetEvents(currentMonth, currentYear);
+    }
   }
 
   onViewChange(view: { name: string; code: string }): void {
