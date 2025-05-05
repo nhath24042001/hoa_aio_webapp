@@ -44,4 +44,26 @@ export class AnnouncementService extends HttpClientModel {
   public getRecentAnnouncements() {
     return this.post(this.createRequest('Announcement', 'get_recent_announcements'));
   }
+
+  public getActiveAnnouncements(
+    search: string,
+    filter_user_types: string[]
+  ): Observable<IAnnouncementResponse> {
+    const payload = {
+      search,
+      filter_user_types
+    };
+    return this.post(this.createRequest('Announcement', 'get_active_announcements', payload));
+  }
+
+  public getExpiredAnnouncements(
+    search: string,
+    filter_user_types: string[]
+  ): Observable<IAnnouncementResponse> {
+    const payload = {
+      search,
+      filter_user_types
+    };
+    return this.post(this.createRequest('Announcement', 'get_expired_announcements', payload));
+  }
 }

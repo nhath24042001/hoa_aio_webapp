@@ -1,65 +1,63 @@
-@if (!isLoading) {
-  <div class="--announcement-wrapper p-4">
-    <div class="--announcement-header">
-      <p-tabs value="0">
-        <div class="d-flex justify-content-between align-items-center">
-          <p-tablist>
-            <p-tab value="0">Active Announcements</p-tab>
-            <p-tab value="1">Expired Announcements</p-tab>
-          </p-tablist>
+<div class="--announcement-wrapper p-4">
+  <div class="--announcement-header">
+    <p-tabs value="0">
+      <div class="d-flex justify-content-between align-items-center">
+        <p-tablist>
+          <p-tab value="0">Active Announcements</p-tab>
+          <p-tab value="1">Expired Announcements</p-tab>
+        </p-tablist>
 
-          <main-header
-            labelButton="New Announcement"
-            (searchChanged)="onSearchAnnouncement($event)"
-            (addSection)="onOpenAnnouncement(ACTION_DIALOG.CREATE, null)"
-          >
-            <div filter-content>
-              <div class="--filter-content">
-                <div class="d-flex justify-content-between align-items-center">
-                  <h2>Filters</h2>
-                  <h4>Clear all</h4>
-                </div>
-
-                <h3>Show user type</h3>
-
-                @for (filter of userTypes; track $index) {
-                  <div class="--checkbox d-flex align-items-center">
-                    <p-checkbox [value]="filter.value" size="small" />
-                    <span>{{ filter.label }}</span>
-                  </div>
-                }
+        <main-header
+          labelButton="New Announcement"
+          (searchChanged)="onSearchAnnouncement($event)"
+          (addSection)="onOpenAnnouncement(ACTION_DIALOG.CREATE, null)"
+        >
+          <div filter-content>
+            <div class="--filter-content">
+              <div class="d-flex justify-content-between align-items-center">
+                <h2>Filters</h2>
+                <h4>Clear all</h4>
               </div>
-            </div>
-          </main-header>
-        </div>
 
-        <p-tabpanels>
-          <p-tabpanel value="0">
-            @if (isLoading) {
-              <app-skeleton-list></app-skeleton-list>
-            } @else {
-              <announcement-list
-                [announcements]="announcements"
-                (onEmitAction)="onImplementAction($event)"
-              ></announcement-list>
-            }
-          </p-tabpanel>
-          <p-tabpanel value="1">
-            @if (isLoading) {
-              <app-skeleton-list></app-skeleton-list>
-            } @else {
-              <announcement-list
-                [announcements]="expiredAnnouncements"
-                (onEmitAction)="onImplementAction($event)"
-              ></announcement-list>
-            }
-          </p-tabpanel>
-        </p-tabpanels>
-      </p-tabs>
-    </div>
+              <h3>Show user type</h3>
+
+              @for (filter of userTypes; track $index) {
+                <div class="--checkbox d-flex align-items-center">
+                  <p-checkbox [(ngModel)]="userTypeSelected" [value]="filter.value" (onChange)="onFilterChange()" size="small" />
+                  <span>{{ filter.label }}</span>
+                </div>
+              }
+            </div>
+          </div>
+        </main-header>
+      </div>
+
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          @if (isLoading) {
+            <app-skeleton-list></app-skeleton-list>
+          } @else {
+            <announcement-list
+              [announcements]="activeAnnouncements"
+              (onEmitAction)="onImplementAction($event)"
+            ></announcement-list>
+          }
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          @if (isLoading) {
+            <app-skeleton-list></app-skeleton-list>
+          } @else {
+            <announcement-list
+              [announcements]="expiredAnnouncements"
+              (onEmitAction)="onImplementAction($event)"
+            ></announcement-list>
+          }
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
   </div>
-} @else {
-  <div class="--content-section p-4 d-flex flex-column">
+</div>
+<!-- <div class="--content-section p-4 d-flex flex-column">
     <div class="d-flex justify-content-end">
       <button
         appButton="primary"
@@ -78,5 +76,4 @@
         (actionEmitter)="onOpenAnnouncement(ACTION_DIALOG.CREATE, null)"
       ></app-empty-content>
     </div>
-  </div>
-}
+  </div> -->

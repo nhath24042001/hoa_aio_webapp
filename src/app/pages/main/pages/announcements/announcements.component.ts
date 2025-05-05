@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { some } from 'lodash-es';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TabsModule } from 'primeng/tabs';
+import { forkJoin } from 'rxjs';
 
 import { IAnnouncement } from '~/@types/announcement';
 import { SkeletonList } from '~/components/shared/skeleton-list/skeleton-list.component';
@@ -27,7 +29,8 @@ import { AnnouncementService } from './announcement.service';
     MainHeader,
     CheckboxModule,
     PopoverModule,
-    SkeletonList
+    SkeletonList,
+    FormsModule
   ],
   templateUrl: './announcements.component.html',
   styleUrl: './announcements.component.scss'
@@ -36,29 +39,31 @@ export class AnnouncementsComponent implements OnInit {
   ref: DynamicDialogRef | undefined;
   ACTION_DIALOG = ACTION_DIALOG;
   isLoading = true;
+  searchText: string = '';
+  userTypeSelected: string[] = [];
 
-  announcements: IAnnouncement[] = [];
+  activeAnnouncements: IAnnouncement[] = [];
   expiredAnnouncements: IAnnouncement[] = [];
 
   userTypes = [
     {
       label: 'Residents',
-      value: 'residents',
+      value: '3',
       isChecked: false
     },
     {
       label: 'Managers',
-      value: 'managers',
+      value: '5',
       isChecked: false
     },
     {
       label: 'Board members',
-      value: 'boardMembers',
+      value: '4',
       isChecked: false
     },
     {
       label: 'Vendors',
-      value: 'vendors',
+      value: '2',
       isChecked: false
     }
   ];
@@ -70,29 +75,47 @@ export class AnnouncementsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllAnnouncements();
+    this.loadAnnouncements();
   }
 
-  getAllAnnouncements(): void {
+  loadAnnouncements(): void {
     this.isLoading = true;
-    this.announcementService.getAllAnnouncements().subscribe({
-      next: (response) => {
-        this.announcements = response.announcements;
+
+    forkJoin({
+      expired: this.announcementService.getExpiredAnnouncements(
+        this.searchText,
+        this.userTypeSelected
+      ),
+      active: this.announcementService.getActiveAnnouncements(
+        this.searchText,
+        this.userTypeSelected
+      )
+    }).subscribe(
+      ({ active, expired }) => {
+        this.activeAnnouncements = active.announcements;
+        this.expiredAnnouncements = expired.announcements;
         this.isLoading = false;
       },
-      error: () => {
-        this.announcements = [];
+      () => {
+        this.activeAnnouncements = [];
+        this.expiredAnnouncements = [];
         this.isLoading = false;
       }
-    });
+    );
   }
 
   checkAnnouncementExists(): boolean {
-    return some([...this.announcements, ...this.announcements]);
+    return some([...this.activeAnnouncements, ...this.expiredAnnouncements]);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onSearchAnnouncement(_search_text: string): void {}
+  onSearchAnnouncement(_search_text: string): void {
+    this.searchText = _search_text;
+    this.loadAnnouncements();
+  }
+
+  onFilterChange(): void {
+    this.loadAnnouncements();
+  }
 
   async onImplementAction(event: { announcement: IAnnouncement; type: string }): Promise<void> {
     switch (event.type) {
@@ -143,7 +166,7 @@ export class AnnouncementsComponent implements OnInit {
     if (confirmed) {
       this.announcementService.deleteAnnouncement(announcement.id).subscribe((response) => {
         if (response.rc === 0) {
-          this.getAllAnnouncements();
+          this.loadAnnouncements();
         }
       });
     }
