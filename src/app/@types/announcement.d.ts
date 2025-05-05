@@ -5,7 +5,10 @@ export interface IAnnouncementPayload {
   description: string;
   link: string;
   expiration_date: string | Date;
+  announcement_date: string | Date;
   announcement_date: string;
+  user_types: string[];
+  is_draft: boolean;
 }
 
 export interface IAnnouncement {

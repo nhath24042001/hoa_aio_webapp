@@ -34,19 +34,21 @@ export class DynamicAnnouncement extends BaseComponent implements AfterViewInit 
   data = {} as IAnnouncement;
   type: string = '';
   userTypes: ISelect[] = [
-    { name: 'Residents', code: 're' },
-    { name: 'Manager', code: 'ma' },
-    { name: 'Board members', code: 'board' },
-    { name: 'Vendors', code: 'ven' }
+    { name: 'Residents', code: '3' },
+    { name: 'Manager', code: '5' },
+    { name: 'Board members', code: '4' },
+    { name: 'Vendors', code: '2' }
   ];
-  selectedCities!: ISelect[];
+  userTypesSelected: ISelect[] = [];
 
   announcementData: IAnnouncementPayload = {
     title: 'Long Announcement Title Can Be Truncated',
     description: '',
     link: '',
     expiration_date: '',
-    announcement_date: ''
+    announcement_date: '',
+    user_types: [],
+    is_draft: false
   };
 
   announcementTitle = computed(() => {
@@ -77,16 +79,16 @@ export class DynamicAnnouncement extends BaseComponent implements AfterViewInit 
     this.ref.close();
   }
 
-  onSubmit() {
-    if (
-      !this.announcementData.expiration_date ||
-      !this.announcementData.description ||
-      !this.announcementData.link
-    ) {
+  onSubmit(isDraft: boolean) {
+    const { expiration_date, description, link } = this.announcementData;
+
+    if (!expiration_date || !description || !link) {
       return;
     }
 
     this.announcementData.expiration_date = dayjs().format('YYYY-MM-DD HH:mm:ss');
+    this.announcementData.user_types = this.userTypesSelected.map((item) => item.code);
+    this.announcementData.is_draft = isDraft;
 
     this.announcementService.addAnnouncement(this.announcementData).subscribe((res) => {
       if (res.rc === 0) {

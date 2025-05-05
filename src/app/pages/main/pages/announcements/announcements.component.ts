@@ -7,7 +7,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TabsModule } from 'primeng/tabs';
 import { forkJoin } from 'rxjs';
 
-import { IAnnouncement } from '~/@types/announcement';
+import { IAnnouncement, IAnnouncementPayload } from '~/@types/announcement';
 import { SkeletonList } from '~/components/shared/skeleton-list/skeleton-list.component';
 import { ButtonDirective } from '~/directives/button.directive';
 import { ACTION_DIALOG } from '~/enums';
@@ -82,14 +82,8 @@ export class AnnouncementsComponent implements OnInit {
     this.isLoading = true;
 
     forkJoin({
-      expired: this.announcementService.getExpiredAnnouncements(
-        this.searchText,
-        this.userTypeSelected
-      ),
-      active: this.announcementService.getActiveAnnouncements(
-        this.searchText,
-        this.userTypeSelected
-      )
+      expired: this.announcementService.getExpiredAnnouncements(this.searchText, this.userTypeSelected),
+      active: this.announcementService.getActiveAnnouncements(this.searchText, this.userTypeSelected)
     }).subscribe(
       ({ active, expired }) => {
         this.activeAnnouncements = active.announcements;
@@ -126,7 +120,7 @@ export class AnnouncementsComponent implements OnInit {
         this.onOpenAnnouncement(ACTION_DIALOG.EDIT, event.announcement);
         break;
       case 'publish':
-        this.onOpenPublishDialog();
+        this.onOpenPublishDialog(event.announcement);
         break;
       case 'delete':
         this.onOpenDeleteDialog(event.announcement);
@@ -143,6 +137,12 @@ export class AnnouncementsComponent implements OnInit {
         data: announcement
       }
     });
+
+    this.ref.onClose.subscribe((result) => {
+      if (result) {
+        this.loadAnnouncements();
+      }
+    });
   }
 
   onOpenAnnouncementDetail(announcement: IAnnouncement): void {
@@ -157,8 +157,7 @@ export class AnnouncementsComponent implements OnInit {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/red-trash-md.svg',
       title: 'Delete Item',
-      description:
-        'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
+      description: 'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
       type: 'error',
       buttonText: 'Delete'
     });
@@ -172,18 +171,30 @@ export class AnnouncementsComponent implements OnInit {
     }
   }
 
-  async onOpenPublishDialog(): Promise<void> {
+  async onOpenPublishDialog(announcement: IAnnouncement): Promise<void> {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/check-circle-broken-lg.svg',
       title: 'Announcement Posted',
-      description:
-        'The announcement has been posted, and will be available to its recipients shortly.',
+      description: 'The announcement has been posted, and will be available to its recipients shortly.',
       type: 'success',
       buttonText: 'Ok'
     });
 
     if (confirmed) {
-      console.log('run 1');
+      const payload: IAnnouncementPayload = {
+        title: announcement.title,
+        description: announcement.description,
+        link: announcement.link,
+        expiration_date: announcement.expiration_date,
+        announcement_date: '',
+        user_types: [],
+        is_draft: false
+      };
+      this.announcementService.addAnnouncement(payload).subscribe((response) => {
+        if (response.rc === 0) {
+          this.loadAnnouncements();
+        }
+      });
     }
   }
 }

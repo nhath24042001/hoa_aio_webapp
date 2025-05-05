@@ -1,8 +1,8 @@
 export enum Action {
-  EDIT = 'edit',
-  PUBLISH = 'publish',
-  DELETE = 'delete',
-  APPROVE = 'approve',
+  EDIT = 'Edit',
+  PUBLISH = 'Publish',
+  DELETE = 'Delete',
+  APPROVE = 'Approve',
   MARK_AS_PENDING = 'mask_as_pending'
 }
 
