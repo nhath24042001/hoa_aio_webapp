@@ -48,23 +48,19 @@ export class AnnouncementsComponent implements OnInit {
   userTypes = [
     {
       label: 'Residents',
-      value: '3',
-      isChecked: false
+      value: '3'
     },
     {
       label: 'Managers',
-      value: '5',
-      isChecked: false
+      value: '5'
     },
     {
       label: 'Board members',
-      value: '4',
-      isChecked: false
+      value: '4'
     },
     {
       label: 'Vendors',
-      value: '2',
-      isChecked: false
+      value: '2'
     }
   ];
 
@@ -82,8 +78,14 @@ export class AnnouncementsComponent implements OnInit {
     this.isLoading = true;
 
     forkJoin({
-      expired: this.announcementService.getExpiredAnnouncements(this.searchText, this.userTypeSelected),
-      active: this.announcementService.getActiveAnnouncements(this.searchText, this.userTypeSelected)
+      expired: this.announcementService.getExpiredAnnouncements(
+        this.searchText,
+        this.userTypeSelected
+      ),
+      active: this.announcementService.getActiveAnnouncements(
+        this.searchText,
+        this.userTypeSelected
+      )
     }).subscribe(
       ({ active, expired }) => {
         this.activeAnnouncements = active.announcements;
@@ -108,6 +110,11 @@ export class AnnouncementsComponent implements OnInit {
   }
 
   onFilterChange(): void {
+    this.loadAnnouncements();
+  }
+
+  clearFilter(): void {
+    this.userTypeSelected = [];
     this.loadAnnouncements();
   }
 
@@ -157,7 +164,8 @@ export class AnnouncementsComponent implements OnInit {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/red-trash-md.svg',
       title: 'Delete Item',
-      description: 'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
+      description:
+        'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
       type: 'error',
       buttonText: 'Delete'
     });
@@ -175,7 +183,8 @@ export class AnnouncementsComponent implements OnInit {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/check-circle-broken-lg.svg',
       title: 'Announcement Posted',
-      description: 'The announcement has been posted, and will be available to its recipients shortly.',
+      description:
+        'The announcement has been posted, and will be available to its recipients shortly.',
       type: 'success',
       buttonText: 'Ok'
     });
@@ -187,10 +196,10 @@ export class AnnouncementsComponent implements OnInit {
         link: announcement.link,
         expiration_date: announcement.expiration_date,
         announcement_date: '',
-        user_types: [],
+        user_types: ['1', '2'],
         is_draft: false
       };
-      this.announcementService.addAnnouncement(payload).subscribe((response) => {
+      this.announcementService.editAnnouncement(announcement.id, payload).subscribe((response) => {
         if (response.rc === 0) {
           this.loadAnnouncements();
         }
