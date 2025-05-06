@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -7,12 +6,14 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { SelectModule } from 'primeng/select';
 import { TabsModule } from 'primeng/tabs';
 
+import { ICalendar } from '~/@types/calendar';
 import { ClubCalendar } from '~/pages/main/components/modules/calendar/club-calendar/club-calendar.component';
 import { DynamicEvent } from '~/pages/main/components/modules/calendar/dynamic-event/dynamic-event.component';
 import { GeneralCalendar } from '~/pages/main/components/modules/calendar/general-calendar/general-calendar.component';
 import { ToastService } from '~/services/toast.service';
 
 import { MainHeader } from '../../components/shared/main-header/main-header.component';
+import { CalendarService } from './calendar.service';
 
 @Component({
   selector: 'app-calendar',
@@ -42,7 +43,8 @@ export class CalendarComponent {
 
   constructor(
     public dialogService: DialogService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private calendarService: CalendarService
   ) {}
 
   onSearch(): void {}
@@ -59,50 +61,31 @@ export class CalendarComponent {
     this.ref.onClose.subscribe(() => {});
   }
 
-  onOpenTaskDetail(): void {
+  onOpenTaskDetail(type: string, event: ICalendar): void {
     this.ref = this.dialogService.open(DynamicEvent, {
       modal: true,
       width: '1000px',
       data: {
-        type: 'detail',
-        event: {
-          id: '4567890',
-          title: 'Event Title - Truncated if title is very long',
-          event_type: 'Community Event',
-          start_date: '2023-06-20:10:00:00',
-          end_date: '2023-06-20:12:00:00',
-          registration_required: 'Yes',
-          location: 'Main Auditorium',
-          price: '$12',
-          participants: ['Michelle Stockton', 'Grant Freemason'],
-          description:
-            'This is a description of the event. It can be very long and will be truncated if it is too long.',
-          rsvp_list: 'Michelle Stockton, Grant Freemason',
-          attachments: [
-            {
-              file_name: 'Event Invite.jpg',
-              file_size: '2MB'
-            }
-          ]
-        }
+        type: type,
+        data: event
       }
     });
   }
 
-  handleTableAction(event: any) {
-    switch (event.action) {
+  handleTableAction(event: { actionKey: string; rowData: ICalendar }): void {
+    switch (event.actionKey) {
       case 'edit':
-        this.onOpenTaskDetail();
+        this.onOpenTaskDetail(event.actionKey, event.rowData);
         break;
       case 'delete':
-        this.onOpenDeleteDialog();
+        this.onOpenDeleteDialog(event.rowData.event_id);
         break;
       default:
         console.warn('Unknown action:', event.actionKey);
     }
   }
 
-  async onOpenDeleteDialog(): Promise<void> {
+  async onOpenDeleteDialog(event_id: number): Promise<void> {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/calendar-x-lg.svg',
       title: 'Cancel Event',
@@ -113,7 +96,7 @@ export class CalendarComponent {
     });
 
     if (confirmed) {
-      console.log('run 1');
+      this.calendarService.deleteCalendarEvent(event_id).subscribe({});
     }
   }
 }

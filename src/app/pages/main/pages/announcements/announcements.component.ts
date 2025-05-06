@@ -78,14 +78,8 @@ export class AnnouncementsComponent implements OnInit {
     this.isLoading = true;
 
     forkJoin({
-      expired: this.announcementService.getExpiredAnnouncements(
-        this.searchText,
-        this.userTypeSelected
-      ),
-      active: this.announcementService.getActiveAnnouncements(
-        this.searchText,
-        this.userTypeSelected
-      )
+      expired: this.announcementService.getExpiredAnnouncements(this.searchText, this.userTypeSelected),
+      active: this.announcementService.getActiveAnnouncements(this.searchText, this.userTypeSelected)
     }).subscribe(
       ({ active, expired }) => {
         this.activeAnnouncements = active.announcements;
@@ -164,8 +158,7 @@ export class AnnouncementsComponent implements OnInit {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/red-trash-md.svg',
       title: 'Delete Item',
-      description:
-        'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
+      description: 'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
       type: 'error',
       buttonText: 'Delete'
     });

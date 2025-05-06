@@ -1,7 +1,7 @@
 <div class="--calendar-toolbar d-flex justify-content-between align-items-center">
   <div class="mb-4 d-flex align-items-center">
     <button class="--today" (click)="onNavigation('today')">Today</button>
-    <h5 class="mb-0 mx-4">{{ calendarTitle | date: 'MMMM, yyyy' }}</h5>
+    <h5 class="mb-0 mx-4">{{ calendarTitle }}</h5>
     <img
       [src]="'assets/images/' + currentMode + '/gray-chevron-left.svg'"
       class="--pre me-2"
@@ -27,11 +27,13 @@
 @if (!isListView()) {
   <full-calendar #calendar [options]="calendarOptions()"></full-calendar>
 } @else {
-  <app-table
-    [headers]="calendarHeader"
-    [data]="calendarData"
-    [actions]="actions"
-    [showPagination]="true"
-    (actionTriggered)="onAction($event)"
-  ></app-table>
+  @if (events.length > 0) {
+    <app-table
+      [headers]="calendarHeader"
+      [data]="events"
+      [actions]="actions"
+      [showPagination]="true"
+      (actionTriggered)="onAction($event)"
+    ></app-table>
+  }
 }

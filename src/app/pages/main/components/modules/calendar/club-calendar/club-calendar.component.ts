@@ -16,7 +16,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { SelectModule } from 'primeng/select';
 
 import { BaseComponent } from '~/components/common/base/base.component';
-import { calendarData, calendarHeader } from '~/data/calendar';
+import { calendarHeader } from '~/data/calendar';
 import { Table } from '~/pages/main/components/shared/table/table.component';
 import { ThemeService } from '~/services/theme.service';
 
@@ -32,7 +32,7 @@ export class ClubCalendar extends BaseComponent implements AfterViewInit, OnInit
   isListView2 = signal(false);
   calendarTitle2 = '';
   calendarHeader2 = calendarHeader;
-  calendarData2 = calendarData;
+  calendarData2 = [];
   viewOptions2 = [
     { name: 'Month', code: 'dayGridMonth' },
     { name: 'Week', code: 'timeGridWeek' },

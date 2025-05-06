@@ -23,7 +23,7 @@ export class CalendarService extends HttpClientModel {
   }
 
   public editCalendarEvent(
-    event_id: string,
+    event_id: number,
     payload: ICalendarPayload
   ): Observable<ICommonResponse> {
     return this.post(

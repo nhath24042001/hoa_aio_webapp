@@ -1,50 +1,27 @@
 import { EventType } from '~/enums';
 
-export const calendarData = [
-  {
-    task_name: 'Event Title - Truncated if title is very long',
-    type: 'Community Event',
-    location: 'Main Auditorium',
-    startDate: '01/01/2023: 12:00 AM',
-    createdDate: '01/01/2023'
-  },
-  {
-    task_name: 'Trim entrance area trees',
-    type: 'Facility Booking',
-    location: 'Swimming Pool',
-    startDate: '01/01/2023: 12:00 AM',
-    createdDate: '01/01/2023'
-  },
-  {
-    task_name: 'Create About Page for Company Profile',
-    type: 'Maintenance Event',
-    location: 'Main Entrance Gate',
-    startDate: '01/01/2023: 12:00 AM',
-    createdDate: '01/01/2023'
-  },
-  {
-    task_name: 'Create UI Stock Mobile',
-    type: 'Community Event',
-    location: 'Swimming Pool',
-    startDate: '01/01/2023: 12:00 AM',
-    createdDate: '01/01/2023'
-  },
-  {
-    task_name: 'Usability Testing POS Mobile Apps',
-    type: 'Facility Booking',
-    location: 'Swimming Pool',
-    startDate: '01/01/2023: 12:00 AM',
-    createdDate: '01/01/2023'
-  }
+export const calendarHeader = [
+  { field: 'event_id', name: 'ID' },
+  { field: 'title', name: 'Event name' },
+  { field: 'description', name: 'Description' },
+  { field: 'event_date', name: 'Event Date' },
+  { field: 'created_at', name: 'Created' },
+  { field: 'action', name: '' }
 ];
 
-export const calendarHeader = [
-  { field: 'task_name', name: 'Task Name' },
-  { field: 'type', name: 'Type' },
-  { field: 'location', name: 'Location' },
-  { field: 'startDate', name: 'Start' },
-  { field: 'createdDate', name: 'Created' },
-  { field: 'action', name: '' }
+export const CALENDAR_ACTION = [
+  {
+    label: 'Edit',
+    icon: 'calendar-edit',
+    actionKey: 'edit',
+    className: '--pointer mb-2'
+  },
+  {
+    label: 'Cancel Event',
+    icon: 'calendar-x',
+    actionKey: 'delete',
+    className: '--delete-action --pointer'
+  }
 ];
 
 export const eventList = [
