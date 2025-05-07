@@ -58,6 +58,9 @@ export class ClubCalendar extends BaseComponent implements AfterViewInit, OnInit
   }
 
   ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.calendarComponent2?.getApi().updateSize();
+    }, 1000);
     this.updateCalendar();
     this.onGetCalendarTitle();
   }

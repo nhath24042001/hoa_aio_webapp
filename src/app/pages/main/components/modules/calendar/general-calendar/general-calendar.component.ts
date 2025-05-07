@@ -16,11 +16,10 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import dayjs from 'dayjs';
 import { SelectModule } from 'primeng/select';
 
-import { ICalendar } from '~/@types/calendar';
+import { IGeneralCalendar } from '~/@types/calendar';
 import { BaseComponent } from '~/components/common/base/base.component';
-import { CALENDAR_ACTION, calendarHeader } from '~/data/calendar';
+import { CALENDAR_ACTION, calendarHeader, GENERAL_CALENDAR } from '~/data/calendar';
 import { Table } from '~/pages/main/components/shared/table/table.component';
-import { CalendarService } from '~/pages/main/pages/calendar/calendar.service';
 import { ThemeService } from '~/services/theme.service';
 
 @Component({
@@ -32,11 +31,11 @@ import { ThemeService } from '~/services/theme.service';
 export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnInit {
   @ViewChild('calendar') calendarComponent?: FullCalendarComponent;
 
-  actionEmitter = output<{ actionKey: string; rowData: ICalendar }>();
+  actionEmitter = output<{ actionKey: string; rowData: IGeneralCalendar }>();
   isListView = signal(false);
   calendarTitle = '';
   calendarHeader = calendarHeader;
-  events: ICalendar[] = [];
+  events: IGeneralCalendar[] = [];
   viewOptions = [
     { name: 'Month', code: 'dayGridMonth' },
     { name: 'Week', code: 'timeGridWeek' },
@@ -54,8 +53,7 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
 
   constructor(
     themeService: ThemeService,
-    private cdr: ChangeDetectorRef,
-    private calendarService: CalendarService
+    private cdr: ChangeDetectorRef
   ) {
     super(themeService);
   }
@@ -67,12 +65,7 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
   ngAfterViewInit(): void {
     this.updateCalendar();
     this.onGetCalendarTitle();
-    const date = this.calendarApi?.getDate();
-    if (date) {
-      const currentMonth = date.getMonth() + 1;
-      const currentYear = date.getFullYear();
-      this.onGetEvents(currentMonth, currentYear);
-    }
+    this.onGetEvents();
   }
 
   onGetCalendarTitle(): void {
@@ -80,49 +73,62 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
     this.cdr.detectChanges();
   }
 
-  onGetEvents(month: number, year: number): void {
-    // --event-orange
-    // --event-purple
-    // --event-green
-    // --event-green-light
-    // --event-red
-    this.calendarService.getEventByDate(month, year).subscribe((res) => {
-      this.events = res.events;
-      this.calendarOptions.set({
-        events: res.events.map((event) => ({
-          ...event,
-          start: dayjs(event.created_at).format('YYYY-MM-DD'),
-          className: '--event --event-green'
-        }))
-      });
+  onGetEvents(): void {
+    this.events = GENERAL_CALENDAR;
+    this.calendarOptions.set({
+      events: this.events.map((event) => ({
+        ...event,
+        start: dayjs(event.start_date).format('YYYY-MM-DD'),
+        className: this.onStyleEvent(event.event_type)
+      }))
     });
+  }
+
+  onStyleEvent(type: string) {
+    switch (type) {
+      case 'community':
+        return '--event --event-orange';
+      case 'facility':
+        return '--event --event-purple';
+      case 'maintenance':
+        return '--event --event-green';
+      case 'administrative':
+        return '--event --event-green-light';
+
+      default:
+        return '--event --event-red';
+    }
   }
 
   onNavigation(action: 'today' | 'prev' | 'next'): void {
     this.calendarApi?.[action]();
     this.calendarTitle = this.calendarApi?.view.title || '';
-    // const date = this.calendarApi?.getDate();
-    // if (date) {
-    //   const currentMonth = date.getMonth() + 1;
-    //   const currentYear = date.getFullYear();
-    //   this.onGetEvents(currentMonth, currentYear);
-    // }
   }
 
   onViewChange(view: { name: string; code: string }): void {
+    const switchingToCalendar = view.code !== 'list';
+
     this.isListView.set(view.code === 'list');
     this.selectedView.set(view);
     this.updateCalendar();
     this.onGetCalendarTitle();
-  }
 
+    if (switchingToCalendar) {
+      // Gọi sau khi DOM render (2 phase)
+      setTimeout(() => {
+        requestAnimationFrame(() => {
+          this.calendarComponent?.getApi().updateSize();
+        });
+      }, 0);
+    }
+  }
   private updateCalendar(): void {
     if (!this.isListView() && this.calendarApi) {
       this.calendarApi.changeView(this.selectedView().code);
     }
   }
 
-  onAction(event: { actionKey: string; rowData: ICalendar }): void {
+  onAction(event: { actionKey: string; rowData: IGeneralCalendar }): void {
     this.actionEmitter.emit({ actionKey: event.actionKey, rowData: event.rowData });
   }
 }

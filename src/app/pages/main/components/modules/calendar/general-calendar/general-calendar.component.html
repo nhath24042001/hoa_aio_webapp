@@ -1,5 +1,5 @@
-<div class="--calendar-toolbar d-flex justify-content-between align-items-center">
-  <div class="mb-4 d-flex align-items-center">
+<div class="--calendar-toolbar mb-4 d-flex justify-content-between align-items-center">
+  <div class="d-flex align-items-center">
     <button class="--today" (click)="onNavigation('today')">Today</button>
     <h5 class="mb-0 mx-4">{{ calendarTitle }}</h5>
     <img
@@ -24,16 +24,16 @@
     (ngModelChange)="onViewChange($event)"
   />
 </div>
-@if (!isListView()) {
-  <full-calendar #calendar [options]="calendarOptions()"></full-calendar>
-} @else {
-  @if (events.length > 0) {
-    <app-table
-      [headers]="calendarHeader"
-      [data]="events"
-      [actions]="actions"
-      [showPagination]="true"
-      (actionTriggered)="onAction($event)"
-    ></app-table>
-  }
-}
+
+<full-calendar #calendar [options]="calendarOptions()" [hidden]="isListView()"></full-calendar>
+
+<div [hidden]="!isListView()">
+  <app-table
+    [headers]="calendarHeader"
+    [data]="events"
+    [actions]="actions"
+    [showPagination]="true"
+    (actionTriggered)="onAction($event)"
+  ></app-table>
+</div>
+
