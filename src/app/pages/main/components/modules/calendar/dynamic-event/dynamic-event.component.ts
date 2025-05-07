@@ -90,6 +90,15 @@ export class DynamicEvent {
   constructor(public config: DynamicDialogConfig) {
     this.data = config.data;
     this.type = this.data.type;
+
+    if (this.type !== 'create') {
+      this.list_columns = this.list_columns.map((column) => {
+        return {
+          ...column,
+          value: this.data.data.formData[column.field]
+        };
+      });
+    }
   }
 
   get title() {

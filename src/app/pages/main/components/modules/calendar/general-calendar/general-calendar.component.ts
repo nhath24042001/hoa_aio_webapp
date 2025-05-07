@@ -9,12 +9,13 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular';
-import { EventContentArg } from '@fullcalendar/core';
+import { EventClickArg, EventContentArg } from '@fullcalendar/core';
 import { CalendarOptions } from '@fullcalendar/core/index.js';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import dayjs from 'dayjs';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { SelectModule } from 'primeng/select';
 
 import { IGeneralCalendar } from '~/@types/calendar';
@@ -22,6 +23,8 @@ import { BaseComponent } from '~/components/common/base/base.component';
 import { CALENDAR_ACTION, calendarHeader, GENERAL_CALENDAR } from '~/data/calendar';
 import { Table } from '~/pages/main/components/shared/table/table.component';
 import { ThemeService } from '~/services/theme.service';
+
+import { DynamicEvent } from '../dynamic-event/dynamic-event.component';
 
 @Component({
   selector: 'app-general-calendar',
@@ -31,6 +34,7 @@ import { ThemeService } from '~/services/theme.service';
 })
 export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnInit {
   @ViewChild('calendar') calendarComponent?: FullCalendarComponent;
+  ref: DynamicDialogRef | undefined;
 
   actionEmitter = output<{ actionKey: string; rowData: IGeneralCalendar }>();
   isListView = signal(false);
@@ -46,12 +50,14 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
   selectedView = signal(this.viewOptions[0]);
   calendarOptions = signal<CalendarOptions>({
     plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin],
-    headerToolbar: { left: 'today title prev,next', right: '' }
+    headerToolbar: { left: 'today title prev,next', right: '' },
+    eventClick: this.onEventClick.bind(this)
   });
   actions = CALENDAR_ACTION;
 
   constructor(
     themeService: ThemeService,
+    public dialogService: DialogService,
     private cdr: ChangeDetectorRef
   ) {
     super(themeService);
@@ -145,6 +151,24 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
 
   onAction(event: { actionKey: string; rowData: IGeneralCalendar }): void {
     this.actionEmitter.emit({ actionKey: event.actionKey, rowData: event.rowData });
+  }
+
+  onEventClick(arg: EventClickArg): void {
+    const event = arg.event.extendedProps as IGeneralCalendar;
+
+    this.ref = this.dialogService.open(DynamicEvent, {
+      modal: true,
+      width: '1000px',
+      data: {
+        type: 'detail',
+        data: {
+          title: 'Fix main entrance watering system',
+          created_date: '2/2/2021',
+          update_date: '2/2/2022',
+          formData: event
+        }
+      }
+    });
   }
 
   private getEventContent(type: string) {
