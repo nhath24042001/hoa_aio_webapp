@@ -134,3 +134,7 @@
 ::ng-deep .p-tabpanels {
   background: var(--background);
 }
+
+::ng-deep .fc-timegrid-divider {
+  display: none;
+}

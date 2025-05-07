@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular';
+import { EventContentArg } from '@fullcalendar/core';
 import { CalendarOptions } from '@fullcalendar/core/index.js';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -45,9 +46,7 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
   selectedView = signal(this.viewOptions[0]);
   calendarOptions = signal<CalendarOptions>({
     plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin],
-    headerToolbar: { left: 'today title prev,next', right: '' },
-    initialView: 'dayGridMonth',
-    events: []
+    headerToolbar: { left: 'today title prev,next', right: '' }
   });
   actions = CALENDAR_ACTION;
 
@@ -79,7 +78,12 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
       events: this.events.map((event) => ({
         ...event,
         start: dayjs(event.start_date).format('YYYY-MM-DD'),
-        className: this.onStyleEvent(event.event_type)
+        className: this.onStyleEvent(event.event_type),
+        extendedProps: {
+          description: event.description,
+          start_date: event.start_date,
+          end_date: event.end_date
+        }
       }))
     });
   }
@@ -106,22 +110,33 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
   }
 
   onViewChange(view: { name: string; code: string }): void {
-    const switchingToCalendar = view.code !== 'list';
-
     this.isListView.set(view.code === 'list');
     this.selectedView.set(view);
     this.updateCalendar();
     this.onGetCalendarTitle();
 
-    if (switchingToCalendar) {
-      // Gọi sau khi DOM render (2 phase)
+    /*
+      The calendar API does not update the size of the calendar when switching to list view.
+      This is a workaround to force the calendar to update its size.
+    */
+    if (!this.isListView()) {
       setTimeout(() => {
         requestAnimationFrame(() => {
           this.calendarComponent?.getApi().updateSize();
         });
       }, 0);
     }
+
+    this.calendarOptions.set({
+      ...this.getCalendarOptionsByView(view.code),
+      eventTimeFormat: {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }
+    });
   }
+
   private updateCalendar(): void {
     if (!this.isListView() && this.calendarApi) {
       this.calendarApi.changeView(this.selectedView().code);
@@ -130,5 +145,83 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
 
   onAction(event: { actionKey: string; rowData: IGeneralCalendar }): void {
     this.actionEmitter.emit({ actionKey: event.actionKey, rowData: event.rowData });
+  }
+
+  private getEventContent(type: string) {
+    return (arg: EventContentArg) => {
+      const event = arg.event;
+      const startTime = event.extendedProps['start_date']
+        ? dayjs(event.extendedProps['start_date']).format('HH:mm')
+        : '';
+      const endTime = event.extendedProps['end_date']
+        ? dayjs(event.extendedProps['end_date']).format('HH:mm')
+        : '';
+      const description = event.extendedProps['description'] || '';
+
+      return {
+        html: this.getEventStyle(type, event.title, description, startTime, endTime)
+      };
+    };
+  }
+
+  private getEventStyle(
+    type: string,
+    title: string,
+    description: string,
+    startTime: string,
+    endTime: string
+  ) {
+    switch (type) {
+      case 'timeGridWeek':
+        return `
+          <div>
+            <span class='--truncate-3 text-black'>${title}</span><br/>
+            <span class='--truncate text-black'>${description}</span>
+            <span class='--truncate text-black'>${startTime} - ${endTime}</span><br/>
+          </div>
+        `;
+      case 'timeGridDay':
+        return `
+            <span class='--truncate-3 text-black'>${title}</span><br/>
+            <div class='d-flex align-items-center'>
+              <small class='--truncate text-black'>${description}</small>
+              <small class='--truncate text-black'>${startTime} - ${endTime}</small><br/>
+            </div>
+        `;
+      default:
+        return `
+          <span class='--truncate-3 text-black'>${title}</span><br/>
+          `;
+    }
+  }
+
+  private getCalendarOptionsByView(type: string) {
+    const isTimeGrid = type === 'timeGridWeek';
+
+    return {
+      ...this.calendarOptions(),
+      slotMinTime: isTimeGrid ? '00:00:00' : '00:00:00',
+      slotMaxTime: isTimeGrid ? '00:00:00' : '24:00:00',
+      eventTimeFormat: {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      },
+      dayMaxEventRows: true,
+      height: 'auto',
+      events: this.events.map((event) => ({
+        ...event,
+        start:
+          type === 'timeGridDay' ? event.start_date : dayjs(event.start_date).format('YYYY-MM-DD'),
+        className: this.onStyleEvent(event.event_type),
+        extendedProps: {
+          description: event.description,
+          start_date: event.start_date,
+          end_date: event.end_date
+        }
+      })),
+
+      eventContent: this.getEventContent(type)
+    };
   }
 }
