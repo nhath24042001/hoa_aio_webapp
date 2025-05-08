@@ -15,9 +15,10 @@
           [options]="options"
           variant="filled"
           optionLabel="name"
-          [placeholder]="placeholder"
+          optionValue="code"
           styleClass="flex-fill"
-          [(ngModel)]="formControl"
+          [placeholder]="placeholder"
+          [(ngModel)]="value"
         />
       }
 
@@ -30,12 +31,12 @@
       }
       @case ('date') {
         <p-datepicker
-          [placeholder]="placeholder"
           showIcon
           iconDisplay="input"
           class="flex-fill"
           variant="filled"
-          [(ngModel)]="formControl"
+          [placeholder]="placeholder"
+          [(ngModel)]="value"
         />
       }
       @case ('file') {
@@ -88,7 +89,8 @@
           pInputText
           [placeholder]="placeholder"
           class="flex-fill"
-          [(ngModel)]="formControl"
+          [(ngModel)]="value"
+
         />
       }
     }

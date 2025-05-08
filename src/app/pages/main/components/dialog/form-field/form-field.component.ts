@@ -56,8 +56,6 @@ export class FormField implements OnInit {
   inputValue = '';
   chipInput: any;
 
-  // TODO: FIX TYPE ANY
-
   classField = '';
 
   onChange: any = () => {};

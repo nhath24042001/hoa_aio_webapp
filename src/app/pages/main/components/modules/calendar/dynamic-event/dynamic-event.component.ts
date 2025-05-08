@@ -44,8 +44,8 @@ export class DynamicEvent {
       label: 'Registration required',
       type: 'select',
       list: [
-        { name: 'Yes', code: 'Y' },
-        { name: 'No', code: 'N' }
+        { name: 'Yes', code: 'yes' },
+        { name: 'No', code: 'no' }
       ],
       placeholder: 'Select',
       position: 'left'
@@ -100,12 +100,27 @@ export class DynamicEvent {
 
     if (this.type !== 'create') {
       this.list_columns = this.list_columns.map((column) => {
+        let value = this.data.data.formData[column.field];
+
+        if (column.type === 'date' && typeof value === 'string') {
+          value = new Date(value);
+        }
+
         return {
           ...column,
-          value: this.data.data.formData[column.field]
+          value
         };
       });
 
+      this.list_textarea = this.list_textarea.map((textarea) => {
+        return {
+          ...textarea,
+          value: this.data.data.formData[textarea.field]
+        };
+      });
+    }
+
+    if (this.type === 'detail') {
       this.list_textarea.push(
         {
           title: 'RSVP Approved',
@@ -120,13 +135,6 @@ export class DynamicEvent {
           value: ''
         }
       );
-
-      this.list_textarea = this.list_textarea.map((textarea) => {
-        return {
-          ...textarea,
-          value: this.data.data.formData[textarea.field]
-        };
-      });
     }
   }
 

@@ -3,7 +3,6 @@ import {
   ChangeDetectorRef,
   Component,
   OnInit,
-  output,
   signal,
   ViewChild
 } from '@angular/core';
@@ -36,7 +35,7 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
   @ViewChild('calendar') calendarComponent?: FullCalendarComponent;
   ref: DynamicDialogRef | undefined;
 
-  actionEmitter = output<{ actionKey: string; rowData: IGeneralCalendar }>();
+  // actionEmitter = output<{ actionKey: string; rowData: IGeneralCalendar }>();
   isListView = signal(false);
   calendarTitle = '';
   calendarHeader = calendarHeader;
@@ -151,7 +150,30 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
   }
 
   onAction(event: { actionKey: string; rowData: IGeneralCalendar }): void {
-    this.actionEmitter.emit({ actionKey: event.actionKey, rowData: event.rowData });
+    const { actionKey, rowData } = event;
+
+    switch (actionKey) {
+      case 'edit':
+        this.ref = this.dialogService.open(DynamicEvent, {
+          modal: true,
+          width: '1000px',
+          data: {
+            type: 'edit',
+            data: {
+              title: rowData.title,
+              created_date: '2/2/2021',
+              update_date: '2/2/2022',
+              formData: rowData
+            }
+          }
+        });
+        break;
+      case 'delete':
+        // Handle delete action
+        break;
+      default:
+        break;
+    }
   }
 
   onEventClick(arg: EventClickArg): void {

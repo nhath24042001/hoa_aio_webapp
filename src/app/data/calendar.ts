@@ -11,7 +11,7 @@ export const GENERAL_CALENDAR: IGeneralCalendar[] = [
     location: 'Main Auditorium',
     description: 'Conf. Room 2',
     participants: ['HOA Staff', 'Michelle Stockton'],
-    registration_required: 'Yes',
+    registration_required: 'yes',
     organizer: 'johndoe@gmail.com',
     price: '$100',
     attachments: [
@@ -46,7 +46,7 @@ export const GENERAL_CALENDAR: IGeneralCalendar[] = [
     location: 'Swimming Pool',
     description: 'Conf. Room 2',
     participants: ['John Doe', 'Jane Smith'],
-    registration_required: 'No',
+    registration_required: 'no',
     organizer: 'johndoe@gmail.com',
     attachments: [
       {
@@ -80,7 +80,7 @@ export const GENERAL_CALENDAR: IGeneralCalendar[] = [
     location: 'Swimming Pool',
     description: 'Conf. Room 2',
     participants: ['John Doe', 'Jane Smith'],
-    registration_required: 'Yes',
+    registration_required: 'yes',
     organizer: 'johndoe@gmail.com',
     attachments: [
       {
@@ -114,7 +114,7 @@ export const GENERAL_CALENDAR: IGeneralCalendar[] = [
     location: 'Main Auditorium',
     description: 'Conf. Room 2',
     participants: ['John Doe', 'Jane Smith'],
-    registration_required: 'No',
+    registration_required: 'no',
     organizer: 'johndoe@gmail.com',
     attachments: [
       {
@@ -144,9 +144,9 @@ export const GENERAL_CALENDAR: IGeneralCalendar[] = [
 export const calendarHeader = [
   { field: 'event_id', name: 'ID' },
   { field: 'title', name: 'Event name' },
+  { field: 'event_type', name: 'Event Type' },
   { field: 'description', name: 'Description' },
-  { field: 'event_date', name: 'Event Date' },
-  { field: 'created_at', name: 'Created' },
+  { field: 'location', name: 'Location' },
   { field: 'action', name: '' }
 ];
 
