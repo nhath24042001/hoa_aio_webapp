@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { TextareaModule } from 'primeng/textarea';
 
@@ -7,12 +8,11 @@ import { ButtonDirective } from '~/directives/button.directive';
 import { ThemeService } from '~/services/theme.service';
 @Component({
   selector: 'app-dialog-textarea',
-  imports: [TextareaModule, ButtonDirective],
+  imports: [TextareaModule, ButtonDirective, CommonModule],
   templateUrl: './dialog-textarea.component.html',
   styleUrl: './dialog-textarea.component.scss'
 })
 export class DialogTextarea extends BaseComponent {
-  // TODO: Fix type any
   readonly title = input.required<string>();
   readonly placeholder = input<string>();
   readonly value = input<string | any>('');

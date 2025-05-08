@@ -30,7 +30,16 @@ export interface IConfirmDialog {
 export interface DynamicField {
   icon: string;
   field: string;
-  type: 'input' | 'select' | 'date' | 'textarea' | 'number' | 'checkbox' | 'file' | 'custom-select';
+  type:
+    | 'input'
+    | 'select'
+    | 'date'
+    | 'textarea'
+    | 'chip'
+    | 'number'
+    | 'checkbox'
+    | 'file'
+    | 'custom-select';
   label: string;
   position: string;
   placeholder: string;

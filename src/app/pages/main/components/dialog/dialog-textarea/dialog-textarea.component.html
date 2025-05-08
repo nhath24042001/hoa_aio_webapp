@@ -27,6 +27,15 @@
       <p>{{ value() }}</p>
     }
 
+    @case ('rsvp') {
+      <h5 class="mb-2 mt-3">{{ title() }}</h5>
+      <p class="d-flex">
+        @for (rsvp of value(); track $index) {
+          {{ rsvp.name }}<span *ngIf="$index < value().length - 1">, </span>
+        }
+      </p>
+    }
+
     @case ('comments') {
       <div class="mt-4">
         <div class="mb-2 d-flex justify-content-between align-items-center">

@@ -88,7 +88,8 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
         extendedProps: {
           description: event.description,
           start_date: event.start_date,
-          end_date: event.end_date
+          end_date: event.end_date,
+          title: event.title
         }
       }))
     });
@@ -162,7 +163,7 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
       data: {
         type: 'detail',
         data: {
-          title: 'Fix main entrance watering system',
+          title: event.title,
           created_date: '2/2/2021',
           update_date: '2/2/2022',
           formData: event
@@ -241,7 +242,8 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
         extendedProps: {
           description: event.description,
           start_date: event.start_date,
-          end_date: event.end_date
+          end_date: event.end_date,
+          title: event.title
         }
       })),
 

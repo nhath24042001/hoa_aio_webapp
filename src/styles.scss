@@ -132,6 +132,7 @@ span {
   overflow: hidden;
   // text-wrap: initial;
 }
+
 .--content-section {
   height: calc(100vh - 110px);
 }
@@ -363,6 +364,7 @@ span {
 
       &.--detail {
         width: 150px;
+        margin-right: 20px !important
       }
     }
 

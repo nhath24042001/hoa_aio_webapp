@@ -10,17 +10,20 @@ export const GENERAL_CALENDAR: IGeneralCalendar[] = [
     end_date: '2025-05-07T19:30:00',
     location: 'Main Auditorium',
     description: 'Conf. Room 2',
-    participants: ['John Doe', 'Jane Smith'],
-    registration_required: true,
+    participants: ['HOA Staff', 'Michelle Stockton'],
+    registration_required: 'Yes',
     organizer: 'johndoe@gmail.com',
+    price: '$100',
     attachments: [
       {
-        name: 'Event Agenda',
-        url: 'https://example.com/agenda.pdf'
+        file_name: 'Video Capture 1.MP4',
+        file_type: 'video/mp4',
+        file_size: '2.5 MB'
       },
       {
-        name: 'Event Flyer',
-        url: 'https://example.com/flyer.jpg'
+        file_name: 'Video Capture 1.MP4',
+        file_type: 'video/mp4',
+        file_size: '2.5 MB'
       }
     ],
     rsvp: [
@@ -43,16 +46,18 @@ export const GENERAL_CALENDAR: IGeneralCalendar[] = [
     location: 'Swimming Pool',
     description: 'Conf. Room 2',
     participants: ['John Doe', 'Jane Smith'],
-    registration_required: true,
+    registration_required: 'No',
     organizer: 'johndoe@gmail.com',
     attachments: [
       {
-        name: 'Event Agenda',
-        url: 'https://example.com/agenda.pdf'
+        file_name: 'Video Capture 1.MP4',
+        file_type: 'video/mp4',
+        file_size: '2.5 MB'
       },
       {
-        name: 'Event Flyer',
-        url: 'https://example.com/flyer.jpg'
+        file_name: 'Video Capture 1.MP4',
+        file_type: 'video/mp4',
+        file_size: '2.5 MB'
       }
     ],
     rsvp: [
@@ -75,16 +80,18 @@ export const GENERAL_CALENDAR: IGeneralCalendar[] = [
     location: 'Swimming Pool',
     description: 'Conf. Room 2',
     participants: ['John Doe', 'Jane Smith'],
-    registration_required: true,
+    registration_required: 'Yes',
     organizer: 'johndoe@gmail.com',
     attachments: [
       {
-        name: 'Event Agenda',
-        url: 'https://example.com/agenda.pdf'
+        file_name: 'Video Capture 1.MP4',
+        file_type: 'video/mp4',
+        file_size: '2.5 MB'
       },
       {
-        name: 'Event Flyer',
-        url: 'https://example.com/flyer.jpg'
+        file_name: 'Video Capture 1.MP4',
+        file_type: 'video/mp4',
+        file_size: '2.5 MB'
       }
     ],
     rsvp: [
@@ -107,16 +114,18 @@ export const GENERAL_CALENDAR: IGeneralCalendar[] = [
     location: 'Main Auditorium',
     description: 'Conf. Room 2',
     participants: ['John Doe', 'Jane Smith'],
-    registration_required: true,
+    registration_required: 'No',
     organizer: 'johndoe@gmail.com',
     attachments: [
       {
-        name: 'Event Agenda',
-        url: 'https://example.com/agenda.pdf'
+        file_name: 'Video Capture 1.MP4',
+        file_type: 'video/mp4',
+        file_size: '2.5 MB'
       },
       {
-        name: 'Event Flyer',
-        url: 'https://example.com/flyer.jpg'
+        file_name: 'Video Capture 1.MP4',
+        file_type: 'video/mp4',
+        file_size: '2.5 MB'
       }
     ],
     rsvp: [

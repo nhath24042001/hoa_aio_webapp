@@ -17,15 +17,17 @@ export interface IGeneralCalendar {
   location: string;
   description: string;
   participants: string[];
-  registration_required: boolean;
+  registration_required: string;
   organizer: string;
+  price?: string;
   attachments: IAttachment[];
   rsvp: IRsvp[];
 }
 
 export interface IAttachment {
-  name: string;
-  url: string;
+  file_name: string;
+  file_type: string;
+  file_size: string;
 }
 
 export interface IRsvp {

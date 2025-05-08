@@ -13,7 +13,6 @@ import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dyn
   styleUrl: './dynamic-event.component.scss'
 })
 export class DynamicEvent {
-  // TODO: Fix type any
   data: any;
   type = '';
 
@@ -48,7 +47,6 @@ export class DynamicEvent {
         { name: 'Yes', code: 'Y' },
         { name: 'No', code: 'N' }
       ],
-      // width: '280px',
       placeholder: 'Select',
       position: 'left'
     },
@@ -76,12 +74,21 @@ export class DynamicEvent {
       type: 'input',
       placeholder: 'Leave empty for free events',
       position: 'right'
+    },
+    {
+      icon: 'user-group',
+      field: 'participants',
+      label: 'Participants',
+      type: 'chip',
+      placeholder: 'Enter names or groups, separated by comma',
+      position: 'left'
     }
   ];
 
   list_textarea = [
     {
       title: 'Event Description',
+      field: 'description',
       placeholder: 'Enter description',
       value: ''
     }
@@ -96,6 +103,28 @@ export class DynamicEvent {
         return {
           ...column,
           value: this.data.data.formData[column.field]
+        };
+      });
+
+      this.list_textarea.push(
+        {
+          title: 'RSVP Approved',
+          field: 'rsvp',
+          placeholder: 'Add RSVP approved',
+          value: ''
+        },
+        {
+          title: 'Attachments',
+          field: 'attachments',
+          placeholder: 'Add attachments',
+          value: ''
+        }
+      );
+
+      this.list_textarea = this.list_textarea.map((textarea) => {
+        return {
+          ...textarea,
+          value: this.data.data.formData[textarea.field]
         };
       });
     }

@@ -87,8 +87,14 @@
       </p-avatar-group>
     } @else if (field === 'priority') {
       <span class="--priority" [class]="'--' + value">{{ value }}</span>
+    } @else if (field === 'participants') {
+      @for (part of value; track $index) {
+        <div class="--chip">
+          <p>{{ part }}</p>
+        </div>
+      }
     } @else {
-      <span>{{ value ? value : '-' }}</span>
+      <span style="text-transform: capitalize">{{ value ? value : '-' }}</span>
     }
   }
 </div>

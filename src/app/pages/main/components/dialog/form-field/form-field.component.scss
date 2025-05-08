@@ -10,6 +10,12 @@
   font-size: 12px !important;
   text-transform: capitalize;
 }
+.--chip {
+  background: #ABFF52;
+  margin-right: 10px;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
 ::ng-deep .p-select,
 ::ng-deep .p-inputtext {
   background: var(--input-custom) !important;
