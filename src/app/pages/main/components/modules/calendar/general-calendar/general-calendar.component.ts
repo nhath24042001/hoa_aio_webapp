@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-  signal,
-  ViewChild
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, signal, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular';
 import { EventClickArg, EventContentArg } from '@fullcalendar/core';
@@ -50,6 +43,7 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
   calendarOptions = signal<CalendarOptions>({
     plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin],
     headerToolbar: { left: 'today title prev,next', right: '' },
+    dayMaxEvents: 2,
     eventClick: this.onEventClick.bind(this)
   });
   actions = CALENDAR_ACTION;
@@ -200,9 +194,7 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
       const startTime = event.extendedProps['start_date']
         ? dayjs(event.extendedProps['start_date']).format('HH:mm')
         : '';
-      const endTime = event.extendedProps['end_date']
-        ? dayjs(event.extendedProps['end_date']).format('HH:mm')
-        : '';
+      const endTime = event.extendedProps['end_date'] ? dayjs(event.extendedProps['end_date']).format('HH:mm') : '';
       const description = event.extendedProps['description'] || '';
 
       return {
@@ -211,13 +203,7 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
     };
   }
 
-  private getEventStyle(
-    type: string,
-    title: string,
-    description: string,
-    startTime: string,
-    endTime: string
-  ) {
+  private getEventStyle(type: string, title: string, description: string, startTime: string, endTime: string) {
     switch (type) {
       case 'timeGridWeek':
         return `
@@ -258,8 +244,7 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
       height: 'auto',
       events: this.events.map((event) => ({
         ...event,
-        start:
-          type === 'timeGridDay' ? event.start_date : dayjs(event.start_date).format('YYYY-MM-DD'),
+        start: type === 'timeGridDay' ? event.start_date : dayjs(event.start_date).format('YYYY-MM-DD'),
         className: this.onStyleEvent(event.event_type),
         extendedProps: {
           description: event.description,
