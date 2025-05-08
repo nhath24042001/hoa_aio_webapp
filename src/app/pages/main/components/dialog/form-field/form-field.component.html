@@ -54,6 +54,33 @@
         <app-input-phone [placeholder]="placeholder"></app-input-phone>
       }
 
+      <!-- !TODO: Handle case-->
+      <!-- @case ('chip') {
+          <div class="--chip-container" (click)="focusInput()">
+            <div class="w-100 d-flex align-items-start flex-wrap gap-2">
+              @for (tag of tags; track $index) {
+                <div class="--chip d-flex align-items-center">
+                  <img
+                    src="assets/images/common/close-ssm.svg"
+                    class="me-1"
+                    (click)="removeTag($index)"
+                    alt="close_icon"
+                  />
+                  <span>
+                    {{ tag }}
+                  </span>
+                </div>
+              }
+              <input
+                #chipInput
+                [(ngModel)]="inputValue"
+                (keydown.enter)="addTag($event)"
+                [placeholder]="tags.length === 0 ? 'Enter names or groups, separated by comma' : ''"
+              />
+            </div>
+          </div>
+      } -->
+
       @default {
         <input
           type="text"

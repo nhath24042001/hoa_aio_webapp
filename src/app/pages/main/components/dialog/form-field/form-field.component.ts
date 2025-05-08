@@ -52,6 +52,10 @@ export class FormField implements OnInit {
   @Input() isCreateMode = false;
   @Input() formControl!: FormControl | any;
 
+  tags: string[] = [];
+  inputValue = '';
+  chipInput: any;
+
   // TODO: FIX TYPE ANY
 
   classField = '';
@@ -80,6 +84,24 @@ export class FormField implements OnInit {
 
   onStatusChange(event: any) {
     this.classField = `--${event.value.code}`;
+  }
+
+  addTag(event: any) {
+    event.preventDefault();
+
+    const newTag = this.inputValue.trim();
+    if (newTag && !this.tags.includes(newTag)) {
+      this.tags.push(newTag);
+      this.inputValue = '';
+    }
+  }
+
+  removeTag(index: any) {
+    this.tags.splice(index, 1);
+  }
+
+  focusInput() {
+    this.chipInput.nativeElement.focus();
   }
 
   ngOnInit(): void {

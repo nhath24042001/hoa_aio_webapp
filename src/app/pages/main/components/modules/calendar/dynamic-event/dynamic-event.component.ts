@@ -137,22 +137,4 @@ export class DynamicEvent {
   get formData() {
     return this.config.data;
   }
-
-  // addTag(event: any) {
-  //   event.preventDefault();
-
-  //   const newTag = this.inputValue.trim();
-  //   if (newTag && !this.tags.includes(newTag)) {
-  //     this.tags.push(newTag);
-  //     this.inputValue = '';
-  //   }
-  // }
-
-  // removeTag(index: any) {
-  //   this.tags.splice(index, 1);
-  // }
-
-  // focusInput() {
-  //   this.chipInput.nativeElement.focus();
-  // }
 }
