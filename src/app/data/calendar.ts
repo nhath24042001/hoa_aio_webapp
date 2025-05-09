@@ -1,4 +1,4 @@
-import { IGeneralCalendar } from '~/@types/calendar';
+import { IClubCalendar, IGeneralCalendar } from '~/@types/calendar';
 import { EventType } from '~/enums';
 
 export const GENERAL_CALENDAR: IGeneralCalendar[] = [
@@ -138,6 +138,59 @@ export const GENERAL_CALENDAR: IGeneralCalendar[] = [
         status: 'declined'
       }
     ]
+  }
+];
+
+export const CLUB_CALENDAR: IClubCalendar[] = [
+  {
+    event_id: 1,
+    activity_type: 'community',
+    title: 'Event Title - Truncated if title is very long',
+    start_date: '2025-05-09T18:00:00',
+    end_date: '2025-05-09T19:30:00',
+    trainer: 'Michelle Stockton',
+    location: 'Main Auditorium',
+    description: 'Conf. Room 2',
+    max_participants: 20,
+    number_of_registrations: 10,
+    register_users: [
+      {
+        name: 'John Doe',
+        status: 'accepted'
+      },
+      {
+        name: 'Jane Smith',
+        status: 'declined'
+      }
+    ],
+    cost: '$100',
+    additional_info:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  },
+  {
+    event_id: 2,
+    activity_type: 'community',
+    title: 'Event Title - Truncated if title is very long',
+    start_date: '2025-05-09T18:00:00',
+    end_date: '2025-05-09T19:30:00',
+    trainer: 'Michelle Stockton',
+    location: 'Main Auditorium',
+    description: 'Conf. Room 2',
+    max_participants: 20,
+    number_of_registrations: 10,
+    register_users: [
+      {
+        name: 'John Doe',
+        status: 'accepted'
+      },
+      {
+        name: 'Jane Smith',
+        status: 'declined'
+      }
+    ],
+    cost: '$100',
+    additional_info:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
   }
 ];
 

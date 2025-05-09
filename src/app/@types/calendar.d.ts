@@ -24,6 +24,23 @@ export interface IGeneralCalendar {
   rsvp: IRsvp[];
 }
 
+export interface IClubCalendar {
+  event_id: number;
+  title: string;
+  activity_type;
+  title: string;
+  start_date: string;
+  trainer: string;
+  end_date: string;
+  location: string;
+  description: string;
+  max_participants: number;
+  number_of_registrations: number;
+  register_users: IRsvp[];
+  cost?: string;
+  additional_info: string;
+}
+
 export interface IAttachment {
   file_name: string;
   file_type: string;

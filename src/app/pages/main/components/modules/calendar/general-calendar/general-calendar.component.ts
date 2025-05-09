@@ -28,7 +28,6 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
   @ViewChild('calendar') calendarComponent?: FullCalendarComponent;
   ref: DynamicDialogRef | undefined;
 
-  // actionEmitter = output<{ actionKey: string; rowData: IGeneralCalendar }>();
   isListView = signal(false);
   calendarTitle = '';
   calendarHeader = calendarHeader;
@@ -163,11 +162,25 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
         });
         break;
       case 'delete':
-        // Handle delete action
+        this.onDeleteEvent();
         break;
       default:
         break;
     }
+  }
+
+  onDeleteEvent(): void {
+    // const confirmed = await this.toastService.showConfirm({
+    //   icon: 'assets/images/common/calendar-x-lg.svg',
+    //   title: 'Cancel Event',
+    //   description:
+    //     'Are you sure? Proceeding will delete the event from the system, and can not be undone.',
+    //   type: 'error',
+    //   buttonText: 'Cancel event'
+    // });
+    // if (confirmed) {
+    //   this.calendarService.deleteCalendarEvent(event_id).subscribe({});
+    // }
   }
 
   onEventClick(arg: EventClickArg): void {
