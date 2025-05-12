@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit, signal, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, signal, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular';
 import { EventClickArg, EventContentArg } from '@fullcalendar/core';
@@ -24,7 +24,7 @@ import { DynamicEvent } from '../dynamic-event/dynamic-event.component';
   templateUrl: './general-calendar.component.html',
   styleUrl: './general-calendar.component.scss'
 })
-export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnInit {
+export class GeneralCalendar extends BaseComponent implements AfterViewInit {
   @ViewChild('calendar') calendarComponent?: FullCalendarComponent;
   ref: DynamicDialogRef | undefined;
 
@@ -88,19 +88,28 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit, OnI
   }
 
   onStyleEvent(type: string) {
+    const themeClass = this.currentMode === 'dark' ? '--dark' : '';
+    const base = '--event';
+
+    let typeClass = '';
     switch (type) {
       case 'community':
-        return '--event --event-orange';
+        typeClass = '--event-orange';
+        break;
       case 'facility':
-        return '--event --event-purple';
+        typeClass = '--event-purple';
+        break;
       case 'maintenance':
-        return '--event --event-green';
+        typeClass = '--event-green';
+        break;
       case 'administrative':
-        return '--event --event-green-light';
-
+        typeClass = '--event-green-light';
+        break;
       default:
-        return '--event --event-red';
+        typeClass = '--event-red';
     }
+
+    return `${base} ${typeClass} ${themeClass}`.trim();
   }
 
   onNavigation(action: 'today' | 'prev' | 'next'): void {

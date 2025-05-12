@@ -27,7 +27,7 @@ import { ThemeService } from '~/services/theme.service';
   selector: 'app-club-calendar',
   imports: [FullCalendarModule, FormsModule, SelectModule],
   templateUrl: './club-calendar.component.html',
-  styleUrl: './club-calendar.component.scss'
+  styleUrl: '../general-calendar/general-calendar.component.scss'
 })
 export class ClubCalendar extends BaseComponent implements AfterViewInit, OnInit {
   @ViewChild('clubCalendar') calendarComponent?: FullCalendarComponent;
