@@ -12,6 +12,8 @@ import { CustomSelect } from '~/components/shared/custom-select/custom-select.co
 import { InputFile } from '~/components/shared/input-file/input-file.component';
 import { InputPhone } from '~/components/shared/input-phone/input-phone.component';
 
+import { FormParticipant } from '../form-participant-selector/form-participant-selector.component';
+
 @Component({
   selector: 'app-form-field',
   imports: [
@@ -24,7 +26,8 @@ import { InputPhone } from '~/components/shared/input-phone/input-phone.componen
     AvatarGroupModule,
     InputFile,
     CustomSelect,
-    InputPhone
+    InputPhone,
+    FormParticipant
   ],
   templateUrl: './form-field.component.html',
   styleUrl: './form-field.component.scss',
@@ -53,7 +56,6 @@ export class FormField implements OnInit {
   @Input() formControl!: FormControl | any;
 
   tags: string[] = [];
-  inputValue = '';
   chipInput: any;
 
   classField = '';
@@ -87,10 +89,10 @@ export class FormField implements OnInit {
   addTag(event: any) {
     event.preventDefault();
 
-    const newTag = this.inputValue.trim();
+    const newTag = event.target.value.trim();
+
     if (newTag && !this.tags.includes(newTag)) {
       this.tags.push(newTag);
-      this.inputValue = '';
     }
   }
 

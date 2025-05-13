@@ -1,32 +1,24 @@
-<div class="d-flex align-items-center">
-  <img [src]="'assets/images/' + currentMode + '/user-group.svg'" alt="user_icon" class="me-2" />
-  <p class="--text-box">Participants</p>
-
-  @if (!isEditing) {
-    <div class="--chip-container">
-      <div class="w-100 d-flex align-items-start flex-wrap gap-2">
-        @for (tag of participants; track $index) {
-          <div class="--chip d-flex align-items-center">
-            <img
-              src="assets/images/common/close-ssm.svg"
-              class="me-1"
-              (click)="removeTag($index)"
-              alt="close_icon"
-            />
-            <span>
-              {{ tag }}
-            </span>
-          </div>
-        }
-        <input #chipInput [(ngModel)]="inputValue" (keydown.enter)="addTag($event)" />
-        <!-- [placeholder]="
-            participants.length === 0 ? 'Enter names or groups, separated by comma' : ''
-          " -->
-      </div>
+@if (isCreateMode()) {
+  <div class="--chip-container">
+    <div class="w-100 d-flex align-items-start flex-wrap gap-2">
+      @for (tag of participants(); track $index) {
+        <div class="--chip d-flex align-items-center">
+          <img
+            src="assets/images/common/close-ssm.svg"
+            class="me-1"
+            (click)="removeTag($index)"
+            alt="close_icon"
+          />
+          <span>
+            {{ tag }}
+          </span>
+        </div>
+      }
+      <input #chipInput [(ngModel)]="inputValue" (keydown.enter)="addTag($event)" />
     </div>
-  } @else {
-    @for (chip of participants; track $index) {
-      <p-chip [label]="chip" class="me-2" />
-    }
+  </div>
+} @else {
+  @for (chip of participants(); track $index) {
+    <p-chip [label]="chip" class="me-2" />
   }
-</div>
+}

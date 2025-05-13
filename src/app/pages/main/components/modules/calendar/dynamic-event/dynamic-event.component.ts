@@ -79,9 +79,9 @@ export class DynamicEvent {
       icon: 'user-group',
       field: 'participants',
       label: 'Participants',
-      type: 'chip',
+      type: 'participants',
       placeholder: 'Enter names or groups, separated by comma',
-      position: 'left'
+      position: 'extra'
     }
   ];
 
