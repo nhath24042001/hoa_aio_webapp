@@ -18,7 +18,6 @@ export function getEventStyle(type: string, title: string, description: string, 
         `;
     default:
       return `
-          <span class='--truncate-3 text-black'>${title}</span><br/>
-          `;
+          <div class="fc-event-title fc-sticky text-black">${title}</div>`;
   }
 }

@@ -238,7 +238,7 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit {
         minute: '2-digit',
         hour12: false
       },
-      dayMaxEventRows: true,
+      dayMaxEvents: 2,
       height: 'auto',
       events: this.events.map((event) => ({
         ...event,
