@@ -1,9 +1,12 @@
 <div class="p-4">
-  <p-tabs value="0">
+  <p-tabs [value]="activeTab()" (valueChange)="onTabChange($event)">
     <div class="d-flex justify-content-between align-items-center">
       <p-tablist>
-        <p-tab value="0">General Calendar</p-tab>
-        <p-tab value="1">Club Calendar</p-tab>
+        @for (tab of tabs; track $index) {
+          <p-tab value="{{ $index }}">
+            <div>{{ tab.name }}</div>
+          </p-tab>
+        }
       </p-tablist>
 
       <main-header

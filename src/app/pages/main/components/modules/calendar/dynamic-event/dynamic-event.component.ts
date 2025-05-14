@@ -55,7 +55,6 @@ export class DynamicEvent {
       field: 'location',
       label: 'Location',
       type: 'input',
-      list: [],
       placeholder: 'Enter location or video meeting link',
       position: 'right'
     },

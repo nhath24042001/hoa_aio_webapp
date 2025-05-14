@@ -1,1 +1,14 @@
-<p>club-dialog works!</p>
+<app-dynamic-dialog
+  [dialogType]="type"
+  iconCreate="calendar-plus"
+  iconEdit="calendar-edit"
+  title="Event Name"
+  [dialogTitle]="title"
+  [formFields]="list_columns"
+  [list_textarea]="list_textarea"
+  buttonText="Create Event"
+  buttonIcon="calendar-plus-sm"
+  formID="4567890"
+  moduleName="Event ID:"
+  [formData]="formData"
+></app-dynamic-dialog>
