@@ -105,6 +105,28 @@ export class ClubDialog {
   constructor(public config: DynamicDialogConfig) {
     this.data = config.data;
     this.type = this.data.type;
+
+    if (this.type !== 'create') {
+      this.list_columns = this.list_columns.map((column) => {
+        let value = this.data.data.formData[column.field];
+
+        if (column.type === 'date' && typeof value === 'string') {
+          value = new Date(value);
+        }
+
+        return {
+          ...column,
+          value
+        };
+      });
+
+      this.list_textarea = this.list_textarea.map((textarea) => {
+        return {
+          ...textarea,
+          value: this.data.data.formData[textarea.field]
+        };
+      });
+    }
   }
 
   get title() {

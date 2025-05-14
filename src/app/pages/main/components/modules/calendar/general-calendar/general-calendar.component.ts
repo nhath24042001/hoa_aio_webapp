@@ -15,6 +15,7 @@ import { BaseComponent } from '~/components/common/base/base.component';
 import { CALENDAR_ACTION, calendarHeader, GENERAL_CALENDAR } from '~/data/calendar';
 import { Table } from '~/pages/main/components/shared/table/table.component';
 import { ThemeService } from '~/services/theme.service';
+import { getEventStyle } from '~/utils/calendar-utils';
 
 import { DynamicEvent } from '../dynamic-event/dynamic-event.component';
 
@@ -220,34 +221,9 @@ export class GeneralCalendar extends BaseComponent implements AfterViewInit {
       const description = event.extendedProps['description'] || '';
 
       return {
-        html: this.getEventStyle(type, event.title, description, startTime, endTime)
+        html: getEventStyle(type, event.title, description, startTime, endTime)
       };
     };
-  }
-
-  private getEventStyle(type: string, title: string, description: string, startTime: string, endTime: string) {
-    switch (type) {
-      case 'timeGridWeek':
-        return `
-          <div>
-            <span class='--truncate-3 text-black'>${title}</span><br/>
-            <span class='--truncate text-black'>${description}</span>
-            <span class='--truncate text-black'>${startTime} - ${endTime}</span><br/>
-          </div>
-        `;
-      case 'timeGridDay':
-        return `
-            <span class='--truncate-3 text-black'>${title}</span><br/>
-            <div class='d-flex align-items-center'>
-              <small class='--truncate text-black'>${description}</small>
-              <small class='--truncate text-black'>${startTime} - ${endTime}</small><br/>
-            </div>
-        `;
-      default:
-        return `
-          <span class='--truncate-3 text-black'>${title}</span><br/>
-          `;
-    }
   }
 
   private getCalendarOptionsByView(type: string) {

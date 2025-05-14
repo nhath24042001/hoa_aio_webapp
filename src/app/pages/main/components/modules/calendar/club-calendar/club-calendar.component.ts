@@ -1,13 +1,4 @@
-import { DynamicEvent } from './../dynamic-event/dynamic-event.component';
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  OnInit,
-  signal,
-  ViewChild
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, signal, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular';
 import { CalendarOptions, EventClickArg, EventContentArg } from '@fullcalendar/core/index.js';
@@ -22,6 +13,9 @@ import { IClubCalendar } from '~/@types/calendar';
 import { BaseComponent } from '~/components/common/base/base.component';
 import { calendarHeader, CLUB_CALENDAR } from '~/data/calendar';
 import { ThemeService } from '~/services/theme.service';
+import { getEventStyle } from '~/utils/calendar-utils';
+
+import { ClubDialog } from '../club-dialog/club-dialog.component';
 
 @Component({
   selector: 'app-club-calendar',
@@ -142,8 +136,7 @@ export class ClubCalendar extends BaseComponent implements AfterViewInit, OnInit
       height: 'auto',
       events: this.events.map((event) => ({
         ...event,
-        start:
-          type === 'timeGridDay' ? event.start_date : dayjs(event.start_date).format('YYYY-MM-DD'),
+        start: type === 'timeGridDay' ? event.start_date : dayjs(event.start_date).format('YYYY-MM-DD'),
         className: '--event --event-purple',
         extendedProps: {
           description: event.description,
@@ -163,52 +156,19 @@ export class ClubCalendar extends BaseComponent implements AfterViewInit, OnInit
       const startTime = event.extendedProps['start_date']
         ? dayjs(event.extendedProps['start_date']).format('HH:mm')
         : '';
-      const endTime = event.extendedProps['end_date']
-        ? dayjs(event.extendedProps['end_date']).format('HH:mm')
-        : '';
+      const endTime = event.extendedProps['end_date'] ? dayjs(event.extendedProps['end_date']).format('HH:mm') : '';
       const description = event.extendedProps['description'] || '';
 
       return {
-        html: this.getEventStyle(type, event.title, description, startTime, endTime)
+        html: getEventStyle(type, event.title, description, startTime, endTime)
       };
     };
-  }
-
-  private getEventStyle(
-    type: string,
-    title: string,
-    description: string,
-    startTime: string,
-    endTime: string
-  ) {
-    switch (type) {
-      case 'timeGridWeek':
-        return `
-          <div>
-            <span class='--truncate-3 text-black'>${title}</span><br/>
-            <span class='--truncate text-black'>${description}</span>
-            <span class='--truncate text-black'>${startTime} - ${endTime}</span><br/>
-          </div>
-        `;
-      case 'timeGridDay':
-        return `
-            <span class='--truncate-3 text-black'>${title}</span><br/>
-            <div class='d-flex align-items-center'>
-              <small class='--truncate text-black'>${description}</small>
-              <small class='--truncate text-black'>${startTime} - ${endTime}</small><br/>
-            </div>
-        `;
-      default:
-        return `
-          <span class='--truncate-3 text-black'>${title}</span><br/>
-          `;
-    }
   }
 
   onEventClick(arg: EventClickArg): void {
     const event = arg.event.extendedProps as IClubCalendar;
 
-    this.ref = this.dialogService.open(DynamicEvent, {
+    this.ref = this.dialogService.open(ClubDialog, {
       modal: true,
       width: '1000px',
       data: {
