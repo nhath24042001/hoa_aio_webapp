@@ -176,8 +176,7 @@ export class AnnouncementsComponent implements OnInit {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/check-circle-broken-lg.svg',
       title: 'Announcement Posted',
-      description:
-        'The announcement has been posted, and will be available to its recipients shortly.',
+      description: 'The announcement has been posted, and will be available to its recipients shortly.',
       type: 'success',
       buttonText: 'Ok'
     });
