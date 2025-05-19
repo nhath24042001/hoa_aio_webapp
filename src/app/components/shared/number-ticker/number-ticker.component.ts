@@ -3,8 +3,7 @@ import { CountUp } from 'countup.js';
 @Component({
   selector: 'app-number-ticker',
   imports: [],
-  templateUrl: './number-ticker.component.html',
-  styleUrl: './number-ticker.component.scss'
+  templateUrl: './number-ticker.component.html'
 })
 export class NumberTicker implements OnInit {
   end = input<number>(0);
@@ -12,7 +11,6 @@ export class NumberTicker implements OnInit {
   suffix = input<string>('');
   duration = input<number>(2);
   decimal = input<number>(0);
-  fontSize = input<string>('40px');
 
   @ViewChild('counterEl', { static: true }) counterEl!: ElementRef;
 

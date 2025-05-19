@@ -1,7 +1,6 @@
 @if (this.isCreateMode()) {
   <div class="--dynamic-action mt-3 d-flex justify-content-between align-items-center">
-    <p>{{ moduleName() }} {{ formID() }}</p>
-
+    <div></div>
     <div class="d-flex align-items-center">
       <button appButton="secondary" icon="attachment"></button>
 
@@ -11,7 +10,8 @@
     </div>
   </div>
 } @else {
-  <div class="d-flex justify-content-end">
+  <div class="--dynamic-action mt-3 d-flex justify-content-between align-items-center">
+    <p>{{ moduleName() }} {{ formID() }}</p>
     <button appButton="primary" icon="check">Done</button>
   </div>
 }

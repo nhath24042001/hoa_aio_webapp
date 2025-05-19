@@ -3,9 +3,15 @@
   padding: 10px 24px;
 
   .--header-left {
-    .--app-text {
+
+    .--app-text,
+    .--section-name,
+    .--slash-icon {
+      font-size: clamp(0.75rem, 2vw, 1.25rem) !important;
       font-weight: 600;
-      font-size: 20px;
+    }
+
+    .--app-text {
       color: var(--normal-text);
     }
 
@@ -14,16 +20,11 @@
       margin-bottom: 0 !important;
     }
 
-    .--section-name {
-      font-weight: 600;
-      font-size: 20px;
+    .--section-name,
+    .--slash-icon {
       color: var(--const-color);
     }
 
-    .--slash-icon {
-      font-weight: 600;
-      color: var(--const-color);
-    }
   }
 
   .--header-right {

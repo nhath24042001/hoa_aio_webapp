@@ -20,6 +20,7 @@
 
 ::ng-deep .p-tabpanels {
   padding: 12px 0 !important;
+  background: var(--background) !important;
 }
 
 ::ng-deep .p-dialog-mask {
@@ -36,4 +37,9 @@
 
 ::ng-deep .p-tab {
   transition: all 1s step-start !important;
+}
+
+::ng-deep .fc-col-header-cell,
+::ng-deep .fc-timegrid-axis {
+  background: var(--background) !important;
 }

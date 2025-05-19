@@ -12,6 +12,8 @@ import { CustomSelect } from '~/components/shared/custom-select/custom-select.co
 import { InputFile } from '~/components/shared/input-file/input-file.component';
 import { InputPhone } from '~/components/shared/input-phone/input-phone.component';
 
+import { FormParticipant } from '../form-participant-selector/form-participant-selector.component';
+
 @Component({
   selector: 'app-form-field',
   imports: [
@@ -24,7 +26,8 @@ import { InputPhone } from '~/components/shared/input-phone/input-phone.componen
     AvatarGroupModule,
     InputFile,
     CustomSelect,
-    InputPhone
+    InputPhone,
+    FormParticipant
   ],
   templateUrl: './form-field.component.html',
   styleUrl: './form-field.component.scss',
@@ -52,7 +55,8 @@ export class FormField implements OnInit {
   @Input() isCreateMode = false;
   @Input() formControl!: FormControl | any;
 
-  // TODO: FIX TYPE ANY
+  tags: string[] = [];
+  chipInput: any;
 
   classField = '';
 
@@ -80,6 +84,24 @@ export class FormField implements OnInit {
 
   onStatusChange(event: any) {
     this.classField = `--${event.value.code}`;
+  }
+
+  addTag(event: any) {
+    event.preventDefault();
+
+    const newTag = event.target.value.trim();
+
+    if (newTag && !this.tags.includes(newTag)) {
+      this.tags.push(newTag);
+    }
+  }
+
+  removeTag(index: any) {
+    this.tags.splice(index, 1);
+  }
+
+  focusInput() {
+    this.chipInput.nativeElement.focus();
   }
 
   ngOnInit(): void {

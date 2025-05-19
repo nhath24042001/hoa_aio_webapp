@@ -15,9 +15,10 @@
           [options]="options"
           variant="filled"
           optionLabel="name"
-          [placeholder]="placeholder"
+          optionValue="code"
           styleClass="flex-fill"
-          [(ngModel)]="formControl"
+          [placeholder]="placeholder"
+          [(ngModel)]="value"
         />
       }
 
@@ -30,12 +31,12 @@
       }
       @case ('date') {
         <p-datepicker
-          [placeholder]="placeholder"
           showIcon
           iconDisplay="input"
           class="flex-fill"
           variant="filled"
-          [(ngModel)]="formControl"
+          [placeholder]="placeholder"
+          [(ngModel)]="value"
         />
       }
       @case ('file') {
@@ -54,6 +55,17 @@
         <app-input-phone [placeholder]="placeholder"></app-input-phone>
       }
 
+      @case ('participants') {
+        <div class="flex-fill">
+          <app-form-participant
+            [participants]="tags"
+            [dialogType]="dialogType"
+            (addParticipant)="addTag($event)"
+            (removeParticipant)="removeTag($event)"
+          ></app-form-participant>
+        </div>
+      }
+
       @default {
         <input
           type="text"
@@ -61,7 +73,7 @@
           pInputText
           [placeholder]="placeholder"
           class="flex-fill"
-          [(ngModel)]="formControl"
+          [(ngModel)]="value"
         />
       }
     }
@@ -87,8 +99,14 @@
       </p-avatar-group>
     } @else if (field === 'priority') {
       <span class="--priority" [class]="'--' + value">{{ value }}</span>
+    } @else if (field === 'participants') {
+      @for (part of value; track $index) {
+        <div class="--chip">
+          <p>{{ part }}</p>
+        </div>
+      }
     } @else {
-      <span>{{ value ? value : '-' }}</span>
+      <span style="text-transform: capitalize">{{ value ? value : '-' }}</span>
     }
   }
 </div>

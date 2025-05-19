@@ -1,4 +1,4 @@
-<form class="--dynamic-dialog p-4" (ngSubmit)="onSubmit()" #announcementForm="ngForm">
+<form class="--dynamic-dialog p-4" (ngSubmit)="onSubmit(false)" #announcementForm="ngForm">
   <div class="mb-4 d-flex justify-content-between align-items-center">
     <div class="d-flex align-items-center">
       <img src="assets/images/common/annotation-plus.svg" class="me-3" alt="annotation_icon" />
@@ -28,10 +28,12 @@
       <p class="--text-box">User Types</p>
       <p-multiselect
         [options]="userTypes"
+        [(ngModel)]="userTypesSelected"
         optionLabel="name"
         placeholder="Select (multiple)"
         [maxSelectedLabels]="5"
         display="chip"
+        name="user_types"
         styleClass="flex-fill"
         size="small"
         variant="filled"
@@ -85,14 +87,16 @@
     @if (data.id) {
       <div class="--footer-id d-flex align-items-center">
         <span class="me-1">Announcement ID: </span>
-        <p> {{  data.id }}</p>
+        <p>{{ data.id }}</p>
       </div>
     }
 
     <div class="d-flex align-items-center justify-content-end w-100">
       <button appButton="secondary" icon="attachment"></button>
 
-      <button appButton="secondary" icon="save-draft" class="mx-2">Save Draft</button>
+      <button appButton="secondary" icon="save-draft" class="mx-2" (click)="onSubmit(true)">
+        Save Draft
+      </button>
 
       <button type="submit" appButton="primary" icon="white-annotation-plus">
         Create Announcement

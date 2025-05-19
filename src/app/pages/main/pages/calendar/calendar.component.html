@@ -1,27 +1,28 @@
-<div class="--calendar-wrapper p-4">
-  <div class="--calendar-header">
-    <p-tabs value="0">
-      <div class="d-flex justify-content-between align-items-center">
-        <p-tablist>
-          <p-tab value="0">General Calendar</p-tab>
-          <!-- <p-tab value="1">Club Calendar</p-tab> -->
-        </p-tablist>
+<div class="p-4">
+  <p-tabs [value]="activeTab()" (valueChange)="onTabChange($event)">
+    <div class="d-flex justify-content-between align-items-center">
+      <p-tablist>
+        @for (tab of tabs; track $index) {
+          <p-tab value="{{ $index }}">
+            <div>{{ tab.name }}</div>
+          </p-tab>
+        }
+      </p-tablist>
 
-        <main-header
-          labelButton="New Event"
-          (searchChanged)="onSearch()"
-          (addSection)="onOpenCreateEvent()"
-        ></main-header>
-      </div>
+      <main-header
+        labelButton="New Event"
+        (searchChanged)="onSearch()"
+        (addSection)="onOpenCreateEvent()"
+      ></main-header>
+    </div>
 
-      <p-tabpanels>
-        <p-tabpanel value="0">
-          <app-general-calendar (actionEmitter)="handleTableAction($event)"></app-general-calendar>
-        </p-tabpanel>
-        <p-tabpanel value="1">
-          <app-club-calendar></app-club-calendar>
-        </p-tabpanel>
-      </p-tabpanels>
-    </p-tabs>
-  </div>
+    <p-tabpanels>
+      <p-tabpanel value="0">
+        <app-general-calendar></app-general-calendar>
+      </p-tabpanel>
+      <p-tabpanel value="1">
+        <app-club-calendar></app-club-calendar>
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
 </div>

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { some } from 'lodash-es';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TabsModule } from 'primeng/tabs';
+import { forkJoin } from 'rxjs';
 
-import { IAnnouncement } from '~/@types/announcement';
+import { IAnnouncement, IAnnouncementPayload } from '~/@types/announcement';
 import { SkeletonList } from '~/components/shared/skeleton-list/skeleton-list.component';
 import { ButtonDirective } from '~/directives/button.directive';
 import { ACTION_DIALOG } from '~/enums';
@@ -27,7 +29,8 @@ import { AnnouncementService } from './announcement.service';
     MainHeader,
     CheckboxModule,
     PopoverModule,
-    SkeletonList
+    SkeletonList,
+    FormsModule
   ],
   templateUrl: './announcements.component.html',
   styleUrl: './announcements.component.scss'
@@ -36,30 +39,28 @@ export class AnnouncementsComponent implements OnInit {
   ref: DynamicDialogRef | undefined;
   ACTION_DIALOG = ACTION_DIALOG;
   isLoading = true;
+  searchText: string = '';
+  userTypeSelected: string[] = [];
 
-  announcements: IAnnouncement[] = [];
+  activeAnnouncements: IAnnouncement[] = [];
   expiredAnnouncements: IAnnouncement[] = [];
 
   userTypes = [
     {
       label: 'Residents',
-      value: 'residents',
-      isChecked: false
+      value: '3'
     },
     {
       label: 'Managers',
-      value: 'managers',
-      isChecked: false
+      value: '5'
     },
     {
       label: 'Board members',
-      value: 'boardMembers',
-      isChecked: false
+      value: '4'
     },
     {
       label: 'Vendors',
-      value: 'vendors',
-      isChecked: false
+      value: '2'
     }
   ];
 
@@ -70,29 +71,46 @@ export class AnnouncementsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllAnnouncements();
+    this.loadAnnouncements();
   }
 
-  getAllAnnouncements(): void {
+  loadAnnouncements(): void {
     this.isLoading = true;
-    this.announcementService.getAllAnnouncements().subscribe({
-      next: (response) => {
-        this.announcements = response.announcements;
+
+    forkJoin({
+      expired: this.announcementService.getExpiredAnnouncements(this.searchText, this.userTypeSelected),
+      active: this.announcementService.getActiveAnnouncements(this.searchText, this.userTypeSelected)
+    }).subscribe(
+      ({ active, expired }) => {
+        this.activeAnnouncements = active.announcements;
+        this.expiredAnnouncements = expired.announcements;
         this.isLoading = false;
       },
-      error: () => {
-        this.announcements = [];
+      () => {
+        this.activeAnnouncements = [];
+        this.expiredAnnouncements = [];
         this.isLoading = false;
       }
-    });
+    );
   }
 
   checkAnnouncementExists(): boolean {
-    return some([...this.announcements, ...this.announcements]);
+    return some([...this.activeAnnouncements, ...this.expiredAnnouncements]);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onSearchAnnouncement(_search_text: string): void {}
+  onSearchAnnouncement(_search_text: string): void {
+    this.searchText = _search_text;
+    this.loadAnnouncements();
+  }
+
+  onFilterChange(): void {
+    this.loadAnnouncements();
+  }
+
+  clearFilter(): void {
+    this.userTypeSelected = [];
+    this.loadAnnouncements();
+  }
 
   async onImplementAction(event: { announcement: IAnnouncement; type: string }): Promise<void> {
     switch (event.type) {
@@ -103,7 +121,7 @@ export class AnnouncementsComponent implements OnInit {
         this.onOpenAnnouncement(ACTION_DIALOG.EDIT, event.announcement);
         break;
       case 'publish':
-        this.onOpenPublishDialog();
+        this.onOpenPublishDialog(event.announcement);
         break;
       case 'delete':
         this.onOpenDeleteDialog(event.announcement);
@@ -120,6 +138,12 @@ export class AnnouncementsComponent implements OnInit {
         data: announcement
       }
     });
+
+    this.ref.onClose.subscribe((result) => {
+      if (result) {
+        this.loadAnnouncements();
+      }
+    });
   }
 
   onOpenAnnouncementDetail(announcement: IAnnouncement): void {
@@ -134,8 +158,7 @@ export class AnnouncementsComponent implements OnInit {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/red-trash-md.svg',
       title: 'Delete Item',
-      description:
-        'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
+      description: 'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
       type: 'error',
       buttonText: 'Delete'
     });
@@ -143,13 +166,13 @@ export class AnnouncementsComponent implements OnInit {
     if (confirmed) {
       this.announcementService.deleteAnnouncement(announcement.id).subscribe((response) => {
         if (response.rc === 0) {
-          this.getAllAnnouncements();
+          this.loadAnnouncements();
         }
       });
     }
   }
 
-  async onOpenPublishDialog(): Promise<void> {
+  async onOpenPublishDialog(announcement: IAnnouncement): Promise<void> {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/check-circle-broken-lg.svg',
       title: 'Announcement Posted',
@@ -160,7 +183,20 @@ export class AnnouncementsComponent implements OnInit {
     });
 
     if (confirmed) {
-      console.log('run 1');
+      const payload: IAnnouncementPayload = {
+        title: announcement.title,
+        description: announcement.description,
+        link: announcement.link,
+        expiration_date: announcement.expiration_date,
+        announcement_date: '',
+        user_types: ['1', '2'],
+        is_draft: false
+      };
+      this.announcementService.editAnnouncement(announcement.id, payload).subscribe((response) => {
+        if (response.rc === 0) {
+          this.loadAnnouncements();
+        }
+      });
     }
   }
 }

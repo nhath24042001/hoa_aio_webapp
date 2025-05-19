@@ -5,26 +5,25 @@ import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { DynamicField } from '~/@types';
 import { eventList } from '~/data/calendar';
 import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dynamic-dialog.component';
-
 @Component({
-  selector: 'dynamic-event',
+  selector: 'app-club-dialog',
   imports: [DynamicDialog],
-  templateUrl: './dynamic-event.component.html',
-  styleUrl: './dynamic-event.component.scss'
+  templateUrl: './club-dialog.component.html',
+  styleUrl: './club-dialog.component.scss'
 })
-export class DynamicEvent {
+export class ClubDialog {
   data: any;
   type = '';
 
   eventList = eventList;
-  tags: string[] = [];
+  registered_users: string[] = [];
   inputValue: string = '';
 
   list_columns: DynamicField[] = [
     {
       icon: 'list-sm',
-      field: 'event_type',
-      label: 'Event Type',
+      field: 'activity_type',
+      label: 'Activity Type',
       type: 'select',
       list: this.eventList,
       placeholder: 'Select',
@@ -39,15 +38,19 @@ export class DynamicEvent {
       position: 'left'
     },
     {
-      icon: 'check-circle-broken',
-      field: 'registration_required',
-      label: 'Registration required',
-      type: 'select',
-      list: [
-        { name: 'Yes', code: 'yes' },
-        { name: 'No', code: 'no' }
-      ],
-      placeholder: 'Select',
+      icon: 'whistle',
+      field: '  trainer',
+      label: 'Trainer Name',
+      type: 'input',
+      placeholder: 'Trainer Name',
+      position: 'left'
+    },
+    {
+      icon: 'currency-dollar-circle',
+      field: 'cost',
+      label: 'Cost',
+      type: 'input',
+      placeholder: 'Cost',
       position: 'left'
     },
     {
@@ -55,7 +58,7 @@ export class DynamicEvent {
       field: 'location',
       label: 'Location',
       type: 'input',
-      placeholder: 'Enter location or video meeting link',
+      placeholder: 'Select room or club name',
       position: 'right'
     },
     {
@@ -67,17 +70,17 @@ export class DynamicEvent {
       position: 'right'
     },
     {
-      icon: 'coins-hand',
-      field: 'price',
-      label: 'Price',
+      icon: 'user-group',
+      field: 'max_number_of_participants',
+      label: 'Max. participants',
       type: 'input',
-      placeholder: 'Leave empty for free events',
+      placeholder: 'Enter number',
       position: 'right'
     },
     {
       icon: 'user-group',
-      field: 'participants',
-      label: 'Participants',
+      field: 'registered_users',
+      label: 'Registered users (invitees)',
       type: 'participants',
       placeholder: 'Enter names or groups, separated by comma',
       position: 'extra'
@@ -89,6 +92,12 @@ export class DynamicEvent {
       title: 'Event Description',
       field: 'description',
       placeholder: 'Enter description',
+      value: ''
+    },
+    {
+      title: 'Additional Information',
+      field: 'additional_information',
+      placeholder: 'Enter info',
       value: ''
     }
   ];
@@ -118,27 +127,10 @@ export class DynamicEvent {
         };
       });
     }
-
-    if (this.type === 'detail') {
-      this.list_textarea.push(
-        {
-          title: 'RSVP Approved',
-          field: 'rsvp',
-          placeholder: 'Add RSVP approved',
-          value: ''
-        },
-        {
-          title: 'Attachments',
-          field: 'attachments',
-          placeholder: 'Add attachments',
-          value: ''
-        }
-      );
-    }
   }
 
   get title() {
-    return this.type === 'create' ? 'Create New Event' : 'Event Detail';
+    return this.type === 'create' ? 'Create New Club Event' : 'Club Event Detail';
   }
 
   get formData() {

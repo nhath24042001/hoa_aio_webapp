@@ -33,21 +33,59 @@
 ::ng-deep .--event-purple {
   background: #f3eeff;
   border-left: 3px solid #6938da;
+
+  &.--dark {
+    background: #6938DA;
+
+    .fc-event-title {
+      color: #FFF !important;
+    }
+  }
 }
 
 ::ng-deep .--event-orange {
   background: #fff6e6;
   border-left: 3px solid #efa00b;
+
+  &.--dark {
+    background: #674300;
+    color: #FFF !important;
+    border-left: 3px solid #FFC455;
+
+    .fc-event-title {
+      color: #FFF !important;
+    }
+  }
 }
 
 ::ng-deep .--event-green-light {
   background: #f6fffa;
   border-left: 3px solid #a4ffd1;
+
+  &.--dark {
+    background: #1C824F;
+    color: #FFF !important;
+    border-left: 3px solid #A4FFD1;
+
+    .fc-event-title {
+      color: #FFF !important;
+    }
+  }
 }
 
 ::ng-deep .--event-green {
   background: #f3ffe6;
   border-left: 3px solid #2b5300;
+
+  &.--dark {
+    background: #2B5300;
+    color: #FFF !important;
+    border-left: 3px solid #2B5300;
+
+    .fc-event-title {
+      color: #FFF !important;
+    }
+  }
 }
 
 ::ng-deep .fc-event-title-container {
@@ -133,4 +171,12 @@
 
 ::ng-deep .p-tabpanels {
   background: var(--background);
+}
+
+::ng-deep .fc-timegrid-divider {
+  display: none;
+}
+
+::ng-deep .fc-dayGridMonth-view .fc-daygrid-day-frame {
+  height: 170px;
 }

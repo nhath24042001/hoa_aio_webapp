@@ -59,14 +59,9 @@ p {
   font-size: 100%;
 }
 
-// li {
-//   &::marker {
-//     margin: 5px !important;
-//   }
-// }
-
 p,
 span,
+h1,
 h2,
 h5,
 h6 {
@@ -83,31 +78,30 @@ a {
   text-decoration: none !important;
 }
 
-h2 {
+h1 {
+  font-size: clamp(0.5rem, 2vw, 1.5rem);
   font-weight: 600 !important;
-  font-size: 28px !important;
+}
+h2 {
+  font-size: clamp(0.75rem, 2vw, 1.75rem);
+  font-weight: 600 !important;
 }
 
 h5 {
+  font-size: clamp(0.5rem, 2vw, 1.25rem);
   font-weight: 600 !important;
-  font-size: 20px;
+  color: var(--const-color);
 }
 
 h6 {
-  font-weight: 600;
   font-size: 18px;
+  font-weight: 600;
 }
 
 span {
   font-weight: 500;
   font-size: 12px;
 }
-
-// ul li {
-//   font-weight: 500;
-//   font-size: 15px;
-//   color: var(--const-color);
-// }
 
 .--link {
   color: var(--primary-color) !important;
@@ -123,6 +117,14 @@ span {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.--truncate-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  // text-wrap: initial;
 }
 
 .--content-section {
@@ -288,6 +290,7 @@ span {
   cursor: pointer;
 }
 
+/* DIALOG STYLE */
 .--dynamic-dialog {
   background: var(--background);
   border-radius: 20px;
@@ -352,10 +355,12 @@ span {
       color: var(--dialog-text);
       display: flex;
       align-items: center;
-      width: 150px;
+      min-width: 150px;
+      margin-right: 10px !important;
 
       &.--detail {
         width: 150px;
+        margin-right: 20px !important;
       }
     }
 
@@ -510,7 +515,7 @@ span {
 }
 
 .--btn-success {
-  background: #74DB07;
+  background: #74db07;
   color: #fff;
   border: none;
   width: 100%;

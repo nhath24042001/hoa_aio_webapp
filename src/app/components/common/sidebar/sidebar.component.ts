@@ -21,7 +21,7 @@ import { ThemeService } from '../../../services/theme.service';
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent {
-  @Input() isOpen = true;
+  @Input() isOpen = false;
   toggle = output<boolean>();
 
   userRole = UserRole.MANAGER;
@@ -56,10 +56,8 @@ export class SidebarComponent {
       .pipe(takeUntilDestroyed())
       .subscribe((result) => {
         const shouldBeOpen = !result.matches;
-        if (this.isOpen !== shouldBeOpen) {
-          this.isOpen = shouldBeOpen;
-          this.toggle.emit(this.isOpen);
-        }
+        this.isOpen = shouldBeOpen;
+        this.toggle.emit(this.isOpen);
       });
   }
 

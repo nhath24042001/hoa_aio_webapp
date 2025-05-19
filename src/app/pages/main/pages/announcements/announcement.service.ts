@@ -22,7 +22,10 @@ export class AnnouncementService extends HttpClientModel {
     return this.post(this.createRequest('Announcement', 'add_announcement', payload));
   }
 
-  public editAnnouncement(announcement_id: string, payload: IAnnouncementPayload) {
+  public editAnnouncement(
+    announcement_id: number,
+    payload: IAnnouncementPayload
+  ): Observable<ICreateAnnouncementResponse> {
     return this.post(
       this.createRequest('Announcement', 'edit_announcement', {
         announcement_id,
@@ -43,5 +46,27 @@ export class AnnouncementService extends HttpClientModel {
 
   public getRecentAnnouncements() {
     return this.post(this.createRequest('Announcement', 'get_recent_announcements'));
+  }
+
+  public getActiveAnnouncements(
+    search: string,
+    filter_user_types: string[]
+  ): Observable<IAnnouncementResponse> {
+    const payload = {
+      search,
+      filter_user_types
+    };
+    return this.post(this.createRequest('Announcement', 'get_active_announcements', payload));
+  }
+
+  public getExpiredAnnouncements(
+    search: string,
+    filter_user_types: string[]
+  ): Observable<IAnnouncementResponse> {
+    const payload = {
+      search,
+      filter_user_types
+    };
+    return this.post(this.createRequest('Announcement', 'get_expired_announcements', payload));
   }
 }

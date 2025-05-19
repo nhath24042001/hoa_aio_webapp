@@ -9,6 +9,7 @@
     [rows]="rows()"
     [disabled]="disabled()"
     class="w-100"
+    [value]="value()"
   ></textarea>
 } @else {
   @switch (field()) {
@@ -25,6 +26,15 @@
     @case ('comment') {
       <h5 class="mb-2 mt-3">{{ title() }}</h5>
       <p>{{ value() }}</p>
+    }
+
+    @case ('rsvp') {
+      <h5 class="mb-2 mt-3">{{ title() }}</h5>
+      <p class="d-flex">
+        @for (rsvp of value(); track $index) {
+          {{ rsvp.name }}<span *ngIf="$index < value().length - 1">, </span>
+        }
+      </p>
     }
 
     @case ('comments') {

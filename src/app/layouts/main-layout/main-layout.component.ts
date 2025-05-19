@@ -12,7 +12,7 @@ import { SidebarComponent } from '../../components/common/sidebar/sidebar.compon
   styleUrl: './main-layout.component.scss'
 })
 export class MainLayoutComponent {
-  isSidebarOpen = true;
+  isSidebarOpen = false;
 
   onSidebarToggle(isOpen: boolean) {
     this.isSidebarOpen = isOpen;

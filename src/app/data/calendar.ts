@@ -1,50 +1,221 @@
+import { IClubCalendar, IGeneralCalendar } from '~/@types/calendar';
 import { EventType } from '~/enums';
 
-export const calendarData = [
+export const GENERAL_CALENDAR: IGeneralCalendar[] = [
   {
-    task_name: 'Event Title - Truncated if title is very long',
-    type: 'Community Event',
+    event_id: 1,
+    title: 'Event Title - Truncated if title is very long',
+    event_type: 'community',
+    start_date: '2025-05-08T18:00:00',
+    end_date: '2025-05-07T19:30:00',
     location: 'Main Auditorium',
-    startDate: '01/01/2023: 12:00 AM',
-    createdDate: '01/01/2023'
+    description: 'Conf. Room 2',
+    participants: ['HOA Staff', 'Michelle Stockton'],
+    registration_required: 'yes',
+    organizer: 'johndoe@gmail.com',
+    price: '$100',
+    attachments: [
+      {
+        file_name: 'Video Capture 1.MP4',
+        file_type: 'video/mp4',
+        file_size: '2.5 MB'
+      },
+      {
+        file_name: 'Video Capture 1.MP4',
+        file_type: 'video/mp4',
+        file_size: '2.5 MB'
+      }
+    ],
+    rsvp: [
+      {
+        name: 'John Doe',
+        status: 'accepted'
+      },
+      {
+        name: 'Jane Smith',
+        status: 'declined'
+      }
+    ]
   },
   {
-    task_name: 'Trim entrance area trees',
-    type: 'Facility Booking',
+    event_id: 2,
+    title: 'Trim entrance area trees',
+    event_type: 'facility',
+    start_date: '2025-05-08T20:00:00',
+    end_date: '2025-05-07T21:00:00',
     location: 'Swimming Pool',
-    startDate: '01/01/2023: 12:00 AM',
-    createdDate: '01/01/2023'
+    description: 'Conf. Room 2',
+    participants: ['John Doe', 'Jane Smith'],
+    registration_required: 'no',
+    organizer: 'johndoe@gmail.com',
+    attachments: [
+      {
+        file_name: 'Video Capture 1.MP4',
+        file_type: 'video/mp4',
+        file_size: '2.5 MB'
+      },
+      {
+        file_name: 'Video Capture 1.MP4',
+        file_type: 'video/mp4',
+        file_size: '2.5 MB'
+      }
+    ],
+    rsvp: [
+      {
+        name: 'John Doe',
+        status: 'accepted'
+      },
+      {
+        name: 'Jane Smith',
+        status: 'declined'
+      }
+    ]
   },
   {
-    task_name: 'Create About Page for Company Profile',
-    type: 'Maintenance Event',
-    location: 'Main Entrance Gate',
-    startDate: '01/01/2023: 12:00 AM',
-    createdDate: '01/01/2023'
-  },
-  {
-    task_name: 'Create UI Stock Mobile',
-    type: 'Community Event',
+    event_id: 3,
+    title: 'Create About Page for Company Profile',
+    event_type: 'maintenance',
+    start_date: '2025-05-08T16:00:00',
+    end_date: '2025-05-08T18:00:00',
     location: 'Swimming Pool',
-    startDate: '01/01/2023: 12:00 AM',
-    createdDate: '01/01/2023'
+    description: 'Conf. Room 2',
+    participants: ['John Doe', 'Jane Smith'],
+    registration_required: 'yes',
+    organizer: 'johndoe@gmail.com',
+    attachments: [
+      {
+        file_name: 'Video Capture 1.MP4',
+        file_type: 'video/mp4',
+        file_size: '2.5 MB'
+      },
+      {
+        file_name: 'Video Capture 1.MP4',
+        file_type: 'video/mp4',
+        file_size: '2.5 MB'
+      }
+    ],
+    rsvp: [
+      {
+        name: 'John Doe',
+        status: 'accepted'
+      },
+      {
+        name: 'Jane Smith',
+        status: 'declined'
+      }
+    ]
   },
   {
-    task_name: 'Usability Testing POS Mobile Apps',
-    type: 'Facility Booking',
-    location: 'Swimming Pool',
-    startDate: '01/01/2023: 12:00 AM',
-    createdDate: '01/01/2023'
+    event_id: 4,
+    title: 'Create UI Stock Mobile',
+    event_type: 'administrative',
+    start_date: '2025-05-07T07:00:00',
+    end_date: '2025-05-06T07:00:00',
+    location: 'Main Auditorium',
+    description: 'Conf. Room 2',
+    participants: ['John Doe', 'Jane Smith'],
+    registration_required: 'no',
+    organizer: 'johndoe@gmail.com',
+    attachments: [
+      {
+        file_name: 'Video Capture 1.MP4',
+        file_type: 'video/mp4',
+        file_size: '2.5 MB'
+      },
+      {
+        file_name: 'Video Capture 1.MP4',
+        file_type: 'video/mp4',
+        file_size: '2.5 MB'
+      }
+    ],
+    rsvp: [
+      {
+        name: 'John Doe',
+        status: 'accepted'
+      },
+      {
+        name: 'Jane Smith',
+        status: 'declined'
+      }
+    ]
+  }
+];
+
+export const CLUB_CALENDAR: IClubCalendar[] = [
+  {
+    event_id: 1,
+    activity_type: 'community',
+    title: 'Event Title - Truncated if title is very long',
+    start_date: '2025-05-09T18:00:00',
+    end_date: '2025-05-09T19:30:00',
+    trainer: 'Michelle Stockton',
+    location: 'Main Auditorium',
+    description: 'Conf. Room 2',
+    max_participants: 20,
+    number_of_registrations: 10,
+    register_users: [
+      {
+        name: 'John Doe',
+        status: 'accepted'
+      },
+      {
+        name: 'Jane Smith',
+        status: 'declined'
+      }
+    ],
+    cost: '$100',
+    additional_info:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  },
+  {
+    event_id: 2,
+    activity_type: 'community',
+    title: 'Event Title - Truncated if title is very long',
+    start_date: '2025-05-09T18:00:00',
+    end_date: '2025-05-09T19:30:00',
+    trainer: 'Michelle Stockton',
+    location: 'Main Auditorium',
+    description: 'Conf. Room 2',
+    max_participants: 20,
+    number_of_registrations: 10,
+    register_users: [
+      {
+        name: 'John Doe',
+        status: 'accepted'
+      },
+      {
+        name: 'Jane Smith',
+        status: 'declined'
+      }
+    ],
+    cost: '$100',
+    additional_info:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
   }
 ];
 
 export const calendarHeader = [
-  { field: 'task_name', name: 'Task Name' },
-  { field: 'type', name: 'Type' },
+  { field: 'event_id', name: 'ID' },
+  { field: 'title', name: 'Event name' },
+  { field: 'event_type', name: 'Event Type' },
+  { field: 'description', name: 'Description' },
   { field: 'location', name: 'Location' },
-  { field: 'startDate', name: 'Start' },
-  { field: 'createdDate', name: 'Created' },
   { field: 'action', name: '' }
+];
+
+export const CALENDAR_ACTION = [
+  {
+    label: 'Edit',
+    icon: 'calendar-edit',
+    actionKey: 'edit',
+    className: '--pointer mb-2'
+  },
+  {
+    label: 'Cancel Event',
+    icon: 'calendar-x',
+    actionKey: 'delete',
+    className: '--delete-action --pointer'
+  }
 ];
 
 export const eventList = [

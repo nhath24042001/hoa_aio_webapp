@@ -1,7 +1,7 @@
 .--empty-content-wrapper {
   h5 {
     font-weight: 600;
-    font-size: 28px;
+    font-size: clamp(1rem, 2vw, 1.75rem);
     color: var(--const-color);
   }
 
