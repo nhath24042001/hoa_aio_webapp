@@ -5,7 +5,7 @@ export const accountHeader: IHeaderTable[] = [
     field: 'property_address',
     name: 'Property Address',
     sortable: true,
-    width: '200px'
+    width: 200
   },
   {
     field: 'owner',
@@ -30,7 +30,7 @@ export const accountHeader: IHeaderTable[] = [
   {
     field: 'action',
     name: '',
-    width: '20px'
+    width: 20
   }
 ];
 

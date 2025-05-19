@@ -5,7 +5,7 @@ export const userHeader: IHeaderTable[] = [
     field: 'full_name',
     name: 'Full Name',
     sortable: true,
-    width: '200px'
+    width: 200
   },
   {
     field: 'user_type',
@@ -22,12 +22,12 @@ export const userHeader: IHeaderTable[] = [
   {
     field: 'creation_date',
     name: 'Creation Date',
-    width: '120px'
+    width: 120
   },
   {
     field: 'status',
     name: 'Status',
-    width: '150px'
+    width: 150
   },
   {
     field: 'updated_date',
@@ -40,7 +40,7 @@ export const userHeader: IHeaderTable[] = [
   {
     field: 'action',
     name: '',
-    width: '20px'
+    width: 20
   }
 ];
 

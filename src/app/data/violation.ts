@@ -5,7 +5,7 @@ export const violationHeader: IHeaderTable[] = [
     field: 'property_address',
     name: 'Property Address',
     sortable: true,
-    width: '200px'
+    width: 200
   },
   {
     field: 'violation_type',
@@ -18,22 +18,22 @@ export const violationHeader: IHeaderTable[] = [
   {
     field: 'date',
     name: 'Date & Time',
-    width: '150px'
+    width: 150
   },
   {
     field: 'due_date',
     name: 'Due Date',
-    width: '120px'
+    width: 120
   },
   {
     field: 'status',
     name: 'Status',
-    width: '150px'
+    width: 150
   },
   {
     field: 'action',
     name: '',
-    width: '20px'
+    width: 20
   }
 ];
 

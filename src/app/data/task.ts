@@ -5,7 +5,7 @@ export const TASK_HEADER: IHeaderTable[] = [
   {
     field: 'type_icon',
     name: '',
-    width: '20px'
+    width: 20
   },
   {
     field: 'task_name',
@@ -35,7 +35,7 @@ export const TASK_HEADER: IHeaderTable[] = [
   {
     field: 'action',
     name: '',
-    width: '20px'
+    width: 20
   }
 ];
 

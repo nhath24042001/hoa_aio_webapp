@@ -21,7 +21,7 @@ export const reportHeader: IHeaderTable[] = [
   {
     field: 'action',
     name: '',
-    width: '20px'
+    width: 20
   }
 ];
 
