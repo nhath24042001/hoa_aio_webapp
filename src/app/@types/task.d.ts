@@ -26,5 +26,5 @@ export interface IHeaderTable {
   field: string;
   name: string;
   sortable?: boolean;
-  width?: string;
+  width?: number;
 }
