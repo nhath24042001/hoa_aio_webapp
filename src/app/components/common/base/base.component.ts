@@ -13,7 +13,7 @@ export class BaseComponent implements OnInit, OnDestroy {
   currentMode: string = '';
   private themeSubscription!: Subscription;
 
-  constructor(private themeService: ThemeService) {}
+  constructor(protected themeService: ThemeService) {}
 
   ngOnInit() {
     this.themeSubscription = this.themeService.theme$.subscribe((theme) => {

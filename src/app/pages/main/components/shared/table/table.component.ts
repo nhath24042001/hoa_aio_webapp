@@ -1,8 +1,6 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, input, OnInit, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import defaultTo from 'lodash-es/defaultTo';
-import toNumber from 'lodash-es/toNumber';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { ButtonModule } from 'primeng/button';
@@ -79,10 +77,17 @@ export class Table<T> extends BaseComponent implements OnInit {
 
   override ngOnInit(): void {
     super.ngOnInit();
-    const sidebarWidthStr = localStorage.getItem('sidebarWidth');
 
-    this.sidebarWidth = defaultTo(toNumber(sidebarWidthStr), 0);
-    this.tableWidth = window.innerWidth - this.sidebarWidth - 48;
+    this.themeService.sidebarWidth$.subscribe((width) => {
+      this.sidebarWidth = width;
+      this.tableWidth = window.innerWidth - width - 48;
+    });
+
+    window.addEventListener('resize', this.updateTableWidth);
+  }
+
+  override ngOnDestroy(): void {
+    window.removeEventListener('resize', this.updateTableWidth);
   }
 
   convertToTitleCase(text: string) {
@@ -111,4 +116,9 @@ export class Table<T> extends BaseComponent implements OnInit {
     const target = event.target as HTMLImageElement;
     target.src = `assets/images/common/error-image.jpg`;
   }
+
+  private updateTableWidth = () => {
+    const width = this.themeService.getSidebarWidth();
+    this.tableWidth = window.innerWidth - width - 48;
+  };
 }
