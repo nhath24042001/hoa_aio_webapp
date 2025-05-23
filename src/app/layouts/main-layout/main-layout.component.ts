@@ -1,12 +1,6 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  HostListener,
-  OnDestroy,
-  ViewChild
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ThemeService } from '~/services/theme.service';
@@ -20,14 +14,23 @@ import { SidebarComponent } from '../../components/common/sidebar/sidebar.compon
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.scss'
 })
-export class MainLayoutComponent implements AfterViewInit, OnDestroy {
+export class MainLayoutComponent implements AfterViewInit, OnDestroy, OnInit {
   @ViewChild('sidebarElement', { read: ElementRef }) sidebarElement!: ElementRef;
 
   isSidebarOpen = false;
   sidebarWidth: number = 0;
   private resizeObserver!: ResizeObserver;
 
-  constructor(private themeService: ThemeService) {}
+  constructor(
+    private themeService: ThemeService,
+    private breakpointObserver: BreakpointObserver
+  ) {}
+
+  ngOnInit() {
+    this.breakpointObserver.observe(['(max-width: 1200px)']).subscribe((result) => {
+      this.isSidebarOpen = !result.matches;
+    });
+  }
 
   onSidebarToggle(isOpen: boolean) {
     this.isSidebarOpen = isOpen;
