@@ -1,134 +1,135 @@
-@if (isActive) {
-  <div class="--task-wrapper p-4">
-    <div class="--task-header">
-      <p-tabs [value]="activeTab()" (valueChange)="onTabChange($event)">
-        <div class="d-flex justify-content-between align-items-center">
-          <p-tablist>
-            @for (tab of tabs; track $index) {
-              <p-tab value="{{ $index }}">
-                <img
-                  [src]="activeTab() === $index.toString() ? tab.activeImg : tab.img"
-                  alt="tab_img"
-                />
-                <div>{{ tab.name }}</div>
-              </p-tab>
-            }
-          </p-tablist>
+@if (allTasks.length) {
+<div class="--task-wrapper p-4">
+  <div class="--task-header">
+    <p-tabs [value]="activeTab()" (valueChange)="onTabChange($event)">
+      <div class="d-flex justify-content-between align-items-center">
+        <p-tablist>
+          @for (tab of tabs; track $index) {
+            <p-tab value="{{ $index }}">
+              <img
+                [src]="activeTab() === $index.toString() ? tab.activeImg : tab.img"
+                alt="tab_img"
+              />
+              <div>{{ tab.name }}</div>
+            </p-tab>
+          }
+        </p-tablist>
 
-          <main-header
-            labelButton="New Task"
-            (searchChanged)="onSearch()"
-            (addSection)="onOpenCreateTask()"
-          >
-            <div filter-content>
-              <div class="--filter-content p-3">
-                <div class="d-flex justify-content-between align-items-center">
-                  <h2>Filters</h2>
-                  <h4>Clear all</h4>
+        <main-header
+          labelButton="New Task"
+          (searchChanged)="onSearch()"
+          (addSection)="onOpenCreateTask()"
+        >
+          <div filter-content>
+            <div class="--filter-content p-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <h2>Filters</h2>
+                <h4>Clear all</h4>
+              </div>
+
+              <div class="--filter-box mt-2 d-flex">
+                <p class="--text-filter">Task Status</p>
+                <div class="d-flex flex-fill">
+                  <p-multiselect
+                    [options]="task_status"
+                    [(ngModel)]="selectedStatus"
+                    optionLabel="name"
+                    placeholder="All"
+                    [maxSelectedLabels]="2"
+                    styleClass="flex-fill me-2"
+                  />
+                  <img src="assets/images/common/close-circle.svg" alt="close_circle_icon" />
                 </div>
+              </div>
 
-                <div class="--filter-box mt-2 d-flex">
-                  <p class="--text-filter">Task Status</p>
-                  <div class="d-flex flex-fill">
-                    <p-multiselect
-                      [options]="task_status"
-                      [(ngModel)]="selectedStatus"
-                      optionLabel="name"
-                      placeholder="All"
-                      [maxSelectedLabels]="2"
-                      styleClass="flex-fill me-2"
-                    />
-                    <img src="assets/images/common/close-circle.svg" alt="close_circle_icon" />
-                  </div>
+              <div class="d-flex mt-3">
+                <p class="--text-date">Task Creation</p>
+                <div class="d-flex align-items-center">
+                  <p-datepicker
+                    [(ngModel)]="startDate"
+                    [iconDisplay]="'input'"
+                    placeholder="Start date"
+                    [showIcon]="true"
+                  />
+                  <span class="mx-2">to</span>
+                  <p-datepicker
+                    [(ngModel)]="endDate"
+                    [iconDisplay]="'input'"
+                    [showIcon]="true"
+                    styleClass="me-2"
+                    placeholder="End date"
+                  />
+                  <img src="assets/images/common/close-circle.svg" alt="close_circle_icon" />
                 </div>
+              </div>
 
-                <div class="d-flex mt-3">
-                  <p class="--text-date">Task Creation</p>
-                  <div class="d-flex align-items-center">
-                    <p-datepicker
-                      [(ngModel)]="startDate"
-                      [iconDisplay]="'input'"
-                      placeholder="Start date"
-                      [showIcon]="true"
-                    />
-                    <span class="mx-2">to</span>
-                    <p-datepicker
-                      [(ngModel)]="endDate"
-                      [iconDisplay]="'input'"
-                      [showIcon]="true"
-                      styleClass="me-2"
-                      placeholder="End date"
-                    />
-                    <img src="assets/images/common/close-circle.svg" alt="close_circle_icon" />
-                  </div>
+              <div class="--filter-box mt-3 d-flex align-items-center">
+                <p class="--text-filter">Assigned to</p>
+                <div class="d-flex align-items-center flex-fill">
+                  <p-multiselect
+                    [options]="task_status"
+                    [(ngModel)]="selectedStatus"
+                    optionLabel="name"
+                    placeholder="All"
+                    [maxSelectedLabels]="2"
+                    styleClass="flex-fill me-2"
+                  />
+                  <img src="assets/images/common/close-circle.svg" alt="close_circle_icon" />
                 </div>
+              </div>
 
-                <div class="--filter-box mt-3 d-flex align-items-center">
-                  <p class="--text-filter">Assigned to</p>
-                  <div class="d-flex align-items-center flex-fill">
-                    <p-multiselect
-                      [options]="task_status"
-                      [(ngModel)]="selectedStatus"
-                      optionLabel="name"
-                      placeholder="All"
-                      [maxSelectedLabels]="2"
-                      styleClass="flex-fill me-2"
-                    />
-                    <img src="assets/images/common/close-circle.svg" alt="close_circle_icon" />
-                  </div>
-                </div>
-
-                <div class="--filter-box d-flex mt-3">
-                  <p class="--text-filter">Priority</p>
-                  <div class="d-flex align-items-center flex-fill">
-                    <p-multiselect
-                      [options]="task_status"
-                      [(ngModel)]="selectedStatus"
-                      optionLabel="name"
-                      placeholder="All"
-                      [maxSelectedLabels]="2"
-                      styleClass="flex-fill me-2"
-                    />
-                    <img src="assets/images/common/close-circle.svg" alt="close_circle_icon" />
-                  </div>
+              <div class="--filter-box d-flex mt-3">
+                <p class="--text-filter">Priority</p>
+                <div class="d-flex align-items-center flex-fill">
+                  <p-multiselect
+                    [options]="task_status"
+                    [(ngModel)]="selectedStatus"
+                    optionLabel="name"
+                    placeholder="All"
+                    [maxSelectedLabels]="2"
+                    styleClass="flex-fill me-2"
+                  />
+                  <img src="assets/images/common/close-circle.svg" alt="close_circle_icon" />
                 </div>
               </div>
             </div>
-          </main-header>
-        </div>
+          </div>
+        </main-header>
+      </div>
 
-        <p-tabpanels>
-          <p-tabpanel value="0">
-            <app-table
-              [data]="tasks"
-              [headers]="headers"
-              [showPagination]="true"
-              [actions]="actions"
-              (actionTriggered)="handleTableAction($event)"
-            ></app-table>
-          </p-tabpanel>
-          <p-tabpanel value="1">
-            <app-table
-              [data]="tasks"
-              [headers]="headers"
-              [showPagination]="true"
-              [actions]="actions"
-              (actionTriggered)="handleTableAction($event)"
-            ></app-table>
-          </p-tabpanel>
-          <p-tabpanel value="2">
-            <app-table
-              [data]="tasks"
-              [headers]="headers"
-              [showPagination]="true"
-              [actions]="actions"
-              (actionTriggered)="handleTableAction($event)"
-            ></app-table>
-          </p-tabpanel>
-        </p-tabpanels>
-      </p-tabs>
-    </div>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <app-table
+            [data]="allTasks"
+            [headers]="headers"
+            [showPagination]="true"
+            [actions]="actions"
+            (actionTriggered)="handleTableAction($event)"
+          ></app-table>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <app-table
+            [data]="claimTasks"
+            [headers]="headers"
+            [showPagination]="true"
+            [actions]="actions"
+            (actionTriggered)="handleTableAction($event)"
+          ></app-table>
+        </p-tabpanel>
+        <p-tabpanel value="2">
+          <app-table
+            [data]="actionItemTasks"
+            [headers]="headers"
+            [showPagination]="true"
+            [actions]="actions"
+            (actionTriggered)="handleTableAction($event)"
+          ></app-table>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
   </div>
+</div>
+
 } @else {
   <div class="--content-section p-4 d-flex flex-column">
     <div class="d-flex justify-content-end">

@@ -1,14 +1,16 @@
+import { ICommonResponse } from './index';
+
 export interface ITaskParams {
-  is_claim_or_action_item: number;
-  status: number;
-  priority: number;
-  assigned_to: string;
-  created_by: string;
-  type: number;
-  date_from: string;
-  date_to: string;
-  sort: 'ASC' | 'DESC';
-  search: string;
+  is_claim_or_action_item?: number;
+  status?: number;
+  priority?: number;
+  assigned_to?: string;
+  created_by?: string;
+  type?: number;
+  date_from?: string;
+  date_to?: string;
+  sort?: 'ASC' | 'DESC';
+  search?: string;
 }
 
 export interface ITaskPayload {
@@ -31,6 +33,13 @@ export interface IClaimPayload extends ITaskPayload {
 }
 
 export interface ITaskResponse extends ICommonResponse {
+  tasks: {
+    tasks: any[];
+    total: number;
+  };
+}
+
+export interface ITaskCreationResponse extends ICommonResponse {
   task_id: number;
 }
 

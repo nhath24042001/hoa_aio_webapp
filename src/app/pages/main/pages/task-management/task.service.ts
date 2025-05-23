@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ICommonResponse } from '~/@types';
-import { IActionItemPayload, IClaimPayload, ITaskResponse } from '~/@types/task';
+import { IActionItemPayload, IClaimPayload, ITaskCreationResponse, ITaskParams, ITaskResponse } from '~/@types/task';
 import { HttpClientModel } from '~/models/http/http-client.model';
 
 @Injectable({
@@ -16,8 +16,8 @@ export class TaskService extends HttpClientModel {
 
   /* QUERY TASKS */
 
-  public getAllTasks(): Observable<ICommonResponse> {
-    return this.post(this.createRequest('Task', 'get_all_tasks'));
+  public getTasks(params: ITaskParams): Observable<ITaskResponse> {
+    return this.post(this.createRequest('Task', 'get_all_tasks', params));
   }
 
   public getTaskById(task_id: number): Observable<ICommonResponse> {
@@ -42,19 +42,19 @@ export class TaskService extends HttpClientModel {
     return this.post(this.createRequest('Task', 'reject_task', { task_id }));
   }
 
-  public addActionItem(payload: IActionItemPayload): Observable<ITaskResponse> {
+  public addActionItem(payload: IActionItemPayload): Observable<ITaskCreationResponse> {
     return this.post(this.createRequest('Task', 'add_action_item', payload));
   }
 
-  public editActionItem(task_id: number, payload: IActionItemPayload): Observable<ITaskResponse> {
+  public editActionItem(task_id: number, payload: IActionItemPayload): Observable<ITaskCreationResponse> {
     return this.post(this.createRequest('Task', 'edit_action_item', { task_id, ...payload }));
   }
 
-  public addResidentClaim(payload: IClaimPayload): Observable<ITaskResponse> {
+  public addResidentClaim(payload: IClaimPayload): Observable<ITaskCreationResponse> {
     return this.post(this.createRequest('Task', 'add_resident_claim', payload));
   }
 
-  public editResidentClaim(task_id: number, payload: IClaimPayload): Observable<ITaskResponse> {
+  public editResidentClaim(task_id: number, payload: IClaimPayload): Observable<ITaskCreationResponse> {
     return this.post(this.createRequest('Task', 'edit_resident_claim', { task_id, ...payload }));
   }
 }

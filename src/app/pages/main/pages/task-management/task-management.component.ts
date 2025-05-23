@@ -1,20 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TabsModule } from 'primeng/tabs';
+import { forkJoin } from 'rxjs';
 
 import { TASK_STATUS } from '~/constants';
 import { taskTabHeader } from '~/constants/tab';
-import { TASK_ACTIONS, TASK_HEADER, TASK_LIST } from '~/data/task';
+import { TASK_ACTIONS, TASK_HEADER } from '~/data/task';
 import { ButtonDirective } from '~/directives/button.directive';
 import { TaskDialog } from '~/pages/main/components/modules/task-management/task-dialog/task-dialog.component';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';
 import { ToastService } from '~/services/toast.service';
+
+import { TaskService } from './task.service';
 
 @Component({
   selector: 'app-task-management',
@@ -31,12 +34,13 @@ import { ToastService } from '~/services/toast.service';
   templateUrl: './task-management.component.html',
   styleUrl: './task-management.component.scss'
 })
-export class TaskManagementComponent {
+export class TaskManagementComponent implements OnInit {
   ref: DynamicDialogRef | undefined;
   activeTab = signal('0');
-  isActive: boolean = true;
-  tasks = TASK_LIST;
   tabs = taskTabHeader;
+  allTasks: any[] = [];
+  claimTasks: any[] = [];
+  actionItemTasks: any[] = [];
 
   headers = TASK_HEADER;
 
@@ -49,13 +53,32 @@ export class TaskManagementComponent {
 
   constructor(
     public dialogService: DialogService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private taskService: TaskService
   ) {}
+
+  ngOnInit(): void {
+    this.getTaskList();
+  }
 
   onSearch() {}
 
   onTabChange(tabIndex: number | string) {
     this.activeTab.set(tabIndex.toString());
+  }
+
+  getTaskList() {
+    forkJoin({
+      claim: this.taskService.getTasks({ is_claim_or_action_item: 0 }),
+      action_item: this.taskService.getTasks({ is_claim_or_action_item: 1 }),
+      all: this.taskService.getTasks({ is_claim_or_action_item: 2 })
+    }).subscribe({
+      next: ({ claim, action_item, all }) => {
+        this.claimTasks = claim.tasks.tasks;
+        this.actionItemTasks = action_item.tasks.tasks;
+        this.allTasks = all.tasks.tasks;
+      }
+    });
   }
 
   onOpenCreateTask(): void {
@@ -133,7 +156,6 @@ export class TaskManagementComponent {
   }
 
   handleTableAction(event: { actionKey: string; rowData: any }) {
-    // TODO: Fix type any
     switch (event.actionKey) {
       case 'edit':
         this.onOpenTaskDetail();
@@ -147,16 +169,15 @@ export class TaskManagementComponent {
   }
 
   async onOpenDeleteDialog(): Promise<void> {
-    const confirmed = await this.toastService.showConfirm({
-      icon: 'assets/images/common/red-trash-md.svg',
-      title: 'Delete task',
-      description:
-        'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
-      type: 'error',
-      buttonText: 'Delete task'
-    });
-
-    if (confirmed) {
-    }
+    // const confirmed = await this.toastService.showConfirm({
+    //   icon: 'assets/images/common/red-trash-md.svg',
+    //   title: 'Delete task',
+    //   description:
+    //     'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
+    //   type: 'error',
+    //   buttonText: 'Delete task'
+    // });
+    // if (confirmed) {
+    // }
   }
 }
