@@ -8,12 +8,12 @@ import { TASK_CUSTOM_SELECT } from '~/constants/select';
 import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dynamic-dialog.component';
 
 @Component({
-  selector: 'app-task-dialog',
+  selector: 'app-task-action-dialog',
   imports: [DynamicDialog],
-  templateUrl: './task-dialog.component.html',
-  styleUrl: './task-dialog.component.scss'
+  templateUrl: './task-action-dialog.component.html',
+  styleUrl: './task-action-dialog.component.scss'
 })
-export class TaskDialog {
+export class TaskActionDialogComponent {
   data: any;
   type = '';
   project_types = PROJECT_TYPES;
@@ -109,8 +109,7 @@ export class TaskDialog {
     if (this.type !== 'create') {
       this.list_columns.unshift(this.custom_select_list);
       this.list_columns = this.list_columns.filter(
-        (col) =>
-          col.field !== 'resident_name' && col.field !== 'property_address' && col.field !== 'eta'
+        (col) => col.field !== 'resident_name' && col.field !== 'property_address' && col.field !== 'eta'
       );
       this.list_columns.push(
         {

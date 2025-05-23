@@ -11,12 +11,13 @@ import { TASK_STATUS } from '~/constants';
 import { taskTabHeader } from '~/constants/tab';
 import { TASK_ACTIONS, TASK_HEADER } from '~/data/task';
 import { ButtonDirective } from '~/directives/button.directive';
-import { TaskDialog } from '~/pages/main/components/modules/task-management/task-dialog/task-dialog.component';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';
 import { ToastService } from '~/services/toast.service';
 
+import { TaskClaimDialog } from '../../components/modules/task-management/task-claim-dialog/task-claim-dialog.component';
+import { TaskActionDialogComponent } from './../../components/modules/task-management/task-action-dialog/task-action-dialog.component';
 import { TaskService } from './task.service';
 
 @Component({
@@ -81,78 +82,76 @@ export class TaskManagementComponent implements OnInit {
     });
   }
 
-  onOpenCreateTask(): void {
-    this.ref = this.dialogService.open(TaskDialog, {
+  onOpenTask(type: 'claim' | 'action_item'): void {
+    const component = type === 'claim' ? TaskClaimDialog : TaskActionDialogComponent;
+
+    this.ref = this.dialogService.open(component, {
       modal: true,
       width: '1000px',
-      data: {
-        type: 'create'
-      }
+      data: { type: 'create' }
     });
-
-    this.ref.onClose.subscribe(() => {});
   }
 
   onOpenTaskDetail(): void {
-    this.ref = this.dialogService.open(TaskDialog, {
-      modal: true,
-      width: '1000px',
-      data: {
-        type: 'detail',
-        data: {
-          title: 'Sign contract with plumbing vendor',
-          created_date: '2/2/2021',
-          update_date: '2/2/2022',
-          status: 'new',
-          formData: {
-            type: 'Maintenance',
-            priority: 'critical',
-            eta: '2023-08-01',
-            assigned_to: [
-              {
-                id: 1,
-                name: 'John Doe',
-                image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png'
-              },
-              {
-                id: 2,
-                name: 'Jane Smith',
-                image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/asiyajavayant.png'
-              },
-              {
-                id: 3,
-                name: 'Jane Smith',
-                image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png'
-              }
-            ],
-            project: 'Palm Springs Vendor List',
-            resident_name: '',
-            property_address: '42 Main Drive, Palm Springs',
-            description:
-              'Negotiate terms and finalize the service agreement with the selected plumbing vendor for the office renovation project. Ensure all requirements are clearly outlined to avoid any service disruptions.',
-            comments: [
-              {
-                avatar: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png',
-                name: 'Parker Williams',
-                content: 'The quest has begun'
-              }
-            ],
-            attachments: [
-              {
-                file_name: 'Video Capture 1.MP4',
-                file_type: 'video/mp4',
-                file_size: '2.5 MB'
-              },
-              {
-                file_name: 'Video Capture 1.MP4',
-                file_type: 'video/mp4',
-                file_size: '2.5 MB'
-              }
-            ]
-          }
-        }
-      }
-    });
+    // this.ref = this.dialogService.open(TaskDialog, {
+    //   modal: true,
+    //   width: '1000px',
+    //   data: {
+    //     type: 'detail',
+    //     data: {
+    //       title: 'Sign contract with plumbing vendor',
+    //       created_date: '2/2/2021',
+    //       update_date: '2/2/2022',
+    //       status: 'new',
+    //       formData: {
+    //         type: 'Maintenance',
+    //         priority: 'critical',
+    //         eta: '2023-08-01',
+    //         assigned_to: [
+    //           {
+    //             id: 1,
+    //             name: 'John Doe',
+    //             image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png'
+    //           },
+    //           {
+    //             id: 2,
+    //             name: 'Jane Smith',
+    //             image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/asiyajavayant.png'
+    //           },
+    //           {
+    //             id: 3,
+    //             name: 'Jane Smith',
+    //             image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png'
+    //           }
+    //         ],
+    //         project: 'Palm Springs Vendor List',
+    //         resident_name: '',
+    //         property_address: '42 Main Drive, Palm Springs',
+    //         description:
+    //           'Negotiate terms and finalize the service agreement with the selected plumbing vendor for the office renovation project. Ensure all requirements are clearly outlined to avoid any service disruptions.',
+    //         comments: [
+    //           {
+    //             avatar: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png',
+    //             name: 'Parker Williams',
+    //             content: 'The quest has begun'
+    //           }
+    //         ],
+    //         attachments: [
+    //           {
+    //             file_name: 'Video Capture 1.MP4',
+    //             file_type: 'video/mp4',
+    //             file_size: '2.5 MB'
+    //           },
+    //           {
+    //             file_name: 'Video Capture 1.MP4',
+    //             file_type: 'video/mp4',
+    //             file_size: '2.5 MB'
+    //           }
+    //         ]
+    //       }
+    //     }
+    //   }
+    // });
   }
 
   handleTableAction(event: { actionKey: string; rowData: any }) {
