@@ -61,3 +61,10 @@ interface ITableAction {
   className: string;
   actionKey: string;
 }
+
+export interface IHeaderTable {
+  field: string;
+  name: string;
+  sortable?: boolean;
+  width?: number;
+}

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { IHeaderTable } from '~/@types/task';
+import { IHeaderTable } from '~/@types/index.d';
 import { ButtonDirective } from '~/directives/button.directive';
 import { Action } from '~/enums';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';

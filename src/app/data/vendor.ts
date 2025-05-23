@@ -1,4 +1,4 @@
-import { IHeaderTable } from '~/@types/task';
+import { IHeaderTable } from '~/@types/index.d';
 
 export const companyHeaders: IHeaderTable[] = [
   {
