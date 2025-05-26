@@ -1,26 +1,26 @@
-import { IHeaderTable } from '~/@types/task';
+import { IHeaderTable } from '~/@types/index.d';
 
 export const documentHeader: IHeaderTable[] = [
   {
     field: 'title',
     name: 'Title',
-    width: '200px',
+    width: 200,
     sortable: true
   },
   {
     field: 'document_type',
     name: 'Document Type',
-    width: '200px'
+    width: 200
   },
   {
     field: 'created_date',
     name: 'Creation Date',
-    width: '100px'
+    width: 100
   },
   {
     field: 'owner',
     name: 'Owner',
-    width: '150px'
+    width: 150
   },
   {
     field: 'comment',
@@ -30,7 +30,7 @@ export const documentHeader: IHeaderTable[] = [
   {
     field: 'action',
     name: '',
-    width: '20px'
+    width: 20
   }
 ];
 
@@ -98,7 +98,7 @@ export const letterHeader: IHeaderTable[] = [
   {
     field: 'recipient',
     name: 'Recipient',
-    width: '200px',
+    width: 200,
     sortable: true
   },
   {
@@ -108,12 +108,12 @@ export const letterHeader: IHeaderTable[] = [
   {
     field: 'created_date',
     name: 'Creation Date',
-    width: '100px'
+    width: 100
   },
   {
     field: 'status',
     name: 'Status',
-    width: '150px'
+    width: 150
   },
   {
     field: 'content',
@@ -123,7 +123,7 @@ export const letterHeader: IHeaderTable[] = [
   {
     field: 'action',
     name: '',
-    width: '20px'
+    width: 20
   }
 ];
 

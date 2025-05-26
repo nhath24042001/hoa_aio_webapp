@@ -26,13 +26,8 @@
       .--overview-bottom-left {
         width: 100%;
         border-right: none;
-        flex-direction: row;
         border-bottom: 1px solid #eceff3;
         gap: 0;
-
-        .--announcement-section {
-          border-right: 1px solid #eceff3;
-        }
       }
     }
   }

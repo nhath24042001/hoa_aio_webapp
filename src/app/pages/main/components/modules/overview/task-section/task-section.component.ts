@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { IHeaderTable } from '~/@types/task';
+import { IHeaderTable } from '~/@types/index.d';
 import { ButtonDirective } from '~/directives/button.directive';
 import { Action } from '~/enums';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
@@ -20,36 +20,42 @@ export class TaskSectionComponent<T> {
     {
       field: 'type_icon',
       name: '',
-      width: '20px'
+      width: 20
     },
     {
       field: 'task_name',
-      name: 'Task Name'
+      name: 'Task Name',
+      width: 200
     },
     {
       field: 'task_type',
-      name: 'Type'
+      name: 'Type',
+      width: 100
     },
     {
       field: 'priority',
-      name: 'Priority'
+      name: 'Priority',
+      width: 100
     },
     {
       field: 'created',
-      name: 'Created'
+      name: 'Created',
+      width: 150
     },
     {
       field: 'assigned_to',
-      name: 'Assigned To'
+      name: 'Assigned To',
+      width: 150
     },
     {
       field: 'status',
-      name: 'Status'
+      name: 'Status',
+      width: 100
     },
     {
       field: 'action',
       name: '',
-      width: '20px'
+      width: 20
     }
   ];
 

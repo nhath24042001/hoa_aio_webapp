@@ -1,7 +1,7 @@
-import { IHeaderTable, ITask } from '~/@types/task';
+import { IHeaderTable } from '~/@types/index.d';
 import { Priority } from '~/enums';
 
-export const PROJECT_DATA: ITask[] = [
+export const PROJECT_DATA: any[] = [
   {
     task_id: '12321',
     type_icon: 'thunder',
@@ -146,7 +146,7 @@ export const PROJECT_HEADER: IHeaderTable[] = [
   {
     field: 'type_icon',
     name: '',
-    width: '20px'
+    width: 20
   },
   {
     field: 'task_name',
@@ -175,7 +175,7 @@ export const PROJECT_HEADER: IHeaderTable[] = [
   {
     field: 'action',
     name: '',
-    width: '20px'
+    width: 20
   }
 ];
 

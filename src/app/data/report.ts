@@ -1,4 +1,4 @@
-import { IHeaderTable } from '~/@types/task';
+import { IHeaderTable } from '~/@types/index.d';
 
 export const reportHeader: IHeaderTable[] = [
   {
@@ -21,7 +21,7 @@ export const reportHeader: IHeaderTable[] = [
   {
     field: 'action',
     name: '',
-    width: '20px'
+    width: 20
   }
 ];
 

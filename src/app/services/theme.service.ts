@@ -10,6 +10,9 @@ export class ThemeService {
   private themeSubject = new BehaviorSubject<string>(localStorage.getItem('theme') || THEME.LIGHT);
   theme$ = this.themeSubject.asObservable();
 
+  private sidebarWidthSubject = new BehaviorSubject<number>(Number(localStorage.getItem('sidebarWidth')) || 0);
+  sidebarWidth$ = this.sidebarWidthSubject.asObservable();
+
   constructor() {
     this.applyTheme(this.themeSubject.value);
   }
@@ -35,5 +38,14 @@ export class ThemeService {
         element.classList.remove('my-app-dark');
       }
     }
+  }
+
+  getSidebarWidth() {
+    return this.sidebarWidthSubject.value;
+  }
+
+  setSidebarWidth(width: number) {
+    this.sidebarWidthSubject.next(width);
+    localStorage.setItem('sidebarWidth', width.toString());
   }
 }

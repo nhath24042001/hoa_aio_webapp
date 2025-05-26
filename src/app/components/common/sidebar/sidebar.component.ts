@@ -1,4 +1,3 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input, output, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -31,7 +30,6 @@ export class SidebarComponent {
   currentMode: string = '';
   showAdminTool = signal(true);
 
-  private breakpointObserver = inject(BreakpointObserver);
   private router = inject(Router);
   private themeService = inject(ThemeService);
   private permissionService = inject(PermissionService);
@@ -50,15 +48,6 @@ export class SidebarComponent {
     this.listSidebar.adminTool = this.listSidebar.adminTool.filter((item) =>
       this.modulesToShow.includes(item.name as AppModule)
     );
-
-    this.breakpointObserver
-      .observe(['(max-width: 1200px)'])
-      .pipe(takeUntilDestroyed())
-      .subscribe((result) => {
-        const shouldBeOpen = !result.matches;
-        this.isOpen = shouldBeOpen;
-        this.toggle.emit(this.isOpen);
-      });
   }
 
   toggleSidebar() {

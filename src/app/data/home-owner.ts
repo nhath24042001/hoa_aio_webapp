@@ -1,11 +1,11 @@
-import { IHeaderTable } from '~/@types/task';
+import { IHeaderTable } from '~/@types/index.d';
 
 export const propertiesHeader: IHeaderTable[] = [
   {
     field: 'property_address',
     name: 'Property Address',
     sortable: true,
-    width: '200px'
+    width: 200
   },
   {
     field: 'owner',
@@ -18,27 +18,27 @@ export const propertiesHeader: IHeaderTable[] = [
   {
     field: 'purchase_date',
     name: 'Purchase date',
-    width: '150px'
+    width: 150
   },
   {
     field: 'end_date',
     name: 'End date',
-    width: '120px'
+    width: 120
   },
   {
     field: 'occupancy_status',
     name: 'Occupancy Status',
-    width: '150px'
+    width: 150
   },
   {
     field: 'tenant_names',
     name: 'Tenant Names',
-    width: '150px'
+    width: 150
   },
   {
     field: 'action',
     name: '',
-    width: '20px'
+    width: 20
   }
 ];
 
@@ -104,12 +104,12 @@ export const homeOwnerHeader: IHeaderTable[] = [
     field: 'owner_name',
     name: 'Owner Name',
     sortable: true,
-    width: '200px'
+    width: 200
   },
   {
     field: 'mobile_number',
     name: 'Mobile Number',
-    width: '150px'
+    width: 150
   },
   {
     field: 'email_address',
@@ -118,7 +118,7 @@ export const homeOwnerHeader: IHeaderTable[] = [
   {
     field: 'purchase_date',
     name: 'Purchase date',
-    width: '150px'
+    width: 150
   },
   {
     field: 'status',
@@ -127,17 +127,17 @@ export const homeOwnerHeader: IHeaderTable[] = [
   {
     field: 'properties',
     name: 'Properties',
-    width: '150px'
+    width: 150
   },
   {
     field: 'registration_date',
     name: 'Registration date',
-    width: '150px'
+    width: 150
   },
   {
     field: 'action',
     name: '',
-    width: '20px'
+    width: 20
   }
 ];
 

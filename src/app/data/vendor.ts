@@ -1,4 +1,4 @@
-import { IHeaderTable } from '~/@types/task';
+import { IHeaderTable } from '~/@types/index.d';
 
 export const companyHeaders: IHeaderTable[] = [
   {
@@ -25,7 +25,7 @@ export const companyHeaders: IHeaderTable[] = [
   {
     field: 'action',
     name: '',
-    width: '20px'
+    width: 20
   }
 ] as const;
 
@@ -46,17 +46,17 @@ export const bidHeaders: IHeaderTable[] = [
   {
     field: 'expected_start',
     name: 'Expected start',
-    width: '150px'
+    width: 150
   },
   {
     field: 'status',
     name: 'Status',
-    width: '220px'
+    width: 220
   },
   {
     field: 'action',
     name: '',
-    width: '20px'
+    width: 20
   }
 ] as const;
 

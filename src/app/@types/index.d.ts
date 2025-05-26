@@ -54,3 +54,17 @@ export interface ICommonResponse {
   message: string;
   rc: number;
 }
+
+interface ITableAction {
+  label: string;
+  icon: string;
+  className: string;
+  actionKey: string;
+}
+
+export interface IHeaderTable {
+  field: string;
+  name: string;
+  sortable?: boolean;
+  width?: number;
+}
