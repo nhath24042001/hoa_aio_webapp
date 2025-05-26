@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
@@ -13,7 +12,6 @@ import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dyn
   styleUrl: './project-dialog.component.scss'
 })
 export class ProjectDialog {
-  // TODO: Fix type any
   data: any;
   type = '';
 
@@ -27,26 +25,28 @@ export class ProjectDialog {
       list: [
         {
           name: 'Renovation',
-          code: 'renovation'
+          code: 2
         },
         {
           name: 'Maintenance',
-          code: 'maintenance'
+          code: 1
         },
         {
           name: 'New construction',
-          code: 'new_construction'
+          code: 3
         },
         {
           name: 'Inspection',
-          code: 'inspection'
+          code: 4
         },
         {
           name: 'Other',
-          code: 'other'
+          code: 5
         }
       ],
-      placeholder: 'Select'
+      placeholder: 'Select',
+      required: true,
+      validators: [{ type: 'required' }, { type: 'pattern', value: '^[0-9]+$' }]
     },
     {
       icon: 'flag',
@@ -58,19 +58,19 @@ export class ProjectDialog {
       list: [
         {
           name: 'Low',
-          code: 'low'
+          code: 0
         },
         {
           name: 'Medium',
-          code: 'medium'
+          code: 1
         },
         {
           name: 'High',
-          code: 'high'
+          code: 2
         },
         {
           name: 'Critical',
-          code: 'critical'
+          code: 3
         }
       ]
     },
@@ -84,27 +84,27 @@ export class ProjectDialog {
       list: [
         {
           name: 'New',
-          code: 'new'
+          code: 0
         },
         {
           name: 'Planning',
-          code: 'planning'
+          code: 1
         },
         {
           name: 'In Progress',
-          code: 'in_progress'
+          code: 2
         },
         {
           name: 'On Hold',
-          code: 'on_hold'
+          code: 3
         },
         {
           name: 'Completed',
-          code: 'completed'
+          code: 4
         },
         {
           name: 'Cancelled',
-          code: 'canceled'
+          code: 5
         }
       ]
     },

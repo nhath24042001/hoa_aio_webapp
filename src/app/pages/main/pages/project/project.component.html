@@ -1,4 +1,4 @@
-@if (isActive) {
+@if (all_projects.length) {
   <div class="--task-wrapper p-4">
     <div class="--task-header">
       <p-tabs [value]="activeTab()" (valueChange)="onTabChange($event)">

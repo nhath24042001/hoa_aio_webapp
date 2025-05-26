@@ -23,7 +23,6 @@ import { ProjectService } from './project.service';
 export class ProjectComponent implements OnInit {
   ref: DynamicDialogRef | undefined;
   activeTab = signal('0');
-  isActive: boolean = true;
   headers = PROJECT_HEADER;
   tabs = PROJECT_TABS;
 

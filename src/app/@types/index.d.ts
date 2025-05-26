@@ -34,12 +34,13 @@ export interface DynamicField {
   label: string;
   position: string;
   placeholder: string;
-  list?: { name: string; code: string; icon?: string }[];
+  list?: { name: string; code: string | number; icon?: string }[];
   value?: string;
   required?: boolean;
   customIcon?: string;
   disabled?: boolean;
   hidden?: boolean;
+  validators?: Array<{ type: string; value?: string }>;
 }
 
 export interface ISelect {
@@ -67,4 +68,12 @@ export interface IHeaderTable {
   name: string;
   sortable?: boolean;
   width?: number;
+}
+
+export interface ITextarea {
+  title: string;
+  field: string;
+  placeholder: string;
+  value?: string;
+  required?: boolean;
 }
