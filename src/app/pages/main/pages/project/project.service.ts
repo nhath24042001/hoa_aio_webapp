@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ICommonResponse } from '~/@types';
-import { IProjectPayload } from '~/@types/projejct';
+import { IProjectParams, IProjectPayload, IProjectResponse } from '~/@types/project';
 import { HttpClientModel } from '~/models/http/http-client.model';
 
 @Injectable({
@@ -22,8 +22,8 @@ export class ProjectService extends HttpClientModel {
 
   /* QUERY PROJECTS */
 
-  public getProjects(): Observable<ICommonResponse> {
-    return this.post(this.createRequest('Project', 'get_all_projects'));
+  public getProjects(params: Partial<IProjectParams>): Observable<IProjectResponse> {
+    return this.post(this.createRequest('Project', 'get_all_projects', params));
   }
 
   public getActionProjects(project_id: number, status: number): Observable<ICommonResponse> {

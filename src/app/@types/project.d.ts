@@ -1,3 +1,15 @@
+import { ICommonResponse } from './index';
+
+export interface IProjectParams {
+  status: number;
+  priority: number;
+  type: number;
+  date_from: string;
+  date_to: string;
+  sort: 'ASC' | 'DESC';
+  search: string;
+}
+
 export interface IProjectPayload extends Partial<IOptionalProjectPayload> {
   name: string;
   description: string;
@@ -17,4 +29,8 @@ export interface IOptionalProjectPayload {
   action_items: string[];
   bid_id: string;
   project_manager: string;
+}
+
+export interface IProjectResponse extends ICommonResponse {
+  projects: any[];
 }
