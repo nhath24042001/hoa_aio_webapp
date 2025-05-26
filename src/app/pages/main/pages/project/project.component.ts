@@ -12,11 +12,12 @@ import { MainHeader } from '~/pages/main/components/shared/main-header/main-head
 import { Table } from '~/pages/main/components/shared/table/table.component';
 import { ToastService } from '~/services/toast.service';
 
+import { TestComponent } from '../../components/modules/project/test/test.component';
 import { ProjectService } from './project.service';
 
 @Component({
   selector: 'app-project',
-  imports: [TabsModule, MainHeader, EmptyContentComponent, ButtonDirective, Table],
+  imports: [TabsModule, MainHeader, EmptyContentComponent, ButtonDirective, Table, TestComponent],
   templateUrl: './project.component.html',
   styleUrl: './project.component.scss'
 })
@@ -151,8 +152,7 @@ export class ProjectComponent implements OnInit {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/red-trash-md.svg',
       title: 'Delete Item',
-      description:
-        'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
+      description: 'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
       type: 'error',
       buttonText: 'Delete'
     });
