@@ -1,9 +1,9 @@
 <app-dynamic-dialog
-  [dialogType]="type"
+  [dialogType]="type()"
   iconCreate="file-plus-03"
   iconEdit="clipboard-check"
   title="Project Title"
-  [dialogTitle]="title"
+  [dialogTitle]="title()"
   [formFields]="list_columns"
   [list_textarea]="list_textarea"
   buttonText="Create Project"

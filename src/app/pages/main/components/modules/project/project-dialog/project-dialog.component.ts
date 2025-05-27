@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
 import { DynamicField } from '~/@types';
@@ -13,7 +13,14 @@ import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dyn
 })
 export class ProjectDialog {
   data: any;
-  type = '';
+  type = signal('');
+  title = computed(() => {
+    return this.type() === 'create' ? 'Create New Project' : 'Project Details';
+  });
+
+  formData = computed(() => {
+    return this.data.data.formData;
+  });
 
   list_columns: DynamicField[] = [
     {
@@ -171,14 +178,11 @@ export class ProjectDialog {
     this.data = config.data;
     this.type = this.data.type;
 
-    if (this.type !== 'create') {
+    if (this.type() !== 'create') {
       this.list_columns = this.list_columns.filter((col) => col.field !== 'document');
       this.list_columns = this.list_columns.filter(
         (col) =>
-          col.field !== 'status' &&
-          col.field !== 'bid' &&
-          col.field !== 'eta_time' &&
-          col.field !== 'project_manager'
+          col.field !== 'status' && col.field !== 'bid' && col.field !== 'eta_time' && col.field !== 'project_manager'
       );
       this.list_columns.push(
         {
@@ -236,13 +240,5 @@ export class ProjectDialog {
         };
       });
     }
-  }
-
-  get title() {
-    return this.type === 'create' ? 'Create New Project' : 'Project Details';
-  }
-
-  get formData() {
-    return this.config.data;
   }
 }

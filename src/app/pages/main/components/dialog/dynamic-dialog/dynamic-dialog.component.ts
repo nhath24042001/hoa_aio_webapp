@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Divider } from 'primeng/divider';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
-import { DynamicField } from '~/@types';
+import { DynamicField, ITextarea } from '~/@types';
 import { BaseComponent } from '~/components/common/base/base.component';
 import { ThemeService } from '~/services/theme.service';
 
@@ -20,19 +20,18 @@ import { FormField } from '../form-field/form-field.component';
   styleUrl: './dynamic-dialog.component.scss'
 })
 export class DynamicDialog extends BaseComponent implements OnInit {
-  // TODO: Fix type any (Eslint)
-  @Input() dialogTitle = '';
-  @Input() iconCreate = '';
-  @Input() iconEdit = '';
+  readonly dialogTitle = input('');
+  readonly iconCreate = input('');
+  readonly iconEdit = input('');
+  readonly title = input('');
+  readonly formFields = input<DynamicField[]>([]);
+  readonly list_textarea = input<ITextarea[]>([]);
+  readonly buttonText = input('');
+  readonly buttonIcon = input('');
+  readonly formID = input('');
+  readonly moduleName = input('');
+  readonly formData = input<any>({});
   @Input() dialogType = '';
-  @Input() title = '';
-  @Input() formFields: DynamicField[] = [];
-  @Input() list_textarea: any[] = [];
-  @Input() buttonText = '';
-  @Input() buttonIcon = '';
-  @Input() formID = '';
-  @Input() moduleName = '';
-  @Input() formData: any = {};
 
   formGroup!: FormGroup;
 
@@ -41,7 +40,7 @@ export class DynamicDialog extends BaseComponent implements OnInit {
   }
 
   get formTitle() {
-    return this.dialogType === 'create' ? this.title : this.formData.data.title;
+    return this.dialogType === 'create' ? this.title() : this.formData().data.title;
   }
 
   constructor(
@@ -55,7 +54,7 @@ export class DynamicDialog extends BaseComponent implements OnInit {
 
   initDynamicForm() {
     const formControls: { [key: string]: any } = {};
-    this.formFields.forEach((field) => {
+    this.formFields().forEach((field) => {
       formControls[field.field] = field.type === 'file' ? [null] : ['', Validators.required];
     });
 
@@ -67,6 +66,6 @@ export class DynamicDialog extends BaseComponent implements OnInit {
   }
 
   changeAction() {
-    this.dialogType = this.dialogType === 'detail' ? 'edit' : 'detail';
+    // this.dialogType = this.dialogType === 'detail' ? 'edit' : 'detail';
   }
 }
