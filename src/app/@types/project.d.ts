@@ -32,5 +32,5 @@ export interface IOptionalProjectPayload {
 }
 
 export interface IProjectResponse extends ICommonResponse {
-  projects: any[];
+  projects: IProjectPayload[];
 }

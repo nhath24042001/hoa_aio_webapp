@@ -1,14 +1,292 @@
-<app-dynamic-dialog
-  [dialogType]="type()"
-  iconCreate="file-plus-03"
-  iconEdit="clipboard-check"
-  title="Project Title"
-  [dialogTitle]="title()"
-  [formFields]="list_columns"
-  [list_textarea]="list_textarea"
-  buttonText="Create Project"
-  buttonIcon="file-plus-2"
-  formID="4567890"
-  moduleName="Project ID:"
-  [formData]="formData"
-></app-dynamic-dialog>
+<div class="--dynamic-dialog p-4">
+  <div class="--dialog-header w-100 d-flex justify-content-between mb-4">
+    <div class="d-flex align-items-center">
+      <img class="me-3" [src]="icon()" alt="dialog_icon" />
+      <h3 class="mb-0">{{ title() }}</h3>
+    </div>
+
+    <div class="--right">
+      @if (type() === 'detail' || type() === 'edit') {
+        <!-- <div>
+          <p class="text-end">Created: {{ formHeader.created_date | date }}</p>
+          <p class="text-end">Updated: {{ formHeader.update_date | date }}</p>
+        </div> -->
+
+        <div class="--share-box mx-3 d-flex justify-content-center align-items-center">Share</div>
+      }
+
+      <div class="--image-wrapper d-flex align-items-center">
+        @if (type() === 'detail' || type() === 'edit') {
+          @if (type() === 'detail') {
+            <img src="assets/images/common/edit-sm.svg" class="me-3" alt="edit_icon" />
+          } @else {
+            <img src="assets/images/common/editable.svg" class="me-3" alt="edit_icon" />
+          }
+        }
+
+        <img
+          [src]="'assets/images/' + currentMode + '/close.svg'"
+          class="me-3"
+          (click)="closeDialog()"
+          alt="close_icon"
+        />
+      </div>
+    </div>
+  </div>
+
+  <form>
+    <div class="--dynamic-title">
+      <h3 class="mb-4" [class.--detail]="!isEditMode()">{{ formTitle() }}</h3>
+
+      <div class="row">
+        <div class="col-6">
+          <!-- Project Type -->
+          <div class="mb-3 d-flex align-items-center">
+            <img
+              [src]="'assets/images/' + currentMode + '/' + 'list-sm' + '.svg'"
+              [alt]="icon + '_icon'"
+              class="me-2"
+            />
+            <p
+              [style.width]="!isEditMode() ? '' : ''"
+              [class.--detail]="!isEditMode()"
+              class="--text-box"
+            >
+              Type
+            </p>
+            <p-select
+              formControlName="type"
+              [options]="typeOptions"
+              optionLabel="name"
+              variant="filled"
+              styleClass="flex-fill"
+              placeholder="Select"
+            ></p-select>
+          </div>
+
+          <!-- Priority-->
+          <div class="mb-3 d-flex align-items-center">
+            <img
+              [src]="'assets/images/' + currentMode + '/' + 'flag' + '.svg'"
+              [alt]="icon + '_icon'"
+              class="me-2"
+            />
+            <p
+              [style.width]="!isEditMode() ? '' : ''"
+              [class.--detail]="!isEditMode()"
+              class="--text-box"
+            >
+              Priority
+            </p>
+            <p-select
+              formControlName="priority"
+              [options]="priorityOptions"
+              optionLabel="name"
+              variant="filled"
+              styleClass="flex-fill"
+              placeholder="Select"
+            ></p-select>
+          </div>
+
+          <!-- Status -->
+          <div class="mb-3 d-flex align-items-center">
+            <img
+              [src]="'assets/images/' + currentMode + '/' + 'sticker-circle' + '.svg'"
+              [alt]="icon + '_icon'"
+              class="me-2"
+            />
+            <p
+              [style.width]="!isEditMode() ? '' : ''"
+              [class.--detail]="!isEditMode()"
+              class="--text-box"
+            >
+              Status
+            </p>
+            <p-select
+              variant="filled"
+              [options]="statusOptions"
+              formControlName="status"
+              optionLabel="name"
+              placeholder="Select"
+              styleClass="flex-fill"
+            ></p-select>
+          </div>
+
+          <!-- Bid -->
+          <div class="mb-3 d-flex align-items-center">
+            <img
+              [src]="'assets/images/' + currentMode + '/' + 'finger' + '.svg'"
+              [alt]="icon + '_icon'"
+              class="me-2"
+            />
+            <p
+              [style.width]="!isEditMode() ? '' : ''"
+              [class.--detail]="!isEditMode()"
+              class="--text-box"
+            >
+              Bid
+            </p>
+
+            <input
+              type="text"
+              pInputText
+              formControlName="bid"
+              variant="filled"
+              class="flex-fill"
+              placeholder="Select"
+            />
+          </div>
+        </div>
+        <div class="col-6">
+          <!-- ETA -->
+          <div class="mb-3 d-flex align-items-center">
+            <img
+              [src]="'assets/images/' + currentMode + '/' + 'hourglass' + '.svg'"
+              [alt]="icon + '_icon'"
+              class="me-2"
+            />
+            <p
+              [style.width]="!isEditMode() ? '' : ''"
+              [class.--detail]="!isEditMode()"
+              class="--text-box"
+            >
+              ETA
+            </p>
+
+            <p-datepicker
+              showIcon
+              variant="filled"
+              iconDisplay="input"
+              formControlName="estimated_completion_date"
+              class="flex-fill"
+              placeholder="Set ETA date"
+            />
+          </div>
+
+          <!-- Estimate Cost -->
+          <div class="mb-3 d-flex align-items-center">
+            <img
+              [src]="'assets/images/' + currentMode + '/' + 'receipt' + '.svg'"
+              [alt]="icon + '_icon'"
+              class="me-2"
+            />
+            <p
+              [style.width]="!isEditMode() ? '' : ''"
+              [class.--detail]="!isEditMode()"
+              class="--text-box"
+            >
+              Estimated Cost
+            </p>
+
+            <input
+              type="text"
+              pInputText
+              formControlName="estimated_cost"
+              variant="filled"
+              class="flex-fill"
+              placeholder="Enter estimate"
+            />
+          </div>
+
+          <!-- Project Manager -->
+          <div class="mb-3 d-flex align-items-center">
+            <img
+              [src]="'assets/images/' + currentMode + '/' + 'perspective' + '.svg'"
+              [alt]="icon + '_icon'"
+              class="me-2"
+            />
+            <p
+              [style.width]="!isEditMode() ? '' : ''"
+              [class.--detail]="!isEditMode()"
+              class="--text-box"
+            >
+              Project Manager
+            </p>
+
+            <input
+              type="text"
+              pInputText
+              formControlName="estimated_cost"
+              variant="filled"
+              class="flex-fill"
+              placeholder="Me (enter name to change)"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 d-flex align-items-center">
+        <img
+          [src]="'assets/images/' + currentMode + '/' + 'truck-sm' + '.svg'"
+          [alt]="icon + '_icon'"
+          class="me-2"
+        />
+        <p
+          [style.width]="!isEditMode() ? '' : ''"
+          [class.--detail]="!isEditMode()"
+          class="--text-box"
+        >
+          Vendors
+        </p>
+
+        <input
+          type="text"
+          pInputText
+          formControlName="vendors"
+          variant="filled"
+          class="flex-fill"
+          placeholder="Enter names of possible vendors, separated by comma"
+        />
+      </div>
+
+      <div class="mb-3 d-flex align-items-center">
+        <img
+          [src]="'assets/images/' + currentMode + '/' + 'clipboard-check-sm' + '.svg'"
+          [alt]="icon + '_icon'"
+          class="me-2"
+        />
+        <p
+          [style.width]="!isEditMode() ? '' : ''"
+          [class.--detail]="!isEditMode()"
+          class="--text-box"
+        >
+          Vendors
+        </p>
+
+        <textarea
+          pTextarea
+          rows="2"
+          variant="filled"
+          cols="100"
+          formControlName="vendors"
+          placeholder="Enter action items, separated by comma"
+        ></textarea>
+      </div>
+    </div>
+
+    <p-divider />
+
+    <span>Project Description</span>
+
+    <textarea
+      pTextarea
+      rows="5"
+      pSize="large"
+      formControlName="vendors"
+      variant="filled"
+      placeholder="Enter description"
+      class="w-100 mt-2"
+    ></textarea>
+
+    <div class="--dynamic-action mt-3 d-flex justify-content-between align-items-center">
+      <div></div>
+      <div class="d-flex align-items-center">
+        <button appButton="secondary" icon="attachment"></button>
+
+        <button appButton="secondary" icon="save-draft" class="mx-2">Save Draft</button>
+
+        <button type="submit" appButton="primary" icon="file-plus-2">Create Project</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -40,8 +40,8 @@ export class ProjectComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllProjects();
-    this.getProjectList();
+    // this.getAllProjects();
+    // this.getProjectList();
   }
 
   getAllProjects() {
@@ -151,8 +151,7 @@ export class ProjectComponent implements OnInit {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/red-trash-md.svg',
       title: 'Delete Item',
-      description:
-        'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
+      description: 'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
       type: 'error',
       buttonText: 'Delete'
     });
