@@ -1,15 +1,7 @@
 import { CommonModule } from '@angular/common';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, computed, input, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  ValidatorFn,
-  Validators
-} from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Divider } from 'primeng/divider';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
@@ -60,6 +52,7 @@ export class DynamicDialog extends BaseComponent implements OnInit {
   });
 
   formGroup!: FormGroup;
+  is_submitted = false;
 
   constructor(
     themeService: ThemeService,
@@ -67,47 +60,6 @@ export class DynamicDialog extends BaseComponent implements OnInit {
     private fb: FormBuilder
   ) {
     super(themeService);
-    this.initDynamicForm();
-  }
-
-  initDynamicForm(): void {
-    const formControls: { [key: string]: FormControl<any> } = {};
-
-    this.formFields().forEach((field) => {
-      const validators: ValidatorFn[] = [];
-
-      if (field.required) {
-        validators.push(Validators.required);
-      }
-
-      if (field.validators) {
-        for (const v of field.validators) {
-          switch (v.type) {
-            case 'pattern':
-              if (v.value) validators.push(Validators.pattern(v.value));
-              break;
-            case 'minLength':
-              if (v.value) validators.push(Validators.minLength(Number(v.value)));
-              break;
-            case 'maxLength':
-              if (v.value) validators.push(Validators.maxLength(Number(v.value)));
-              break;
-            case 'email':
-              validators.push(Validators.email);
-              break;
-            case 'required':
-              validators.push(Validators.required);
-              break;
-          }
-        }
-      }
-
-      const defaultValue = field.type === 'file' ? null : (field.value ?? '');
-
-      formControls[field.field] = new FormControl(defaultValue, validators);
-    });
-
-    this.formGroup = this.fb.group(formControls);
   }
 
   closeDialog() {

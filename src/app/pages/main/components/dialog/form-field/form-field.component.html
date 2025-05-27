@@ -19,7 +19,14 @@
           styleClass="flex-fill"
           [placeholder]="placeholder"
           [(ngModel)]="value"
+          #selectModel="ngModel"
+          [required]="required ?? false"
+          [class.ng-invalid.ng-dirty]="selectModel.invalid"
         />
+
+        @if(required) {
+          <span class="--required">Field is required</span>
+        }
       }
 
       @case ('custom-select') {

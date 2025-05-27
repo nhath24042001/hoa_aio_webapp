@@ -54,6 +54,7 @@ export class FormField implements OnInit {
   @Input() ACTION_DIALOG: any;
   @Input() isCreateMode = false;
   @Input() formControl!: FormControl | any;
+  @Input() required: boolean | undefined = false;
 
   tags: string[] = [];
   chipInput: any;

@@ -28,13 +28,12 @@
                 [placeholder]="box.placeholder"
                 [value]="box.value"
                 [options]="box.list"
+                [required]="box.required"
                 [customIcon]="box.customIcon"
                 [currentMode]="currentMode"
                 [dialogType]="dialogType()"
                 [isCreateMode]="isCreateMode()"
-
               ></app-form-field>
-              <!-- [formControl]="formGroup.get(box.field)" -->
             }
           }
         </div>
@@ -47,10 +46,11 @@
                 [type]="box.type"
                 [field]="box.field"
                 [placeholder]="box.placeholder"
-                [options]="box.list"
-                [customIcon]="box.customIcon"
                 [value]="box.value"
-                [currentMode]="currentMode"aa
+                [options]="box.list"
+                [required]="box.required"
+                [customIcon]="box.customIcon"
+                [currentMode]="currentMode"
                 [dialogType]="dialogType()"
                 [isCreateMode]="isCreateMode()"
               ></app-form-field>
@@ -63,15 +63,17 @@
         @if (box.position === 'extra') {
           <app-form-field
             [icon]="box.icon"
-            [type]="box.type"
             [label]="box.label"
+            [type]="box.type"
             [field]="box.field"
+            [placeholder]="box.placeholder"
             [value]="box.value"
             [options]="box.list"
-            [dialogType]="dialogType()"
+            [required]="box.required"
+            [customIcon]="box.customIcon"
             [currentMode]="currentMode"
+            [dialogType]="dialogType()"
             [isCreateMode]="isCreateMode()"
-            [placeholder]="box.placeholder"
           ></app-form-field>
         }
       }
