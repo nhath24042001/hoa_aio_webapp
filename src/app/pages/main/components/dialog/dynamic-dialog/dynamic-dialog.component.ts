@@ -1,6 +1,15 @@
+import { CommonModule } from '@angular/common';
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, Input, input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, computed, input, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  ValidatorFn,
+  Validators
+} from '@angular/forms';
 import { Divider } from 'primeng/divider';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
@@ -15,33 +24,42 @@ import { FormField } from '../form-field/form-field.component';
 
 @Component({
   selector: 'app-dynamic-dialog',
-  imports: [Divider, DialogHeader, FormField, DialogTextarea, DialogActions],
+  imports: [
+    CommonModule,
+    Divider,
+    DialogHeader,
+    FormField,
+    DialogTextarea,
+    DialogActions,
+    FormsModule,
+    ReactiveFormsModule
+  ],
   templateUrl: './dynamic-dialog.component.html',
   styleUrl: './dynamic-dialog.component.scss'
 })
 export class DynamicDialog extends BaseComponent implements OnInit {
-  readonly dialogTitle = input('');
-  readonly iconCreate = input('');
-  readonly iconEdit = input('');
-  readonly title = input('');
-  readonly formFields = input<DynamicField[]>([]);
-  readonly list_textarea = input<ITextarea[]>([]);
-  readonly buttonText = input('');
-  readonly buttonIcon = input('');
-  readonly formID = input('');
-  readonly moduleName = input('');
-  readonly formData = input<any>({});
-  @Input() dialogType = '';
+  dialogTitle = input('');
+  iconCreate = input('');
+  iconEdit = input('');
+  title = input('');
+  formFields = input<DynamicField[]>([]);
+  list_textarea = input<ITextarea[]>([]);
+  buttonText = input('');
+  buttonIcon = input('');
+  formID = input('');
+  moduleName = input('');
+  formData = input<any>({});
+  dialogType = input<string>('create');
+
+  isCreateMode = computed(() => {
+    return this.dialogType() === 'create' || this.dialogType() === 'edit';
+  });
+
+  formTitle = computed(() => {
+    return this.dialogType() === 'create' ? this.title() : this.formData().data.title;
+  });
 
   formGroup!: FormGroup;
-
-  get isCreateMode() {
-    return this.dialogType === 'create' || this.dialogType === 'edit';
-  }
-
-  get formTitle() {
-    return this.dialogType === 'create' ? this.title() : this.formData().data.title;
-  }
 
   constructor(
     themeService: ThemeService,
@@ -52,10 +70,41 @@ export class DynamicDialog extends BaseComponent implements OnInit {
     this.initDynamicForm();
   }
 
-  initDynamicForm() {
-    const formControls: { [key: string]: any } = {};
+  initDynamicForm(): void {
+    const formControls: { [key: string]: FormControl<any> } = {};
+
     this.formFields().forEach((field) => {
-      formControls[field.field] = field.type === 'file' ? [null] : ['', Validators.required];
+      const validators: ValidatorFn[] = [];
+
+      if (field.required) {
+        validators.push(Validators.required);
+      }
+
+      if (field.validators) {
+        for (const v of field.validators) {
+          switch (v.type) {
+            case 'pattern':
+              if (v.value) validators.push(Validators.pattern(v.value));
+              break;
+            case 'minLength':
+              if (v.value) validators.push(Validators.minLength(Number(v.value)));
+              break;
+            case 'maxLength':
+              if (v.value) validators.push(Validators.maxLength(Number(v.value)));
+              break;
+            case 'email':
+              validators.push(Validators.email);
+              break;
+            case 'required':
+              validators.push(Validators.required);
+              break;
+          }
+        }
+      }
+
+      const defaultValue = field.type === 'file' ? null : (field.value ?? '');
+
+      formControls[field.field] = new FormControl(defaultValue, validators);
     });
 
     this.formGroup = this.fb.group(formControls);

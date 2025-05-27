@@ -13,7 +13,7 @@ import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dyn
 })
 export class ProjectDialog {
   data: any;
-  type = signal('');
+  type = signal<string>('');
   title = computed(() => {
     return this.type() === 'create' ? 'Create New Project' : 'Project Details';
   });
@@ -176,7 +176,7 @@ export class ProjectDialog {
 
   constructor(public config: DynamicDialogConfig) {
     this.data = config.data;
-    this.type = this.data.type;
+    this.type.set(this.data.type);
 
     if (this.type() !== 'create') {
       this.list_columns = this.list_columns.filter((col) => col.field !== 'document');
