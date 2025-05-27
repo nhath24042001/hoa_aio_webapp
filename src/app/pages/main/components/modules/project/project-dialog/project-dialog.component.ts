@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, ElementRef, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
 import { DividerModule } from 'primeng/divider';
@@ -9,13 +9,17 @@ import { TextareaModule } from 'primeng/textarea';
 
 import { BaseComponent } from '~/components/common/base/base.component';
 import { PROJECT_CUSTOM_SELECT } from '~/constants/select';
+import { AutoFocusDirective } from '~/directives/auto-focus.directive';
 import { ButtonDirective } from '~/directives/button.directive';
+import { ClickOutsideDirective } from '~/directives/click-outside.directive';
 import { ThemeService } from '~/services/theme.service';
 
 @Component({
   selector: 'app-project-dialog',
   imports: [
     ButtonDirective,
+    ClickOutsideDirective,
+    AutoFocusDirective,
     DividerModule,
     SelectModule,
     InputTextModule,
@@ -29,6 +33,7 @@ import { ThemeService } from '~/services/theme.service';
 export class ProjectDialog extends BaseComponent {
   type = signal<string>('');
   isSubmitted = false;
+  isEditingTitle = false;
   formGroup!: FormGroup;
   typeOptions = [
     {
@@ -112,15 +117,13 @@ export class ProjectDialog extends BaseComponent {
 
   icon = computed(() => {
     const basePath = `assets/images/${this.currentMode}`;
-    return this.type() === 'create' ? `${basePath}/file-plus-03.svg` : `${basePath}/clipboard-check.svg`;
+    return this.type() === 'create'
+      ? `${basePath}/file-plus-03.svg`
+      : `${basePath}/clipboard-check.svg`;
   });
 
   isEditMode = computed(() => {
     return this.type() === 'create' || this.type() === 'edit';
-  });
-
-  formTitle = computed(() => {
-    return this.type() === 'create' ? 'Project Title' : 'Details of Project';
   });
 
   list_textarea = [
@@ -137,6 +140,7 @@ export class ProjectDialog extends BaseComponent {
     public config: DynamicDialogConfig,
     public ref: DynamicDialogRef,
     public fb: FormBuilder,
+    private eRef: ElementRef,
     themeService: ThemeService
   ) {
     super(themeService);
@@ -148,7 +152,7 @@ export class ProjectDialog extends BaseComponent {
 
   public generateFormGroup() {
     this.formGroup = this.fb.group({
-      name: ['', Validators.required],
+      name: ['Project Title', Validators.required],
       description: ['', Validators.required],
       type: ['', [Validators.required]],
       priority: [''],

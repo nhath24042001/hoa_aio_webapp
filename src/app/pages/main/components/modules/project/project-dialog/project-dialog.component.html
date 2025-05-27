@@ -34,9 +34,29 @@
     </div>
   </div>
 
+  <p-divider />
+
   <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
     <div class="--dynamic-title">
-      <h3 class="mb-4" [class.--detail]="!isEditMode()">{{ formTitle() }}</h3>
+      <!-- <h3 class="mb-4" [class.--detail]="!isEditMode()">{{ formTitle() }}</h3> -->
+      <div clickOutside (clickOutside)="isEditingTitle = false">
+        @if (!isEditingTitle) {
+          <h3 class="mb-4" (click)="isEditingTitle = true">
+            {{ formGroup.get('name')?.value || 'Project Title' }}
+          </h3>
+        } @else {
+          <input
+            type="text"
+            pInputText
+            appAutoFocus
+            formControlName="name"
+            class="mb-4 w-100"
+            placeholder="Project Title"
+            class="--custom-title-input mb-4"
+            (blur)="isEditingTitle = false"
+          />
+        }
+      </div>
 
       <div class="row">
         <div class="col-6">
@@ -278,7 +298,7 @@
       placeholder="Enter description"
       class="w-100 mt-2"
       [class.ng-dirty.ng-invalid]="isSubmitted && formGroup.get('description')?.invalid"
-      ></textarea>
+    ></textarea>
 
     <div class="--dynamic-action mt-3 d-flex justify-content-between align-items-center">
       <div></div>
