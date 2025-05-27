@@ -16,29 +16,6 @@ export const taskTabHeader = [
   }
 ];
 
-export const PROJECT_TABS = [
-  {
-    name: 'Open Projects',
-    img: 'assets/images/common/perspective-01.svg',
-    activeImg: 'assets/images/common/perspective.svg'
-  },
-  {
-    name: 'On Hold',
-    img: 'assets/images/common/hand.svg',
-    activeImg: 'assets/images/common/hand.svg'
-  },
-  {
-    name: 'Completed',
-    img: 'assets/images/common/check-circle-broken.svg',
-    activeImg: 'assets/images/common/check-circle-broken.svg'
-  },
-  {
-    name: 'Canceled',
-    img: 'assets/images/common/x-circle.svg',
-    activeImg: 'assets/images/common/x-circle.svg'
-  }
-];
-
 export const vendorTabHeader = [
   {
     name: 'Companies',

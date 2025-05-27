@@ -1,16 +1,37 @@
 <div [style.width.px]="tableWidth">
   @if (isLoading()) {
-    <p-table [value]="data()" [tableStyle]="{ 'min-width': '50rem' }">
-      <ng-template #header> </ng-template>
-      <ng-template #body let-product>
-        @for (loop of placeholderData; track $index) {
-          <tr>
+    <p-table
+      [value]="sampleData()"
+      [rows]="rows"
+      [(selection)]="selectedRows"
+      [rowsPerPageOptions]="rowsPerPageOptions()"
+      showGridlines
+      [ngClass]="[currentMode === 'dark' ? '--dark' : '--light', className()]"
+    >
+      <ng-template #header>
+        <tr>
+          @if (showCheckbox()) {
+            <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
+          }
+          @for (header of headers(); track $index) {
+            @if (header.sortable) {
+              <th [style.width.px]="header.width" [style.minWidth.px]="header.width">
+                {{ header.name }} <p-sortIcon [field]="header.field" />
+              </th>
+            } @else {
+              <th [style.width.px]="header.width" [style.minWidth.px]="header.width">
+                {{ header.name }}
+              </th>
+            }
+          }
+        </tr>
+      </ng-template>
+      <ng-template #body let-row>
+        <tr>
+          @for (header of headers(); track $index) {
             <td><p-skeleton /></td>
-            <td><p-skeleton /></td>
-            <td><p-skeleton /></td>
-            <td><p-skeleton /></td>
-          </tr>
-        }
+          }
+        </tr>
       </ng-template>
     </p-table>
   } @else {

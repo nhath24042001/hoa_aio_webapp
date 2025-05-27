@@ -1,10 +1,10 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TabsModule } from 'primeng/tabs';
-import { forkJoin } from 'rxjs';
 
-import { PROJECT_TABS } from '~/constants/tab';
-import { PROJECT_ACTIONS, PROJECT_HEADER } from '~/data/project';
+import { ITab } from '~/@types';
+import { IProjectPayload } from '~/@types/project';
+import { PROJECT_ACTIONS, PROJECT_DATA, PROJECT_HEADER } from '~/data/project';
 import { ButtonDirective } from '~/directives/button.directive';
 import { ProjectDialog } from '~/pages/main/components/modules/project/project-dialog/project-dialog.component';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
@@ -24,12 +24,47 @@ export class ProjectComponent implements OnInit {
   ref: DynamicDialogRef | undefined;
   activeTab = signal('0');
   headers = PROJECT_HEADER;
-  tabs = PROJECT_TABS;
+  sampleData = PROJECT_DATA;
 
-  all_projects: any[] = [];
-  on_hold_projects: any[] = [];
-  completed_projects: any[] = [];
-  canceled_projects: any[] = [];
+  tabs: ITab<IProjectPayload>[] = [
+    {
+      name: 'Open Projects',
+      img: 'assets/images/common/perspective-01.svg',
+      activeImg: 'assets/images/common/perspective.svg',
+      status: 0,
+      data: [],
+      loading: false
+    },
+    {
+      name: 'On Hold',
+      img: 'assets/images/common/hand.svg',
+      activeImg: 'assets/images/common/hand.svg',
+      status: 3,
+      data: [],
+      loading: false
+    },
+    {
+      name: 'Completed',
+      img: 'assets/images/common/check-circle-broken.svg',
+      activeImg: 'assets/images/common/check-circle-broken.svg',
+      status: 4,
+      data: [],
+      loading: false
+    },
+    {
+      name: 'Canceled',
+      img: 'assets/images/common/x-circle.svg',
+      activeImg: 'assets/images/common/x-circle.svg',
+      status: 5,
+      data: [],
+      loading: false
+    }
+  ];
+
+  all_projects: IProjectPayload[] = [];
+  on_hold_projects: IProjectPayload[] = [];
+  completed_projects: IProjectPayload[] = [];
+  canceled_projects: IProjectPayload[] = [];
 
   actions = PROJECT_ACTIONS;
 
@@ -40,38 +75,44 @@ export class ProjectComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.getAllProjects();
-    // this.getProjectList();
+    this.getDefaultTab();
   }
 
-  getAllProjects() {
-    this.projectService.getProjects({}).subscribe({
-      next: (res) => {
-        this.all_projects = res.projects;
-      }
-    });
-  }
-
-  getProjectList() {
-    forkJoin({
-      open_tasks: this.projectService.getProjects({ status: 0 }),
-      on_hold_tasks: this.projectService.getProjects({ status: 3 }),
-      completed_tasks: this.projectService.getProjects({ status: 4 }),
-      canceled_tasks: this.projectService.getProjects({ status: 5 })
-    }).subscribe({
-      next: ({ open_tasks, on_hold_tasks, completed_tasks, canceled_tasks }) => {
-        this.all_projects = open_tasks.projects;
-        this.on_hold_projects = on_hold_tasks.projects;
-        this.completed_projects = completed_tasks.projects;
-        this.canceled_projects = canceled_tasks.projects;
-      }
-    });
+  getDefaultTab() {
+    const tabIdx = parseInt(this.activeTab(), 10);
+    this.loadTabData(this.tabs[tabIdx].status, tabIdx);
   }
 
   onSearch() {}
 
-  onTabChange(tabIndex: number | string) {
+  onTabChange(tabIndex: string | number): void {
     this.activeTab.set(tabIndex.toString());
+    const tabIdx = parseInt(tabIndex.toString(), 10);
+    this.loadTabData(this.tabs[tabIdx].status, tabIdx);
+  }
+
+  loadTabData(status: number, index: number) {
+    const start = Date.now();
+    this.tabs[index].loading = true;
+
+    this.projectService.getProjects({ status }).subscribe({
+      next: (data) => {
+        this.tabs[index].data = data.projects;
+      },
+      error: () => {
+        this.tabs[index].data = [];
+      },
+      complete: () => {
+        const duration = Date.now() - start;
+        const remaining = 1500 - duration;
+        setTimeout(
+          () => {
+            this.tabs[index].loading = false;
+          },
+          remaining > 0 ? remaining : 0
+        );
+      }
+    });
   }
 
   onOpenCreateProject(): void {
@@ -85,56 +126,9 @@ export class ProjectComponent implements OnInit {
     this.ref.onClose.subscribe(() => {});
   }
 
-  onOpenProjectDetail(): void {
-    // this.ref = this.dialogService.open(ProjectDialog, {
-    //   modal: true,
-    //   width: '1000px',
-    //   data: {
-    //     type: 'detail',
-    //     data: {
-    //       title: 'Fix main entrance watering system',
-    //       created_date: '2/2/2021',
-    //       update_date: '2/2/2022',
-    //       status: 'new',
-    //       formData: {
-    //         project_type: 'maintenance',
-    //         priority: 'urgent',
-    //         eta_time: '2023-10-01',
-    //         vendor_name: 'AB Services Co., HardHatters, Monkey Biz & Co.',
-    //         action_items:
-    //           'Sign contract with plumbing vendor, Sign contract for watering system project',
-    //         project_manager: [
-    //           {
-    //             id: '1',
-    //             name: 'John Doe',
-    //             image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png'
-    //           }
-    //         ],
-    //         cost: '$2,500-$3,000',
-    //         resident_name: '',
-    //         bid: 'Palm Springs Main Entrance Bid',
-    //         detail:
-    //           'Negotiate terms and finalize the service agreement with the selected plumbing vendor for the office renovation project. Ensure all requirements are clearly outlined to avoid any service disruptions.',
-    //         attachments: [
-    //           {
-    //             file_name: 'Video Capture 1.MP4',
-    //             file_type: 'video/mp4',
-    //             file_size: '2.5 MB'
-    //           },
-    //           {
-    //             file_name: 'Video Capture 1.MP4',
-    //             file_type: 'video/mp4',
-    //             file_size: '2.5 MB'
-    //           }
-    //         ]
-    //       }
-    //     }
-    //   }
-    // });
-    // this.ref.onClose.subscribe(() => {});
-  }
+  onOpenProjectDetail(): void {}
 
-  handleTableAction(event: { actionKey: string; rowData: any }) {
+  handleTableAction(event: { actionKey: string; rowData: IProjectPayload }): void {
     switch (event.actionKey) {
       case 'edit':
         this.onOpenProjectDetail();
@@ -148,16 +142,16 @@ export class ProjectComponent implements OnInit {
   }
 
   async onOpenDeleteDialog(): Promise<void> {
-    const confirmed = await this.toastService.showConfirm({
-      icon: 'assets/images/common/red-trash-md.svg',
-      title: 'Delete Item',
-      description: 'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
-      type: 'error',
-      buttonText: 'Delete'
-    });
-
-    if (confirmed) {
-      console.log('run 1');
-    }
+    // const confirmed = await this.toastService.showConfirm({
+    //   icon: 'assets/images/common/red-trash-md.svg',
+    //   title: 'Delete Item',
+    //   description:
+    //     'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
+    //   type: 'error',
+    //   buttonText: 'Delete'
+    // });
+    // if (confirmed) {
+    //   console.log('run 1');
+    // }
   }
 }

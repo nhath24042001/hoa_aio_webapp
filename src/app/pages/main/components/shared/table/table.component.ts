@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, input, OnInit, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -7,7 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { PopoverModule } from 'primeng/popover';
 import { SelectModule } from 'primeng/select';
-import { SkeletonModule } from 'primeng/skeleton';
+import { Skeleton } from 'primeng/skeleton';
 import { TableModule } from 'primeng/table';
 
 import { ITableAction } from '~/@types';
@@ -29,13 +30,14 @@ import { convertToTitleCase } from '~/utils/string-utils';
     FormsModule,
     PopoverModule,
     ButtonModule,
-    SkeletonModule
+    Skeleton
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })
 export class Table<T> extends BaseComponent implements OnInit {
   data = input.required<T[]>();
+  sampleData = input<any[]>([]);
   readonly headers = input.required<IHeaderTable[]>();
   readonly showPagination = input<boolean>(false);
   readonly showListPerPage = input<boolean>(true);

@@ -77,3 +77,12 @@ export interface ITextarea {
   value?: string;
   required?: boolean;
 }
+
+export interface ITab<T> {
+  name: string;
+  img: string;
+  activeImg: string;
+  status: number;
+  data: T[];
+  loading: boolean;
+}
