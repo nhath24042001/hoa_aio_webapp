@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, computed, signal } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
 import { DividerModule } from 'primeng/divider';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -15,13 +14,21 @@ import { ThemeService } from '~/services/theme.service';
 
 @Component({
   selector: 'app-project-dialog',
-  imports: [ButtonDirective, DividerModule, SelectModule, InputTextModule, DatePickerModule, TextareaModule],
+  imports: [
+    ButtonDirective,
+    DividerModule,
+    SelectModule,
+    InputTextModule,
+    DatePickerModule,
+    TextareaModule,
+    ReactiveFormsModule
+  ],
   templateUrl: './project-dialog.component.html',
   styleUrl: '../../../dialog/dynamic-dialog/dynamic-dialog.component.scss'
 })
 export class ProjectDialog extends BaseComponent {
   type = signal<string>('');
-  data: any;
+  isSubmitted = false;
   formGroup!: FormGroup;
   typeOptions = [
     {
@@ -133,7 +140,6 @@ export class ProjectDialog extends BaseComponent {
     themeService: ThemeService
   ) {
     super(themeService);
-    this.data = config.data;
     this.type.set(config.data.type || 'create');
 
     this.generateFormGroup();
@@ -228,6 +234,10 @@ export class ProjectDialog extends BaseComponent {
   //     });
   //   }
   // }
+
+  onSubmit() {
+    this.isSubmitted = true;
+  }
 
   closeDialog() {
     this.ref.close();
