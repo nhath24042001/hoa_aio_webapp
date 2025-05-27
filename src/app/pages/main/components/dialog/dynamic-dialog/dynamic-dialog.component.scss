@@ -44,8 +44,11 @@
 }
 
 ::ng-deep .p-select.ng-invalid.ng-dirty,
-.p-textarea.ng-invalid.ng-dirty,
-.p-inputtext.ng-invalid.ng-dirty,
-.p-multiselect.ng-invalid.ng-dirty {
+::ng-deep .p-textarea.ng-invalid.ng-dirty,
+::ng-deep .p-inputtext.ng-invalid.ng-dirty {
   border-color: var(--p-select-invalid-border-color) !important;
+}
+
+::ng-deep .p-select.ng-invalid.ng-dirty .p-select-label.p-placeholder {
+  color: var(--p-form-field-invalid-placeholder-color) !important;
 }

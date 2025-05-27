@@ -34,3 +34,12 @@ export interface IOptionalProjectPayload {
 export interface IProjectResponse extends ICommonResponse {
   projects: IProjectPayload[];
 }
+
+export interface IProjectFormRawData
+  extends Omit<IProjectPayload, 'type' | 'priority' | 'status' | 'estimated_completion_date' | 'estimated_cost'> {
+  type: { name: string; code: number } | null;
+  priority: { name: string; code: number } | null;
+  status: { name: string; code: number } | null;
+  estimated_completion_date: Date | string | null;
+  estimated_cost: string | number | null;
+}

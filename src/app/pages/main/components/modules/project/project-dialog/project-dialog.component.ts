@@ -1,5 +1,6 @@
-import { Component, computed, ElementRef, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import dayjs from 'dayjs';
 import { DatePickerModule } from 'primeng/datepicker';
 import { DividerModule } from 'primeng/divider';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -7,11 +8,13 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { TextareaModule } from 'primeng/textarea';
 
+import { IProjectFormRawData, IProjectPayload } from '~/@types/project';
 import { BaseComponent } from '~/components/common/base/base.component';
 import { PROJECT_CUSTOM_SELECT } from '~/constants/select';
 import { AutoFocusDirective } from '~/directives/auto-focus.directive';
 import { ButtonDirective } from '~/directives/button.directive';
 import { ClickOutsideDirective } from '~/directives/click-outside.directive';
+import { ProjectService } from '~/pages/main/pages/project/project.service';
 import { ThemeService } from '~/services/theme.service';
 
 @Component({
@@ -117,9 +120,7 @@ export class ProjectDialog extends BaseComponent {
 
   icon = computed(() => {
     const basePath = `assets/images/${this.currentMode}`;
-    return this.type() === 'create'
-      ? `${basePath}/file-plus-03.svg`
-      : `${basePath}/clipboard-check.svg`;
+    return this.type() === 'create' ? `${basePath}/file-plus-03.svg` : `${basePath}/clipboard-check.svg`;
   });
 
   isEditMode = computed(() => {
@@ -140,7 +141,7 @@ export class ProjectDialog extends BaseComponent {
     public config: DynamicDialogConfig,
     public ref: DynamicDialogRef,
     public fb: FormBuilder,
-    private eRef: ElementRef,
+    public projectService: ProjectService,
     themeService: ThemeService
   ) {
     super(themeService);
@@ -157,7 +158,7 @@ export class ProjectDialog extends BaseComponent {
       type: ['', [Validators.required]],
       priority: [''],
       status: [''],
-      bid: [''],
+      bid_id: [''],
       estimated_completion_date: [''],
       estimated_cost: [''],
       project_manager: [''],
@@ -241,6 +242,35 @@ export class ProjectDialog extends BaseComponent {
 
   onSubmit() {
     this.isSubmitted = true;
+
+    if (this.formGroup.invalid) {
+      return;
+    }
+
+    const rawData = this.formGroup.getRawValue();
+    const prepared = this.prepareFormData(rawData);
+
+    this.projectService.addProject(prepared).subscribe(() => {
+      // TODO: Handle the response as needed
+    });
+  }
+
+  prepareFormData(rawData: IProjectFormRawData): IProjectPayload {
+    const convertSelectCode = (field: 'type' | 'priority' | 'status'): number => {
+      const code = rawData[field]?.code;
+      return code ?? 0;
+    };
+
+    return {
+      ...rawData,
+      type: convertSelectCode('type'),
+      priority: convertSelectCode('priority'),
+      status: convertSelectCode('status'),
+      estimated_completion_date: rawData.estimated_completion_date
+        ? dayjs(rawData.estimated_completion_date).format('YYYY-MM-DD')
+        : '',
+      estimated_cost: rawData.estimated_cost != null ? Number(rawData.estimated_cost) : 0
+    };
   }
 
   closeDialog() {

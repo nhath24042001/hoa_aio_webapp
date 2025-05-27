@@ -151,7 +151,7 @@
             <input
               type="text"
               pInputText
-              formControlName="bid"
+              formControlName="bid_id"
               variant="filled"
               class="flex-fill"
               placeholder="Select"
@@ -227,7 +227,7 @@
             <input
               type="text"
               pInputText
-              formControlName="estimated_cost"
+              formControlName="project_manager"
               variant="filled"
               class="flex-fill"
               placeholder="Me (enter name to change)"
@@ -271,7 +271,7 @@
           [class.--detail]="!isEditMode()"
           class="--text-box"
         >
-          Vendors
+          Action Items
         </p>
 
         <textarea
@@ -279,7 +279,7 @@
           rows="2"
           variant="filled"
           cols="100"
-          formControlName="vendors"
+          formControlName="action_items"
           placeholder="Enter action items, separated by comma"
         ></textarea>
       </div>
