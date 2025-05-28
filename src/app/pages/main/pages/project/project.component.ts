@@ -1,6 +1,9 @@
 import { Component, OnInit, signal } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { debounce } from 'lodash-es';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TabsModule } from 'primeng/tabs';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
 
 import { ITab } from '~/@types';
 import { IProjectPayload } from '~/@types/project';
@@ -25,6 +28,7 @@ export class ProjectComponent implements OnInit {
   activeTab = signal('0');
   headers = PROJECT_HEADER;
   sampleData = PROJECT_DATA;
+  actions = PROJECT_ACTIONS;
 
   tabs: ITab<IProjectPayload>[] = [
     {
@@ -61,21 +65,30 @@ export class ProjectComponent implements OnInit {
     }
   ];
 
-  all_projects: IProjectPayload[] = [];
-  on_hold_projects: IProjectPayload[] = [];
-  completed_projects: IProjectPayload[] = [];
-  canceled_projects: IProjectPayload[] = [];
-
-  actions = PROJECT_ACTIONS;
+  filterForm!: FormGroup;
+  search: string = '';
 
   constructor(
     public dialogService: DialogService,
     private toastService: ToastService,
-    private projectService: ProjectService
-  ) {}
+    private projectService: ProjectService,
+    private fb: FormBuilder
+  ) {
+    this.initFilterForm();
+  }
 
   ngOnInit(): void {
     this.getDefaultTab();
+
+    const tabIdx = parseInt(this.activeTab(), 10);
+
+    this.filterForm.valueChanges
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        tap(() => this.loadTabData(this.tabs[tabIdx].status, tabIdx))
+      )
+      .subscribe();
   }
 
   getDefaultTab() {
@@ -83,7 +96,11 @@ export class ProjectComponent implements OnInit {
     this.loadTabData(this.tabs[tabIdx].status, tabIdx);
   }
 
-  onSearch() {}
+  onSearchChange = debounce((text: string) => {
+    this.search = text;
+    const tabIdx = parseInt(this.activeTab(), 10);
+    this.loadTabData(this.tabs[tabIdx].status, tabIdx);
+  }, 500);
 
   onTabChange(tabIndex: string | number): void {
     this.activeTab.set(tabIndex.toString());
@@ -95,24 +112,53 @@ export class ProjectComponent implements OnInit {
     const start = Date.now();
     this.tabs[index].loading = true;
 
-    this.projectService.getProjects({ status }).subscribe({
-      next: (data) => {
-        this.tabs[index].data = data.projects;
-      },
-      error: () => {
-        this.tabs[index].data = [];
-      },
-      complete: () => {
-        const duration = Date.now() - start;
-        const remaining = 1500 - duration;
-        setTimeout(
-          () => {
-            this.tabs[index].loading = false;
-          },
-          remaining > 0 ? remaining : 0
-        );
-      }
+    const filters = this.filterForm?.value || {};
+
+    this.projectService
+      .getProjects({
+        status,
+        search: this.search,
+        ...filters
+      })
+      .subscribe({
+        next: (data) => {
+          this.tabs[index].data = data.projects;
+        },
+        error: () => {
+          this.tabs[index].data = [];
+        },
+        complete: () => {
+          const duration = Date.now() - start;
+          const remaining = 1500 - duration;
+          setTimeout(
+            () => {
+              this.tabs[index].loading = false;
+            },
+            remaining > 0 ? remaining : 0
+          );
+        }
+      });
+  }
+
+  initFilterForm(): void {
+    this.filterForm = this.fb.group({
+      type: [''],
+      date_from: [''],
+      date_to: [null]
     });
+  }
+
+  handleTableAction(event: { actionKey: string; rowData: IProjectPayload }): void {
+    switch (event.actionKey) {
+      case 'edit':
+        this.onOpenProjectDetail();
+        break;
+      case 'delete':
+        this.onOpenDeleteDialog();
+        break;
+      default:
+        break;
+    }
   }
 
   onOpenCreateProject(): void {
@@ -127,19 +173,6 @@ export class ProjectComponent implements OnInit {
   }
 
   onOpenProjectDetail(): void {}
-
-  handleTableAction(event: { actionKey: string; rowData: IProjectPayload }): void {
-    switch (event.actionKey) {
-      case 'edit':
-        this.onOpenProjectDetail();
-        break;
-      case 'delete':
-        this.onOpenDeleteDialog();
-        break;
-      default:
-        break;
-    }
-  }
 
   async onOpenDeleteDialog(): Promise<void> {
     // const confirmed = await this.toastService.showConfirm({
