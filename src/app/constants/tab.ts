@@ -1,21 +1,3 @@
-export const taskTabHeader = [
-  {
-    name: 'All Tasks',
-    img: 'assets/images/common/rows-01.svg',
-    activeImg: 'assets/images/common/rows-01.svg'
-  },
-  {
-    name: 'Claims',
-    img: 'assets/images/common/violation-alert.svg',
-    activeImg: 'assets/images/common/violation-alert.svg'
-  },
-  {
-    name: 'Action Items',
-    img: 'assets/images/common/clipboard-check.svg',
-    activeImg: 'assets/images/light/clipboard-check-sm.svg'
-  }
-];
-
 export const vendorTabHeader = [
   {
     name: 'Companies',
