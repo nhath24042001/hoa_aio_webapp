@@ -52,3 +52,7 @@
 ::ng-deep .p-select.ng-invalid.ng-dirty .p-select-label.p-placeholder {
   color: var(--p-form-field-invalid-placeholder-color) !important;
 }
+
+::ng-deep .p-select-option-selected {
+  background: var(--active-primary) !important;
+}
