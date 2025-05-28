@@ -18,7 +18,7 @@
           <main-header
             labelButton="New Task"
             (searchChanged)="onSearchChange($event)"
-            (addSection)="onOpenTask('claim')"
+            (addSection)="onOpenTask()"
           >
             <div filter-content>
               <form class="--filter-content p-3" [formGroup]="filterForm">
@@ -118,7 +118,7 @@
 } @else {
   <div class="--content-section p-4 d-flex flex-column">
     <div class="d-flex justify-content-end">
-      <button appButton="primary" icon="white-plus-solid" (click)="onOpenTask('claim')">
+      <button appButton="primary" icon="white-plus-solid" (click)="onOpenTask()">
         New Task
       </button>
     </div>
@@ -128,7 +128,7 @@
         iconDark="assets/images/dark/annotation-lg.svg"
         title="There are no tasks to show yet."
         createText="Create a new Task"
-        (actionEmitter)="onOpenTask('claim')"
+        (actionEmitter)="onOpenTask()"
       ></app-empty-content>
     </div>
   </div>

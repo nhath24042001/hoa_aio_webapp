@@ -8,7 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { TextareaModule } from 'primeng/textarea';
 
-import { IClaimPayload } from '~/@types/task';
+import { IActionItemPayload } from '~/@types/task';
 import { BaseComponent } from '~/components/common/base/base.component';
 import { PRIORITY_OPTION, TYPE_OPTION } from '~/constants/select';
 import { AutoFocusDirective } from '~/directives/auto-focus.directive';
@@ -18,7 +18,7 @@ import { TaskService } from '~/pages/main/pages/task-management/task.service';
 import { ThemeService } from '~/services/theme.service';
 
 @Component({
-  selector: 'app-task-claim-dialog',
+  selector: 'app-task-action-dialog',
   imports: [
     ButtonDirective,
     ClickOutsideDirective,
@@ -30,10 +30,10 @@ import { ThemeService } from '~/services/theme.service';
     TextareaModule,
     ReactiveFormsModule
   ],
-  templateUrl: './task-claim-dialog.component.html',
+  templateUrl: './task-action-dialog.component.html',
   styleUrl: '../../../dialog/dynamic-dialog/dynamic-dialog.component.scss'
 })
-export class TaskClaimDialog extends BaseComponent {
+export class TaskActionDialog extends BaseComponent {
   type = signal<string>('');
   isSubmitted = false;
   isEditingTitle = false;
@@ -48,9 +48,7 @@ export class TaskClaimDialog extends BaseComponent {
 
   icon = computed(() => {
     const basePath = `assets/images/${this.currentMode}`;
-    return this.type() === 'create'
-      ? `${basePath}/file-plus-03.svg`
-      : `${basePath}/clipboard-check.svg`;
+    return this.type() === 'create' ? `${basePath}/file-plus-03.svg` : `${basePath}/clipboard-check.svg`;
   });
 
   isEditMode = computed(() => {
@@ -75,7 +73,7 @@ export class TaskClaimDialog extends BaseComponent {
       type: ['', Validators.required],
       description: ['', Validators.required],
       priority: [''],
-      resident_id: ['', Validators.required],
+      assigned_to: ['', Validators.required],
       property_address: ['', Validators.required],
       eta: [''],
       media: [''],
@@ -83,7 +81,7 @@ export class TaskClaimDialog extends BaseComponent {
     });
   }
 
-  prepareFormData(rawData: IClaimPayload): IClaimPayload {
+  prepareFormData(rawData: IActionItemPayload): IActionItemPayload {
     return {
       ...rawData,
       eta: rawData.eta ? dayjs(rawData.eta).format('YYYY-MM-DD') : ''
@@ -100,7 +98,7 @@ export class TaskClaimDialog extends BaseComponent {
     const rawData = this.formGroup.getRawValue();
     const prepared = this.prepareFormData(rawData);
 
-    this.taskService.addResidentClaim(prepared).subscribe({});
+    this.taskService.addActionItem(prepared).subscribe(() => {});
   }
 
   closeDialog() {

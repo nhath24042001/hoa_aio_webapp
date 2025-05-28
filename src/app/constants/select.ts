@@ -145,3 +145,53 @@ export const VENDOR_CUSTOM_SELECT: DynamicField = {
   ],
   placeholder: 'Select'
 };
+
+export const TYPE_OPTION = [
+  {
+    name: 'Maintenance',
+    code: 1
+  },
+  {
+    name: 'Landscape',
+    code: 2
+  },
+  {
+    name: 'Accounting',
+    code: 3
+  },
+  {
+    name: 'Design Change Request',
+    code: 4
+  },
+  {
+    name: 'Hearing',
+    code: 5
+  },
+  {
+    name: 'Meeting Action Item',
+    code: 6
+  },
+  {
+    name: 'Other',
+    code: 7
+  }
+];
+
+export const PRIORITY_OPTION = [
+  {
+    name: 'Urgent',
+    code: 0
+  },
+  {
+    name: 'Important',
+    code: 1
+  },
+  {
+    name: 'Normal',
+    code: 2
+  },
+  {
+    name: 'Low',
+    code: 3
+  }
+];

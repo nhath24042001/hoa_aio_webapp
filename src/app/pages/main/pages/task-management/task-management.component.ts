@@ -17,6 +17,7 @@ import { MainHeader } from '~/pages/main/components/shared/main-header/main-head
 import { Table } from '~/pages/main/components/shared/table/table.component';
 import { ToastService } from '~/services/toast.service';
 
+import { TaskActionDialog } from '../../components/modules/task-management/task-action-dialog/task-action-dialog.component';
 import { TaskClaimDialog } from '../../components/modules/task-management/task-claim-dialog/task-claim-dialog.component';
 import { TaskService } from './task.service';
 
@@ -171,14 +172,20 @@ export class TaskManagementComponent implements OnInit {
     this.filterForm.reset();
   }
 
-  onOpenTask(type: 'claim' | 'action_item'): void {
-    // const component = type === 'claim' ? TaskClaimDialog : TaskActionDialogComponent;
-
-    this.ref = this.dialogService.open(TaskClaimDialog, {
-      modal: true,
-      width: '1000px',
-      data: { type: 'create' }
-    });
+  onOpenTask(): void {
+    if (this.activeTab() === '2') {
+      this.ref = this.dialogService.open(TaskActionDialog, {
+        modal: true,
+        width: '1000px',
+        data: { type: 'create' }
+      });
+    } else {
+      this.ref = this.dialogService.open(TaskClaimDialog, {
+        modal: true,
+        width: '1000px',
+        data: { type: 'create' }
+      });
+    }
   }
 
   onOpenTaskDetail(): void {}

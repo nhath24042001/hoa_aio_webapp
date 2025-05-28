@@ -137,10 +137,10 @@
         </div>
 
         <div class="col-6">
-          <!-- Resident name -->
+          <!-- Assign To -->
           <div class="mb-3 d-flex align-items-center">
             <img
-              [src]="'assets/images/' + currentMode + '/' + 'user-square' + '.svg'"
+              [src]="'assets/images/' + currentMode + '/' + 'user-up-sm' + '.svg'"
               [alt]="icon + '_icon'"
               class="me-2"
             />
@@ -149,16 +149,16 @@
               [class.--detail]="!isEditMode()"
               class="--text-box"
             >
-              Resident Name
+              Assign To
             </p>
 
             <input
               type="text"
               pInputText
-              formControlName="resident_id"
+              formControlName="assigned_to"
               variant="filled"
               class="flex-fill"
-              placeholder="If opened on behalf of resident"
+              placeholder="Enter names, separated by comma"
             />
           </div>
 
