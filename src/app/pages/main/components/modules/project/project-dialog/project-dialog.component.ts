@@ -8,7 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { TextareaModule } from 'primeng/textarea';
 
-import { IProjectFormRawData, IProjectPayload } from '~/@types/project';
+import { IProjectPayload } from '~/@types/project';
 import { BaseComponent } from '~/components/common/base/base.component';
 import { PROJECT_CUSTOM_SELECT } from '~/constants/select';
 import { AutoFocusDirective } from '~/directives/auto-focus.directive';
@@ -140,7 +140,6 @@ export class ProjectDialog extends BaseComponent {
     this.type.set(config.data.type || 'create');
 
     this.generateFormGroup();
-    // this.onChangeAttribute();
   }
 
   public generateFormGroup() {
@@ -159,79 +158,6 @@ export class ProjectDialog extends BaseComponent {
     });
   }
 
-  // public onChangeAttribute() {
-  //   /*
-  //   This method can be used to handle changes in the attributes of the project.
-  //   For example, you can update the project data or perform validation checks.
-  //   */
-
-  //   if (this.type() !== 'create') {
-  //     this.list_columns = this.list_columns.filter((col) => col.field !== 'document');
-  //     this.list_columns = this.list_columns.filter(
-  //       (col) =>
-  //         col.field !== 'status' &&
-  //         col.field !== 'bid' &&
-  //         col.field !== 'eta_time' &&
-  //         col.field !== 'project_manager'
-  //     );
-  //     this.list_columns.push(
-  //       {
-  //         icon: 'hourglass',
-  //         field: 'eta_time',
-  //         label: 'ETA',
-  //         type: 'date',
-  //         placeholder: 'Set ETA date',
-  //         position: 'left'
-  //       },
-  //       {
-  //         icon: 'user-square',
-  //         label: 'Resident name',
-  //         field: 'resident_name',
-  //         type: 'input',
-  //         position: 'right',
-  //         placeholder: 'If opened on behalf of resident'
-  //       },
-  //       {
-  //         icon: 'finger',
-  //         field: 'bid',
-  //         label: 'Bid',
-  //         type: 'input',
-  //         placeholder: 'Select',
-  //         position: 'right'
-  //       }
-  //     );
-  //     this.list_columns.unshift(this.project_custom_select, {
-  //       icon: 'perspective',
-  //       field: 'project_manager',
-  //       label: 'Project Manager',
-  //       type: 'input',
-  //       placeholder: 'Me (enter name to change)',
-  //       position: 'right'
-  //     });
-
-  //     this.list_columns = this.list_columns.map((column) => {
-  //       return {
-  //         ...column,
-  //         value: this.data.data.formData[column.field]
-  //       };
-  //     });
-
-  //     this.list_textarea.push({
-  //       title: 'Attachments',
-  //       field: 'attachments',
-  //       placeholder: 'Add attachments',
-  //       value: ''
-  //     });
-
-  //     this.list_textarea = this.list_textarea.map((textarea) => {
-  //       return {
-  //         ...textarea,
-  //         value: this.data.data.formData[textarea.field]
-  //       };
-  //     });
-  //   }
-  // }
-
   onSubmit() {
     this.isSubmitted = true;
 
@@ -242,22 +168,12 @@ export class ProjectDialog extends BaseComponent {
     const rawData = this.formGroup.getRawValue();
     const prepared = this.prepareFormData(rawData);
 
-    this.projectService.addProject(prepared).subscribe(() => {
-      // TODO: Handle the response as needed
-    });
+    this.projectService.addProject(prepared).subscribe(() => {});
   }
 
-  prepareFormData(rawData: IProjectFormRawData): IProjectPayload {
-    const convertSelectCode = (field: 'type' | 'priority' | 'status'): number => {
-      const code = rawData[field]?.code;
-      return code ?? 0;
-    };
-
+  prepareFormData(rawData: IProjectPayload): IProjectPayload {
     return {
       ...rawData,
-      type: convertSelectCode('type'),
-      priority: convertSelectCode('priority'),
-      status: convertSelectCode('status'),
       estimated_completion_date: rawData.estimated_completion_date
         ? dayjs(rawData.estimated_completion_date).format('YYYY-MM-DD')
         : '',
