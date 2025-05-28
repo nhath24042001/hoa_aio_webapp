@@ -18,7 +18,6 @@ import { Table } from '~/pages/main/components/shared/table/table.component';
 import { ToastService } from '~/services/toast.service';
 
 import { TaskClaimDialog } from '../../components/modules/task-management/task-claim-dialog/task-claim-dialog.component';
-import { TaskActionDialogComponent } from './../../components/modules/task-management/task-action-dialog/task-action-dialog.component';
 import { TaskService } from './task.service';
 
 @Component({
@@ -173,9 +172,9 @@ export class TaskManagementComponent implements OnInit {
   }
 
   onOpenTask(type: 'claim' | 'action_item'): void {
-    const component = type === 'claim' ? TaskClaimDialog : TaskActionDialogComponent;
+    // const component = type === 'claim' ? TaskClaimDialog : TaskActionDialogComponent;
 
-    this.ref = this.dialogService.open(component, {
+    this.ref = this.dialogService.open(TaskClaimDialog, {
       modal: true,
       width: '1000px',
       data: { type: 'create' }

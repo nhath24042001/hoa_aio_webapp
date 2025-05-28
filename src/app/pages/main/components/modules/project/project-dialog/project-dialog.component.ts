@@ -127,14 +127,6 @@ export class ProjectDialog extends BaseComponent {
     return this.type() === 'create' || this.type() === 'edit';
   });
 
-  list_textarea = [
-    {
-      title: 'Project Description',
-      placeholder: 'Enter description',
-      value: '',
-      field: 'detail'
-    }
-  ];
   project_custom_select = PROJECT_CUSTOM_SELECT;
 
   constructor(
