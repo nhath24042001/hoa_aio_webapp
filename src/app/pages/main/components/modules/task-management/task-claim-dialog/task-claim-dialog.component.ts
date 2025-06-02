@@ -1,174 +1,109 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, computed } from '@angular/core';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { Component, computed, signal } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import dayjs from 'dayjs';
+import { DatePickerModule } from 'primeng/datepicker';
+import { DividerModule } from 'primeng/divider';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { SelectModule } from 'primeng/select';
+import { TextareaModule } from 'primeng/textarea';
 
-import { DynamicField } from '~/@types';
-import { LIST_TASK_STATUS, PRIORITY_LIST, PROJECT_TYPES } from '~/constants';
-import { TASK_CUSTOM_SELECT } from '~/constants/select';
-import { DynamicDialog } from '~/pages/main/components/dialog/dynamic-dialog/dynamic-dialog.component';
+import { IClaimPayload } from '~/@types/task';
+import { BaseComponent } from '~/components/common/base/base.component';
+import { PRIORITY_OPTION, TYPE_OPTION } from '~/constants/select';
+import { AutoFocusDirective } from '~/directives/auto-focus.directive';
+import { ButtonDirective } from '~/directives/button.directive';
+import { ClickOutsideDirective } from '~/directives/click-outside.directive';
+import { TaskService } from '~/pages/main/pages/task-management/task.service';
+import { ThemeService } from '~/services/theme.service';
 
 @Component({
   selector: 'app-task-claim-dialog',
-  imports: [DynamicDialog],
+  imports: [
+    ButtonDirective,
+    ClickOutsideDirective,
+    AutoFocusDirective,
+    DividerModule,
+    SelectModule,
+    InputTextModule,
+    DatePickerModule,
+    TextareaModule,
+    ReactiveFormsModule
+  ],
   templateUrl: './task-claim-dialog.component.html',
-  styleUrl: './task-claim-dialog.component.scss'
+  styleUrl: '../../../dialog/dynamic-dialog/dynamic-dialog.component.scss'
 })
-export class TaskClaimDialog {
-  data: any;
-  type = '';
-  project_types = PROJECT_TYPES;
-  priority_list = PRIORITY_LIST;
-  status_list = LIST_TASK_STATUS;
-  custom_select_list = TASK_CUSTOM_SELECT;
+export class TaskClaimDialog extends BaseComponent {
+  type = signal<string>('');
+  isSubmitted = false;
+  isEditingTitle = false;
+  formGroup!: FormGroup;
 
-  list_columns: DynamicField[] = [
-    {
-      icon: 'list-sm',
-      label: 'Type',
-      field: 'type',
-      type: 'select',
-      position: 'left',
-      list: this.project_types,
-      placeholder: 'Select'
-    },
-    {
-      icon: 'flag',
-      label: 'Priority',
-      field: 'priority',
-      type: 'select',
-      position: 'left',
-      list: this.priority_list,
-      placeholder: 'Select'
-    },
-    {
-      icon: 'user-square',
-      label: 'Resident name',
-      field: 'resident_name',
-      type: 'input',
-      position: 'left',
-      list: [],
-      placeholder: 'If opened on behalf of resident'
-    },
-    {
-      icon: 'home-sm',
-      label: 'Property Address',
-      field: 'property_address',
-      type: 'input',
-      position: 'left',
-      list: [],
-      placeholder: 'Enter address'
-    },
-    {
-      icon: 'user-up-sm',
-      label: 'Assigned to',
-      field: 'assigned_to',
-      type: 'input',
-      position: 'right',
-      list: [],
-      placeholder: 'Enter names, separated by comma'
-    },
-    {
-      icon: 'hourglass',
-      label: 'ETA',
-      field: 'eta',
-      type: 'date',
-      position: 'right',
-      placeholder: 'Set ETA date'
-    },
-    {
-      icon: 'perspective',
-      label: 'Project',
-      field: 'project',
-      type: 'select',
-      position: 'right',
-      list: this.project_types,
-      placeholder: 'Select'
-    }
-  ];
+  typeOptions = TYPE_OPTION;
+  priorityOptions = PRIORITY_OPTION;
 
-  list_textarea = [
-    {
-      title: 'Task Description',
-      placeholder: 'Enter description',
-      value: '',
-      field: 'description'
-    }
-  ];
-
-  dialogTitle = computed(() => {
-    return this.type === 'create' ? 'Create New Task' : 'Action Items';
+  title = computed(() => {
+    return this.type() === 'create' ? 'Create New Task' : 'Task Details';
   });
 
-  formData = computed(() => {
-    return this.config.data;
+  icon = computed(() => {
+    const basePath = `assets/images/${this.currentMode}`;
+    return this.type() === 'create'
+      ? `${basePath}/file-plus-03.svg`
+      : `${basePath}/clipboard-check.svg`;
   });
 
-  constructor(public config: DynamicDialogConfig) {
-    this.data = config.data;
-    this.type = this.data.type;
+  isEditMode = computed(() => {
+    return this.type() === 'create' || this.type() === 'edit';
+  });
 
-    if (this.type !== 'create') {
-      this.list_columns.unshift(this.custom_select_list);
-      this.list_columns = this.list_columns.filter(
-        (col) => col.field !== 'resident_name' && col.field !== 'property_address' && col.field !== 'eta'
-      );
-      this.list_columns.push(
-        {
-          icon: 'hourglass',
-          label: 'ETA',
-          field: 'eta',
-          type: 'date',
-          position: 'left',
-          placeholder: 'Set ETA date'
-        },
-        {
-          icon: 'user-square',
-          label: 'Resident name',
-          field: 'resident_name',
-          type: 'input',
-          position: 'right',
-          list: [],
-          placeholder: 'If opened on behalf of resident'
-        },
-        {
-          icon: 'home-sm',
-          label: 'Property Address',
-          field: 'property_address',
-          type: 'input',
-          position: 'right',
-          list: [],
-          placeholder: 'Enter address'
-        }
-      );
+  constructor(
+    public config: DynamicDialogConfig,
+    public ref: DynamicDialogRef,
+    public fb: FormBuilder,
+    public taskService: TaskService,
+    themeService: ThemeService
+  ) {
+    super(themeService);
+    this.type.set(config.data.type || 'create');
 
-      this.list_textarea.push(
-        {
-          title: 'Comments',
-          field: 'comments',
-          placeholder: 'Add comments',
-          value: ''
-        },
-        {
-          title: 'Attachments',
-          field: 'attachments',
-          placeholder: 'Add attachments',
-          value: ''
-        }
-      );
+    this.generateFormGroup();
+  }
 
-      this.list_columns = this.list_columns.map((column) => {
-        return {
-          ...column,
-          value: this.data.data.formData[column.field]
-        };
-      });
+  public generateFormGroup() {
+    this.formGroup = this.fb.group({
+      type: ['', Validators.required],
+      description: ['', Validators.required],
+      priority: [''],
+      resident_id: ['', Validators.required],
+      property_address: ['', Validators.required],
+      eta: [''],
+      media: [''],
+      video: ['']
+    });
+  }
 
-      this.list_textarea = this.list_textarea.map((textarea) => {
-        return {
-          ...textarea,
-          value: this.data.data.formData[textarea.field]
-        };
-      });
+  prepareFormData(rawData: IClaimPayload): IClaimPayload {
+    return {
+      ...rawData,
+      eta: rawData.eta ? dayjs(rawData.eta).format('YYYY-MM-DD') : ''
+    };
+  }
+
+  onSubmit() {
+    this.isSubmitted = true;
+
+    if (this.formGroup.invalid) {
+      return;
     }
+
+    const rawData = this.formGroup.getRawValue();
+    const prepared = this.prepareFormData(rawData);
+
+    this.taskService.addResidentClaim(prepared).subscribe({});
+  }
+
+  closeDialog() {
+    this.ref.close();
   }
 }

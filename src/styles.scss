@@ -82,6 +82,7 @@ h1 {
   font-size: clamp(0.5rem, 2vw, 1.5rem);
   font-weight: 600 !important;
 }
+
 h2 {
   font-size: clamp(0.75rem, 2vw, 1.75rem);
   font-weight: 600 !important;
@@ -347,6 +348,20 @@ span {
       &.--detail {
         color: var(--const-color);
       }
+    }
+
+    .--custom-title-input {
+      font-size: 1.75rem;
+      font-weight: 600;
+      line-height: 1.2;
+      margin: 0;
+      padding: 0;
+      border: none;
+      outline: none;
+      background: transparent;
+      width: 100%;
+      color: inherit;
+      color: var(--dialog-title);
     }
 
     .--text-box {

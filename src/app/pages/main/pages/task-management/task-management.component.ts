@@ -1,23 +1,24 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { debounce } from 'lodash-es';
 import { DatePickerModule } from 'primeng/datepicker';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TabsModule } from 'primeng/tabs';
-import { forkJoin } from 'rxjs';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
 
+import { ITab } from '~/@types';
+import { ITaskPayload } from '~/@types/task';
 import { TASK_STATUS } from '~/constants';
-import { taskTabHeader } from '~/constants/tab';
-import { TASK_ACTIONS, TASK_HEADER } from '~/data/task';
+import { TASK_ACTIONS, TASK_DATA, TASK_HEADER } from '~/data/task';
 import { ButtonDirective } from '~/directives/button.directive';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';
 import { ToastService } from '~/services/toast.service';
 
+import { TaskActionDialog } from '../../components/modules/task-management/task-action-dialog/task-action-dialog.component';
 import { TaskClaimDialog } from '../../components/modules/task-management/task-claim-dialog/task-claim-dialog.component';
-import { TaskActionDialogComponent } from './../../components/modules/task-management/task-action-dialog/task-action-dialog.component';
 import { TaskService } from './task.service';
 
 @Component({
@@ -30,7 +31,8 @@ import { TaskService } from './task.service';
     EmptyContentComponent,
     ButtonDirective,
     MainHeader,
-    Table
+    Table,
+    ReactiveFormsModule
   ],
   templateUrl: './task-management.component.html',
   styleUrl: './task-management.component.scss'
@@ -38,123 +40,113 @@ import { TaskService } from './task.service';
 export class TaskManagementComponent implements OnInit {
   ref: DynamicDialogRef | undefined;
   activeTab = signal('0');
-  tabs = taskTabHeader;
-  allTasks: any[] = [];
-  claimTasks: any[] = [];
-  actionItemTasks: any[] = [];
-
   headers = TASK_HEADER;
-
+  sampleData = TASK_DATA;
   actions = TASK_ACTIONS;
-
   task_status = TASK_STATUS;
-  selectedStatus: string = '';
-  startDate = '';
-  endDate = '';
+
+  tabs: ITab<ITaskPayload>[] = [
+    {
+      name: 'All Tasks',
+      img: 'assets/images/common/rows-01.svg',
+      activeImg: 'assets/images/common/rows-01.svg',
+      status: 2,
+      data: [],
+      loading: false
+    },
+    {
+      name: 'Claims',
+      img: 'assets/images/common/violation-alert.svg',
+      activeImg: 'assets/images/common/violation-alert.svg',
+      status: 0,
+      data: [],
+      loading: false
+    },
+    {
+      name: 'Action Items',
+      img: 'assets/images/common/clipboard-check.svg',
+      activeImg: 'assets/images/light/clipboard-check-sm.svg',
+      status: 1,
+      data: [],
+      loading: false
+    }
+  ];
+
+  filterForm!: FormGroup;
+  search: string = '';
 
   constructor(
     public dialogService: DialogService,
     private toastService: ToastService,
-    private taskService: TaskService
-  ) {}
-
-  ngOnInit(): void {
-    this.getTaskList();
+    private taskService: TaskService,
+    private fb: FormBuilder
+  ) {
+    this.initFilterForm();
   }
 
-  onSearch() {}
+  ngOnInit(): void {
+    this.getDefaultTab();
+    const tabIdx = parseInt(this.activeTab(), 10);
+
+    this.filterForm.valueChanges
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        tap(() => this.loadTabData(this.tabs[tabIdx].status, tabIdx))
+      )
+      .subscribe();
+  }
+
+  onSearchChange = debounce((text: string) => {
+    this.search = text;
+    const tabIdx = parseInt(this.activeTab(), 10);
+    this.loadTabData(this.tabs[tabIdx].status, tabIdx);
+  }, 500);
 
   onTabChange(tabIndex: number | string) {
     this.activeTab.set(tabIndex.toString());
+    const tabIdx = parseInt(tabIndex.toString(), 10);
+    this.loadTabData(this.tabs[tabIdx].status, tabIdx);
   }
 
-  getTaskList() {
-    forkJoin({
-      claim: this.taskService.getTasks({ is_claim_or_action_item: 0 }),
-      action_item: this.taskService.getTasks({ is_claim_or_action_item: 1 }),
-      all: this.taskService.getTasks({ is_claim_or_action_item: 2 })
-    }).subscribe({
-      next: ({ claim, action_item, all }) => {
-        this.claimTasks = claim.tasks.tasks;
-        this.actionItemTasks = action_item.tasks.tasks;
-        this.allTasks = all.tasks.tasks;
-      }
-    });
+  loadTabData(status: number, index: number) {
+    const start = Date.now();
+    this.tabs[index].loading = true;
+
+    const filters = this.filterForm?.value || {};
+
+    this.taskService
+      .getTasks({
+        status,
+        search: this.search,
+        ...filters
+      })
+      .subscribe({
+        next: (data) => {
+          this.tabs[index].data = data.tasks.tasks;
+        },
+        error: () => {
+          this.tabs[index].data = [];
+        },
+        complete: () => {
+          const duration = Date.now() - start;
+          const remaining = 1500 - duration;
+          setTimeout(
+            () => {
+              this.tabs[index].loading = false;
+            },
+            remaining > 0 ? remaining : 0
+          );
+        }
+      });
   }
 
-  onOpenTask(type: 'claim' | 'action_item'): void {
-    const component = type === 'claim' ? TaskClaimDialog : TaskActionDialogComponent;
-
-    this.ref = this.dialogService.open(component, {
-      modal: true,
-      width: '1000px',
-      data: { type: 'create' }
-    });
+  getDefaultTab() {
+    const tabIdx = parseInt(this.activeTab(), 10);
+    this.loadTabData(this.tabs[tabIdx].status, tabIdx);
   }
 
-  onOpenTaskDetail(): void {
-    // this.ref = this.dialogService.open(TaskDialog, {
-    //   modal: true,
-    //   width: '1000px',
-    //   data: {
-    //     type: 'detail',
-    //     data: {
-    //       title: 'Sign contract with plumbing vendor',
-    //       created_date: '2/2/2021',
-    //       update_date: '2/2/2022',
-    //       status: 'new',
-    //       formData: {
-    //         type: 'Maintenance',
-    //         priority: 'critical',
-    //         eta: '2023-08-01',
-    //         assigned_to: [
-    //           {
-    //             id: 1,
-    //             name: 'John Doe',
-    //             image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png'
-    //           },
-    //           {
-    //             id: 2,
-    //             name: 'Jane Smith',
-    //             image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/asiyajavayant.png'
-    //           },
-    //           {
-    //             id: 3,
-    //             name: 'Jane Smith',
-    //             image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png'
-    //           }
-    //         ],
-    //         project: 'Palm Springs Vendor List',
-    //         resident_name: '',
-    //         property_address: '42 Main Drive, Palm Springs',
-    //         description:
-    //           'Negotiate terms and finalize the service agreement with the selected plumbing vendor for the office renovation project. Ensure all requirements are clearly outlined to avoid any service disruptions.',
-    //         comments: [
-    //           {
-    //             avatar: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png',
-    //             name: 'Parker Williams',
-    //             content: 'The quest has begun'
-    //           }
-    //         ],
-    //         attachments: [
-    //           {
-    //             file_name: 'Video Capture 1.MP4',
-    //             file_type: 'video/mp4',
-    //             file_size: '2.5 MB'
-    //           },
-    //           {
-    //             file_name: 'Video Capture 1.MP4',
-    //             file_type: 'video/mp4',
-    //             file_size: '2.5 MB'
-    //           }
-    //         ]
-    //       }
-    //     }
-    //   }
-    // });
-  }
-
-  handleTableAction(event: { actionKey: string; rowData: any }) {
+  handleTableAction(event: { actionKey: string; rowData: ITaskPayload }) {
     switch (event.actionKey) {
       case 'edit':
         this.onOpenTaskDetail();
@@ -166,6 +158,37 @@ export class TaskManagementComponent implements OnInit {
         break;
     }
   }
+
+  initFilterForm(): void {
+    this.filterForm = this.fb.group({
+      date_from: [null],
+      date_to: [null],
+      assigned_to: [null],
+      priority: [null]
+    });
+  }
+
+  clearFilter(): void {
+    this.filterForm.reset();
+  }
+
+  onOpenTask(): void {
+    if (this.activeTab() === '2') {
+      this.ref = this.dialogService.open(TaskActionDialog, {
+        modal: true,
+        width: '1000px',
+        data: { type: 'create' }
+      });
+    } else {
+      this.ref = this.dialogService.open(TaskClaimDialog, {
+        modal: true,
+        width: '1000px',
+        data: { type: 'create' }
+      });
+    }
+  }
+
+  onOpenTaskDetail(): void {}
 
   async onOpenDeleteDialog(): Promise<void> {
     // const confirmed = await this.toastService.showConfirm({

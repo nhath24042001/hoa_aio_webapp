@@ -95,7 +95,8 @@ export class RequestEstimateDialog {
     {
       title: 'Submission Instructions',
       placeholder: 'Enter instructions',
-      value: ''
+      value: '',
+      field: 'description'
     }
   ];
 

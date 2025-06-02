@@ -34,7 +34,7 @@ export interface IClaimPayload extends ITaskPayload {
 
 export interface ITaskResponse extends ICommonResponse {
   tasks: {
-    tasks: any[];
+    tasks: ITaskPayload[];
     total: number;
   };
 }

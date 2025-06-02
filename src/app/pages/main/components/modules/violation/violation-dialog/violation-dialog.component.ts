@@ -156,7 +156,8 @@ export class ViolationDialog {
     {
       title: 'Violation Description',
       placeholder: 'Enter description',
-      value: ''
+      value: '',
+      field: 'description'
     }
   ];
 

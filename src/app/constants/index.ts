@@ -54,12 +54,27 @@ export const TASK_STATUS = [
   }
 ];
 
-export const PROJECT_TYPES = [
-  { name: 'Maintenance', code: 'NY' },
-  { name: 'Renovation', code: 'RM' },
-  { name: 'New construction', code: 'LDN' },
-  { name: 'Inspection', code: 'IST' },
-  { name: 'Other', code: 'PRS' }
+export const TYPE_OPTIONS = [
+  {
+    name: 'Renovation',
+    code: 2
+  },
+  {
+    name: 'Maintenance',
+    code: 1
+  },
+  {
+    name: 'New construction',
+    code: 3
+  },
+  {
+    name: 'Inspection',
+    code: 4
+  },
+  {
+    name: 'Other',
+    code: 5
+  }
 ];
 
 export const PRIORITY_LIST = [

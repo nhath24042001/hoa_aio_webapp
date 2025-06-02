@@ -163,7 +163,8 @@ export class BidDialog {
     {
       title: 'Submission Instructions',
       placeholder: 'Enter instructions',
-      value: ''
+      value: '',
+      field: 'description'
     }
   ];
 

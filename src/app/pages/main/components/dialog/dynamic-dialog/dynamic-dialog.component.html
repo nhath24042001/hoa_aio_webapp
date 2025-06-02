@@ -1,24 +1,24 @@
 <div class="--dynamic-dialog p-4">
   <app-dialog-header
-    [title]="dialogTitle"
-    [iconCreate]="iconCreate"
-    [iconEdit]="iconEdit"
-    [dialogType]="dialogType"
+    [title]="dialogTitle()"
+    [iconCreate]="iconCreate()"
+    [iconEdit]="iconEdit()"
+    [dialogType]="dialogType()"
     [currentMode]="currentMode"
-    [formHeader]="formData.data"
+    [formHeader]="formData().data"
     (closeDialog)="closeDialog()"
     (changeAction)="changeAction()"
   ></app-dialog-header>
 
   <p-divider />
 
-  <form>
+  <form [formGroup]="formGroup">
     <div class="--dynamic-title">
-      <h3 class="mb-4" [class.--detail]="!isCreateMode">{{ formTitle }}</h3>
+      <h3 class="mb-4" [class.--detail]="!isCreateMode()">{{ formTitle() }}</h3>
 
       <div class="row">
         <div class="col-6">
-          @for (box of formFields; track $index) {
+          @for (box of formFields(); track $index) {
             @if (box.position === 'left') {
               <app-form-field
                 [icon]="box.icon"
@@ -28,17 +28,17 @@
                 [placeholder]="box.placeholder"
                 [value]="box.value"
                 [options]="box.list"
+                [required]="box.required"
                 [customIcon]="box.customIcon"
                 [currentMode]="currentMode"
-                [dialogType]="dialogType"
-                [isCreateMode]="isCreateMode"
-                [formControl]="box.value"
+                [dialogType]="dialogType()"
+                [isCreateMode]="isCreateMode()"
               ></app-form-field>
             }
           }
         </div>
         <div class="col-6">
-          @for (box of formFields; track $index) {
+          @for (box of formFields(); track $index) {
             @if (box.position === 'right') {
               <app-form-field
                 [icon]="box.icon"
@@ -46,31 +46,34 @@
                 [type]="box.type"
                 [field]="box.field"
                 [placeholder]="box.placeholder"
-                [options]="box.list"
-                [customIcon]="box.customIcon"
                 [value]="box.value"
+                [options]="box.list"
+                [required]="box.required"
+                [customIcon]="box.customIcon"
                 [currentMode]="currentMode"
-                [dialogType]="dialogType"
-                [isCreateMode]="isCreateMode"
+                [dialogType]="dialogType()"
+                [isCreateMode]="isCreateMode()"
               ></app-form-field>
             }
           }
         </div>
       </div>
 
-      @for (box of formFields; track $index) {
+      @for (box of formFields(); track $index) {
         @if (box.position === 'extra') {
           <app-form-field
             [icon]="box.icon"
-            [type]="box.type"
             [label]="box.label"
+            [type]="box.type"
             [field]="box.field"
+            [placeholder]="box.placeholder"
             [value]="box.value"
             [options]="box.list"
-            [dialogType]="dialogType"
+            [required]="box.required"
+            [customIcon]="box.customIcon"
             [currentMode]="currentMode"
-            [isCreateMode]="isCreateMode"
-            [placeholder]="box.placeholder"
+            [dialogType]="dialogType()"
+            [isCreateMode]="isCreateMode()"
           ></app-form-field>
         }
       }
@@ -79,23 +82,23 @@
     <p-divider />
 
     <div class="--dynamic-content mt-3">
-      @for (textarea of list_textarea; track $index) {
+      @for (textarea of list_textarea(); track $index) {
         <app-dialog-textarea
           [field]="textarea.field"
           [title]="textarea.title"
           [value]="textarea.value"
-          [isCreateMode]="isCreateMode"
+          [isCreateMode]="isCreateMode()"
           [placeholder]="textarea.placeholder"
         ></app-dialog-textarea>
       }
     </div>
 
     <app-dialog-actions
-      [isCreateMode]="dialogType === 'create'"
-      [formID]="formID"
-      [buttonText]="buttonText"
-      [moduleName]="moduleName"
-      [buttonIcon]="buttonIcon"
+      [isCreateMode]="dialogType() === 'create'"
+      [formID]="formID()"
+      [buttonText]="buttonText()"
+      [moduleName]="moduleName()"
+      [buttonIcon]="buttonIcon()"
     ></app-dialog-actions>
   </form>
 </div>
