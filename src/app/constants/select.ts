@@ -180,18 +180,18 @@ export const TYPE_OPTION = [
 export const PRIORITY_OPTION = [
   {
     name: 'Urgent',
-    code: 0
-  },
-  {
-    name: 'Important',
     code: 1
   },
   {
-    name: 'Normal',
+    name: 'Important',
     code: 2
   },
   {
-    name: 'Low',
+    name: 'Normal',
     code: 3
+  },
+  {
+    name: 'Low',
+    code: 4
   }
 ];

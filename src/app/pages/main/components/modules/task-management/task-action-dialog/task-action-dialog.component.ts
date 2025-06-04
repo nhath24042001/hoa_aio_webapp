@@ -98,7 +98,11 @@ export class TaskActionDialog extends BaseComponent {
     const rawData = this.formGroup.getRawValue();
     const prepared = this.prepareFormData(rawData);
 
-    this.taskService.addActionItem(prepared).subscribe(() => {});
+    this.taskService.addActionItem(prepared).subscribe((response) => {
+      if (response.rc === 0) {
+        this.ref.close();
+      }
+    });
   }
 
   closeDialog() {

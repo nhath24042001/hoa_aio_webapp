@@ -3,5 +3,5 @@ export const environment = {
   API_URL: 'https://stg.api.hoaallinone.com/api',
   SECRET_KEY: 'HSDS',
   REST_COUNTRIES_API: 'https://restcountries.com/v3.1/all',
-  TOKEN: '677bdb600a08b2517b59ba319b8295fa9522055aceb2522ed9c4eedf5b8187fc'
+  TOKEN: 'f861c83f988cd932ec5d7d49671dfec14944c7669ae08037829a709ee265a43a'
 };
