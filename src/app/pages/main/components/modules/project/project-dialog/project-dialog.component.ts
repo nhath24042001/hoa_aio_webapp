@@ -54,36 +54,24 @@ export class ProjectDialog extends BaseComponent {
     {
       name: 'Inspection',
       code: 4
-    },
-    {
-      name: 'Other',
-      code: 5
     }
   ];
   priorityOptions = [
     {
-      name: 'New',
-      code: 0
-    },
-    {
-      name: 'Planning',
+      name: 'Low',
       code: 1
     },
     {
-      name: 'In Progress',
+      name: 'Medium',
       code: 2
     },
     {
-      name: 'On Hold',
+      name: 'High',
       code: 3
     },
     {
-      name: 'Completed',
+      name: 'Critical',
       code: 4
-    },
-    {
-      name: 'Cancelled',
-      code: 5
     }
   ];
 
@@ -168,7 +156,11 @@ export class ProjectDialog extends BaseComponent {
     const rawData = this.formGroup.getRawValue();
     const prepared = this.prepareFormData(rawData);
 
-    this.projectService.addProject(prepared).subscribe(() => {});
+    this.projectService.addProject(prepared).subscribe((response) => {
+      if (response.rc === 0) {
+        this.ref.close();
+      }
+    });
   }
 
   prepareFormData(rawData: IProjectPayload): IProjectPayload {

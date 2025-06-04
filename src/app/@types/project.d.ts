@@ -34,3 +34,7 @@ export interface IOptionalProjectPayload {
 export interface IProjectResponse extends ICommonResponse {
   projects: IProjectPayload[];
 }
+
+export interface ICreationResponse extends ICommonResponse {
+  project_id: number;
+}

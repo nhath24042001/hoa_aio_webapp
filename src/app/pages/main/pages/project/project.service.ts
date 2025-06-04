@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ICommonResponse } from '~/@types';
-import { IProjectParams, IProjectPayload, IProjectResponse } from '~/@types/project';
+import { ICreationResponse, IProjectParams, IProjectPayload, IProjectResponse } from '~/@types/project';
 import { HttpClientModel } from '~/models/http/http-client.model';
 
 @Injectable({
@@ -44,7 +44,7 @@ export class ProjectService extends HttpClientModel {
 
   /* MUTATION PROJECT */
 
-  public addProject(payload: IProjectPayload): Observable<ICommonResponse> {
+  public addProject(payload: IProjectPayload): Observable<ICreationResponse> {
     return this.post(this.createRequest('Project', 'add_project', payload));
   }
 
