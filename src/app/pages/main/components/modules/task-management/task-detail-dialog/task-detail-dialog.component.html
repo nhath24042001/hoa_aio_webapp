@@ -1,0 +1,192 @@
+<div class="--dynamic-dialog p-4">
+  <div class="--dialog-header w-100 d-flex justify-content-between mb-4">
+    <div class="d-flex align-items-center">
+      <img class="me-3" [src]="icon()" alt="dialog_icon" />
+      <h3 class="mb-0">Task Details</h3>
+    </div>
+
+    <div class="--right">
+      <div>
+        <p class="text-end">Created: {{ data.created_at | date }}</p>
+        <p class="text-end">Updated: {{ data.last_update | date }}</p>
+      </div>
+
+      <div class="--share-box mx-3 d-flex justify-content-center align-items-center">Share</div>
+
+      <div class="--image-wrapper d-flex align-items-center">
+        <img
+          [src]="'assets/images/' + currentMode + '/close.svg'"
+          class="--close"
+          alt="close_icon"
+          (click)="closeDialog()"
+        />
+      </div>
+    </div>
+  </div>
+
+  <p-divider />
+
+  <div class="--dynamic-title">
+    <h2>Title</h2>
+
+    <div class="row">
+      <div class="col-6">
+        <!-- Status -->
+        <div class="mb-3 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/' + 'list-sm' + '.svg'"
+            [alt]="icon + '_icon'"
+            class="me-2"
+          />
+          <p
+            [style.width]="!isEditMode() ? '' : ''"
+            [class.--detail]="!isEditMode()"
+            class="--text-box"
+          >
+            Status
+          </p>
+        </div>
+
+        <!-- Task Type -->
+        <div class="mb-3 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/' + 'list-sm' + '.svg'"
+            [alt]="icon + '_icon'"
+            class="me-2"
+          />
+          <p
+            [style.width]="!isEditMode() ? '' : ''"
+            [class.--detail]="!isEditMode()"
+            class="--text-box"
+          >
+            Type
+          </p>
+
+          <span>{{ task_type() }}</span>
+        </div>
+
+        <!-- Priority -->
+        <div class="mb-3 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/' + 'flag' + '.svg'"
+            [alt]="icon + '_icon'"
+            class="me-2"
+          />
+          <p
+            [style.width]="!isEditMode() ? '' : ''"
+            [class.--detail]="!isEditMode()"
+            class="--text-box"
+          >
+            Priority
+          </p>
+          <span>{{ task_priority() }}</span>
+        </div>
+
+        <!-- ETA -->
+        <div class="mb-3 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/' + 'hourglass' + '.svg'"
+            [alt]="icon + '_icon'"
+            class="me-2"
+          />
+          <p
+            [style.width]="!isEditMode() ? '' : ''"
+            [class.--detail]="!isEditMode()"
+            class="--text-box"
+          >
+            ETA
+          </p>
+        </div>
+      </div>
+      <div class="col-6">
+        <!-- Assign To -->
+        <div class="mb-3 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/' + 'user-up-sm' + '.svg'"
+            [alt]="icon + '_icon'"
+            class="me-2"
+          />
+          <p
+            [style.width]="!isEditMode() ? '' : ''"
+            [class.--detail]="!isEditMode()"
+            class="--text-box"
+          >
+            Assign To
+          </p>
+
+          <span>{{ data.assigned_to_name }}</span>
+        </div>
+
+        <!-- Project -->
+        <div class="mb-3 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/' + 'perspective' + '.svg'"
+            [alt]="icon + '_icon'"
+            class="me-2"
+          />
+          <p
+            [style.width]="!isEditMode() ? '' : ''"
+            [class.--detail]="!isEditMode()"
+            class="--text-box"
+          >
+            Project
+          </p>
+
+          <span>{{ data.project_id }}</span>
+        </div>
+
+        <!-- Resident name -->
+        <div class="mb-3 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/' + 'user-square' + '.svg'"
+            [alt]="icon + '_icon'"
+            class="me-2"
+          />
+          <p
+            [style.width]="!isEditMode() ? '' : ''"
+            [class.--detail]="!isEditMode()"
+            class="--text-box"
+          >
+            Resident Name
+          </p>
+
+          <span>{{ data.assigned_to_name }}</span>
+        </div>
+
+        <!-- Property Address -->
+        <div class="mb-3 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/' + 'home-sm' + '.svg'"
+            [alt]="icon + '_icon'"
+            class="me-2"
+          />
+          <p
+            [style.width]="!isEditMode() ? '' : ''"
+            [class.--detail]="!isEditMode()"
+            class="--text-box"
+          >
+            Property Address
+          </p>
+
+          <span>-</span>
+        </div>
+      </div>
+    </div>
+
+    <p-divider />
+
+    <h5 class="mb-2 mt-3">Detail</h5>
+    <p>{{ data.description }}</p>
+
+    <h5 class="mb-2 mt-3">Comment</h5>
+
+    <h5 class="mb-2 mt-3">Attachments</h5>
+  </div>
+
+  <div class="--dynamic-action mt-3 d-flex justify-content-between align-items-center">
+    <p>Task ID: {{ data.task_id }}</p>
+    <div class="d-flex align-items-center">
+      <button appButton="primary" icon="check" class="mx-2">Done</button>
+    </div>
+  </div>
+</div>

@@ -8,9 +8,10 @@ import { TabsModule } from 'primeng/tabs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
 
 import { ITab } from '~/@types';
-import { ITaskPayload } from '~/@types/task';
-import { TASK_STATUS } from '~/constants';
-import { TASK_ACTIONS, TASK_DATA, TASK_HEADER } from '~/data/task';
+import { ITask } from '~/@types/task';
+import { TASK_CUSTOM_STATUS, TASK_STATUS } from '~/constants';
+import { PRIORITY_OPTION, TYPE_OPTION } from '~/constants/select';
+import { EXTRA_DATA, TASK_ACTIONS, TASK_DATA, TASK_HEADER } from '~/data/task';
 import { ButtonDirective } from '~/directives/button.directive';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
@@ -19,6 +20,7 @@ import { ToastService } from '~/services/toast.service';
 
 import { TaskActionDialog } from '../../components/modules/task-management/task-action-dialog/task-action-dialog.component';
 import { TaskClaimDialog } from '../../components/modules/task-management/task-claim-dialog/task-claim-dialog.component';
+import { TaskDetailDialog } from '../../components/modules/task-management/task-detail-dialog/task-detail-dialog.component';
 import { TaskService } from './task.service';
 
 @Component({
@@ -43,9 +45,13 @@ export class TaskManagementComponent implements OnInit {
   headers = TASK_HEADER;
   sampleData = TASK_DATA;
   actions = TASK_ACTIONS;
+  task_custom_status = TASK_CUSTOM_STATUS;
+  typeOptions = TYPE_OPTION;
+  priorityOptions = PRIORITY_OPTION;
+  extra_task = EXTRA_DATA;
   task_status = TASK_STATUS;
 
-  tabs: ITab<ITaskPayload>[] = [
+  tabs: ITab<ITask>[] = [
     {
       name: 'All Tasks',
       img: 'assets/images/common/rows-01.svg',
@@ -122,8 +128,15 @@ export class TaskManagementComponent implements OnInit {
         ...filters
       })
       .subscribe({
-        next: (data) => {
-          this.tabs[index].data = data.tasks.tasks;
+        next: () => {
+          this.tabs[index].data = this.extra_task.map((task) => ({
+            ...task,
+            video: task.video === null ? '' : task.video,
+            type: this.typeOptions.find((option) => option.code === task.type)?.name || '',
+            priority:
+              this.priorityOptions.find((option) => option.code === task.priority)?.name.toLocaleLowerCase() || '',
+            status: this.task_status.find((option) => option.code === task.status)?.name.toLocaleLowerCase() || ''
+          }));
         },
         error: () => {
           this.tabs[index].data = [];
@@ -146,13 +159,13 @@ export class TaskManagementComponent implements OnInit {
     this.loadTabData(this.tabs[tabIdx].status, tabIdx);
   }
 
-  handleTableAction(event: { actionKey: string; rowData: ITaskPayload }) {
+  handleTableAction(event: { actionKey: string; rowData: ITask }) {
     switch (event.actionKey) {
       case 'edit':
-        this.onOpenTaskDetail();
+        this.onOpenTaskDetail(event.rowData.task_id);
         break;
       case 'delete':
-        this.onOpenDeleteDialog();
+        this.onOpenDeleteDialog(event.rowData.task_id);
         break;
       default:
         break;
@@ -188,18 +201,32 @@ export class TaskManagementComponent implements OnInit {
     }
   }
 
-  onOpenTaskDetail(): void {}
+  onOpenTaskDetail(task_id: number): void {
+    this.taskService.getTaskById(task_id).subscribe((response) => {
+      if (response.rc === 0) {
+        this.ref = this.dialogService.open(TaskDetailDialog, {
+          modal: true,
+          width: '1000px',
+          data: { type: 'detail', task: response.task }
+        });
+      }
+    });
+  }
 
-  async onOpenDeleteDialog(): Promise<void> {
-    // const confirmed = await this.toastService.showConfirm({
-    //   icon: 'assets/images/common/red-trash-md.svg',
-    //   title: 'Delete task',
-    //   description:
-    //     'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
-    //   type: 'error',
-    //   buttonText: 'Delete task'
-    // });
-    // if (confirmed) {
-    // }
+  async onOpenDeleteDialog(task_id: number): Promise<void> {
+    const confirmed = await this.toastService.showConfirm({
+      icon: 'assets/images/common/red-trash-md.svg',
+      title: 'Delete task',
+      description: 'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
+      type: 'error',
+      buttonText: 'Delete task'
+    });
+    if (confirmed) {
+      this.taskService.deleteTask(task_id).subscribe((response) => {
+        if (response.rc === 0) {
+          this.ref?.close();
+        }
+      });
+    }
   }
 }

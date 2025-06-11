@@ -3,7 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ICommonResponse } from '~/@types';
-import { IActionItemPayload, IClaimPayload, ITaskCreationResponse, ITaskParams, ITaskResponse } from '~/@types/task';
+import {
+  IActionItemPayload,
+  IClaimPayload,
+  ITaskCreationResponse,
+  ITaskDetailResponse,
+  ITaskParams,
+  ITaskResponse
+} from '~/@types/task';
 import { HttpClientModel } from '~/models/http/http-client.model';
 
 @Injectable({
@@ -20,7 +27,7 @@ export class TaskService extends HttpClientModel {
     return this.post(this.createRequest('Task', 'get_all_tasks', params));
   }
 
-  public getTaskById(task_id: number): Observable<ICommonResponse> {
+  public getTaskById(task_id: number): Observable<ITaskDetailResponse> {
     return this.post(this.createRequest('Task', 'get_task_by_id', { task_id }));
   }
 
@@ -56,5 +63,9 @@ export class TaskService extends HttpClientModel {
 
   public editResidentClaim(task_id: number, payload: IClaimPayload): Observable<ITaskCreationResponse> {
     return this.post(this.createRequest('Task', 'edit_resident_claim', { task_id, ...payload }));
+  }
+
+  public deleteTask(task_id: number): Observable<ITaskCreationResponse> {
+    return this.post(this.createRequest('Task', 'delete_task', { task_id }));
   }
 }

@@ -14,13 +14,13 @@ export interface ITaskParams {
 }
 
 export interface ITaskPayload {
-  type: number;
+  type: number | string;
   description: string;
-  priority: number;
+  priority: number | string;
   property_address: string;
   eta: string;
-  media: string;
-  video: string;
+  media: string | null;
+  video: string | null;
 }
 
 export interface IActionItemPayload extends ITaskPayload {
@@ -34,9 +34,24 @@ export interface IClaimPayload extends ITaskPayload {
 
 export interface ITaskResponse extends ICommonResponse {
   tasks: {
-    tasks: ITaskPayload[];
+    tasks: ITask[];
     total: number;
   };
+}
+
+export interface ITaskDetailResponse extends ICommonResponse {
+  task: ITask;
+}
+
+export interface ITask extends Pick<ITaskPayload, 'type' | 'description' | 'priority' | 'media' | 'video'> {
+  task_id: number;
+  status: number | string;
+  assigned_to: string;
+  assigned_to_name: string;
+  created_by: string;
+  created_at: string;
+  last_update: string;
+  project_id: string | null;
 }
 
 export interface ITaskCreationResponse extends ICommonResponse {
