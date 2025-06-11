@@ -1,4 +1,4 @@
-<form class="--dynamic-dialog p-4" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+<form class="--dynamic-dialog p-4" [formGroup]="formGroup">
   <div class="mb-4 d-flex justify-content-between align-items-center">
     <div class="d-flex align-items-center">
       <img src="assets/images/common/annotation-plus.svg" class="me-3" alt="annotation_icon" />
@@ -116,7 +116,7 @@
         Save Draft
       </button>
 
-      <button type="submit" appButton="primary" icon="white-annotation-plus">
+      <button appButton="primary" icon="white-annotation-plus" (click)="onSubmit(false)">
         Create Announcement
       </button>
     </div>

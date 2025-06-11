@@ -64,18 +64,20 @@ export class DynamicAnnouncement extends BaseComponent implements AfterViewInit 
   ) {
     super(themeService);
     this.type.set(config.data.type || 'create');
-
     this.generateFormGroup();
   }
 
   ngAfterViewInit(): void {
-    // if (this.type === ACTION_DIALOG.EDIT) {
-    //   this.data = this.config.data.data;
-    //   this.announcementData.title = this.data.title;
-    //   this.announcementData.description = this.data.description;
-    //   this.announcementData.link = this.data.link;
-    //   this.announcementData.expiration_date = dayjs(this.data.expiration_date).toDate();
-    // }
+    if (this.type() !== 'create') {
+      this.data = this.config.data.data;
+      this.formGroup.patchValue({
+        title: this.data.title,
+        description: this.data.description,
+        link: this.data.link,
+        expiration_date: dayjs(this.data.expiration_date).toDate()
+        // user_types: this.data.user_types.map((type) => type.toString())
+      });
+    }
   }
 
   public generateFormGroup() {

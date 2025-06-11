@@ -43,7 +43,7 @@ export class AnnouncementListComponent extends BaseComponent {
     super(themeService);
   }
 
-  onActionClick(actionKey: string, rowData: any) {
+  onActionClick(actionKey: string, rowData: IAnnouncement) {
     this.onEmitAction.emit({ announcement: rowData, type: actionKey });
   }
 }
