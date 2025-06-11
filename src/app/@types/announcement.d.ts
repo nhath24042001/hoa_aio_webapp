@@ -15,13 +15,15 @@ export interface IAnnouncement {
   id: number;
   title: string;
   description: string;
-  media: null | string;
+  media: string;
   link: string;
   expiration_date: string;
-  date: string;
   created_on: string;
   updated_on: string;
   is_draft: number;
+  creator_id: string;
+  creator_first_name: string;
+  creator_last_name: string;
 }
 
 export interface IAnnouncementResponse extends ICommonResponse {
