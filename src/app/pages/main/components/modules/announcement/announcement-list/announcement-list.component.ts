@@ -14,7 +14,7 @@ import { ThemeService } from '~/services/theme.service';
   styleUrl: './announcement-list.component.scss'
 })
 export class AnnouncementListComponent extends BaseComponent {
-  readonly announcements = input<IAnnouncement[]>([]);
+  readonly announcements = input<IAnnouncement[] | undefined>([]);
   onEmitAction = output<{ announcement: IAnnouncement; type: string }>();
 
   ACTIONS = Action;

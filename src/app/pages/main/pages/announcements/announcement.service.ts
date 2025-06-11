@@ -3,11 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ICommonResponse } from '~/@types';
-import {
-  IAnnouncementPayload,
-  IAnnouncementResponse,
-  ICreateAnnouncementResponse
-} from '~/@types/announcement';
+import { IAnnouncementPayload, IAnnouncementResponse, ICreateAnnouncementResponse } from '~/@types/announcement';
 import { HttpClientModel } from '~/models/http/http-client.model';
 
 @Injectable({
@@ -35,9 +31,7 @@ export class AnnouncementService extends HttpClientModel {
   }
 
   public deleteAnnouncement(announcement_id: number): Observable<ICommonResponse> {
-    return this.post(
-      this.createRequest('Announcement', 'delete_announcement', { announcement_id })
-    );
+    return this.post(this.createRequest('Announcement', 'delete_announcement', { announcement_id }));
   }
 
   public getAllAnnouncements(): Observable<IAnnouncementResponse> {
@@ -48,10 +42,7 @@ export class AnnouncementService extends HttpClientModel {
     return this.post(this.createRequest('Announcement', 'get_recent_announcements'));
   }
 
-  public getActiveAnnouncements(
-    search: string,
-    filter_user_types: string[]
-  ): Observable<IAnnouncementResponse> {
+  public getActiveAnnouncements(search: string, filter_user_types: number[]): Observable<IAnnouncementResponse> {
     const payload = {
       search,
       filter_user_types
@@ -59,10 +50,7 @@ export class AnnouncementService extends HttpClientModel {
     return this.post(this.createRequest('Announcement', 'get_active_announcements', payload));
   }
 
-  public getExpiredAnnouncements(
-    search: string,
-    filter_user_types: string[]
-  ): Observable<IAnnouncementResponse> {
+  public getExpiredAnnouncements(search: string, filter_user_types: number[]): Observable<IAnnouncementResponse> {
     const payload = {
       search,
       filter_user_types
