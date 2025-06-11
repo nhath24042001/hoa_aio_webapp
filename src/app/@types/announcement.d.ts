@@ -7,7 +7,7 @@ export interface IAnnouncementPayload {
   expiration_date: string | Date;
   announcement_date: string | Date;
   announcement_date: string;
-  user_types: string[];
+  user_types: number[];
   is_draft: boolean;
 }
 

@@ -193,10 +193,8 @@ export class AnnouncementsComponent implements OnInit {
       }
     });
 
-    this.ref.onClose.subscribe((result) => {
-      if (result) {
-        this.loadTabData(tabIndex);
-      }
+    this.ref.onClose.subscribe(() => {
+      this.loadTabData(tabIndex);
     });
   }
 
@@ -246,7 +244,7 @@ export class AnnouncementsComponent implements OnInit {
         link: announcement.link,
         expiration_date: announcement.expiration_date,
         announcement_date: '',
-        user_types: ['1', '2'],
+        user_types: [1, 2],
         is_draft: false
       };
       this.announcementService.editAnnouncement(announcement.id, payload).subscribe((response) => {
