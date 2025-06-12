@@ -152,24 +152,28 @@ span {
   background: #ffb9bf;
   color: #ff515f !important;
   border: 1px solid #ff515f;
+  border-color: #ff515f !important;
 }
 
 .--second_notice {
   background: #ff858f;
   color: #880b15;
   border: 1px solid #880b15;
+  border-color: #ffedef !important;
 }
 
 .--second_notice-dark {
   background-color: #ff515f;
-  border: 1px solid #ffedef;
+  border: 1px solid;
   color: #ffedef;
+  border-color: #ff515f !important;
 }
 
 .--important {
   background: #f3eeff;
   color: #6938da;
   border: 1px solid #6938da;
+  border-color: #6938da !important;
 }
 
 .--normal,
@@ -178,6 +182,7 @@ span {
   background: #daffed;
   color: #55c68d;
   border: 1px solid #55c68d;
+  border-color: #55c68d !important;
 }
 
 .--normal,
@@ -185,6 +190,7 @@ span {
   background: #fff6e6;
   color: #efa00b;
   border: 1px solid #ffa800;
+  border-color: #ffa800 !important;
 }
 
 .--assigned,
@@ -192,13 +198,15 @@ span {
 .--hearing {
   background: #d1f0fa;
   color: #116b97;
-  border: 1px solid #116b97;
+  border: 1px solid;
+    border-color: #116b97 !important;
 }
 
 .--hearing-dark {
   background: #116b97;
-  border: 1px solid #7eddf1;
+  border: 1px solid;
   color: #d1f0fa;
+  border-color: #116b97 !important;
 }
 
 .--cancelled,
@@ -206,7 +214,8 @@ span {
 .--inactive {
   background: #eceff3;
   color: #818898;
-  border: 1px solid #818898;
+  border: 1px solid;
+    border-color: #818898 !important;
 }
 
 .--resolved,
@@ -419,40 +428,41 @@ span {
       font-size: 20px;
       color: var(--const-color);
     }
+    }
 
     .--comment-box {
       background: #f6f8fa;
       border-radius: 10px;
       padding: 16px;
 
-      &.--dark {
+    &.--dark {
         background: #1a1b25;
       }
 
-      img {
-        width: 24px;
-        height: 24px;
-      }
-    }
+        img {
+          width: 24px;
+          height: 24px;
+        }
+        }
 
     .--attachment-box {
       width: 180px;
       height: 75px;
       border-radius: 12px;
       border: 1px solid #dfe1e7;
+    cursor: pointer;
 
-      p,
+    p,
       span {
         font-size: 12px;
       }
 
-      .--file-name {
-        color: var(--const-color);
-      }
+        .--file-name {
+          color: var(--const-color);
+        }
 
-      .--file-size {
-        color: #818898;
-      }
+        .--file-size {
+          color: #818898;
     }
   }
 

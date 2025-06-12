@@ -72,7 +72,7 @@ export const TASK_CUSTOM_SELECT: DynamicField = {
     },
     {
       name: 'Reject',
-      code: 'reject',
+      code: 'rejected',
       icon: 'slash-octagon'
     },
     {
@@ -193,5 +193,38 @@ export const PRIORITY_OPTION = [
   {
     name: 'Low',
     code: 4
+  }
+];
+
+export const CUSTOM_SELECT = [
+  {
+    name: 'New',
+    code: 'new',
+    icon: 'red-thunder'
+  },
+  {
+    name: 'Assigned',
+    code: 'assigned',
+    icon: 'user-up-01'
+  },
+  {
+    name: 'Accept',
+    code: 'accept',
+    icon: 'user-check-01'
+  },
+  {
+    name: 'Resolve',
+    code: 'resolved',
+    icon: 'check-circle-broken-01'
+  },
+  {
+    name: 'Reject',
+    code: 'rejected',
+    icon: 'slash-octagon'
+  },
+  {
+    name: 'Cancel',
+    code: 'cancel',
+    icon: 'x-circle'
   }
 ];

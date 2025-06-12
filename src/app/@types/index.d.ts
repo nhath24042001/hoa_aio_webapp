@@ -86,3 +86,14 @@ export interface ITab<T> {
   data: T[];
   loading: boolean;
 }
+
+export interface ICustomSelect {
+  name: string;
+  code: string;
+  icon?: string;
+}
+
+export interface PointEvent {
+  originalEvent: PointerEvent;
+  value: ICustomSelect;
+}

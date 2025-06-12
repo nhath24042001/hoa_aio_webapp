@@ -3,6 +3,7 @@ import { Component, Input, input, OnInit, signal } from '@angular/core';
 import { FormControl, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SelectModule } from 'primeng/select';
 
+import { ICustomSelect } from '~/@types';
 import { BaseComponent } from '~/components/common/base/base.component';
 import { ThemeService } from '~/services/theme.service';
 
@@ -20,8 +21,8 @@ import { ThemeService } from '~/services/theme.service';
   ]
 })
 export class CustomSelect extends BaseComponent implements OnInit {
-  // TODO: Fix type any (Eslint)
-  @Input({ required: true }) options: any[] | undefined = [];
+  @Input({ required: true }) options: ICustomSelect[] | undefined = [];
+  @Input() initStatus: string | undefined = '';
   @Input() formControl!: FormControl | any;
   dialogType = input('');
   field = input('');
@@ -38,11 +39,10 @@ export class CustomSelect extends BaseComponent implements OnInit {
 
   override ngOnInit(): void {
     super.ngOnInit();
-    if (this.field() === 'status') {
-      if (this.options && this.options.length > 0) {
-        this.formControl = this.options[0];
-        this.classField.update(() => `--${this.options![0].code}`);
-      }
-    }
+
+    const initialOption = this.options?.find((option) => option.code === this.initStatus?.toLocaleLowerCase());
+
+    this.formControl = initialOption;
+    this.classField.update(() => `--${initialOption?.code}`);
   }
 }
