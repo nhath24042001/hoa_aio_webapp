@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, Input, input, OnInit, signal } from '@angular/core';
+import { Component, Input, input, OnInit, output, signal } from '@angular/core';
 import { FormControl, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SelectModule } from 'primeng/select';
 
@@ -24,6 +24,8 @@ export class CustomSelect extends BaseComponent implements OnInit {
   @Input({ required: true }) options: ICustomSelect[] | undefined = [];
   @Input() initStatus: string | undefined = '';
   @Input() formControl!: FormControl | any;
+  statusChanged = output<string>();
+
   dialogType = input('');
   field = input('');
 
@@ -31,6 +33,7 @@ export class CustomSelect extends BaseComponent implements OnInit {
 
   onStatusChange(event: any) {
     this.classField.update(() => `--${event.value.code}`);
+    this.statusChanged.emit(event.value.code);
   }
 
   constructor(themeService: ThemeService) {
@@ -40,7 +43,9 @@ export class CustomSelect extends BaseComponent implements OnInit {
   override ngOnInit(): void {
     super.ngOnInit();
 
-    const initialOption = this.options?.find((option) => option.code === this.initStatus?.toLocaleLowerCase());
+    const initialOption = this.options?.find(
+      (option) => option.code === this.initStatus?.toLocaleLowerCase()
+    );
 
     this.formControl = initialOption;
     this.classField.update(() => `--${initialOption?.code}`);

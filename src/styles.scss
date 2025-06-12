@@ -199,7 +199,7 @@ span {
   background: #d1f0fa;
   color: #116b97;
   border: 1px solid;
-    border-color: #116b97 !important;
+  border-color: #116b97 !important;
 }
 
 .--hearing-dark {
@@ -215,7 +215,7 @@ span {
   background: #eceff3;
   color: #818898;
   border: 1px solid;
-    border-color: #818898 !important;
+  border-color: #818898 !important;
 }
 
 .--resolved,
@@ -436,7 +436,7 @@ span {
       padding: 16px;
 
     &.--dark {
-        background: #1a1b25;
+      background: #1a1b25;
       }
 
         img {
@@ -453,7 +453,7 @@ span {
     cursor: pointer;
 
     p,
-      span {
+    span {
         font-size: 12px;
       }
 
@@ -545,4 +545,32 @@ span {
   border: none;
   width: 100%;
   font-size: 18px;
+}
+
+.--btn-resolve {
+  background: #4E9700;
+  color: #fff;
+  border: none;
+  width: 100%;
+  font-size: 15px;
+}
+
+.--btn-reject {
+  background: #FF515F;
+  color: #fff;
+  border: none;
+  width: 100%;
+  font-size: 15px;
+}
+
+.--btn-resolved {
+  background: #F3FFE6;
+  color: #fff;
+  border: none;
+}
+
+.--btn-rejected {
+  background: #FFEDEF;
+  color: #fff;
+  border: none;
 }

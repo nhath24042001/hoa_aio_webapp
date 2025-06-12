@@ -8,7 +8,7 @@ import { ButtonType } from '~/@types';
 export class ButtonDirective implements AfterViewInit {
   appButton = input.required<ButtonType>();
   icon = input<string>('');
-  iconPos = input<'left' | 'right'>('left');
+  iconPos = input<'left' | 'right' | 'center'>('left');
   currentMode = input('');
 
   iconUrl = computed(() => {
@@ -41,9 +41,11 @@ export class ButtonDirective implements AfterViewInit {
       if (this.iconPos() === 'left') {
         this.renderer.insertBefore(button, iconElement, button.firstChild);
         this.renderer.addClass(iconElement, 'me-2');
-      } else {
+      } else if (this.iconPos() === 'right') {
         this.renderer.appendChild(button, iconElement);
         this.renderer.addClass(iconElement, 'ms-2');
+      } else {
+        this.renderer.appendChild(button, iconElement);
       }
     }
   }

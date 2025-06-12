@@ -92,8 +92,11 @@ export class TaskDetailDialog extends BaseComponent {
     this.type.set(config.data.type || 'create');
     this.data = config.data.task;
 
-    this.extraData.custom_status =
-      this.task_status.find((task) => task.code === this.data.status)?.name || '';
+    this.extraData.custom_status = this.task_status.find((task) => task.code === this.data.status)?.name || '';
+  }
+
+  onStatusChanged(event: string) {
+    console.log('event', event);
   }
 
   formattedDate(date: string): string {
