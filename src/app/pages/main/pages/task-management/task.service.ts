@@ -45,15 +45,18 @@ export class TaskService extends HttpClientModel {
     return this.post(this.createRequest('Task', 'resolve_task', { task_id, resolution }));
   }
 
-  public rejectTask(task_id: number): Observable<ICommonResponse> {
-    return this.post(this.createRequest('Task', 'reject_task', { task_id }));
+  public rejectTask(task_id: number, reason: string): Observable<ICommonResponse> {
+    return this.post(this.createRequest('Task', 'reject_task', { task_id, reason }));
   }
 
   public addActionItem(payload: IActionItemPayload): Observable<ITaskCreationResponse> {
     return this.post(this.createRequest('Task', 'add_action_item', payload));
   }
 
-  public editActionItem(task_id: number, payload: IActionItemPayload): Observable<ITaskCreationResponse> {
+  public editActionItem(
+    task_id: number,
+    payload: IActionItemPayload
+  ): Observable<ITaskCreationResponse> {
     return this.post(this.createRequest('Task', 'edit_action_item', { task_id, ...payload }));
   }
 
@@ -61,7 +64,10 @@ export class TaskService extends HttpClientModel {
     return this.post(this.createRequest('Task', 'add_resident_claim', payload));
   }
 
-  public editResidentClaim(task_id: number, payload: IClaimPayload): Observable<ITaskCreationResponse> {
+  public editResidentClaim(
+    task_id: number,
+    payload: IClaimPayload
+  ): Observable<ITaskCreationResponse> {
     return this.post(this.createRequest('Task', 'edit_resident_claim', { task_id, ...payload }));
   }
 

@@ -1,0 +1,20 @@
+.--confirm-wrapper {
+  h3 {
+    font-weight: 700 !important;
+  }
+
+  .--btn-cancel {
+    background: transparent !important;
+    border: 0;
+    color: #6F6F6F !important;
+    font-size: 15px;
+  }
+}
+
+::ng-deep .p-dialog-header {
+  display: none;
+}
+
+::ng-deep .p-dialog-content {
+  padding: 0;
+}

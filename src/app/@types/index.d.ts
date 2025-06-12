@@ -107,3 +107,12 @@ export interface PointEvent {
   originalEvent: PointerEvent;
   value: ICustomSelect;
 }
+
+export interface ConfirmDialogInterface {
+  type: 'success' | 'delete';
+  icon: string;
+  title: string;
+  description: string;
+  confirmText: string;
+  cancelText?: string;
+}

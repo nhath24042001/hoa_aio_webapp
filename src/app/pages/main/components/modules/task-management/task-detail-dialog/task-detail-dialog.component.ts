@@ -11,8 +11,10 @@ import { CUSTOM_SELECT, PRIORITY_OPTION, TYPE_OPTION } from '~/constants/select'
 import { ButtonDirective } from '~/directives/button.directive';
 import { TaskService } from '~/pages/main/pages/task-management/task.service';
 import { ThemeService } from '~/services/theme.service';
+import { ToastService } from '~/services/toast.service';
 import { formattedDate } from '~/utils/date-utils';
 
+import { ConfirmDialog } from '../../../dialog/confirm-dialog/confirm-dialog.component';
 import { ResolutionDialog } from '../resolution-dialog/resolution-dialog.component';
 
 @Component({
@@ -92,7 +94,8 @@ export class TaskDetailDialog extends BaseComponent {
     themeService: ThemeService,
     public config: DynamicDialogConfig,
     public dialogService: DialogService,
-    public taskService: TaskService
+    public taskService: TaskService,
+    public toastService: ToastService
   ) {
     super(themeService);
     this.type.set(config.data.type || 'create');
@@ -103,52 +106,82 @@ export class TaskDetailDialog extends BaseComponent {
   }
 
   onStatusChanged(status: string) {
-    const prev_status = this.task_status
-      .find((task) => task.code === this.data.status)
-      ?.name.toLocaleLowerCase();
-    const new_status = status;
+    const prevStatusCode = this.data.status;
+    const prevStatus = this.task_status.find((task) => task.code === prevStatusCode);
 
-    if (status === 'resolved') {
+    const revertStatus = () => {
+      this.statusFormControl.set({
+        name: prevStatus?.name?.toLocaleLowerCase() || '',
+        code: prevStatusCode,
+        icon: this.customStatus.find((task) => task.code === prevStatusCode)?.icon || ''
+      });
+    };
+
+    const openResolutionDialog = (type: 'resolve' | 'reject') => {
       this.ref = this.dialogService.open(ResolutionDialog, {
         modal: true,
         width: '600px',
         data: {
-          type: 'resolve',
+          type,
           task_id: this.data.task_id
         }
       });
 
       this.ref.onClose.subscribe((result) => {
         if (result?.confirmed) {
-          this.taskService.resolveTask(this.data.task_id, result.data.text).subscribe(() => {});
+          const action =
+            type === 'resolve'
+              ? this.taskService.resolveTask(this.data.task_id, result.data.text)
+              : this.taskService.rejectTask(this.data.task_id, result.data.text);
+
+          action.subscribe({
+            next: () => {},
+            error: () => revertStatus()
+          });
+        } else {
+          revertStatus();
         }
       });
-    }
+    };
 
-    // if (status === 'resolved') {
-    //   this.ref = this.dialogService.open(ResolutionDialog, {
-    //     modal: true,
-    //     width: '600px',
-    //     data: {
-    //       type: 'resolve',
-    //       task_id: this.data.task_id
-    //     }
-    //   });
-    // } else if (status === 'rejected') {
-    //   this.ref = this.dialogService.open(ResolutionDialog, {
-    //     modal: true,
-    //     width: '600px',
-    //     data: {
-    //       type: 'reject',
-    //       task_id: this.data.task_id
-    //     }
-    //   });
-    // }
-    // this.statusFormControl.set({
-    //   name: 'New',
-    //   code: 'new',
-    //   icon: 'red-thunder'
-    // });
+    if (status === 'resolved') {
+      openResolutionDialog('resolve');
+    } else if (status === 'rejected') {
+      openResolutionDialog('reject');
+    } else if (status === 'cancel') {
+      this.onCancelTask();
+    } else if (status === 'accept') {
+      this.taskService.acceptTask(this.data.task_id).subscribe({
+        next: (response) => {
+          if (response.rc === 0) {
+            this.statusFormControl.set({
+              name: 'Accepted',
+              code: 'accepted',
+              icon: 'green-check'
+            });
+          } else {
+            revertStatus();
+          }
+        },
+        error: () => revertStatus()
+      });
+    }
+  }
+
+  public onCancelTask() {
+    this.ref = this.dialogService.open(ConfirmDialog, {
+      modal: true,
+      width: '500px',
+      data: {
+        type: 'delete',
+        icon: 'x-circle-lg',
+        title: 'Cancel Task',
+        description:
+          'Are you sure? Proceeding will delete the task from the system, and can not be undone.',
+        confirmText: 'Cancel Task',
+        cancelText: 'Not now'
+      }
+    });
   }
 
   formattedDate(date: string): string {
