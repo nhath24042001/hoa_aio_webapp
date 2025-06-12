@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
 import { DividerModule } from 'primeng/divider';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { ITask } from '~/@types/task';
 import { BaseComponent } from '~/components/common/base/base.component';
@@ -9,8 +9,11 @@ import { CustomSelect } from '~/components/shared/custom-select/custom-select.co
 import { TASK_STATUS } from '~/constants';
 import { CUSTOM_SELECT, PRIORITY_OPTION, TYPE_OPTION } from '~/constants/select';
 import { ButtonDirective } from '~/directives/button.directive';
+import { TaskService } from '~/pages/main/pages/task-management/task.service';
 import { ThemeService } from '~/services/theme.service';
 import { formattedDate } from '~/utils/date-utils';
+
+import { ResolutionDialog } from '../resolution-dialog/resolution-dialog.component';
 
 @Component({
   selector: 'app-task-detail-dialog',
@@ -19,12 +22,14 @@ import { formattedDate } from '~/utils/date-utils';
   styleUrl: '../../../dialog/dynamic-dialog/dynamic-dialog.component.scss'
 })
 export class TaskDetailDialog extends BaseComponent {
+  ref: DynamicDialogRef | undefined;
   data: ITask;
   type = signal<string>('');
   typeOptions = TYPE_OPTION;
   priorityOptions = PRIORITY_OPTION;
   customStatus = CUSTOM_SELECT;
   task_status = TASK_STATUS;
+  statusFormControl = signal<any>('');
 
   icon = computed(() => {
     const basePath = `assets/images/${this.currentMode}`;
@@ -85,18 +90,65 @@ export class TaskDetailDialog extends BaseComponent {
 
   constructor(
     themeService: ThemeService,
-    public ref: DynamicDialogRef,
-    public config: DynamicDialogConfig
+    public config: DynamicDialogConfig,
+    public dialogService: DialogService,
+    public taskService: TaskService
   ) {
     super(themeService);
     this.type.set(config.data.type || 'create');
     this.data = config.data.task;
 
-    this.extraData.custom_status = this.task_status.find((task) => task.code === this.data.status)?.name || '';
+    this.extraData.custom_status =
+      this.task_status.find((task) => task.code === this.data.status)?.name || '';
   }
 
-  onStatusChanged(event: string) {
-    console.log('event', event);
+  onStatusChanged(status: string) {
+    const prev_status = this.task_status
+      .find((task) => task.code === this.data.status)
+      ?.name.toLocaleLowerCase();
+    const new_status = status;
+
+    if (status === 'resolved') {
+      this.ref = this.dialogService.open(ResolutionDialog, {
+        modal: true,
+        width: '600px',
+        data: {
+          type: 'resolve',
+          task_id: this.data.task_id
+        }
+      });
+
+      this.ref.onClose.subscribe((result) => {
+        if (result?.confirmed) {
+          this.taskService.resolveTask(this.data.task_id, result.data.text).subscribe(() => {});
+        }
+      });
+    }
+
+    // if (status === 'resolved') {
+    //   this.ref = this.dialogService.open(ResolutionDialog, {
+    //     modal: true,
+    //     width: '600px',
+    //     data: {
+    //       type: 'resolve',
+    //       task_id: this.data.task_id
+    //     }
+    //   });
+    // } else if (status === 'rejected') {
+    //   this.ref = this.dialogService.open(ResolutionDialog, {
+    //     modal: true,
+    //     width: '600px',
+    //     data: {
+    //       type: 'reject',
+    //       task_id: this.data.task_id
+    //     }
+    //   });
+    // }
+    // this.statusFormControl.set({
+    //   name: 'New',
+    //   code: 'new',
+    //   icon: 'red-thunder'
+    // });
   }
 
   formattedDate(date: string): string {
@@ -104,6 +156,6 @@ export class TaskDetailDialog extends BaseComponent {
   }
 
   closeDialog() {
-    this.ref.close();
+    this.ref?.close();
   }
 }

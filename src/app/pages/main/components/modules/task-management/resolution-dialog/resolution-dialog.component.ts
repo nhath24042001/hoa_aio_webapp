@@ -1,4 +1,5 @@
 import { Component, computed, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { DividerModule } from 'primeng/divider';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TextareaModule } from 'primeng/textarea';
@@ -9,13 +10,14 @@ import { ThemeService } from '~/services/theme.service';
 
 @Component({
   selector: 'app-resolution-dialog',
-  imports: [DividerModule, TextareaModule, ButtonDirective],
+  imports: [DividerModule, TextareaModule, ButtonDirective, FormsModule],
   templateUrl: './resolution-dialog.component.html',
   styleUrl: './resolution-dialog.component.scss'
 })
 export class ResolutionDialog extends BaseComponent {
   type = signal<string>('');
   task_id = signal<number>(0);
+  resolutionText = '';
 
   icon = computed(() => {
     return `assets/images/common/resolution-${this.type()}.svg`;
@@ -80,6 +82,16 @@ export class ResolutionDialog extends BaseComponent {
 
   getBorderColor() {
     return `--${this.type()}`;
+  }
+
+  handleConfirm() {
+    this.ref.close({
+      confirmed: true,
+      data: {
+        ...this.config.data,
+        text: this.resolutionText
+      }
+    });
   }
 
   closeDialog() {

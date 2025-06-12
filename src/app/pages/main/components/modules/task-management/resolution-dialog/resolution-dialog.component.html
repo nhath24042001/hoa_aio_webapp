@@ -20,6 +20,7 @@
 
   <textarea
     class="--resolution-textarea"
+    [(ngModel)]="resolutionText"
     rows="3"
     [placeholder]="placeholder()"
     class="w-100"
@@ -33,7 +34,7 @@
       <button [appButton]="attachmentText()" iconPos="center" class="mx-2" [icon]="attachmentIcon()"></button>
       <button [appButton]="attachmentText()" iconPos="center" class="mx-2" [icon]="videoIcon()"></button>
 
-      <button [appButton]="buttonType()" [icon]="buttonIcon()">{{ buttonText() }}</button>
+      <button [appButton]="buttonType()" [icon]="buttonIcon()" (click)="handleConfirm()">{{ buttonText() }}</button>
     </div>
   </div>
 </div>

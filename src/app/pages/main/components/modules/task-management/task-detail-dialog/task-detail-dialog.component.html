@@ -48,6 +48,7 @@
 
           <app-custom-select
             [options]="customStatus"
+            [formControl]="statusFormControl()"
             [initStatus]="extraData.custom_status"
             (statusChanged)="onStatusChanged($event)"
           ></app-custom-select>

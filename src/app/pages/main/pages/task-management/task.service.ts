@@ -41,8 +41,8 @@ export class TaskService extends HttpClientModel {
     return this.post(this.createRequest('Task', 'assign_task', { task_id, assigned_to }));
   }
 
-  public resolveTask(task_id: number): Observable<ICommonResponse> {
-    return this.post(this.createRequest('Task', 'resolve_task', { task_id }));
+  public resolveTask(task_id: number, resolution: string): Observable<ICommonResponse> {
+    return this.post(this.createRequest('Task', 'resolve_task', { task_id, resolution }));
   }
 
   public rejectTask(task_id: number): Observable<ICommonResponse> {
