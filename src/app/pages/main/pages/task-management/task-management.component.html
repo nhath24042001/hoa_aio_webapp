@@ -27,20 +27,26 @@
                   <h4 (click)="clearFilter()">Clear all</h4>
                 </div>
 
-                <!-- <div class="--filter-box mt-2 d-flex">
+                <div class="--filter-box mt-2 d-flex">
                   <p class="--text-filter">Task Status</p>
                   <div class="d-flex flex-fill">
-                    <p-multiselect
+                    <p-select
                       [options]="task_status"
                       formControlName="status"
                       optionLabel="name"
+                      optionValue="code"
                       placeholder="All"
-                      [maxSelectedLabels]="2"
                       styleClass="flex-fill me-2"
+                    ></p-select>
+
+                    <img
+                      src="assets/images/common/close-circle.svg"
+                      (click)="clearFilterForm('status')"
+                      class="--close-icon"
+                      alt="close_circle_icon"
                     />
-                    <img src="assets/images/common/close-circle.svg" alt="close_circle_icon" />
                   </div>
-                </div> -->
+                </div>
 
                 <div class="d-flex mt-3">
                   <p class="--text-date">Task Creation</p>
@@ -59,37 +65,52 @@
                       styleClass="me-2"
                       placeholder="End date"
                     />
-                    <img src="assets/images/common/close-circle.svg" alt="close_circle_icon" />
+                    <img
+                      src="assets/images/common/close-circle.svg"
+                      class="--close-icon"
+                      (click)="clearDateFilter()"
+                      alt="close_circle_icon"
+                    />
                   </div>
                 </div>
 
                 <div class="--filter-box mt-3 d-flex align-items-center">
                   <p class="--text-filter">Assigned to</p>
                   <div class="d-flex align-items-center flex-fill">
-                    <p-multiselect
-                      [options]="task_status"
+                    <p-select
+                      [options]="assignList"
                       formControlName="assigned_to"
                       optionLabel="name"
+                      optionValue="code"
                       placeholder="All"
-                      [maxSelectedLabels]="2"
                       styleClass="flex-fill me-2"
+                    ></p-select>
+                    <img
+                      src="assets/images/common/close-circle.svg"
+                      class="--close-icon"
+                      (click)="clearFilterForm('assigned_to')"
+                      alt="close_circle_icon"
                     />
-                    <img src="assets/images/common/close-circle.svg" alt="close_circle_icon" />
                   </div>
                 </div>
 
                 <div class="--filter-box d-flex mt-3">
                   <p class="--text-filter">Priority</p>
                   <div class="d-flex align-items-center flex-fill">
-                    <p-multiselect
-                      [options]="task_status"
+                    <p-select
+                      [options]="priorityOptions"
                       formControlName="priority"
                       optionLabel="name"
+                      optionValue="code"
                       placeholder="All"
-                      [maxSelectedLabels]="2"
                       styleClass="flex-fill me-2"
+                    ></p-select>
+                    <img
+                      src="assets/images/common/close-circle.svg"
+                      (click)="clearFilterForm('priority')"
+                      class="--close-icon"
+                      alt="close_circle_icon"
                     />
-                    <img src="assets/images/common/close-circle.svg" alt="close_circle_icon" />
                   </div>
                 </div>
               </form>
@@ -118,9 +139,7 @@
 } @else {
   <div class="--content-section p-4 d-flex flex-column">
     <div class="d-flex justify-content-end">
-      <button appButton="primary" icon="white-plus-solid" (click)="onOpenTask()">
-        New Task
-      </button>
+      <button appButton="primary" icon="white-plus-solid" (click)="onOpenTask()">New Task</button>
     </div>
     <div class="flex-fill d-flex justify-content-center align-items-center">
       <app-empty-content

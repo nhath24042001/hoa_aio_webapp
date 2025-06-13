@@ -1,13 +1,13 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { debounce } from 'lodash-es';
+import { debounce, uniqBy } from 'lodash-es';
 import { DatePickerModule } from 'primeng/datepicker';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { MultiSelectModule } from 'primeng/multiselect';
+import { SelectModule } from 'primeng/select';
 import { TabsModule } from 'primeng/tabs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
 
-import { ITab } from '~/@types';
+import { ISelect, ITab } from '~/@types';
 import { ITask } from '~/@types/task';
 import { TASK_CUSTOM_STATUS, TASK_STATUS } from '~/constants';
 import { PRIORITY_OPTION, TYPE_OPTION } from '~/constants/select';
@@ -27,14 +27,14 @@ import { TaskService } from './task.service';
   selector: 'app-task-management',
   imports: [
     TabsModule,
-    MultiSelectModule,
     FormsModule,
     DatePickerModule,
     EmptyContentComponent,
     ButtonDirective,
     MainHeader,
     Table,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SelectModule
   ],
   templateUrl: './task-management.component.html',
   styleUrl: './task-management.component.scss'
@@ -50,6 +50,7 @@ export class TaskManagementComponent implements OnInit {
   priorityOptions = PRIORITY_OPTION;
   extra_task = EXTRA_DATA;
   task_status = TASK_STATUS;
+  assignList: ISelect[] = [];
 
   tabs: ITab<ITask>[] = [
     {
@@ -94,6 +95,8 @@ export class TaskManagementComponent implements OnInit {
     this.getDefaultTab();
     const tabIdx = parseInt(this.activeTab(), 10);
 
+    this.onGetListAssignedTo();
+
     this.filterForm.valueChanges
       .pipe(
         debounceTime(300),
@@ -115,6 +118,16 @@ export class TaskManagementComponent implements OnInit {
     this.loadTabData(this.tabs[tabIdx].status, tabIdx);
   }
 
+  onGetListAssignedTo() {
+    this.assignList = uniqBy(
+      this.extra_task.map((task) => ({
+        name: task.assigned_to_name,
+        code: task.assigned_to
+      })),
+      'code'
+    );
+  }
+
   loadTabData(status: number, index: number) {
     const start = Date.now();
     this.tabs[index].loading = true;
@@ -124,7 +137,7 @@ export class TaskManagementComponent implements OnInit {
     this.taskService
       .getTasks({
         status,
-        search: this.search,
+        search: this.search.toLowerCase(),
         ...filters
       })
       .subscribe({
@@ -132,7 +145,7 @@ export class TaskManagementComponent implements OnInit {
           this.tabs[index].data = this.extra_task.map((task) => ({
             ...task,
             video: task.video === null ? '' : task.video,
-            type: this.typeOptions.find((option) => option.code === task.type)?.name || '',
+            type: this.typeOptions.find((option) => option.code === task.type)?.name || 'Other',
             priority:
               this.priorityOptions.find((option) => option.code === task.priority)?.name.toLocaleLowerCase() || '',
             status: this.task_status.find((option) => option.code === task.status)?.name.toLocaleLowerCase() || ''
@@ -174,6 +187,7 @@ export class TaskManagementComponent implements OnInit {
 
   initFilterForm(): void {
     this.filterForm = this.fb.group({
+      status: [null],
       date_from: [null],
       date_to: [null],
       assigned_to: [null],
@@ -183,6 +197,15 @@ export class TaskManagementComponent implements OnInit {
 
   clearFilter(): void {
     this.filterForm.reset();
+  }
+
+  clearFilterForm(formControlName: string): void {
+    this.filterForm.get(formControlName)?.reset();
+  }
+
+  clearDateFilter(): void {
+    this.filterForm.get('date_from')?.reset();
+    this.filterForm.get('date_to')?.reset();
   }
 
   onOpenTask(): void {
