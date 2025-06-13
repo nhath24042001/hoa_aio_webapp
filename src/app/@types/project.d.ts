@@ -38,3 +38,24 @@ export interface IProjectResponse extends ICommonResponse {
 export interface ICreationResponse extends ICommonResponse {
   project_id: number;
 }
+
+export interface Project {
+  project_id: number;
+  name: string;
+  description: string;
+  type: number | string;
+  priority: number | string;
+  status: number | string;
+  start_date: string;
+  est_comp_date: string | null;
+  act_comp_date: string | null;
+  est_cost: string | null;
+  act_cost: string | null;
+  created_by: string;
+  manager: string;
+  last_update: string;
+  vendors: string | null;
+  documents: string | null;
+  action_items: string | null;
+  bid_id: string | null;
+}

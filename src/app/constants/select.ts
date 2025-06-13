@@ -228,3 +228,68 @@ export const CUSTOM_SELECT = [
     icon: 'x-circle'
   }
 ];
+
+export const PROJECT_TYPES = [
+  {
+    name: 'Renovation',
+    code: 2
+  },
+  {
+    name: 'Maintenance',
+    code: 1
+  },
+  {
+    name: 'New construction',
+    code: 3
+  },
+  {
+    name: 'Inspection',
+    code: 4
+  }
+];
+
+export const PROJECT_PRIORITY = [
+  {
+    name: 'Low',
+    code: 1
+  },
+  {
+    name: 'Medium',
+    code: 2
+  },
+  {
+    name: 'High',
+    code: 3
+  },
+  {
+    name: 'Critical',
+    code: 4
+  }
+];
+
+export const PROJECT_STATUS = [
+  {
+    name: 'New',
+    code: 0
+  },
+  {
+    name: 'Planning',
+    code: 1
+  },
+  {
+    name: 'In Progress',
+    code: 2
+  },
+  {
+    name: 'On Hold',
+    code: 3
+  },
+  {
+    name: 'Completed',
+    code: 4
+  },
+  {
+    name: 'Cancelled',
+    code: 5
+  }
+];

@@ -6,8 +6,9 @@ import { TabsModule } from 'primeng/tabs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
 
 import { ITab } from '~/@types';
-import { IProjectPayload } from '~/@types/project';
-import { PROJECT_ACTIONS, PROJECT_DATA, PROJECT_HEADER } from '~/data/project';
+import { Project } from '~/@types/project';
+import { PROJECT_PRIORITY, PROJECT_STATUS, PROJECT_TYPES } from '~/constants/select';
+import { EXTRA_PROJECT, PROJECT_ACTIONS, PROJECT_DATA, PROJECT_HEADER } from '~/data/project';
 import { ButtonDirective } from '~/directives/button.directive';
 import { ProjectDialog } from '~/pages/main/components/modules/project/project-dialog/project-dialog.component';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
@@ -29,8 +30,12 @@ export class ProjectComponent implements OnInit {
   headers = PROJECT_HEADER;
   sampleData = PROJECT_DATA;
   actions = PROJECT_ACTIONS;
+  extra_project = EXTRA_PROJECT;
+  typeOptions = PROJECT_TYPES;
+  priorityOptions = PROJECT_PRIORITY;
+  statusOptions = PROJECT_STATUS;
 
-  tabs: ITab<IProjectPayload>[] = [
+  tabs: ITab<Project>[] = [
     {
       name: 'Open Projects',
       img: 'assets/images/common/perspective-01.svg',
@@ -121,8 +126,15 @@ export class ProjectComponent implements OnInit {
         ...filters
       })
       .subscribe({
-        next: (data) => {
-          this.tabs[index].data = data.projects;
+        next: () => {
+          // this.tabs[index].data = data.projects;
+          this.tabs[index].data = this.extra_project.map((project) => ({
+            ...project,
+            type: this.typeOptions.find((option) => option.code === project.type)?.name || 'Other',
+            priority:
+              this.priorityOptions.find((option) => option.code === project.priority)?.name.toLocaleLowerCase() || '',
+            status: this.statusOptions.find((option) => option.code === project.status)?.name.toLocaleLowerCase() || ''
+          }));
         },
         error: () => {
           this.tabs[index].data = [];
@@ -148,7 +160,7 @@ export class ProjectComponent implements OnInit {
     });
   }
 
-  handleTableAction(event: { actionKey: string; rowData: IProjectPayload }): void {
+  handleTableAction(event: { actionKey: string; rowData: Project }): void {
     switch (event.actionKey) {
       case 'edit':
         this.onOpenProjectDetail();

@@ -117,6 +117,12 @@
                 </td>
               }
 
+              @case ('start_date') {
+                <td>
+                  <span> {{ formatDate(row[header.field]) }} </span>
+                </td>
+              }
+
               @case ('due_date') {
                 <td>
                   <span> {{ formatDate(row[header.field]) }} </span>

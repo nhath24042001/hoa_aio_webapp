@@ -10,7 +10,12 @@ import { TextareaModule } from 'primeng/textarea';
 
 import { IProjectPayload } from '~/@types/project';
 import { BaseComponent } from '~/components/common/base/base.component';
-import { PROJECT_CUSTOM_SELECT } from '~/constants/select';
+import {
+  PROJECT_CUSTOM_SELECT,
+  PROJECT_PRIORITY,
+  PROJECT_STATUS,
+  PROJECT_TYPES
+} from '~/constants/select';
 import { AutoFocusDirective } from '~/directives/auto-focus.directive';
 import { ButtonDirective } from '~/directives/button.directive';
 import { ClickOutsideDirective } from '~/directives/click-outside.directive';
@@ -38,77 +43,18 @@ export class ProjectDialog extends BaseComponent {
   isSubmitted = false;
   isEditingTitle = false;
   formGroup!: FormGroup;
-  typeOptions = [
-    {
-      name: 'Renovation',
-      code: 2
-    },
-    {
-      name: 'Maintenance',
-      code: 1
-    },
-    {
-      name: 'New construction',
-      code: 3
-    },
-    {
-      name: 'Inspection',
-      code: 4
-    }
-  ];
-  priorityOptions = [
-    {
-      name: 'Low',
-      code: 1
-    },
-    {
-      name: 'Medium',
-      code: 2
-    },
-    {
-      name: 'High',
-      code: 3
-    },
-    {
-      name: 'Critical',
-      code: 4
-    }
-  ];
-
-  statusOptions = [
-    {
-      name: 'New',
-      code: 0
-    },
-    {
-      name: 'Planning',
-      code: 1
-    },
-    {
-      name: 'In Progress',
-      code: 2
-    },
-    {
-      name: 'On Hold',
-      code: 3
-    },
-    {
-      name: 'Completed',
-      code: 4
-    },
-    {
-      name: 'Cancelled',
-      code: 5
-    }
-  ];
-
+  typeOptions = PROJECT_TYPES;
+  priorityOptions = PROJECT_PRIORITY;
+  statusOptions = PROJECT_STATUS;
   title = computed(() => {
     return this.type() === 'create' ? 'Create New Project' : 'Project Details';
   });
 
   icon = computed(() => {
     const basePath = `assets/images/${this.currentMode}`;
-    return this.type() === 'create' ? `${basePath}/file-plus-03.svg` : `${basePath}/clipboard-check.svg`;
+    return this.type() === 'create'
+      ? `${basePath}/file-plus-03.svg`
+      : `${basePath}/clipboard-check.svg`;
   });
 
   isEditMode = computed(() => {
