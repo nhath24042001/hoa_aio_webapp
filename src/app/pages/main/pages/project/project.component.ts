@@ -47,7 +47,7 @@ export class ProjectComponent implements OnInit {
     {
       name: 'On Hold',
       img: 'assets/images/common/hand.svg',
-      activeImg: 'assets/images/common/hand.svg',
+      activeImg: 'assets/images/common/hand-active.svg',
       status: 3,
       data: [],
       loading: false
@@ -55,7 +55,7 @@ export class ProjectComponent implements OnInit {
     {
       name: 'Completed',
       img: 'assets/images/common/check-circle-broken.svg',
-      activeImg: 'assets/images/common/check-circle-broken.svg',
+      activeImg: 'assets/images/common/check-circle-broken-active.svg',
       status: 4,
       data: [],
       loading: false
@@ -63,7 +63,7 @@ export class ProjectComponent implements OnInit {
     {
       name: 'Canceled',
       img: 'assets/images/common/x-circle.svg',
-      activeImg: 'assets/images/common/x-circle.svg',
+      activeImg: 'assets/images/common/x-circle-active.svg',
       status: 5,
       data: [],
       loading: false
