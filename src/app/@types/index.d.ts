@@ -49,7 +49,17 @@ export interface ISelect {
   icon?: string;
 }
 
-export type ButtonType = 'primary' | 'secondary' | 'danger' | 'success' | 'outline' | 'delete';
+export type ButtonType =
+  | 'primary'
+  | 'secondary'
+  | 'danger'
+  | 'success'
+  | 'outline'
+  | 'delete'
+  | 'resolve'
+  | 'reject'
+  | 'resolved'
+  | 'rejected';
 
 export interface ICommonResponse {
   message: string;
@@ -85,4 +95,24 @@ export interface ITab<T> {
   status: number;
   data: T[];
   loading: boolean;
+}
+
+export interface ICustomSelect {
+  name: string;
+  code: string;
+  icon?: string;
+}
+
+export interface PointEvent {
+  originalEvent: PointerEvent;
+  value: ICustomSelect;
+}
+
+export interface ConfirmDialogInterface {
+  type: 'success' | 'delete';
+  icon: string;
+  title: string;
+  description: string;
+  confirmText: string;
+  cancelText?: string;
 }

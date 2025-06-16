@@ -24,6 +24,7 @@
   }
 
   .--toggle-container {
+    font-weight: 700;
     width: 24px;
     height: 24px;
     border: 1px solid #dfe1e7;
@@ -42,8 +43,11 @@
     &.active {
       background-color: var(--active-primary);
       border-radius: 8px;
-      color: #471ea7;
       font-weight: bold;
+
+      p {
+        color: #471ea7 !important;
+      }
     }
 
     &.isOpen {

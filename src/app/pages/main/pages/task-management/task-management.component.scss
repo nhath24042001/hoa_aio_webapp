@@ -33,6 +33,9 @@
   .--text-date {
     width: 180px;
   }
+.--close-icon {
+  cursor: pointer;
+}
 }
 
 ::ng-deep .p-tabpanels {
@@ -85,4 +88,14 @@
 ::ng-deep .p-tab,
 ::ng-deep .p-select {
   transition: all 1s step-start !important;
+}
+
+::ng-deep .p-datepicker-input,
+::ng-deep .p-select {
+  border: 1px solid var(--border-color);
+}
+
+::ng-deep .p-select-option-selected,
+::ng-deep .p-datepicker-day-selected {
+  background: var(--active-primary) !important;
 }

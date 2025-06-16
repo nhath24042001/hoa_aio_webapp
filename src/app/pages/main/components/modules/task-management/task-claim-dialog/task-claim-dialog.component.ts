@@ -48,9 +48,7 @@ export class TaskClaimDialog extends BaseComponent {
 
   icon = computed(() => {
     const basePath = `assets/images/${this.currentMode}`;
-    return this.type() === 'create'
-      ? `${basePath}/file-plus-03.svg`
-      : `${basePath}/clipboard-check.svg`;
+    return this.type() === 'create' ? `${basePath}/file-plus-03.svg` : `${basePath}/clipboard-check.svg`;
   });
 
   isEditMode = computed(() => {
@@ -100,7 +98,11 @@ export class TaskClaimDialog extends BaseComponent {
     const rawData = this.formGroup.getRawValue();
     const prepared = this.prepareFormData(rawData);
 
-    this.taskService.addResidentClaim(prepared).subscribe({});
+    this.taskService.addResidentClaim(prepared).subscribe((response) => {
+      if (response.rc === 0) {
+        this.ref.close();
+      }
+    });
   }
 
   closeDialog() {

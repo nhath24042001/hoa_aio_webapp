@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, input, OnInit, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AvatarModule } from 'primeng/avatar';
@@ -15,6 +14,7 @@ import { ITableAction } from '~/@types';
 import { IHeaderTable } from '~/@types/index.d';
 import { BaseComponent } from '~/components/common/base/base.component';
 import { ThemeService } from '~/services/theme.service';
+import { formattedDate } from '~/utils/date-utils';
 import { convertToTitleCase } from '~/utils/string-utils';
 
 @Component({
@@ -22,7 +22,6 @@ import { convertToTitleCase } from '~/utils/string-utils';
   imports: [
     TableModule,
     CommonModule,
-    DatePipe,
     AvatarModule,
     AvatarGroupModule,
     PaginatorModule,
@@ -117,6 +116,10 @@ export class Table<T> extends BaseComponent implements OnInit {
   handleImageError(event: Event) {
     const target = event.target as HTMLImageElement;
     target.src = `assets/images/common/error-image.jpg`;
+  }
+
+  formatDate(date: string | Date): string {
+    return formattedDate(date);
   }
 
   private updateTableWidth = () => {

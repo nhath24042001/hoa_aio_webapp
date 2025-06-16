@@ -72,7 +72,7 @@ export const TASK_CUSTOM_SELECT: DynamicField = {
     },
     {
       name: 'Reject',
-      code: 'reject',
+      code: 'rejected',
       icon: 'slash-octagon'
     },
     {
@@ -180,18 +180,116 @@ export const TYPE_OPTION = [
 export const PRIORITY_OPTION = [
   {
     name: 'Urgent',
-    code: 0
-  },
-  {
-    name: 'Important',
     code: 1
   },
   {
-    name: 'Normal',
+    name: 'Important',
     code: 2
   },
   {
-    name: 'Low',
+    name: 'Normal',
     code: 3
+  },
+  {
+    name: 'Low',
+    code: 4
+  }
+];
+
+export const CUSTOM_SELECT = [
+  {
+    name: 'New',
+    code: 'new',
+    icon: 'red-thunder'
+  },
+  {
+    name: 'Assigned',
+    code: 'assigned',
+    icon: 'user-up-01'
+  },
+  {
+    name: 'Accept',
+    code: 'accept',
+    icon: 'user-check-01'
+  },
+  {
+    name: 'Resolve',
+    code: 'resolved',
+    icon: 'check-circle-broken-01'
+  },
+  {
+    name: 'Reject',
+    code: 'rejected',
+    icon: 'slash-octagon'
+  },
+  {
+    name: 'Cancel',
+    code: 'cancel',
+    icon: 'x-circle'
+  }
+];
+
+export const PROJECT_TYPES = [
+  {
+    name: 'Renovation',
+    code: 2
+  },
+  {
+    name: 'Maintenance',
+    code: 1
+  },
+  {
+    name: 'New construction',
+    code: 3
+  },
+  {
+    name: 'Inspection',
+    code: 4
+  }
+];
+
+export const PROJECT_PRIORITY = [
+  {
+    name: 'Low',
+    code: 1
+  },
+  {
+    name: 'Medium',
+    code: 2
+  },
+  {
+    name: 'High',
+    code: 3
+  },
+  {
+    name: 'Critical',
+    code: 4
+  }
+];
+
+export const PROJECT_STATUS = [
+  {
+    name: 'New',
+    code: 0
+  },
+  {
+    name: 'Planning',
+    code: 1
+  },
+  {
+    name: 'In Progress',
+    code: 2
+  },
+  {
+    name: 'On Hold',
+    code: 3
+  },
+  {
+    name: 'Completed',
+    code: 4
+  },
+  {
+    name: 'Cancelled',
+    code: 5
   }
 ];

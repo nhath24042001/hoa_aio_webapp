@@ -111,15 +111,21 @@
                 </td>
               }
 
-              @case ('created') {
+              @case ('created_at') {
                 <td>
-                  <span> {{ row[header.field] | date: 'dd MMM, yyyy' }} </span>
+                  <span> {{ formatDate(row[header.field]) }} </span>
+                </td>
+              }
+
+              @case ('start_date') {
+                <td>
+                  <span> {{ formatDate(row[header.field]) }} </span>
                 </td>
               }
 
               @case ('due_date') {
                 <td>
-                  <span> {{ row[header.field] | date: 'dd MMM, yyyy' }} </span>
+                  <span> {{ formatDate(row[header.field]) }} </span>
                 </td>
               }
               @case ('action') {

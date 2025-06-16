@@ -1,0 +1,253 @@
+<div class="--dynamic-dialog p-4">
+  <div class="--dialog-header w-100 d-flex justify-content-between mb-4">
+    <div class="d-flex align-items-center">
+      <img class="me-3" [src]="icon()" alt="dialog_icon" />
+      <h3 class="mb-0">Task Details</h3>
+    </div>
+
+    <div class="--right">
+      <div>
+        <p class="text-end">Created: {{ data.created_at | date }}</p>
+        <p class="text-end">Updated: {{ data.last_update | date }}</p>
+      </div>
+
+      <div class="--share-box mx-3 d-flex justify-content-center align-items-center">Share</div>
+
+      <div class="--image-wrapper d-flex align-items-center">
+        <img
+          [src]="'assets/images/' + currentMode + '/close.svg'"
+          class="--close"
+          alt="close_icon"
+          (click)="closeDialog()"
+        />
+      </div>
+    </div>
+  </div>
+
+  <p-divider />
+
+  <div class="--dynamic-title">
+    <!-- <h2>Title</h2> -->
+
+    <div class="row">
+      <div class="col-6">
+        <!-- Status -->
+        <div class="mb-3 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/' + 'loading' + '.svg'"
+            [alt]="icon + '_icon'"
+            class="me-2"
+          />
+          <p
+            [style.width]="!isEditMode() ? '' : ''"
+            [class.--detail]="!isEditMode()"
+            class="--text-box"
+          >
+            Status
+          </p>
+
+          <app-custom-select
+            [options]="customStatus"
+            [formControl]="statusFormControl()"
+            [initStatus]="extraData.custom_status"
+            (statusChanged)="onStatusChanged($event)"
+          ></app-custom-select>
+        </div>
+
+        <!-- Task Type -->
+        <div class="mb-3 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/' + 'list-sm' + '.svg'"
+            [alt]="icon + '_icon'"
+            class="me-2"
+          />
+          <p
+            [style.width]="!isEditMode() ? '' : ''"
+            [class.--detail]="!isEditMode()"
+            class="--text-box"
+          >
+            Type
+          </p>
+
+          <span>{{ task_type() }}</span>
+        </div>
+
+        <!-- Priority -->
+        <div class="mb-3 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/' + 'flag' + '.svg'"
+            [alt]="icon + '_icon'"
+            class="me-2"
+          />
+          <p
+            [style.width]="!isEditMode() ? '' : ''"
+            [class.--detail]="!isEditMode()"
+            class="--text-box"
+          >
+            Priority
+          </p>
+          <span>{{ task_priority() }}</span>
+        </div>
+
+        <!-- ETA -->
+        <div class="mb-3 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/' + 'hourglass' + '.svg'"
+            [alt]="icon + '_icon'"
+            class="me-2"
+          />
+          <p
+            [style.width]="!isEditMode() ? '' : ''"
+            [class.--detail]="!isEditMode()"
+            class="--text-box"
+          >
+            ETA
+          </p>
+
+          <span>{{ formattedDate(extraData.eta) }}</span>
+        </div>
+      </div>
+      <div class="col-6">
+        <!-- Assign To -->
+        <div class="mb-3 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/' + 'user-up-sm' + '.svg'"
+            [alt]="icon + '_icon'"
+            class="me-2"
+          />
+          <p
+            [style.width]="!isEditMode() ? '' : ''"
+            [class.--detail]="!isEditMode()"
+            class="--text-box"
+          >
+            Assign To
+          </p>
+
+          <span>{{ data.assigned_to_name }}</span>
+        </div>
+
+        <!-- Project -->
+        <div class="mb-3 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/' + 'perspective' + '.svg'"
+            [alt]="icon + '_icon'"
+            class="me-2"
+          />
+          <p
+            [style.width]="!isEditMode() ? '' : ''"
+            [class.--detail]="!isEditMode()"
+            class="--text-box"
+          >
+            Project
+          </p>
+
+          <span>{{ extraData.project }}</span>
+        </div>
+
+        <!-- Resident name -->
+        <div class="mb-3 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/' + 'user-square' + '.svg'"
+            [alt]="icon + '_icon'"
+            class="me-2"
+          />
+          <p
+            [style.width]="!isEditMode() ? '' : ''"
+            [class.--detail]="!isEditMode()"
+            class="--text-box"
+          >
+            Resident Name
+          </p>
+
+          <span>- </span>
+        </div>
+
+        <!-- Property Address -->
+        <div class="mb-3 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/' + 'home-sm' + '.svg'"
+            [alt]="icon + '_icon'"
+            class="me-2"
+          />
+          <p
+            [style.width]="!isEditMode() ? '' : ''"
+            [class.--detail]="!isEditMode()"
+            class="--text-box"
+          >
+            Property Address
+          </p>
+
+          <span>{{ extraData.property_address }}</span>
+        </div>
+      </div>
+    </div>
+
+    <p-divider />
+
+    <div class="mb-4">
+      <h5 class="mb-2 mt-3">Detail</h5>
+      <p>{{ data.description }}</p>
+    </div>
+
+    @if (extraData.comments.length) {
+      <div class="mb-2 d-flex justify-content-between align-items-center">
+        <h5>Comments</h5>
+
+        <button appButton="secondary" icon="plus">Add Comment</button>
+      </div>
+
+      @for (item of extraData.comments; track $index) {
+        <div class="--comment-box" [class.--dark]="currentMode === 'dark'">
+          <div class="d-flex align-items-center">
+            <img
+              [src]="item.authorAvatar"
+              class="me-2 rounded-circle object-fit-cover"
+              width="40"
+              height="40"
+              alt="avatar_img"
+            />
+            <span>{{ item.authorName }}</span>
+          </div>
+
+          <p class="mt-3">{{ item.content }}</p>
+        </div>
+      }
+    }
+
+    @if (extraData.attachments.length) {
+      <div class="mt-4">
+        <h5>Attachments</h5>
+        <div class="d-flex gap-3">
+          @for (attach of extraData.attachments; track $index) {
+            <div class="--attachment-box d-flex align-items-center justify-content-center">
+              @if (attach.mediaType === 'video') {
+                <img
+                  [src]="'assets/images/' + currentMode + '/video-recorder.svg'"
+                  class="me-2"
+                  alt="video_record"
+                />
+              } @else {
+                <img
+                  [src]="'assets/images/' + currentMode + '/attachment-image.svg'"
+                  class="me-2"
+                  alt="file_icon"
+                />
+              }
+              <div>
+                <p class="--file-name">{{ attach.name }}</p>
+                <p class="--file-size">{{ attach.size }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="--dynamic-action mt-3 d-flex justify-content-between align-items-center">
+    <p>Task ID: {{ data.task_id }}</p>
+    <div class="d-flex align-items-center">
+      <button appButton="primary" icon="check" class="mx-2">Done</button>
+    </div>
+  </div>
+</div>

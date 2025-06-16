@@ -27,7 +27,7 @@ export const STATUS_LIST = {
   CANCEL: 'Cancel'
 } as const;
 
-export const TASK_STATUS = [
+export const TASK_CUSTOM_STATUS = [
   {
     icon: 'status-new',
     name: STATUS_LIST.NEW
@@ -51,6 +51,33 @@ export const TASK_STATUS = [
   {
     icon: 'status-cancel',
     name: STATUS_LIST.CANCEL
+  }
+];
+
+export const TASK_STATUS = [
+  {
+    name: 'New',
+    code: 1
+  },
+  {
+    name: 'Assigned',
+    code: 2
+  },
+  {
+    name: 'Accepted',
+    code: 3
+  },
+  {
+    name: 'Resolved',
+    code: 4
+  },
+  {
+    name: 'Rejected',
+    code: 5
+  },
+  {
+    name: 'Cancelled',
+    code: 6
   }
 ];
 

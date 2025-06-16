@@ -1,0 +1,40 @@
+<div class="--resolution-dialog p-4">
+  <div class="--header d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+      <img [src]="icon()" alt="resolution_icon" class="--icon" />
+      <h5 class="mb-0 mx-2">{{ title() }}</h5>
+    </div>
+    <div class="--image-wrapper d-flex align-items-center">
+      <img
+        [src]="'assets/images/' + currentMode + '/close.svg'"
+        class="--close"
+        alt="close_icon"
+        (click)="closeDialog()"
+      />
+    </div>
+  </div>
+
+  <p-divider />
+
+  <p class="--text-description mb-4">{{ text() }}</p>
+
+  <textarea
+    class="--resolution-textarea"
+    [(ngModel)]="resolutionText"
+    rows="3"
+    [placeholder]="placeholder()"
+    class="w-100"
+    [class]="getBorderColor()"
+    pTextarea
+  ></textarea>
+
+  <div class="--dynamic-action mt-3 d-flex justify-content-between align-items-center">
+    <span>Task ID: {{ task_id() }}</span>
+    <div class="d-flex align-items-center">
+      <button [appButton]="attachmentText()" iconPos="center" class="mx-2" [icon]="attachmentIcon()"></button>
+      <button [appButton]="attachmentText()" iconPos="center" class="mx-2" [icon]="videoIcon()"></button>
+
+      <button [appButton]="buttonType()" [icon]="buttonIcon()" (click)="handleConfirm()">{{ buttonText() }}</button>
+    </div>
+  </div>
+</div>

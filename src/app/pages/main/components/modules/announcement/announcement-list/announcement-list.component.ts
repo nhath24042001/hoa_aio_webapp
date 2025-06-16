@@ -14,7 +14,7 @@ import { ThemeService } from '~/services/theme.service';
   styleUrl: './announcement-list.component.scss'
 })
 export class AnnouncementListComponent extends BaseComponent {
-  readonly announcements = input<IAnnouncement[]>([]);
+  readonly announcements = input<IAnnouncement[] | undefined>([]);
   onEmitAction = output<{ announcement: IAnnouncement; type: string }>();
 
   ACTIONS = Action;
@@ -43,7 +43,7 @@ export class AnnouncementListComponent extends BaseComponent {
     super(themeService);
   }
 
-  onActionClick(actionKey: string, rowData: any) {
+  onActionClick(actionKey: string, rowData: IAnnouncement) {
     this.onEmitAction.emit({ announcement: rowData, type: actionKey });
   }
 }

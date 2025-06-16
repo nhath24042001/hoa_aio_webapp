@@ -1,0 +1,28 @@
+.--resolution-dialog {
+  background: var(--background);
+  border-radius: 20px;
+
+  .--close {
+    cursor: pointer;
+  }
+
+  .--text-description {
+    font-size: 14px;
+  }
+}
+
+::ng-deep .p-dialog-header {
+  display: none;
+}
+
+::ng-deep .p-dialog-content {
+  padding: 0;
+}
+
+::ng-deep .p-textarea.--resolve {
+  border-color: #4E9700 !important;
+}
+
+::ng-deep .p-textarea.--reject {
+  border-color: #FF515F !important;
+}

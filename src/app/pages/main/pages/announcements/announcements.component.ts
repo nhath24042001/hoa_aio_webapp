@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { some } from 'lodash-es';
+import { Component, OnInit, signal } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { debounce } from 'lodash-es';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TabsModule } from 'primeng/tabs';
 import { forkJoin } from 'rxjs';
 
+import { ITab } from '~/@types';
 import { IAnnouncement, IAnnouncementPayload } from '~/@types/announcement';
 import { SkeletonList } from '~/components/shared/skeleton-list/skeleton-list.component';
 import { ButtonDirective } from '~/directives/button.directive';
@@ -30,7 +31,8 @@ import { AnnouncementService } from './announcement.service';
     CheckboxModule,
     PopoverModule,
     SkeletonList,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   templateUrl: './announcements.component.html',
   styleUrl: './announcements.component.scss'
@@ -38,12 +40,25 @@ import { AnnouncementService } from './announcement.service';
 export class AnnouncementsComponent implements OnInit {
   ref: DynamicDialogRef | undefined;
   ACTION_DIALOG = ACTION_DIALOG;
-  isLoading = true;
-  searchText: string = '';
-  userTypeSelected: string[] = [];
+  activeTab = signal('0');
+  isEmpty = false;
 
-  activeAnnouncements: IAnnouncement[] = [];
-  expiredAnnouncements: IAnnouncement[] = [];
+  searchText: string = '';
+
+  selectedUserType: string[] = [];
+
+  tabs: Partial<ITab<IAnnouncement>>[] = [
+    {
+      name: 'Active Announcements',
+      data: [],
+      loading: false
+    },
+    {
+      name: 'Expired Announcements',
+      data: [],
+      loading: false
+    }
+  ];
 
   userTypes = [
     {
@@ -70,47 +85,84 @@ export class AnnouncementsComponent implements OnInit {
     private announcementService: AnnouncementService
   ) {}
 
-  ngOnInit(): void {
-    this.loadAnnouncements();
+  get userTypesSelected(): number[] {
+    return this.selectedUserType.map((type) => parseInt(type, 10));
   }
 
-  loadAnnouncements(): void {
-    this.isLoading = true;
+  ngOnInit(): void {
+    this.getDefaultTab();
+
+    if (this.tabs[0].data!.length < 0 || this.tabs[1].data!.length < 0) {
+      this.isEmpty = true;
+    }
+  }
+
+  onFilterChange() {
+    this.loadTabData(this.activeTab());
+  }
+
+  clearFilter(): void {
+    this.selectedUserType = [];
+    this.loadTabData(this.activeTab());
+  }
+
+  getDefaultTab() {
+    const tabIndex = parseInt(this.activeTab(), 10);
+    this.tabs[tabIndex].loading = false;
 
     forkJoin({
-      expired: this.announcementService.getExpiredAnnouncements(this.searchText, this.userTypeSelected),
-      active: this.announcementService.getActiveAnnouncements(this.searchText, this.userTypeSelected)
+      expired: this.announcementService.getExpiredAnnouncements(this.searchText, this.userTypesSelected),
+      active: this.announcementService.getActiveAnnouncements(this.searchText, this.userTypesSelected)
     }).subscribe(
       ({ active, expired }) => {
-        this.activeAnnouncements = active.announcements;
-        this.expiredAnnouncements = expired.announcements;
-        this.isLoading = false;
+        this.tabs[0].data = active.announcements;
+        this.tabs[1].data = expired.announcements;
+        this.tabs[tabIndex].loading = false;
       },
       () => {
-        this.activeAnnouncements = [];
-        this.expiredAnnouncements = [];
-        this.isLoading = false;
+        this.tabs[0].data = [];
+        this.tabs[1].data = [];
+        this.tabs[tabIndex].loading = false;
       }
     );
   }
 
-  checkAnnouncementExists(): boolean {
-    return some([...this.activeAnnouncements, ...this.expiredAnnouncements]);
+  loadTabData(index: number | string): void {
+    const tabIndex = parseInt(index.toString(), 10);
+    this.tabs[tabIndex].loading = true;
+
+    if (this.activeTab() === '0') {
+      this.announcementService.getActiveAnnouncements(this.searchText, this.userTypesSelected).subscribe({
+        next: (data) => {
+          this.tabs[tabIndex].data = data.announcements;
+        },
+        error: () => {
+          this.tabs[tabIndex].data = [];
+        },
+        complete: () => {
+          this.tabs[tabIndex].loading = false;
+        }
+      });
+    } else {
+      this.announcementService.getExpiredAnnouncements(this.searchText, this.userTypesSelected).subscribe({
+        next: (data) => {
+          this.tabs[tabIndex].data = data.announcements;
+        },
+        error: () => {
+          this.tabs[tabIndex].data = [];
+        },
+        complete: () => {
+          this.tabs[tabIndex].loading = false;
+        }
+      });
+    }
   }
 
-  onSearchAnnouncement(_search_text: string): void {
-    this.searchText = _search_text;
-    this.loadAnnouncements();
-  }
-
-  onFilterChange(): void {
-    this.loadAnnouncements();
-  }
-
-  clearFilter(): void {
-    this.userTypeSelected = [];
-    this.loadAnnouncements();
-  }
+  onSearchChange = debounce((text: string) => {
+    this.searchText = text;
+    const tabIdx = parseInt(this.activeTab(), 10);
+    this.loadTabData(tabIdx);
+  }, 500);
 
   async onImplementAction(event: { announcement: IAnnouncement; type: string }): Promise<void> {
     switch (event.type) {
@@ -130,6 +182,8 @@ export class AnnouncementsComponent implements OnInit {
   }
 
   onOpenAnnouncement(type: string, announcement: IAnnouncement | null): void {
+    const tabIndex = parseInt(this.activeTab(), 10);
+
     this.ref = this.dialogService.open(DynamicAnnouncement, {
       modal: true,
       width: '1000px',
@@ -139,10 +193,8 @@ export class AnnouncementsComponent implements OnInit {
       }
     });
 
-    this.ref.onClose.subscribe((result) => {
-      if (result) {
-        this.loadAnnouncements();
-      }
+    this.ref.onClose.subscribe(() => {
+      this.loadTabData(tabIndex);
     });
   }
 
@@ -155,6 +207,8 @@ export class AnnouncementsComponent implements OnInit {
   }
 
   async onOpenDeleteDialog(announcement: IAnnouncement): Promise<void> {
+    const tabIndex = parseInt(this.activeTab(), 10);
+
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/red-trash-md.svg',
       title: 'Delete Item',
@@ -166,13 +220,15 @@ export class AnnouncementsComponent implements OnInit {
     if (confirmed) {
       this.announcementService.deleteAnnouncement(announcement.id).subscribe((response) => {
         if (response.rc === 0) {
-          this.loadAnnouncements();
+          this.loadTabData(tabIndex);
         }
       });
     }
   }
 
   async onOpenPublishDialog(announcement: IAnnouncement): Promise<void> {
+    const tabIndex = parseInt(this.activeTab(), 10);
+
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/check-circle-broken-lg.svg',
       title: 'Announcement Posted',
@@ -188,14 +244,19 @@ export class AnnouncementsComponent implements OnInit {
         link: announcement.link,
         expiration_date: announcement.expiration_date,
         announcement_date: '',
-        user_types: ['1', '2'],
+        user_types: [1, 2],
         is_draft: false
       };
       this.announcementService.editAnnouncement(announcement.id, payload).subscribe((response) => {
         if (response.rc === 0) {
-          this.loadAnnouncements();
+          this.loadTabData(tabIndex);
         }
       });
     }
+  }
+
+  onTabChange(tabIndex: number | string): void {
+    this.activeTab.set(tabIndex.toString());
+    this.loadTabData(tabIndex);
   }
 }

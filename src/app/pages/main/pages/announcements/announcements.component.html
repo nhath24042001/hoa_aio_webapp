@@ -1,79 +1,83 @@
 <div class="--announcement-wrapper p-4">
   <div class="--announcement-header">
-    <p-tabs value="0">
-      <div class="d-flex justify-content-between align-items-center">
-        <p-tablist>
-          <p-tab value="0">Active Announcements</p-tab>
-          <p-tab value="1">Expired Announcements</p-tab>
-        </p-tablist>
+    @if (!isEmpty) {
+      <p-tabs [value]="activeTab()" (valueChange)="onTabChange($event)">
+        <div class="d-flex justify-content-between align-items-center">
+          <p-tablist>
+            <p-tab value="0">Active Announcements</p-tab>
+            <p-tab value="1">Expired Announcements</p-tab>
+          </p-tablist>
 
-        <main-header
-          labelButton="New Announcement"
-          (searchChanged)="onSearchAnnouncement($event)"
-          (addSection)="onOpenAnnouncement(ACTION_DIALOG.CREATE, null)"
-        >
-          <div filter-content>
-            <div class="--filter-content">
-              <div class="d-flex justify-content-between align-items-center">
-                <h2>Filters</h2>
-                <h4 (click)="clearFilter()">Clear all</h4>
-              </div>
-
-              <h3>Show user type</h3>
-
-              @for (filter of userTypes; track $index) {
-                <div class="--checkbox d-flex align-items-center">
-                  <p-checkbox [(ngModel)]="userTypeSelected" [value]="filter.value" (onChange)="onFilterChange()" size="small" />
-                  <span>{{ filter.label }}</span>
+          <main-header
+            labelButton="New Announcement"
+            (searchChanged)="onSearchChange($event)"
+            (addSection)="onOpenAnnouncement(ACTION_DIALOG.CREATE, null)"
+          >
+            <div filter-content>
+              <div class="--filter-content">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h2>Filters</h2>
+                  <h4 (click)="clearFilter()">Clear all</h4>
                 </div>
-              }
-            </div>
-          </div>
-        </main-header>
-      </div>
 
-      <p-tabpanels>
-        <p-tabpanel value="0">
-          @if (isLoading) {
-            <app-skeleton-list></app-skeleton-list>
-          } @else {
-            <announcement-list
-              [announcements]="activeAnnouncements"
-              (onEmitAction)="onImplementAction($event)"
-            ></announcement-list>
+                <h3>Show user type</h3>
+
+                <div class="d-flex flex-column gap-2">
+                  @for (filter of userTypes; track $index) {
+                    <div class="--checkbox d-flex align-items-center">
+                      <p-checkbox
+                        name="group"
+                        size="small"
+                        [inputId]="filter.value"
+                        [value]="filter.value"
+                        [(ngModel)]="selectedUserType"
+                        (onChange)="onFilterChange()"
+                      />
+                      <label [for]="filter.value" class="mx-2"> {{ filter.label }} </label>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </main-header>
+        </div>
+
+        <p-tabpanels>
+          @for (panel of tabs; track $index) {
+            <p-tabpanel [value]="$index.toString()">
+              @if (panel.loading) {
+                <app-skeleton-list></app-skeleton-list>
+              } @else {
+                <announcement-list
+                  [announcements]="panel.data"
+                  (onEmitAction)="onImplementAction($event)"
+                ></announcement-list>
+              }
+            </p-tabpanel>
           }
-        </p-tabpanel>
-        <p-tabpanel value="1">
-          @if (isLoading) {
-            <app-skeleton-list></app-skeleton-list>
-          } @else {
-            <announcement-list
-              [announcements]="expiredAnnouncements"
-              (onEmitAction)="onImplementAction($event)"
-            ></announcement-list>
-          }
-        </p-tabpanel>
-      </p-tabpanels>
-    </p-tabs>
+        </p-tabpanels>
+      </p-tabs>
+    } @else {
+      <div class="--content-section p-4 d-flex flex-column">
+        <div class="d-flex justify-content-end">
+          <button
+            appButton="primary"
+            icon="white-plus-solid"
+            (click)="onOpenAnnouncement(ACTION_DIALOG.CREATE, null)"
+          >
+            New Announcement
+          </button>
+        </div>
+        <div class="flex-fill d-flex justify-content-center align-items-center">
+          <app-empty-content
+            icon="assets/images/light/announcement-lg.svg"
+            iconDark="assets/images/dark/announcement-lg.svg"
+            title="There are no announcements to show yet."
+            createText="Create a new announcement"
+            (actionEmitter)="onOpenAnnouncement(ACTION_DIALOG.CREATE, null)"
+          ></app-empty-content>
+        </div>
+      </div>
+    }
   </div>
 </div>
-<!-- <div class="--content-section p-4 d-flex flex-column">
-    <div class="d-flex justify-content-end">
-      <button
-        appButton="primary"
-        icon="white-plus-solid"
-        (click)="onOpenAnnouncement(ACTION_DIALOG.CREATE, null)"
-      >
-        New Announcement
-      </button>
-    </div>
-    <div class="flex-fill d-flex justify-content-center align-items-center">
-      <app-empty-content
-        icon="assets/images/light/announcement-lg.svg"
-        iconDark="assets/images/dark/announcement-lg.svg"
-        title="There are no announcements to show yet."
-        createText="Create a new announcement"
-        (actionEmitter)="onOpenAnnouncement(ACTION_DIALOG.CREATE, null)"
-      ></app-empty-content>
-    </div>
-  </div> -->
