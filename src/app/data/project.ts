@@ -8,7 +8,7 @@ export const PROJECT_HEADER: IHeaderTable[] = [
   // },
   {
     field: 'name',
-    name: 'Task Name'
+    name: 'Project Name'
   },
   {
     field: 'type',

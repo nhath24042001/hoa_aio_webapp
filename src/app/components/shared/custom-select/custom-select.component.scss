@@ -136,7 +136,7 @@
 }
 
 ::ng-deep .p-select-option-selected {
-  background: var(--background) !important;
+  background: var(--active-primary) !important;
 
   div {
     color: var(--const-color);

@@ -3,7 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ICommonResponse } from '~/@types';
-import { ICreationResponse, IProjectParams, IProjectPayload, IProjectResponse } from '~/@types/project';
+import {
+  ICreationResponse,
+  IProjectDetailResponse,
+  IProjectParams,
+  IProjectPayload,
+  IProjectResponse
+} from '~/@types/project';
 import { HttpClientModel } from '~/models/http/http-client.model';
 
 @Injectable({
@@ -30,7 +36,7 @@ export class ProjectService extends HttpClientModel {
     return this.post(this.createRequest('Project', 'get_project_action_items', { project_id, status }));
   }
 
-  public getProjectById(project_id: number): Observable<ICommonResponse> {
+  public getProjectById(project_id: number): Observable<IProjectDetailResponse> {
     return this.post(this.createRequest('Project', 'get_project_by_id', { project_id }));
   }
 
@@ -80,5 +86,9 @@ export class ProjectService extends HttpClientModel {
 
   public updateProjectStatus(project_id: number, status: number): Observable<ICommonResponse> {
     return this.post(this.createRequest('Project', 'update_project_status', { project_id, status }));
+  }
+
+  public deleteProject(project_id: number): Observable<ICommonResponse> {
+    return this.post(this.createRequest('Project', 'delete_project', { project_id }));
   }
 }

@@ -1,43 +1,46 @@
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
 import { DividerModule } from 'primeng/divider';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
+import { ISelect } from '~/@types';
 import { ITask } from '~/@types/task';
 import { BaseComponent } from '~/components/common/base/base.component';
 import { CustomSelect } from '~/components/shared/custom-select/custom-select.component';
 import { TASK_STATUS } from '~/constants';
-import { CUSTOM_SELECT, PRIORITY_OPTION, TYPE_OPTION } from '~/constants/select';
+import { PRIORITY_OPTION, TASK_CUSTOM_STATUS, TYPE_OPTION } from '~/constants/select';
 import { ButtonDirective } from '~/directives/button.directive';
 import { TaskService } from '~/pages/main/pages/task-management/task.service';
 import { ThemeService } from '~/services/theme.service';
 import { ToastService } from '~/services/toast.service';
 import { formattedDate } from '~/utils/date-utils';
+import { getClass } from '~/utils/string-utils';
 
 import { ConfirmDialog } from '../../../dialog/confirm-dialog/confirm-dialog.component';
 import { ResolutionDialog } from '../resolution-dialog/resolution-dialog.component';
 
 @Component({
   selector: 'app-task-detail-dialog',
-  imports: [DatePipe, DividerModule, ButtonDirective, CustomSelect],
+  imports: [DatePipe, DividerModule, ButtonDirective, CustomSelect, CommonModule],
   templateUrl: './task-detail-dialog.component.html',
   styleUrl: '../../../dialog/dynamic-dialog/dynamic-dialog.component.scss'
 })
 export class TaskDetailDialog extends BaseComponent {
-  ref: DynamicDialogRef | undefined;
   data: ITask;
   type = signal<string>('');
   typeOptions = TYPE_OPTION;
   priorityOptions = PRIORITY_OPTION;
-  customStatus = CUSTOM_SELECT;
+  customStatus = TASK_CUSTOM_STATUS;
   task_status = TASK_STATUS;
-  statusFormControl = signal<any>('');
+  statusFormControl = signal<ISelect>({
+    name: '',
+    code: '',
+    icon: ''
+  });
 
   icon = computed(() => {
     const basePath = `assets/images/${this.currentMode}`;
-    return this.type() === 'create'
-      ? `${basePath}/file-plus-03.svg`
-      : `${basePath}/clipboard-check.svg`;
+    return this.type() === 'create' ? `${basePath}/file-plus-03.svg` : `${basePath}/clipboard-check.svg`;
   });
 
   isEditMode = computed(() => {
@@ -95,14 +98,14 @@ export class TaskDetailDialog extends BaseComponent {
     public config: DynamicDialogConfig,
     public dialogService: DialogService,
     public taskService: TaskService,
-    public toastService: ToastService
+    public toastService: ToastService,
+    public ref: DynamicDialogRef
   ) {
     super(themeService);
     this.type.set(config.data.type || 'create');
     this.data = config.data.task;
 
-    this.extraData.custom_status =
-      this.task_status.find((task) => task.code === this.data.status)?.name || '';
+    this.extraData.custom_status = this.task_status.find((task) => task.code === this.data.status)?.name || '';
   }
 
   onStatusChanged(status: string) {
@@ -112,7 +115,7 @@ export class TaskDetailDialog extends BaseComponent {
     const revertStatus = () => {
       this.statusFormControl.set({
         name: prevStatus?.name?.toLocaleLowerCase() || '',
-        code: prevStatusCode,
+        code: String(prevStatusCode),
         icon: this.customStatus.find((task) => task.code === prevStatusCode)?.icon || ''
       });
     };
@@ -176,8 +179,7 @@ export class TaskDetailDialog extends BaseComponent {
         type: 'delete',
         icon: 'x-circle-lg',
         title: 'Cancel Task',
-        description:
-          'Are you sure? Proceeding will delete the task from the system, and can not be undone.',
+        description: 'Are you sure? Proceeding will delete the task from the system, and can not be undone.',
         confirmText: 'Cancel Task',
         cancelText: 'Not now'
       }
@@ -186,6 +188,10 @@ export class TaskDetailDialog extends BaseComponent {
 
   formattedDate(date: string): string {
     return formattedDate(date);
+  }
+
+  getClassStyle(className: string | undefined, currentMode: string): string {
+    return getClass(className?.toLocaleLowerCase(), currentMode);
   }
 
   closeDialog() {

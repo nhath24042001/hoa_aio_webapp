@@ -84,47 +84,6 @@ export const TASK_CUSTOM_SELECT: DynamicField = {
   placeholder: 'Select'
 };
 
-export const PROJECT_CUSTOM_SELECT: DynamicField = {
-  icon: 'loading',
-  field: 'status',
-  label: 'Status',
-  type: 'custom-select',
-  position: 'left',
-  list: [
-    {
-      name: 'New',
-      code: 'new',
-      icon: 'red-thunder'
-    },
-    {
-      name: 'Planning',
-      code: 'planning',
-      icon: 'compass'
-    },
-    {
-      name: 'In Progress',
-      code: 'in_progress',
-      icon: 'loading-01'
-    },
-    {
-      name: 'On Hold',
-      code: 'on_hold',
-      icon: 'hand'
-    },
-    {
-      name: 'Completed',
-      code: 'completed',
-      icon: 'check-circle-broken-01'
-    },
-    {
-      name: 'Cancelled',
-      code: 'canceled',
-      icon: 'x-circle'
-    }
-  ],
-  placeholder: 'Select'
-};
-
 export const VENDOR_CUSTOM_SELECT: DynamicField = {
   icon: 'loading',
   field: 'status',
@@ -196,7 +155,7 @@ export const PRIORITY_OPTION = [
   }
 ];
 
-export const CUSTOM_SELECT = [
+export const TASK_CUSTOM_STATUS = [
   {
     name: 'New',
     code: 'new',
@@ -291,5 +250,38 @@ export const PROJECT_STATUS = [
   {
     name: 'Cancelled',
     code: 6
+  }
+];
+
+export const PROJECT_CUSTOM_STATUS = [
+  {
+    name: 'New',
+    code: 'new',
+    icon: 'red-thunder'
+  },
+  {
+    name: 'Planning',
+    code: 'planning',
+    icon: 'compass'
+  },
+  {
+    name: 'In Progress',
+    code: 'in_progress',
+    icon: 'loading-01'
+  },
+  {
+    name: 'On Hold',
+    code: 'on_hold',
+    icon: 'hand'
+  },
+  {
+    name: 'Completed',
+    code: 'completed',
+    icon: 'check-circle-broken-01'
+  },
+  {
+    name: 'Cancelled',
+    code: 'canceled',
+    icon: 'x-circle'
   }
 ];

@@ -230,6 +230,7 @@ export class TaskManagementComponent implements OnInit {
         this.ref = this.dialogService.open(TaskDetailDialog, {
           modal: true,
           width: '1000px',
+
           data: { type: 'detail', task: response.task }
         });
       }

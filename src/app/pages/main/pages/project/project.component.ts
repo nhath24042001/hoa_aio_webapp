@@ -18,6 +18,7 @@ import { MainHeader } from '~/pages/main/components/shared/main-header/main-head
 import { Table } from '~/pages/main/components/shared/table/table.component';
 import { ToastService } from '~/services/toast.service';
 
+import { ProjectDetail } from '../../components/modules/project/project-detail/project-detail.component';
 import { ProjectService } from './project.service';
 
 @Component({
@@ -143,8 +144,13 @@ export class ProjectComponent implements OnInit {
             ...project,
             type: this.typeOptions.find((option) => option.code === project.type)?.name || 'Other',
             priority:
-              this.priorityOptions.find((option) => option.code === project.priority)?.name.toLocaleLowerCase() || '',
-            status: this.statusOptions.find((option) => option.code === project.status)?.name.toLocaleLowerCase() || ''
+              this.priorityOptions
+                .find((option) => option.code === project.priority)
+                ?.name.toLocaleLowerCase() || '',
+            status:
+              this.statusOptions
+                .find((option) => option.code === project.status)
+                ?.name.toLocaleLowerCase() || ''
           }));
         },
         error: () => {
@@ -187,10 +193,10 @@ export class ProjectComponent implements OnInit {
   handleTableAction(event: { actionKey: string; rowData: Project }): void {
     switch (event.actionKey) {
       case 'edit':
-        this.onOpenProjectDetail();
+        this.onOpenProjectDetail(event.rowData.project_id);
         break;
       case 'delete':
-        this.onOpenDeleteDialog();
+        this.onOpenDeleteDialog(event.rowData.project_id);
         break;
       default:
         break;
@@ -208,19 +214,36 @@ export class ProjectComponent implements OnInit {
     this.ref.onClose.subscribe(() => {});
   }
 
-  onOpenProjectDetail(): void {}
+  onOpenProjectDetail(project_id: number): void {
+    this.projectService.getProjectById(project_id).subscribe((response) => {
+      if (response.rc === 0) {
+        this.ref = this.dialogService.open(ProjectDetail, {
+          modal: true,
+          width: '1000px',
+          data: {
+            type: 'edit',
+            project: response.project
+          }
+        });
+      }
+    });
+  }
 
-  async onOpenDeleteDialog(): Promise<void> {
-    // const confirmed = await this.toastService.showConfirm({
-    //   icon: 'assets/images/common/red-trash-md.svg',
-    //   title: 'Delete Item',
-    //   description:
-    //     'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
-    //   type: 'error',
-    //   buttonText: 'Delete'
-    // });
-    // if (confirmed) {
-    //   console.log('run 1');
-    // }
+  async onOpenDeleteDialog(project_id: number): Promise<void> {
+    const confirmed = await this.toastService.showConfirm({
+      icon: 'assets/images/common/red-trash-md.svg',
+      title: 'Delete Item',
+      description:
+        'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
+      type: 'error',
+      buttonText: 'Delete'
+    });
+    if (confirmed) {
+      this.projectService.deleteProject(project_id).subscribe((response) => {
+        if (response.rc === 0) {
+          this.ref?.close();
+        }
+      });
+    }
   }
 }
