@@ -1,24 +1,28 @@
-<div class="--overview-sta p-4 d-flex align-items-center justify-content-between gap-4">
-  @for (box of sta_data; track $index) {
-    <div class="--overview-box">
-      <div class="d-flex justify-content-center align-items-center">
-        <img
-          [src]="'assets/images/' + currentMode + '/overview-' + $index + '.svg'"
-          class="mt-1"
-          [alt]="box.name + '_icon'"
-        />
+<div class="--overview-sta p-4">
+  <div class="row">
+    @for (box of sta_data; track $index) {
+      <div class="col-3">
+        <div class="--overview-box">
+          <div class="d-flex justify-content-center align-items-center">
+            <img
+              [src]="'assets/images/' + currentMode + '/overview-' + $index + '.svg'"
+              class="mt-1"
+              [alt]="box.name + '_icon'"
+            />
+          </div>
+
+          <app-number-ticker
+            [end]="box.number"
+            [duration]="2"
+            [prefix]="box.isPrefix ? '$' : ''"
+          ></app-number-ticker>
+
+          <h5 class="text-center">{{ box.name }}</h5>
+          <h6 class="text-center" [class]="'--' + currentMode" (click)="navigateTo(box.routeLink)">
+            {{ box.text }}
+          </h6>
+        </div>
       </div>
-
-      <app-number-ticker
-        [end]="box.number"
-        [duration]="2"
-        [prefix]="box.isPrefix ? '$' : ''"
-      ></app-number-ticker>
-
-      <h5 class="text-center">{{ box.name }}</h5>
-      <h6 class="text-center" [class]="'--' + currentMode" (click)="navigateTo(box.routeLink)">
-        {{ box.text }}
-      </h6>
-    </div>
-  }
+    }
+  </div>
 </div>
