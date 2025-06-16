@@ -270,26 +270,26 @@ export const PROJECT_PRIORITY = [
 export const PROJECT_STATUS = [
   {
     name: 'New',
-    code: 0
-  },
-  {
-    name: 'Planning',
     code: 1
   },
   {
-    name: 'In Progress',
+    name: 'Planning',
     code: 2
   },
   {
-    name: 'On Hold',
+    name: 'In Progress',
     code: 3
   },
   {
-    name: 'Completed',
+    name: 'On Hold',
     code: 4
   },
   {
-    name: 'Cancelled',
+    name: 'Completed',
     code: 5
+  },
+  {
+    name: 'Cancelled',
+    code: 6
   }
 ];

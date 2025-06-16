@@ -1,7 +1,9 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { debounce } from 'lodash-es';
+import { DatePickerModule } from 'primeng/datepicker';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { SelectModule } from 'primeng/select';
 import { TabsModule } from 'primeng/tabs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
 
@@ -20,7 +22,16 @@ import { ProjectService } from './project.service';
 
 @Component({
   selector: 'app-project',
-  imports: [TabsModule, MainHeader, EmptyContentComponent, ButtonDirective, Table],
+  imports: [
+    TabsModule,
+    MainHeader,
+    EmptyContentComponent,
+    ButtonDirective,
+    Table,
+    ReactiveFormsModule,
+    SelectModule,
+    DatePickerModule
+  ],
   templateUrl: './project.component.html',
   styleUrl: './project.component.scss'
 })
@@ -154,10 +165,23 @@ export class ProjectComponent implements OnInit {
 
   initFilterForm(): void {
     this.filterForm = this.fb.group({
-      type: [''],
-      date_from: [''],
+      status: [null],
+      date_from: [null],
       date_to: [null]
     });
+  }
+
+  clearFilter(): void {
+    this.filterForm.reset();
+  }
+
+  clearFilterForm(formControlName: string): void {
+    this.filterForm.get(formControlName)?.reset();
+  }
+
+  clearDateFilter(): void {
+    this.filterForm.get('date_from')?.reset();
+    this.filterForm.get('date_to')?.reset();
   }
 
   handleTableAction(event: { actionKey: string; rowData: Project }): void {
