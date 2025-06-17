@@ -144,13 +144,8 @@ export class ProjectComponent implements OnInit {
             ...project,
             type: this.typeOptions.find((option) => option.code === project.type)?.name || 'Other',
             priority:
-              this.priorityOptions
-                .find((option) => option.code === project.priority)
-                ?.name.toLocaleLowerCase() || '',
-            status:
-              this.statusOptions
-                .find((option) => option.code === project.status)
-                ?.name.toLocaleLowerCase() || ''
+              this.priorityOptions.find((option) => option.code === project.priority)?.name.toLocaleLowerCase() || '',
+            status: this.statusOptions.find((option) => option.code === project.status)?.name.toLocaleLowerCase() || ''
           }));
         },
         error: () => {
@@ -211,7 +206,6 @@ export class ProjectComponent implements OnInit {
         type: 'create'
       }
     });
-    this.ref.onClose.subscribe(() => {});
   }
 
   onOpenProjectDetail(project_id: number): void {
@@ -233,8 +227,7 @@ export class ProjectComponent implements OnInit {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/red-trash-md.svg',
       title: 'Delete Item',
-      description:
-        'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
+      description: 'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
       type: 'error',
       buttonText: 'Delete'
     });

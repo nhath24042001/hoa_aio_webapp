@@ -94,6 +94,8 @@ export interface ITab<T> {
   activeImg: string;
   status: number;
   data: T[];
+  headers?: IHeaderTable[];
+  sampleData?: any[];
   loading: boolean;
 }
 
