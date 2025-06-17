@@ -6,9 +6,7 @@ import { TabsModule } from 'primeng/tabs';
 import { ITab } from '~/@types';
 import { IVendor } from '~/@types/vendor';
 import { bidHeaders, bidList, companyHeaders, companyList, estimateList, vendorActions } from '~/data/vendor';
-import { ButtonDirective } from '~/directives/button.directive';
 import { Action } from '~/enums';
-import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';
 import { ToastService } from '~/services/toast.service';
@@ -19,7 +17,7 @@ import { VendorDialog } from '../../components/modules/vendor/vendor-dialog/vend
 
 @Component({
   selector: 'app-vendor',
-  imports: [TabsModule, EmptyContentComponent, ButtonDirective, MainHeader, Table],
+  imports: [TabsModule, MainHeader, Table],
   templateUrl: './vendor.component.html',
   styleUrl: './vendor.component.scss'
 })

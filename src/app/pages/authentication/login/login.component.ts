@@ -53,13 +53,16 @@ export class LoginComponent extends BaseComponent {
       this.loading = false;
       this.isSubmitting = true;
 
-      // if (email === 'admin@gmail.com' && password === '123123') {
-      //   this.isShowError = false;
-      // } else {
-      //   this.isShowError = true;
-      //   this.messageError.set('Your username or password is incorrect');
-      // }
-      this.router.navigate(['main/overview']);
+      const email = this.loginForm.get('email')?.value;
+      const password = this.loginForm.get('password')?.value;
+
+      if (email === 'admin@gmail.com' && password === '123123') {
+        this.isShowError = false;
+        this.router.navigate(['main/overview']);
+      } else {
+        this.isShowError = true;
+        this.messageError.set('Your username or password is incorrect');
+      }
     }, 2000);
   }
 

@@ -50,9 +50,11 @@ export class SetNewPasswordComponent extends BaseComponent {
     return password === confirmPassword;
   }
 
-  passwordsMatch(): boolean {
-    const newPassword = this.newPasswordForm.get('newPassword')?.value;
-    const confirmPassword = this.newPasswordForm.get('confirmPassword')?.value;
+  passwordsMatch() {
+    const { newPassword, confirmPassword } = this.newPasswordForm.value;
+    if (!newPassword || !confirmPassword) {
+      return false;
+    }
     return newPassword === confirmPassword;
   }
 

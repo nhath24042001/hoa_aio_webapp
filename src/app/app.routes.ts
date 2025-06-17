@@ -12,11 +12,13 @@ export const authRoutes: Routes = [
       {
         title: RouteName.LoginView,
         path: RoutePath.Login,
+        data: { animation: 'LoginPage' },
         loadComponent: () => import('./pages/authentication/login/login.component').then((m) => m.LoginComponent)
       },
       {
         title: RouteName.ForgotPasswordView,
         path: RoutePath.ForgotPassword,
+        data: { animation: 'ForgotPage' },
         loadComponent: () =>
           import('./pages/authentication/forgot-password/forgot-password.component').then(
             (m) => m.ForgotPasswordComponent
@@ -25,12 +27,14 @@ export const authRoutes: Routes = [
       {
         title: RouteName.ResetPasswordView,
         path: RoutePath.ResetPassword,
+        data: { animation: 'ResetPage' },
         loadComponent: () =>
           import('./pages/authentication/reset-password/reset-password.component').then((m) => m.ResetPasswordComponent)
       },
       {
         title: RouteName.SetNewPasswordView,
         path: RoutePath.SetNewPassword,
+        data: { animation: 'SetNewPassword' },
         loadComponent: () =>
           import('./pages/authentication/set-new-password/set-new-password.component').then(
             (m) => m.SetNewPasswordComponent

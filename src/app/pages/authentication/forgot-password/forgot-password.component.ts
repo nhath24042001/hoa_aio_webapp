@@ -39,16 +39,16 @@ export class ForgotPasswordComponent extends BaseComponent {
     setTimeout(() => {
       this.loading = false;
 
-      // const { email } = this.forgotPswForm.value;
+      const { email } = this.forgotPswForm.value;
 
-      // if (email !== 'admin@gmail.com') {
-      //   this.isShowError = true;
-      //   this.messageError = 'Your email is incorrect';
-      // } else {
-      //   this.isShowError = false;
-      //   this.messageError = '';
-      // }
-      this.router.navigate(['/auth/reset-password']);
+      if (email !== 'admin@gmail.com') {
+        this.isShowError = true;
+        this.messageError = 'Your email is incorrect';
+      } else {
+        this.isShowError = false;
+        this.messageError = '';
+        this.router.navigate(['/auth/reset-password']);
+      }
     }, 2000);
   }
 
