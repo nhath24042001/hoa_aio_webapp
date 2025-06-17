@@ -32,7 +32,11 @@
         [class.isOpen]="!isOpen"
         (click)="navigateTo(sidebar.routerLink)"
       >
-        <img [src]="'assets/images/common/' + sidebar.icon + '-icon.svg'" alt="icon" />
+        <img
+          [src]="'assets/images/common/' + sidebar.icon + '-icon.svg'"
+          style="width: 25px; height: 25px"
+          alt="icon"
+        />
         @if (isOpen) {
           <p class="">{{ sidebar.name }}</p>
         }
@@ -64,7 +68,11 @@
             [class.isOpen]="!isOpen"
             (click)="navigateTo(tool.routerLink)"
           >
-            <img [src]="'assets/images/common/' + tool.icon + '-icon.svg'" alt="icon" />
+            <img
+              [src]="'assets/images/common/' + tool.icon + '-icon.svg'"
+              style="width: 25px; height: 25px"
+              alt="icon"
+            />
             @if (isOpen) {
               <p>{{ tool.name }}</p>
             }
