@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { IAnnouncement } from '~/@types/announcement';
 import { BaseComponent } from '~/components/common/base/base.component';
@@ -20,7 +21,8 @@ export class AnnouncementSectionComponent extends BaseComponent {
 
   constructor(
     themeService: ThemeService,
-    private announcementService: AnnouncementService
+    private announcementService: AnnouncementService,
+    private router: Router
   ) {
     super(themeService);
   }
@@ -32,5 +34,9 @@ export class AnnouncementSectionComponent extends BaseComponent {
         this.announcements = response.announcements;
       }
     });
+  }
+
+  redirectToAnnouncement(): void {
+    this.router.navigate(['/main/announcements']);
   }
 }

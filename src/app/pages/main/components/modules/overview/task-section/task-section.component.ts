@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { IHeaderTable } from '~/@types/index.d';
 import { ButtonDirective } from '~/directives/button.directive';
@@ -73,4 +74,10 @@ export class TaskSectionComponent<T> {
       className: '--delete-action --pointer'
     }
   ];
+
+  constructor(private router: Router) {}
+
+  redirectToTask(): void {
+    this.router.navigate(['/main/task-management']);
+  }
 }
