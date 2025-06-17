@@ -1,9 +1,11 @@
 import { CommonModule, DatePipe } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { PopoverDirective, PopoverModule } from 'ngx-bootstrap/popover';
 
 import { IListView } from '~/@types';
+import { IAnnouncement } from '~/@types/announcement';
+import { AnnouncementService } from '~/pages/main/pages/announcements/announcement.service';
 import { TitleCasePipe } from '~/pipes/title-case.pipe';
 
 import { THEME } from '../../../constants';
@@ -16,12 +18,14 @@ import { ThemeService } from '../../../services/theme.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   @ViewChild('popover1', { static: false }) popover?: PopoverDirective;
   menu_dropdowns = MENU_DROPDOWN;
   THEME = THEME;
   currentMode: string = '';
   lastSegment: string = '';
+
+  announcements: IAnnouncement[] = [];
 
   notifications = [
     {
@@ -40,7 +44,8 @@ export class HeaderComponent {
 
   constructor(
     private router: Router,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private announcementService: AnnouncementService
   ) {
     this.themeService.theme$.subscribe((theme) => {
       this.currentMode = theme;
@@ -49,6 +54,14 @@ export class HeaderComponent {
     this.router.events.subscribe(() => {
       const urlSegments = this.router.url.split('/');
       this.lastSegment = urlSegments[urlSegments.length - 1];
+    });
+  }
+
+  ngOnInit(): void {
+    this.announcementService.getActiveAnnouncements('', []).subscribe((response) => {
+      if (response.rc === 0) {
+        this.announcements = response.announcements;
+      }
     });
   }
 
