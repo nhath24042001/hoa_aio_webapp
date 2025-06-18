@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { IHeaderTable } from '~/@types/index.d';
 import { ButtonDirective } from '~/directives/button.directive';
 import { Action } from '~/enums';
+import { ROUTE_PATH } from '~/enums/route';
 import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';
 
@@ -16,6 +17,7 @@ import { Table } from '~/pages/main/components/shared/table/table.component';
 export class TaskSectionComponent<T> {
   @Input() tasks: T[] = [];
   ACTIONS = Action;
+  ROUTE_PATH = ROUTE_PATH;
 
   headers: IHeaderTable[] = [
     {
@@ -78,6 +80,6 @@ export class TaskSectionComponent<T> {
   constructor(private router: Router) {}
 
   redirectToTask(): void {
-    this.router.navigate(['/main/task-management']);
+    this.router.navigate([ROUTE_PATH.TASK_MANAGEMENT]);
   }
 }

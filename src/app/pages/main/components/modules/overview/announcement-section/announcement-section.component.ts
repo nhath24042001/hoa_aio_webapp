@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { IAnnouncement } from '~/@types/announcement';
 import { BaseComponent } from '~/components/common/base/base.component';
 import { ButtonDirective } from '~/directives/button.directive';
+import { ROUTE_PATH } from '~/enums/route';
 import { AnnouncementService } from '~/pages/main/pages/announcements/announcement.service';
 import { ThemeService } from '~/services/theme.service';
 
@@ -17,6 +18,7 @@ import { EmptyContentComponent } from '../../../shared/empty-content/empty-conte
   styleUrl: './announcement-section.component.scss'
 })
 export class AnnouncementSectionComponent extends BaseComponent {
+  ROUTE_PATH = ROUTE_PATH;
   announcements: IAnnouncement[] = [];
 
   constructor(
@@ -31,12 +33,12 @@ export class AnnouncementSectionComponent extends BaseComponent {
     super.ngOnInit();
     this.announcementService.getActiveAnnouncements('', []).subscribe((response) => {
       if (response.rc === 0) {
-        this.announcements = response.announcements;
+        this.announcements = response.announcements.slice(0, 5);
       }
     });
   }
 
   redirectToAnnouncement(): void {
-    this.router.navigate(['/main/announcements']);
+    this.router.navigate([ROUTE_PATH.ANNOUNCEMENT]);
   }
 }

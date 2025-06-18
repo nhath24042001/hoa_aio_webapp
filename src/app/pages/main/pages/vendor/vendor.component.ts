@@ -1,11 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, signal } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TabsModule } from 'primeng/tabs';
 
 import { ITab } from '~/@types';
 import { IVendor } from '~/@types/vendor';
-import { bidHeaders, bidList, companyHeaders, companyList, estimateList, vendorActions } from '~/data/vendor';
+import {
+  bidHeaders,
+  bidList,
+  companyHeaders,
+  companyList,
+  estimateList,
+  vendorActions
+} from '~/data/vendor';
 import { Action } from '~/enums';
 import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';
@@ -66,8 +74,21 @@ export class VendorComponent {
 
   constructor(
     public dialogService: DialogService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      const tab = params['tab'];
+
+      if (tab) {
+        const index = this.getTabIndexFromQuery(tab);
+        this.activeTab.set(index.toString());
+      }
+    });
+  }
 
   get buttonText(): string {
     switch (this.activeTab()) {
@@ -91,12 +112,6 @@ export class VendorComponent {
     }
   }
 
-  onSearch() {}
-
-  onTabChange(tabIndex: number | string) {
-    this.activeTab.set(tabIndex.toString());
-  }
-
   onOpenCreate(): void {
     this.ref = this.dialogService.open(this.componentRender as any, {
       modal: true,
@@ -105,8 +120,6 @@ export class VendorComponent {
         type: 'create'
       }
     });
-
-    // this.ref.onClose.subscribe((task: any) => {});
   }
 
   onOpenEditDialog(): void {
@@ -158,7 +171,8 @@ export class VendorComponent {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/red-trash-md.svg',
       title: 'Delete Item',
-      description: 'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
+      description:
+        'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
       type: 'error',
       buttonText: 'Delete'
     });
@@ -184,6 +198,25 @@ export class VendorComponent {
         break;
       default:
         break;
+    }
+  }
+
+  onSearch() {}
+
+  onTabChange(tabIndex: number | string) {
+    this.activeTab.set(tabIndex.toString());
+  }
+
+  getTabIndexFromQuery(tab: string): number {
+    switch (tab.toLowerCase()) {
+      case 'companies':
+        return 0;
+      case 'bids':
+        return 1;
+      case 'estimates':
+        return 2;
+      default:
+        return 0;
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="--task-top d-flex justify-content-between align-items-center">
     <h4 class="mb-0">Open Bids</h4>
 
-    <button appButton="secondary" icon="plus-solid">New Bid</button>
+    <button appButton="secondary" icon="plus-solid" (click)="redirectToBid()">New Bid</button>
   </div>
 
   @if (bids.length) {
@@ -12,7 +12,7 @@
       </div>
     </div>
   } @else {
-    <div class="mb-5">
+    <div class="mb-5 mt-3">
       <app-empty-content
         icon="assets/images/light/bid-med.svg"
         iconDark="assets/images/dark/bid-med.svg"
