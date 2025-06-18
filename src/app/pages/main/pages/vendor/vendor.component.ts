@@ -6,14 +6,7 @@ import { TabsModule } from 'primeng/tabs';
 
 import { ITab } from '~/@types';
 import { IVendor } from '~/@types/vendor';
-import {
-  bidHeaders,
-  bidList,
-  companyHeaders,
-  companyList,
-  estimateList,
-  vendorActions
-} from '~/data/vendor';
+import { bidHeaders, bidList, companyHeaders, companyList, estimateList, vendorActions } from '~/data/vendor';
 import { Action } from '~/enums';
 import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';
@@ -171,8 +164,7 @@ export class VendorComponent {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/red-trash-md.svg',
       title: 'Delete Item',
-      description:
-        'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
+      description: 'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
       type: 'error',
       buttonText: 'Delete'
     });
