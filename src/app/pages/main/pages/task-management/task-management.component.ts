@@ -56,7 +56,7 @@ export class TaskManagementComponent implements OnInit {
     {
       name: 'All Tasks',
       img: 'assets/images/common/rows-01.svg',
-      activeImg: 'assets/images/common/rows-01.svg',
+      activeImg: 'assets/images/common/rows-active-01.svg',
       status: 2,
       data: [],
       loading: false
@@ -64,7 +64,7 @@ export class TaskManagementComponent implements OnInit {
     {
       name: 'Claims',
       img: 'assets/images/common/violation-alert.svg',
-      activeImg: 'assets/images/common/violation-alert.svg',
+      activeImg: 'assets/images/common/violation-alert-active.svg',
       status: 0,
       data: [],
       loading: false
@@ -230,6 +230,7 @@ export class TaskManagementComponent implements OnInit {
         this.ref = this.dialogService.open(TaskDetailDialog, {
           modal: true,
           width: '1000px',
+
           data: { type: 'detail', task: response.task }
         });
       }

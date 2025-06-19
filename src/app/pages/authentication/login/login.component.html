@@ -49,6 +49,7 @@
       [loading]="loading"
       class="d-block"
       label="Login"
+      [disabled]="!loginForm.valid || loading"
       (click)="onSubmit()"
     />
   </form>

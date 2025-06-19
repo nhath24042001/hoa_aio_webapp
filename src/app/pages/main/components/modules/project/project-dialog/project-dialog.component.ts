@@ -10,12 +10,7 @@ import { TextareaModule } from 'primeng/textarea';
 
 import { IProjectPayload } from '~/@types/project';
 import { BaseComponent } from '~/components/common/base/base.component';
-import {
-  PROJECT_CUSTOM_SELECT,
-  PROJECT_PRIORITY,
-  PROJECT_STATUS,
-  PROJECT_TYPES
-} from '~/constants/select';
+import { PROJECT_CUSTOM_STATUS, PROJECT_PRIORITY, PROJECT_STATUS, PROJECT_TYPES } from '~/constants/select';
 import { AutoFocusDirective } from '~/directives/auto-focus.directive';
 import { ButtonDirective } from '~/directives/button.directive';
 import { ClickOutsideDirective } from '~/directives/click-outside.directive';
@@ -52,16 +47,14 @@ export class ProjectDialog extends BaseComponent {
 
   icon = computed(() => {
     const basePath = `assets/images/${this.currentMode}`;
-    return this.type() === 'create'
-      ? `${basePath}/file-plus-03.svg`
-      : `${basePath}/clipboard-check.svg`;
+    return this.type() === 'create' ? `${basePath}/file-plus-03.svg` : `${basePath}/clipboard-check.svg`;
   });
 
   isEditMode = computed(() => {
     return this.type() === 'create' || this.type() === 'edit';
   });
 
-  project_custom_select = PROJECT_CUSTOM_SELECT;
+  project_custom_select = PROJECT_CUSTOM_STATUS;
 
   constructor(
     public config: DynamicDialogConfig,

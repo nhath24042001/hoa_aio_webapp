@@ -15,6 +15,7 @@
     color: #ff515f;
   }
 }
+
 .--row-img {
   width: 120px;
   height: 70px;
@@ -26,7 +27,7 @@
   height: 30px !important;
 }
 
-::ng-deep .p-avatar-group .p-avatar-lg + .p-avatar-lg {
+::ng-deep .p-avatar-group .p-avatar-lg+.p-avatar-lg {
   margin-inline-start: -10px !important;
 }
 
@@ -72,17 +73,19 @@
   display: none;
 }
 
-::ng-deep .p-select-option-selected {
-    background: #6938da !important;
-}
-
 ::ng-deep .p-paginator {
   padding: 0 !important;
 }
 
-::ng-deep .p-datatable-thead > tr > th.p-datatable-column-sorted {
+::ng-deep .p-datatable-thead>tr>th.p-datatable-column-sorted {
   background: var(--active-primary) !important;
   color: var(--const-color) !important;
   font-size: 13px !important;
   line-height: 18px !important;
+}
+
+
+::ng-deep .p-select-option-selected,
+::ng-deep .p-datepicker-day-selected {
+  background: var(--active-primary) !important;
 }

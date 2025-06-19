@@ -1,12 +1,5 @@
 import { DatePipe } from '@angular/common';
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-  signal,
-  ViewChild
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, signal, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular';
 import { CalendarOptions } from '@fullcalendar/core';
@@ -16,6 +9,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { BaseComponent } from '~/components/common/base/base.component';
 import { ButtonDirective } from '~/directives/button.directive';
+import { ROUTE_PATH } from '~/enums/route';
 import { CalendarService } from '~/pages/main/pages/calendar/calendar.service';
 import { ThemeService } from '~/services/theme.service';
 
@@ -28,6 +22,7 @@ import { ThemeService } from '~/services/theme.service';
 export class CalendarSectionComponent extends BaseComponent implements AfterViewInit, OnInit {
   @ViewChild('calendar') calendarComponent?: FullCalendarComponent;
   ref: DynamicDialogRef | undefined;
+  ROUTE_PATH = ROUTE_PATH;
   calendarTitle = '';
   calendarOptions = signal<CalendarOptions>({
     plugins: [dayGridPlugin],
@@ -79,6 +74,6 @@ export class CalendarSectionComponent extends BaseComponent implements AfterView
   }
 
   onNavigateToEvent() {
-    this.router.navigate(['/main/calendar']);
+    this.router.navigate([ROUTE_PATH.CALENDAR]);
   }
 }

@@ -2,13 +2,13 @@
   <div class="--dialog-header w-100 d-flex justify-content-between mb-4">
     <div class="d-flex align-items-center">
       <img class="me-3" [src]="icon()" alt="dialog_icon" />
-      <h3 class="mb-0">Task Details</h3>
+      <h3 class="mb-0">Project Details</h3>
     </div>
 
     <div class="--right">
       <div>
-        <p class="text-end">Created: {{ data.created_at | date }}</p>
-        <p class="text-end">Updated: {{ data.last_update | date }}</p>
+        <p class="text-end">Created: {{ formattedDate(data.start_date) }}</p>
+        <p class="text-end">Updated: {{ formattedDate(data.last_update) }}</p>
       </div>
 
       <div class="--share-box mx-3 d-flex justify-content-center align-items-center">Share</div>
@@ -27,7 +27,7 @@
   <p-divider />
 
   <div class="--dynamic-title">
-    <!-- <h2>Title</h2> -->
+    <h2>{{ data.name }}</h2>
 
     <div class="row">
       <div class="col-6">
@@ -50,11 +50,10 @@
             [options]="customStatus"
             [formControl]="statusFormControl()"
             [initStatus]="extraData.custom_status"
-            (statusChanged)="onStatusChanged($event)"
           ></app-custom-select>
         </div>
 
-        <!-- Task Type -->
+        <!-- Project Type -->
         <div class="mb-3 d-flex align-items-center">
           <img
             [src]="'assets/images/' + currentMode + '/' + 'list-sm' + '.svg'"
@@ -86,7 +85,6 @@
           >
             Priority
           </p>
-
           <span class="--box" [ngClass]="getClassStyle(task_priority(), currentMode)">{{
             task_priority()
           }}</span>
@@ -111,25 +109,7 @@
         </div>
       </div>
       <div class="col-6">
-        <!-- Assign To -->
-        <div class="mb-3 d-flex align-items-center">
-          <img
-            [src]="'assets/images/' + currentMode + '/' + 'user-up-sm' + '.svg'"
-            [alt]="icon + '_icon'"
-            class="me-2"
-          />
-          <p
-            [style.width]="!isEditMode() ? '' : ''"
-            [class.--detail]="!isEditMode()"
-            class="--text-box"
-          >
-            Assign To
-          </p>
-
-          <span>{{ data.assigned_to_name }}</span>
-        </div>
-
-        <!-- Project -->
+        <!-- PROJECT MANAGER -->
         <div class="mb-3 d-flex align-items-center">
           <img
             [src]="'assets/images/' + currentMode + '/' + 'perspective' + '.svg'"
@@ -141,13 +121,31 @@
             [class.--detail]="!isEditMode()"
             class="--text-box"
           >
-            Project
+            Project Manager
           </p>
 
-          <span>{{ extraData.project }}</span>
+          <span>You</span>
         </div>
 
-        <!-- Resident name -->
+        <!-- ESTIMATE COST -->
+        <div class="mb-3 d-flex align-items-center">
+          <img
+            [src]="'assets/images/' + currentMode + '/' + 'perspective' + '.svg'"
+            [alt]="icon + '_icon'"
+            class="me-2"
+          />
+          <p
+            [style.width]="!isEditMode() ? '' : ''"
+            [class.--detail]="!isEditMode()"
+            class="--text-box"
+          >
+            Estimated Cost
+          </p>
+
+          <span>{{ data.est_cost }}</span>
+        </div>
+
+        <!-- RESIDENT NAME -->
         <div class="mb-3 d-flex align-items-center">
           <img
             [src]="'assets/images/' + currentMode + '/' + 'user-square' + '.svg'"
@@ -162,13 +160,13 @@
             Resident Name
           </p>
 
-          <span>- </span>
+          <span>-</span>
         </div>
 
-        <!-- Property Address -->
+        <!-- BID -->
         <div class="mb-3 d-flex align-items-center">
           <img
-            [src]="'assets/images/' + currentMode + '/' + 'home-sm' + '.svg'"
+            [src]="'assets/images/' + currentMode + '/' + 'finger' + '.svg'"
             [alt]="icon + '_icon'"
             class="me-2"
           />
@@ -177,80 +175,91 @@
             [class.--detail]="!isEditMode()"
             class="--text-box"
           >
-            Property Address
+            Bid
           </p>
 
-          <span>{{ extraData.property_address }}</span>
+          <span>Palm Springs Main Entrance Bid</span>
         </div>
+      </div>
+
+      <!-- VENDOR -->
+      <div class="mb-3 d-flex align-items-center">
+        <img
+          [src]="'assets/images/' + currentMode + '/' + 'truck-sm' + '.svg'"
+          [alt]="icon + '_icon'"
+          class="me-2"
+        />
+        <p
+          [style.width]="!isEditMode() ? '' : ''"
+          [class.--detail]="!isEditMode()"
+          class="--text-box"
+        >
+          Vendors
+        </p>
+
+        <span>AB Services Co., HardHatters, Monkey Biz & Co.</span>
+      </div>
+
+      <!-- ACTION ITEM -->
+      <div class="mb-3 d-flex align-items-center">
+        <img
+          [src]="'assets/images/' + currentMode + '/' + 'clipboard-check-sm' + '.svg'"
+          [alt]="icon + '_icon'"
+          class="me-2"
+        />
+        <p
+          [style.width]="!isEditMode() ? '' : ''"
+          [class.--detail]="!isEditMode()"
+          class="--text-box"
+        >
+          Action Items
+        </p>
+
+        <span>Sign contract with plumbing vendor, Sign contract for watering system project</span>
       </div>
     </div>
-
-    <p-divider />
-
-    <div class="mb-4">
-      <h5 class="mb-2 mt-3">Detail</h5>
-      <p>{{ data.description }}</p>
-    </div>
-
-    @if (extraData.comments.length) {
-      <div class="mb-2 d-flex justify-content-between align-items-center">
-        <h5>Comments</h5>
-
-        <button appButton="secondary" icon="plus">Add Comment</button>
-      </div>
-
-      @for (item of extraData.comments; track $index) {
-        <div class="--comment-box" [class.--dark]="currentMode === 'dark'">
-          <div class="d-flex align-items-center">
-            <img
-              [src]="item.authorAvatar"
-              class="me-2 rounded-circle object-fit-cover"
-              width="40"
-              height="40"
-              alt="avatar_img"
-            />
-            <span>{{ item.authorName }}</span>
-          </div>
-
-          <p class="mt-3">{{ item.content }}</p>
-        </div>
-      }
-    }
-
-    @if (extraData.attachments.length) {
-      <div class="mt-4">
-        <h5>Attachments</h5>
-        <div class="d-flex gap-3">
-          @for (attach of extraData.attachments; track $index) {
-            <div class="--attachment-box d-flex align-items-center justify-content-center">
-              @if (attach.mediaType === 'video') {
-                <img
-                  [src]="'assets/images/' + currentMode + '/video-recorder.svg'"
-                  class="me-2"
-                  alt="video_record"
-                />
-              } @else {
-                <img
-                  [src]="'assets/images/' + currentMode + '/attachment-image.svg'"
-                  class="me-2"
-                  alt="file_icon"
-                />
-              }
-              <div>
-                <p class="--file-name">{{ attach.name }}</p>
-                <p class="--file-size">{{ attach.size }}</p>
-              </div>
-            </div>
-          }
-        </div>
-      </div>
-    }
   </div>
 
+  <p-divider />
+
+  <div class="mb-4">
+    <h5 class="mb-2 mt-3">Detail</h5>
+    <p>{{ data.description }}</p>
+  </div>
+
+  @if (extraData.attachments.length) {
+    <div class="mt-4">
+      <h5>Attachments</h5>
+      <div class="d-flex gap-3">
+        @for (attach of extraData.attachments; track $index) {
+          <div class="--attachment-box d-flex align-items-center justify-content-center">
+            @if (attach.mediaType === 'video') {
+              <img
+                [src]="'assets/images/' + currentMode + '/video-recorder.svg'"
+                class="me-2"
+                alt="video_record"
+              />
+            } @else {
+              <img
+                [src]="'assets/images/' + currentMode + '/attachment-image.svg'"
+                class="me-2"
+                alt="file_icon"
+              />
+            }
+            <div>
+              <p class="--file-name">{{ attach.name }}</p>
+              <p class="--file-size">{{ attach.size }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
   <div class="--dynamic-action mt-3 d-flex justify-content-between align-items-center">
-    <p>Task ID: {{ data.task_id }}</p>
+    <p>Project ID: {{ data.project_id }}</p>
     <div class="d-flex align-items-center">
-      <button appButton="primary" icon="check" class="mx-2">Done</button>
+      <button appButton="primary" icon="check" [disabled]="true" class="mx-2">Save Changes</button>
     </div>
   </div>
 </div>

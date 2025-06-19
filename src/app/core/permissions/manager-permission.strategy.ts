@@ -14,7 +14,9 @@ export class ManagerPermissionStrategy implements PermissionStrategy {
     AppModule.HOME_OWNER,
     AppModule.DOCUMENT,
     AppModule.REPORT,
-    AppModule.VENDOR
+    AppModule.VENDOR,
+    AppModule.USER,
+    AppModule.SETTINGS
   ];
 
   getAccessibleModules(): AppModule[] {

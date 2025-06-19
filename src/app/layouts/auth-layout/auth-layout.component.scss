@@ -21,7 +21,7 @@
 
     .--form-container {
       display: flex;
-      justify-content: end;
+      justify-content: center;
       align-items: center;
       height: 100%;
       width: 100%;
@@ -49,5 +49,11 @@
       justify-content: center;
       margin: 0;
     }
+  }
+}
+
+@media (min-width: 1024px) {
+  .--form-container {
+    justify-content: end;
   }
 }

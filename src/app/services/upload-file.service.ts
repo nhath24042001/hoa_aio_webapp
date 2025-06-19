@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { from, Observable, switchMap } from 'rxjs';
 
-import { ICommonResponse } from '~/@types';
 import { HttpClientModel } from '~/models/http/http-client.model';
 
 @Injectable({
@@ -13,31 +13,30 @@ export class UploadFileService extends HttpClientModel {
     super(http);
   }
 
-  public uploadFileBase64(file: File): Observable<ICommonResponse> {
-    const reader = new FileReader();
-
-    return new Observable<ICommonResponse>((observer) => {
-      reader.onload = () => {
-        const base64String = (reader.result as string).split(',')[1];
-
+  public uploadFileBase64(file: File): Observable<any> {
+    return from(this.fileToBase64(file)).pipe(
+      switchMap((base64) => {
         const payload = {
           file_name: file.name,
-          file_data: base64String
+          file_data: `data:${file.type};base64,${base64}`
         };
+        return this.post(this.createRequest('File', 'upload_file_base64', payload));
+      })
+    );
+  }
 
-        this.post(this.createRequest('File', 'upload_file_base64', payload)).subscribe({
-          next: (response) => {
-            observer.next(response as ICommonResponse);
-            observer.complete();
-          },
-          error: (error) => {
-            observer.error(error);
-          }
-        });
+  private fileToBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const result = reader.result as string;
+        const base64 = result.split(',')[1];
+        resolve(base64);
       };
 
       reader.onerror = (error) => {
-        observer.error(error);
+        reject(error);
       };
 
       reader.readAsDataURL(file);

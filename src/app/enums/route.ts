@@ -45,3 +45,17 @@ export const RoutePath: RoutePathType = {
 };
 
 export type RoutePathType = { [key in RouteName]: string };
+
+export enum ROUTE_PATH {
+  OVERVIEW = 'main/overview',
+  ANNOUNCEMENT = 'main/announcements',
+  CALENDAR = 'main/calendar',
+  TASK_MANAGEMENT = 'main/task-management',
+  PROJECT = 'main/projects',
+  VENDOR = 'main/vendors',
+  VIOLATION_REPORT = 'main/violation-reports',
+  ACCOUNTING = 'main/accounting',
+  HOME_OWNER = 'main/home-owners',
+  DOCUMENT = 'main/documents',
+  REPORT = 'main/reports'
+}

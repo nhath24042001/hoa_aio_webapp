@@ -15,7 +15,7 @@
     >
       <img [src]="'assets/images/' + currentMode + '/notification.svg'" alt="notification_icon" />
       <div class="--notification-badge d-flex justify-content-center align-items-center">
-        <span class="text-white">7</span>
+        <span class="text-white">{{ announcements.length }}</span>
       </div>
     </div>
 
@@ -23,11 +23,11 @@
       <div class="--notification-wrapper">
         <h4>Notifications</h4>
 
-        @for (notify of notifications; track $index) {
+        @for (notify of announcements; track $index) {
           <div class="notification-box d-flex align-items-center justify-content-between">
             <div>
               <p class="--truncate">{{ notify.title }}</p>
-              <span>{{ notify.created | date: 'MMM. dd, hh:mm a' }}</span>
+              <span>{{ notify.created_on| date: 'MMM. dd, hh:mm a' }}</span>
             </div>
 
             <img
@@ -67,6 +67,7 @@
             <div class="d-flex align-items-center gap-3">
               <img
                 [src]="'assets/images/' + currentMode + '/' + menu.icon + '.svg'"
+                class="--icon"
                 [alt]="menu.icon + '_icon'"
               />
               <p>{{ menu.name }}</p>

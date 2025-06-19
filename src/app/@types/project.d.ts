@@ -59,3 +59,7 @@ export interface Project {
   action_items: string | null;
   bid_id: string | null;
 }
+
+export interface IProjectDetailResponse extends ICommonResponse {
+  project: Project;
+}

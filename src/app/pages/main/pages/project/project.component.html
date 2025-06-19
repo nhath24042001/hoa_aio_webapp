@@ -20,6 +20,61 @@
             (searchChanged)="onSearchChange($event)"
             (addSection)="onOpenCreateProject()"
           >
+            <div filter-content>
+              <form class="--filter-content p-3" [formGroup]="filterForm">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h2>Filters</h2>
+                  <h4 (click)="clearFilter()">Clear all</h4>
+                </div>
+
+                <div class="--filter-box mt-2 d-flex">
+                  <p class="--text-filter">Task Status</p>
+                  <div class="d-flex flex-fill">
+                    <p-select
+                      [options]="statusOptions"
+                      formControlName="status"
+                      optionLabel="name"
+                      optionValue="code"
+                      placeholder="All"
+                      styleClass="flex-fill me-2"
+                    ></p-select>
+
+                    <img
+                      src="assets/images/common/close-circle.svg"
+                      (click)="clearFilterForm('status')"
+                      class="--close-icon"
+                      alt="close_circle_icon"
+                    />
+                  </div>
+                </div>
+
+                <div class="d-flex mt-3">
+                  <p class="--text-date">Task Creation</p>
+                  <div class="d-flex align-items-center">
+                    <p-datepicker
+                      formControlName="date_to"
+                      [iconDisplay]="'input'"
+                      placeholder="Start date"
+                      [showIcon]="true"
+                    />
+                    <span class="mx-2">to</span>
+                    <p-datepicker
+                      formControlName="date_from"
+                      [iconDisplay]="'input'"
+                      [showIcon]="true"
+                      styleClass="me-2"
+                      placeholder="End date"
+                    />
+                    <img
+                      src="assets/images/common/close-circle.svg"
+                      class="--close-icon"
+                      (click)="clearDateFilter()"
+                      alt="close_circle_icon"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
           </main-header>
         </div>
 

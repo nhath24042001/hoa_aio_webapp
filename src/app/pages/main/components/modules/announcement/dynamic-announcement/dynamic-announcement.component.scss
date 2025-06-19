@@ -27,3 +27,9 @@
 ::ng-deep .p-multiselect-list {
   background: var(--background);
 }
+
+
+::ng-deep .p-select-option-selected,
+::ng-deep .p-datepicker-day-selected {
+  background: var(--active-primary) !important;
+}

@@ -2,7 +2,7 @@
   <div class="--task-top d-flex justify-content-between align-items-center">
     <h4 class="mb-0">Open Tasks ({{ tasks.length }})</h4>
 
-    <button appButton="secondary" icon="plus-solid">New Task</button>
+    <button appButton="secondary" icon="plus-solid" (click)="redirectToTask()">New Task</button>
   </div>
 
   @if (tasks.length) {

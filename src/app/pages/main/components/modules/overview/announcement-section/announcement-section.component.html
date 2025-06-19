@@ -1,8 +1,8 @@
-<div class="--announcement-section">
-  <div class="--task-top p-4 d-flex justify-content-between align-items-center">
+<div class="--announcement-section p-4">
+  <div class="--task-top d-flex justify-content-between align-items-center">
     <h4 class="mb-0">Announcements</h4>
 
-    <button appButton="secondary" icon="plus-solid">New Announcement</button>
+    <button appButton="secondary" icon="plus-solid" (click)="redirectToAnnouncement()">New Announcement</button>
   </div>
 
   @if (announcements.length) {
@@ -11,19 +11,19 @@
         <div
           class="--announcement-item py-2 pe-2 d-flex justify-content-between align-items-center"
         >
-          <!-- <div class="--content">
+          <div class="--content">
             <h4 class="mb-2">{{ announce.title }}</h4>
             <div class="d-flex">
-              @if (announce.type === 'Draft') {
-                <div class="--tag d-flex justify-content-center align-items-center">Draft</div>
+              @if (announce.is_draft === 1) {
+                <div class="--tag me-2 d-flex justify-content-center align-items-center">Draft</div>
               }
-              <span class="mx-2">{{ announce.created | date: 'MMM. dd, hh:mm a' }}</span>
+              <span class="me-2">{{ announce.created_on | date: 'MMM. dd, hh:mm a' }}</span>
               <div class="d-flex jusityfy-content-center align-items-center">
                 <div class="--dot"></div>
               </div>
-              <span>{{ announce.personSent }}</span>
+              <span>{{ announce.creator_first_name }} {{ announce.creator_last_name }}</span>
             </div>
-          </div> -->
+          </div>
 
           <img
             [src]="'assets/images/' + currentMode + '/chevron-right.svg'"
@@ -33,7 +33,7 @@
       }
     </div>
   } @else {
-    <div class="mb-5">
+    <div class="mb-5 mt-3">
       <app-empty-content
         icon="assets/images/light/annotation-med.svg"
         iconDark="assets/images/dark/annotation-med.svg"

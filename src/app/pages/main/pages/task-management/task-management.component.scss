@@ -33,9 +33,10 @@
   .--text-date {
     width: 180px;
   }
-.--close-icon {
-  cursor: pointer;
-}
+
+  .--close-icon {
+    cursor: pointer;
+  }
 }
 
 ::ng-deep .p-tabpanels {

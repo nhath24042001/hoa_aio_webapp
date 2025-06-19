@@ -1,55 +1,90 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TabsModule } from 'primeng/tabs';
 
-import { vendorTabHeader } from '~/constants/tab';
-import {
-  bidHeaders,
-  bidList,
-  companyHeaders,
-  companyList,
-  estimateList,
-  vendorActions
-} from '~/data/vendor';
-import { ButtonDirective } from '~/directives/button.directive';
+import { ITab } from '~/@types';
+import { IVendor } from '~/@types/vendor';
+import { bidHeaders, bidList, companyHeaders, companyList, estimateList, vendorActions } from '~/data/vendor';
 import { Action } from '~/enums';
-import { BidDialog } from '~/pages/main/components/modules/vendor/bid-dialog/bid-dialog.component';
-import { RequestEstimateDialog } from '~/pages/main/components/modules/vendor/request-estimate-dialog/request-estimate-dialog.component';
-import { VendorDialog } from '~/pages/main/components/modules/vendor/vendor-dialog/vendor-dialog.component';
-import { EmptyContentComponent } from '~/pages/main/components/shared/empty-content/empty-content.component';
 import { MainHeader } from '~/pages/main/components/shared/main-header/main-header.component';
 import { Table } from '~/pages/main/components/shared/table/table.component';
 import { ToastService } from '~/services/toast.service';
 
+import { BidDialog } from '../../components/modules/vendor/bid-dialog/bid-dialog.component';
+import { RequestEstimateDialog } from '../../components/modules/vendor/request-estimate-dialog/request-estimate-dialog.component';
+import { VendorDialog } from '../../components/modules/vendor/vendor-dialog/vendor-dialog.component';
+
 @Component({
   selector: 'app-vendor',
-  imports: [TabsModule, EmptyContentComponent, ButtonDirective, MainHeader, Table],
+  imports: [TabsModule, MainHeader, Table],
   templateUrl: './vendor.component.html',
   styleUrl: './vendor.component.scss'
 })
 export class VendorComponent {
-  // TODO: Fix type any
   ref: DynamicDialogRef | undefined;
-  isActive: boolean = true;
   role = 'Manager';
-  activeTab = '0';
+  activeTab = signal('0');
 
-  tabs = vendorTabHeader;
   companyList = companyList;
   companyHeader = companyHeaders;
   bidHeader = bidHeaders;
   bidList = bidList;
   estimateList = estimateList;
   actions = vendorActions;
+  search: string = '';
+
+  tabs: Omit<ITab<IVendor>, 'status'>[] = [
+    {
+      name: 'Companies',
+      img: 'assets/images/common/gray-truck.svg',
+      activeImg: 'assets/images/common/truck.svg',
+      data: [],
+      headers: companyHeaders,
+      sampleData: companyList,
+      loading: false
+    },
+    {
+      name: 'Bids',
+      img: 'assets/images/common/gray-finger.svg',
+      activeImg: 'assets/images/common/finger.svg',
+      data: [],
+      headers: bidHeaders,
+      sampleData: bidList,
+      loading: false
+    },
+    {
+      name: 'Estimates',
+      img: 'assets/images/common/gray-help-hexagon.svg',
+      activeImg: 'assets/images/common/help-hexagon.svg',
+      data: [],
+      headers: bidHeaders,
+      sampleData: estimateList,
+      loading: false
+    }
+  ];
 
   constructor(
     public dialogService: DialogService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      const tab = params['tab'];
+
+      if (tab) {
+        const index = this.getTabIndexFromQuery(tab);
+        this.activeTab.set(index.toString());
+      }
+    });
+  }
+
   get buttonText(): string {
-    switch (this.activeTab) {
+    switch (this.activeTab()) {
       case '0':
         return 'New Vendor';
       case '1':
@@ -60,7 +95,7 @@ export class VendorComponent {
   }
 
   get componentRender() {
-    switch (this.activeTab) {
+    switch (this.activeTab()) {
       case '0':
         return VendorDialog;
       case '1':
@@ -70,11 +105,6 @@ export class VendorComponent {
     }
   }
 
-  onSearch() {}
-
-  onTabChange(tabIndex: number | string) {
-    this.activeTab = tabIndex.toString();
-  }
   onOpenCreate(): void {
     this.ref = this.dialogService.open(this.componentRender as any, {
       modal: true,
@@ -83,8 +113,6 @@ export class VendorComponent {
         type: 'create'
       }
     });
-
-    // this.ref.onClose.subscribe((task: any) => {});
   }
 
   onOpenEditDialog(): void {
@@ -136,8 +164,7 @@ export class VendorComponent {
     const confirmed = await this.toastService.showConfirm({
       icon: 'assets/images/common/red-trash-md.svg',
       title: 'Delete Item',
-      description:
-        'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
+      description: 'Are you sure? Proceeding will delete the item from the system, and can not be undone.',
       type: 'error',
       buttonText: 'Delete'
     });
@@ -163,6 +190,25 @@ export class VendorComponent {
         break;
       default:
         break;
+    }
+  }
+
+  onSearch() {}
+
+  onTabChange(tabIndex: number | string) {
+    this.activeTab.set(tabIndex.toString());
+  }
+
+  getTabIndexFromQuery(tab: string): number {
+    switch (tab.toLowerCase()) {
+      case 'companies':
+        return 0;
+      case 'bids':
+        return 1;
+      case 'estimates':
+        return 2;
+      default:
+        return 0;
     }
   }
 }

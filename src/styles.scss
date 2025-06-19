@@ -141,6 +141,12 @@ span {
   border-radius: 5px;
   text-transform: capitalize;
   font-weight: 600;
+  font-size: 12px !important;
+}
+
+.--icon {
+  width: 25px;
+  height: 25px;
 }
 
 .--urgent,
@@ -169,7 +175,8 @@ span {
   border-color: #ff515f !important;
 }
 
-.--important {
+.--important,
+.--medium {
   background: #f3eeff;
   color: #6938da;
   border: 1px solid #6938da;
@@ -178,7 +185,8 @@ span {
 
 .--normal,
 .--accepted,
-.--evaluated {
+.--evaluated,
+.--completed {
   background: #daffed;
   color: #55c68d;
   border: 1px solid #55c68d;
@@ -195,7 +203,8 @@ span {
 
 .--assigned,
 .--under_review,
-.--hearing {
+.--hearing,
+.--in {
   background: #d1f0fa;
   color: #116b97;
   border: 1px solid;
@@ -251,14 +260,16 @@ span {
   border: 1px solid #ff515f;
 }
 
-.--important-dark {
+.--important-dark,
+.--medium-dark {
   background: #6938da;
   color: #bea2ff;
   border: 1px solid #6938da;
 }
 
 .--normal-dark,
-.--accepted-dark {
+.--accepted-dark,
+.--completed-dark {
   background: #55c68d;
   color: #daffed;
   border: 1px solid #daffed;

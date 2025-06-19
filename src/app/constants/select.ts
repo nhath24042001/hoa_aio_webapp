@@ -84,47 +84,6 @@ export const TASK_CUSTOM_SELECT: DynamicField = {
   placeholder: 'Select'
 };
 
-export const PROJECT_CUSTOM_SELECT: DynamicField = {
-  icon: 'loading',
-  field: 'status',
-  label: 'Status',
-  type: 'custom-select',
-  position: 'left',
-  list: [
-    {
-      name: 'New',
-      code: 'new',
-      icon: 'red-thunder'
-    },
-    {
-      name: 'Planning',
-      code: 'planning',
-      icon: 'compass'
-    },
-    {
-      name: 'In Progress',
-      code: 'in_progress',
-      icon: 'loading-01'
-    },
-    {
-      name: 'On Hold',
-      code: 'on_hold',
-      icon: 'hand'
-    },
-    {
-      name: 'Completed',
-      code: 'completed',
-      icon: 'check-circle-broken-01'
-    },
-    {
-      name: 'Cancelled',
-      code: 'canceled',
-      icon: 'x-circle'
-    }
-  ],
-  placeholder: 'Select'
-};
-
 export const VENDOR_CUSTOM_SELECT: DynamicField = {
   icon: 'loading',
   field: 'status',
@@ -196,7 +155,7 @@ export const PRIORITY_OPTION = [
   }
 ];
 
-export const CUSTOM_SELECT = [
+export const TASK_CUSTOM_STATUS = [
   {
     name: 'New',
     code: 'new',
@@ -270,26 +229,59 @@ export const PROJECT_PRIORITY = [
 export const PROJECT_STATUS = [
   {
     name: 'New',
-    code: 0
-  },
-  {
-    name: 'Planning',
     code: 1
   },
   {
-    name: 'In Progress',
+    name: 'Planning',
     code: 2
   },
   {
-    name: 'On Hold',
+    name: 'In Progress',
     code: 3
   },
   {
-    name: 'Completed',
+    name: 'On Hold',
     code: 4
   },
   {
-    name: 'Cancelled',
+    name: 'Completed',
     code: 5
+  },
+  {
+    name: 'Cancelled',
+    code: 6
+  }
+];
+
+export const PROJECT_CUSTOM_STATUS = [
+  {
+    name: 'New',
+    code: 'new',
+    icon: 'red-thunder'
+  },
+  {
+    name: 'Planning',
+    code: 'planning',
+    icon: 'compass'
+  },
+  {
+    name: 'In Progress',
+    code: 'in_progress',
+    icon: 'loading-01'
+  },
+  {
+    name: 'On Hold',
+    code: 'on_hold',
+    icon: 'hand'
+  },
+  {
+    name: 'Completed',
+    code: 'completed',
+    icon: 'check-circle-broken-01'
+  },
+  {
+    name: 'Cancelled',
+    code: 'canceled',
+    icon: 'x-circle'
   }
 ];

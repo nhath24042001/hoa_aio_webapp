@@ -4,7 +4,8 @@
   background: var(--background);
   padding: 30px 90px 50px 90px;
   border-radius: 10px;
-  width: 750px;
+  min-width: 740px;
+    width: 100%;
   height: 600px;
 
   .--error-container {
@@ -87,4 +88,9 @@
       }
     }
   }
+}
+
+
+@media (min-width: 1024px)  {
+
 }
