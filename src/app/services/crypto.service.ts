@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 })
 export class CryptoService {
   private _secretKey = environment.SECRET_KEY;
+  private _iv = environment.API_URL;
 
   public encrypt(txt: string): string {
     return CryptoJS.AES.encrypt(txt, this._secretKey).toString();
