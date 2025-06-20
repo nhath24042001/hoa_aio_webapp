@@ -1,35 +1,21 @@
 <div class="--announcement-section p-4">
-  <div class="--task-top d-flex justify-content-between align-items-center">
+  <div class="--task-top d-flex justify-content-between align-items-center mb-3">
     <h4 class="mb-0">Announcements</h4>
 
-    <button appButton="secondary" icon="plus-solid" (click)="redirectToAnnouncement()">New Announcement</button>
+    <button appButton="secondary" icon="plus-solid" (click)="onCreateAnnouncement('create', null)">
+      New Announcement
+    </button>
   </div>
 
   @if (announcements.length) {
-    <div class="px-4 pb-4">
-      @for (announce of announcements; track $index) {
-        <div
-          class="--announcement-item py-2 pe-2 d-flex justify-content-between align-items-center"
-        >
-          <div class="--content">
-            <h4 class="mb-2">{{ announce.title }}</h4>
-            <div class="d-flex">
-              @if (announce.is_draft === 1) {
-                <div class="--tag me-2 d-flex justify-content-center align-items-center">Draft</div>
-              }
-              <span class="me-2">{{ announce.created_on | date: 'MMM. dd, hh:mm a' }}</span>
-              <div class="d-flex jusityfy-content-center align-items-center">
-                <div class="--dot"></div>
-              </div>
-              <span>{{ announce.creator_first_name }} {{ announce.creator_last_name }}</span>
-            </div>
-          </div>
-
-          <img
-            [src]="'assets/images/' + currentMode + '/chevron-right.svg'"
-            alt="chevron_right_icon"
-          />
-        </div>
+    <div class="pb-4">
+      @if (loading) {
+        <app-skeleton-list></app-skeleton-list>
+      } @else {
+        <announcement-list
+          [announcements]="announcements"
+          (onEmitAction)="onImplementAction($event)"
+        ></announcement-list>
       }
     </div>
   } @else {
@@ -39,6 +25,7 @@
         iconDark="assets/images/dark/annotation-med.svg"
         title="There are no announcements to show yet."
         createText="Create a new announcement"
+        (actionEmitter)="onCreateAnnouncement('create', null)"
       ></app-empty-content>
     </div>
   }

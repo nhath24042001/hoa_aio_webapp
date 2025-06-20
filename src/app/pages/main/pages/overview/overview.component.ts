@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-import { tasks } from '~/constants';
 import { AnnouncementSectionComponent } from '~/pages/main/components/modules/overview/announcement-section/announcement-section.component';
 import { BidSectionComponent } from '~/pages/main/components/modules/overview/bid-section/bid-section.component';
 import { OverviewStasComponent } from '~/pages/main/components/modules/overview/overview-stas/overview-stas.component';
@@ -21,6 +20,4 @@ import { CalendarSectionComponent } from '../../components/modules/overview/cale
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.scss'
 })
-export class OverviewComponent extends BaseComponent {
-  tasks = tasks;
-}
+export class OverviewComponent extends BaseComponent {}

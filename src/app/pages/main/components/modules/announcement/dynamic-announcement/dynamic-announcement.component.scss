@@ -1,10 +1,13 @@
-::ng-deep .p-multiselect,
-::ng-deep .p-datepicker-input,
-::ng-deep .p-textarea,
-::ng-deep .p-inputtext,
-::ng-deep .p-select {
-  background: var(--input-custom);
-  border-color: var(--border-color) !important;
+::ng-deep .p-dialog-header {
+  display: none;
+}
+
+::ng-deep .p-dialog-content {
+  padding: 0;
+}
+
+::ng-deep .p-datepicker {
+  width: 100%;
 }
 
 ::ng-deep .p-textarea {
@@ -32,4 +35,13 @@
 ::ng-deep .p-select-option-selected,
 ::ng-deep .p-datepicker-day-selected {
   background: var(--active-primary) !important;
+}
+
+::ng-deep .p-multiselect,
+::ng-deep .p-datepicker-input,
+::ng-deep .p-textarea,
+::ng-deep .p-inputtext,
+::ng-deep .p-select {
+  background: var(--input-custom);
+  border-color: var(--border-color) !important;
 }
